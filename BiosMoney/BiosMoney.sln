@@ -1,24 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite2", "..\..\Users\USER\Documents\Visual Studio 2010\WebSites\WebSite2\", "{84033299-7684-4897-B22E-3C6F6B2404B0}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BiosMoney", ".", "{A53B3521-BA87-45B1-9B29-14033C142CA9}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/WebSite2"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\Users\USER\Documents\Visual Studio 2010\WebSites\WebSite2\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WebSite2\"
+		Debug.AspNetCompiler.VirtualPath = "/BiosMoney"
+		Debug.AspNetCompiler.PhysicalPath = "..\BiosMoney\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\BiosMoney\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/WebSite2"
-		Release.AspNetCompiler.PhysicalPath = "..\..\Users\USER\Documents\Visual Studio 2010\WebSites\WebSite2\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\WebSite2\"
+		Release.AspNetCompiler.VirtualPath = "/BiosMoney"
+		Release.AspNetCompiler.PhysicalPath = "..\BiosMoney\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\BiosMoney\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "7509"
+		VWDPort = "9215"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -27,8 +27,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{84033299-7684-4897-B22E-3C6F6B2404B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84033299-7684-4897-B22E-3C6F6B2404B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A53B3521-BA87-45B1-9B29-14033C142CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A53B3521-BA87-45B1-9B29-14033C142CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
