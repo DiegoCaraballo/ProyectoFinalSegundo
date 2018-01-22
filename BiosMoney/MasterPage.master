@@ -22,13 +22,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">Inicio</a>
+              <a class="nav-link js-scroll-trigger" href="Principal.aspx">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Consultar Empresa</a>
+              <a class="nav-link js-scroll-trigger" href="Consulta Empresas.aspx">Consultar Empresa</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Consultar Pago</a>
+              <a class="nav-link js-scroll-trigger" href="Consulta Pago.aspx">Consultar Pago</a>
             </li>
           </ul>
         </div>
