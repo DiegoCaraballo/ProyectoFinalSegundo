@@ -4,3 +4,12 @@ C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Admini
 C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
 C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.exe
 C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.pdb
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.Default.resources
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.ABMCajero.resources
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.ABMEmpresa.resources
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.ABMGerente.resources
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.ABMTipoContrato.resources
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.AltaDePago.resources
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.CambioPassword.resources
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.ListadoDePagos.resources
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.Login.resources

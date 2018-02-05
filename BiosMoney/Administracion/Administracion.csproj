@@ -102,6 +102,33 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABMCajero.resx">
+      <DependentUpon>ABMCajero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMEmpresa.resx">
+      <DependentUpon>ABMEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMGerente.resx">
+      <DependentUpon>ABMGerente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABMTipoContrato.resx">
+      <DependentUpon>ABMTipoContrato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaDePago.resx">
+      <DependentUpon>AltaDePago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambioPassword.resx">
+      <DependentUpon>CambioPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Default.resx">
+      <DependentUpon>Default.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoDePagos.resx">
+      <DependentUpon>ListadoDePagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -110,6 +137,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -120,6 +148,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\Logo Bios Money.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\Nuevo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\Modificar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\Cancelar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
