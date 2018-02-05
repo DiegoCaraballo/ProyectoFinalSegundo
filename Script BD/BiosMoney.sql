@@ -1,83 +1,100 @@
---Script
---creo la base de datos de BiosMoney
-use master;
-if exists(Select * FROM SysDataBases WHERE name='BiosMoney')
+USE master
+GO
+
+if exists (select * from sys.databases where name = 'BiosMoney')
 BEGIN
 	DROP DATABASE BiosMoney
-END
-go
- 
-create DataBase BiosMoney
+END 
+GO
 
-go
+CREATE DATABASE BiosMoney
+GO
 
-use BiosMoney;
+USE BiosMoney
+GO
 
 create table usuario
 (
-	cedula int primary key not null check(cedula >0),
-	nomUsu varchar(15) not null,
-	pass varchar(7) check(len(pass) =7) not null,
-	nomCompleto varchar(40) not null
-)
-
-go
-
-create table cajero
-(
-	cedula int foreign key references usuario(cedula) not null,
-	horaIni datetime not null,
-	horaFin datetime not null
+cedula int not null primary key,
+nomUsu varchar(15) not null,
+pass int not null check(len(pass) = 7),
+nomComp varchar(50) not null
 )
 
 go
 
 create table gerente
 (
-	cedula int foreign key references usuario(cedula) not null,
-	correo varchar(50) not null
+cedula int not null primary key foreign key references usuario(cedula),
+correo varchar(50) not null
 )
 
 go
 
-create table empresa
+create table cajero
 (
-	codigo int primary key not null,
-	rut varchar(12) not null check(len(rut) <=12),
-	dirFiscal varchar(40) not null,
-	telefono varchar(15) not null
+cedula int not null primary key foreign key references usuario(cedula),
+horaIni datetime not null,
+horaFin datetime not null
+)
+
+go
+
+create table horasExtras
+(
+cedula int not null primary key foreign key references cajero(cedula),
+fecha datetime not null check(fecha <= getdate()),
+minutos int not null
 )
 
 go
 
 create table pago
 (
-	numeroInt int primary key identity (1,1) not null,
-	fecha datetime not null check(fecha >= getdate()),
-	montoTotal decimal not null,
-	cedulaCajero int foreign key references usuario(cedula) not null,
-	codigoEmp int foreign key references empresa(codigo)
-			
+id int not null identity(1,1) primary key,
+fecha date not null check(fecha = getdate()),
+monto int not null check(monto > 0)
 )
 
 go
 
-create table factura
+create table empresa
 (
-	codBarra varchar(25) primary key not null check(len(codBarra) = 25),
-	codCli int not null,
-	fechaVen datetime not null,
-	monto decimal not null
+codigo int not null primary key check(len(codigo) = 4),
+rut int unique not null check(len(rut) <=12),
+dirFiscal varchar(100) not null,
+telefono varchar(30) not null
 )
 
 go
 
 create table tipoContrato
 (
-	codContrato int primary key not null,
-	codEmpresa int foreign key references empresa(codigo) not null,
-	nombre varchar(19) not null
+codEmp int foreign key references empresa(codigo) not null,
+codigo int not null check(len(codigo) = 2),
+nombre varchar(30) not null,
+primary key(codEmp,codigo)
 )
+
+go
+create table factura --esto no estoy muy seguro, ya que no es una tabla, sino que es una relacion...
+-- y no se si dejarlo con este nombre... (lo puse asi por el mer)
+(
+idPago int foreign key references pago(id),
+codContrato int foreign key references tipoContrato(codigo),
+monto int not null check(monto >0),
+codCli int not null check(len(codCli) =6)
+)
+
+
+
+
+
+
+
+
+
+
 
 
 
