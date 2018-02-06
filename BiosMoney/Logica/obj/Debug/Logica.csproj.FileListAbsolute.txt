@@ -1,0 +1,4 @@
+C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\bin\Debug\Logica.dll
+C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\bin\Debug\Logica.pdb
+C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\obj\Debug\Logica.dll
+C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\obj\Debug\Logica.pdb

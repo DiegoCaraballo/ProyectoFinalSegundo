@@ -1,0 +1,4 @@
+C:\desarrollo\ProyectoFinalSegundo\entidadesCompartidas\bin\Debug\entidadesCompartidas.dll
+C:\desarrollo\ProyectoFinalSegundo\entidadesCompartidas\bin\Debug\entidadesCompartidas.pdb
+C:\desarrollo\ProyectoFinalSegundo\entidadesCompartidas\obj\Debug\entidadesCompartidas.dll
+C:\desarrollo\ProyectoFinalSegundo\entidadesCompartidas\obj\Debug\entidadesCompartidas.pdb
