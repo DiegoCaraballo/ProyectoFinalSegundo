@@ -13,3 +13,4 @@ C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Admini
 C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.CambioPassword.resources
 C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.ListadoDePagos.resources
 C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.Login.resources
+C:\Desarrollo\ProyectoFinalSegundo\BiosMoney\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache

@@ -4,7 +4,6 @@
     <style type="text/css">
         .style1
         {
-            width: 527px;
         }
         .style2
         {
@@ -20,27 +19,16 @@
                 <br><br><br><br>
                 <h1>
                     Consultar Pagos</h1>
-                <table style="width: 100%;">
-                    <tr>
-                        <td class="style1">
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
+                <p>
+                    &nbsp;</p>
+                <table class="table" style="width: 100%;">
                     <tr>
                         <td class="style2">
-                            &nbsp;
-                            Código de barras:
+                            
+                            Código de barras:&nbsp;
                         </td>
                         <td style="text-align: left">
-                            &nbsp;
-                            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                            &nbsp;
+                            <asp:TextBox ID="txtCodBarra" runat="server"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;
@@ -56,6 +44,12 @@
                         <td>
                             &nbsp;
                         </td>
+                    </tr>
+                    <tr>
+                        <td class="style1" colspan="2">
+                            &nbsp;</td>
+                        <td>
+                            &nbsp;</td>
                     </tr>
                 </table>
             </div>
