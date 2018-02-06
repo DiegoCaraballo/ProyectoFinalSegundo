@@ -46,6 +46,16 @@
     <Folder Include="Clases\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\entidadesCompartidas\entidadesCompartidas.csproj">
+      <Project>{BD5597BE-5A3F-4E75-AEA3-0232B9D43888}</Project>
+      <Name>entidadesCompartidas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistencia\Persistencia.csproj">
+      <Project>{477DF9BA-6176-41BA-A5D2-633A304B1EE0}</Project>
+      <Name>Persistencia</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

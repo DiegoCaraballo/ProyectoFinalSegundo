@@ -2,3 +2,6 @@ C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Persistencia\bin\Debug\Persistencia
 C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Persistencia\bin\Debug\Persistencia.pdb
 C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Persistencia\obj\Debug\Persistencia.dll
 C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Persistencia\obj\Debug\Persistencia.pdb
+C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Persistencia\bin\Debug\entidadesCompartidas.dll
+C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Persistencia\bin\Debug\entidadesCompartidas.pdb
+C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
