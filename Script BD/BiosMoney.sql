@@ -18,7 +18,7 @@ create table usuario
 cedula int not null primary key,
 nomUsu varchar(15) unique not null,
 pass varchar(7) not null check(len(pass) = 7),
-nomComppleto varchar(50) not null
+nomCompleto varchar(50) not null
 )
 
 go
@@ -37,7 +37,8 @@ create table cajero
 cedula int not null primary key foreign key references usuario(cedula),
 horaIni time not null,
 horaFin time not null,
-activo bit not null default 1
+activo bit not null default 1,
+check(horaFin >horaIni)
 )
 
 go

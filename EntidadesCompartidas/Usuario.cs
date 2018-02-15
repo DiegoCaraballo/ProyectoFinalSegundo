@@ -8,48 +8,55 @@ using System.Runtime.Serialization;
 
 namespace EntidadesCompartidas
 {
-        [DataContract]
-        public class Usuario
+    [DataContract]
+    public class Usuario
+    {
+        private int cedula;
+        private string nomUsu;
+        private string pass;
+        private string nomCompleto;
+
+        public int Cedula
         {
-            private int cedula;
-            private string nomUsu;
-            private string pass;
-            private string nomComp;
+            get { return cedula; }
+            set { cedula = value; }
+        }
 
-            public int Cedula
+        public string NomUsu
+        {
+            get { return nomUsu; }
+            set { nomUsu = value; }
+        }
+
+        public string Pass
+        {
+            get { return pass; }
+            set
             {
-                get { return cedula; }
-                set { cedula = value; }
-            }
+                if (pass.Length == 7)
+                    pass = value;
 
-            public string NomUsu
-            {
-                get { return nomUsu; }
-                set { nomUsu = value; }
-            }
-
-            public string Pass
-            {
-                get { return pass; }
-                set { pass = value; }
-            }
-
-            public string NomComp
-            {
-                get { return nomComp; }
-                set { nomComp = value; }
-            }
-
-            public Usuario()
-            { }
-
-            public Usuario(int pCedula, string pNomUsu, string pPass, string pNomComp)
-            {
-                Cedula = cedula;
-                NomUsu = nomUsu;
-                Pass = pass;
-                NomComp = nomComp;
+                else
+                    throw new Exception("La contraseña debe contener 7 caracteres");
             }
         }
-    
+
+        public string NomCompleto
+        {
+            get { return nomCompleto; }
+            set { nomCompleto = value; }
+        }
+
+        public Usuario()
+        { }
+
+        public Usuario(int pCedula, string pNomUsu, string pPass, string pNomCompleto)
+        {
+            Cedula = pCedula;
+            NomUsu = pNomUsu;
+            Pass = pPass;
+            NomCompleto = pNomCompleto;
+        }
+    }
+
 }

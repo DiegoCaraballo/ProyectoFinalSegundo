@@ -24,7 +24,14 @@ namespace EntidadesCompartidas
         public DateTime HoranFin
         {
             get { return horaFin; }
-            set { horaFin = value; }
+            set
+            {
+                if (horaIni < horaFin)
+                    horaFin = value;
+                else
+                    throw new Exception("La hora fin debe ser mayor a la hora de inicio");
+
+            }
         }
 
         public Cajero()

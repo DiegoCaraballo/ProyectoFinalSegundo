@@ -21,13 +21,25 @@ namespace EntidadesCompartidas
         public int Codigo
         {
             get { return codigo; }
-            set { codigo = value; }
+            set
+            {
+                if (codigo.ToString().Length >= 1 && codigo.ToString().Length <= 4)
+                    codigo = value;
+                else
+                    throw new Exception("El codigo de la emprea debe tener entre 1 y 4 digitos");
+            }
         }
 
         public int Rut
         {
             get { return rut; }
-            set { rut = value; }
+            set
+            {
+                if (rut.ToString().Length <= 12)
+                    rut = value;
+                else
+                    throw new Exception("El rut debe ser un nuemero entre 1 y 12 digitos");
+            }
         }
 
         public string DirFiscal
