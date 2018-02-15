@@ -1,8 +1,0 @@
-C:\desarrollo\ProyectoSegundo\Logica\bin\Debug\Logica.dll
-C:\desarrollo\ProyectoSegundo\Logica\bin\Debug\Logica.pdb
-C:\desarrollo\ProyectoSegundo\Logica\obj\Debug\Logica.dll
-C:\desarrollo\ProyectoSegundo\Logica\obj\Debug\Logica.pdb
-C:\desarrollo\ProyectoFinalSegundo\Logica\bin\Debug\Logica.dll
-C:\desarrollo\ProyectoFinalSegundo\Logica\bin\Debug\Logica.pdb
-C:\desarrollo\ProyectoFinalSegundo\Logica\obj\Debug\Logica.dll
-C:\desarrollo\ProyectoFinalSegundo\Logica\obj\Debug\Logica.pdb
