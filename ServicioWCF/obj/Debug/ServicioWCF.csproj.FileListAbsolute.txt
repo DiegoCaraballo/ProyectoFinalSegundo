@@ -1,0 +1,10 @@
+C:\desarrollo\ProyectoSegundo\ServicioWCF\bin\Debug\ServicioWCF.dll.config
+C:\desarrollo\ProyectoSegundo\ServicioWCF\bin\Debug\ServicioWCF.dll
+C:\desarrollo\ProyectoSegundo\ServicioWCF\bin\Debug\ServicioWCF.pdb
+C:\desarrollo\ProyectoSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
+C:\desarrollo\ProyectoSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb
+C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\Debug\ServicioWCF.dll.config
+C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\Debug\ServicioWCF.dll
+C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\Debug\ServicioWCF.pdb
+C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
+C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb
