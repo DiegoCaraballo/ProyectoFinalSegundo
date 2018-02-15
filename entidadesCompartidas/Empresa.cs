@@ -6,8 +6,9 @@ using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
-namespace entidadesCompartidas
+namespace EntidadesCompartidas
 {
+
     [DataContract]
     public class Empresa
     {
@@ -34,7 +35,7 @@ namespace entidadesCompartidas
             get { return dirFiscal; }
             set { dirFiscal = value; }
         }
-        
+
         public string Telefono
         {
             get { return telefono; }
@@ -58,6 +59,6 @@ namespace entidadesCompartidas
             ListaContratos = pLista;
         }
 
-        
+
     }
 }

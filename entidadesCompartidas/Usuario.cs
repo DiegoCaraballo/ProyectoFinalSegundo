@@ -6,49 +6,50 @@ using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
-namespace entidadesCompartidas
+namespace EntidadesCompartidas
 {
-    [DataContract]
-    public class Usuario
-    {
-        private int cedula;
-        private string nomUsu;
-        private string pass;
-        private string nomComp;
-
-        public int Cedula
+        [DataContract]
+        public class Usuario
         {
-            get { return cedula; }
-            set { cedula = value; }
-        }
+            private int cedula;
+            private string nomUsu;
+            private string pass;
+            private string nomComp;
 
-        public string NomUsu
-        {
-            get { return nomUsu; }
-            set { nomUsu = value; }
-        }
+            public int Cedula
+            {
+                get { return cedula; }
+                set { cedula = value; }
+            }
 
-        public string Pass
-        {
-            get { return pass; }
-            set { pass = value; }
-        }
+            public string NomUsu
+            {
+                get { return nomUsu; }
+                set { nomUsu = value; }
+            }
 
-        public string NomComp
-        {
-            get { return nomComp; }
-            set { nomComp = value; }
-        }
+            public string Pass
+            {
+                get { return pass; }
+                set { pass = value; }
+            }
 
-        public Usuario()
-        { }
+            public string NomComp
+            {
+                get { return nomComp; }
+                set { nomComp = value; }
+            }
 
-        public Usuario(int pCedula, string pNomUsu, string pPass, string pNomComp)
-        {
-            Cedula = cedula;
-            NomUsu = nomUsu;
-            Pass = pass;
-            NomComp = nomComp;
+            public Usuario()
+            { }
+
+            public Usuario(int pCedula, string pNomUsu, string pPass, string pNomComp)
+            {
+                Cedula = cedula;
+                NomUsu = nomUsu;
+                Pass = pass;
+                NomComp = nomComp;
+            }
         }
-    }
+    
 }

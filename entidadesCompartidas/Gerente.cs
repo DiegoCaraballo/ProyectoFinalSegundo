@@ -6,7 +6,7 @@ using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
-namespace entidadesCompartidas
+namespace EntidadesCompartidas
 {
     [DataContract]
     public class Gerente : Usuario

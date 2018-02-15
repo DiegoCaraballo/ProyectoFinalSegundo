@@ -1,9 +1,0 @@
-C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\bin\Debug\Logica.dll
-C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\bin\Debug\Logica.pdb
-C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\obj\Debug\Logica.dll
-C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\obj\Debug\Logica.pdb
-C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\bin\Debug\entidadesCompartidas.dll
-C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\bin\Debug\Persistencia.dll
-C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\bin\Debug\entidadesCompartidas.pdb
-C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\bin\Debug\Persistencia.pdb
-C:\desarrollo\ProyectoFinalSegundo\BiosMoney\Logica\obj\Debug\Logica.csprojResolveAssemblyReference.cache

@@ -26,8 +26,9 @@ go
 create table gerente
 (
 cedula int not null primary key foreign key references usuario(cedula),
-correo varchar(50) not null
+correo varchar(50) not null check(correo LIKE '%_@_%_.__%')
 )
+
 
 go
 
@@ -35,7 +36,8 @@ create table cajero
 (
 cedula int not null primary key foreign key references usuario(cedula),
 horaIni time not null,
-horaFin time not null
+horaFin time not null,
+activo bit not null default 1
 )
 
 go
@@ -43,7 +45,7 @@ go
 create table horasExtras
 (
 cedula int not null foreign key references cajero(cedula),
-fecha datetime not null check(fecha <= getdate()),
+fecha date not null check(fecha <= getdate()),
 minutos int not null
 primary key(cedula, fecha)
 )
@@ -64,7 +66,8 @@ create table empresa
 codEmpresa int not null primary key check(len(codEmpresa) >= 1 AND len(codEmpresa) <= 4),
 rut int unique not null check(len(rut) <= 12),
 dirFiscal varchar(100) not null,
-telefono varchar(30) not null
+telefono varchar(30) not null,
+activo bit not null default 1
 )
 
 go
@@ -74,7 +77,8 @@ create table tipoContrato
 codEmp int foreign key references empresa(codEmpresa) not null,
 codContrato int not null check(len(codContrato) >= 1 AND len(codContrato) <= 2),
 nombre varchar(30) not null,
-primary key(codEmp, codContrato)
+primary key(codEmp, codContrato),
+activo bit not null default 1
 )
 
 go
@@ -89,7 +93,7 @@ foreign key (codEmp, codContrato) references tipoContrato,
 primary key (idPago, codEmp, CodContrato)
 )
 
-
+go
 
 -- Usuario de IIS que utiliza el WCF para acceder a la Base de Datos
 USE master
@@ -109,55 +113,6 @@ go
 
 
 ------------------------------------------
-
-
-Create Procedure AltaUsuSql @nomUsu varchar(15), @pass varchar(7), @Rol varchar(30) AS
-Begin
-	
-	--primero creo el usuario de logueo
-	Declare @VarSentencia varchar(200)
-	Set @VarSentencia = 'CREATE LOGIN [' +  @nombre + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''')
-	Exec (@VarSentencia)
-	
-	if (@@ERROR <> 0)
-		return -1
-		
-	
-	--segundo asigno rol especificao al usuario recien creado
-	Exec sp_addsrvrolemember @loginame=@nombre, @rolename=@Rol
-	
-	if (@@ERROR = 0)
-		return 1
-	else
-		return -2
-
-End
-go
-
-Create Procedure AltaUsuBD @nombre varchar(15), @Rol varchar(30), @logueo varchar(10) AS
-Begin
-	--primero creo el usuario 
-	Declare @VarSentencia varchar(200)
-	Set @VarSentencia = 'Create User [' +  @nombre + '] From Login [' + @logueo + ']'
-	Exec (@VarSentencia)
-	
-	if (@@ERROR <> 0)
-		return -1
-		
-	
-	--segundo asigno rol especificao al usuario recien creado
-	Exec sp_addrolemember @rolename=@rol, @membername=@nombre
-	
-	if (@@ERROR = 0)
-		return 1
-	else
-		return -2
-	
-
-End
-go
-
-
 
 
 

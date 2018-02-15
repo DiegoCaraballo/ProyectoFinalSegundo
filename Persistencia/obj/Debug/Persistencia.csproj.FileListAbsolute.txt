@@ -1,0 +1,8 @@
+C:\desarrollo\ProyectoSegundo\Persistencia\bin\Debug\Persistencia.dll
+C:\desarrollo\ProyectoSegundo\Persistencia\bin\Debug\Persistencia.pdb
+C:\desarrollo\ProyectoSegundo\Persistencia\obj\Debug\Persistencia.dll
+C:\desarrollo\ProyectoSegundo\Persistencia\obj\Debug\Persistencia.pdb
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\Persistencia.dll
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\Persistencia.pdb
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.dll
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.pdb

@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +6,9 @@ using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
-namespace entidadesCompartidas
+namespace EntidadesCompartidas
 {
+
     [DataContract]
     public class Cajero : Usuario
     {
@@ -37,5 +36,6 @@ namespace entidadesCompartidas
             HoranIni = pHoraIni;
             HoranFin = pHoraFin;
         }
+
     }
 }

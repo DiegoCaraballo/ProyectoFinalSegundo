@@ -1,4 +1,8 @@
-C:\desarrollo\ProyectoFinalSegundo\entidadesCompartidas\bin\Debug\entidadesCompartidas.dll
-C:\desarrollo\ProyectoFinalSegundo\entidadesCompartidas\bin\Debug\entidadesCompartidas.pdb
-C:\desarrollo\ProyectoFinalSegundo\entidadesCompartidas\obj\Debug\entidadesCompartidas.dll
-C:\desarrollo\ProyectoFinalSegundo\entidadesCompartidas\obj\Debug\entidadesCompartidas.pdb
+C:\desarrollo\ProyectoSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
+C:\desarrollo\ProyectoSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
+C:\desarrollo\ProyectoSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
+C:\desarrollo\ProyectoSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
+C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
+C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
+C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
+C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb

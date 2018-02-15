@@ -1,0 +1,12 @@
+C:\desarrollo\ProyectoSegundo\Administracion\bin\Debug\Administracion.exe
+C:\desarrollo\ProyectoSegundo\Administracion\bin\Debug\Administracion.pdb
+C:\desarrollo\ProyectoSegundo\Administracion\obj\x86\Debug\Administracion.Properties.Resources.resources
+C:\desarrollo\ProyectoSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
+C:\desarrollo\ProyectoSegundo\Administracion\obj\x86\Debug\Administracion.exe
+C:\desarrollo\ProyectoSegundo\Administracion\obj\x86\Debug\Administracion.pdb
+C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe
+C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.pdb
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Properties.Resources.resources
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
