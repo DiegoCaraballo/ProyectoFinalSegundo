@@ -14,6 +14,13 @@ namespace EntidadesCompartidas
         private int numeroInt;
         private DateTime fecha;
         private int montoTotal;
+        private Cajero usuCajero;
+
+        public Cajero UsuCajero
+        {
+            get { return usuCajero; }
+            set { usuCajero = value; }
+        }
 
         public int MontoTotal
         {
@@ -46,11 +53,12 @@ namespace EntidadesCompartidas
         public Pago()
         { }
 
-        public Pago(int pNumeroInt, DateTime pFecha, int pMontoTotal)
+        public Pago(int pNumeroInt, DateTime pFecha, int pMontoTotal, Cajero pUsuCajero)
         {
             NumeroInt = pNumeroInt;
             Fecha = pFecha;
             NumeroInt = pMontoTotal;
+            UsuCajero = pUsuCajero;
         }
     }
 }

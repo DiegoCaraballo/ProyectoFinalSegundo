@@ -8,3 +8,4 @@ C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\Debug\ServicioWCF.dll
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\Debug\ServicioWCF.pdb
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb
+C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.csprojResolveAssemblyReference.cache
