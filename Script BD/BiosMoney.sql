@@ -46,8 +46,8 @@ go
 create table horasExtras
 (
 cedula int not null foreign key references cajero(cedula),
-fecha date not null check(fecha <= getdate()),
-minutos int not null
+fecha date not null check(fecha = getdate()),
+minutos int not null check(minutos>0)
 primary key(cedula, fecha)
 )
 
@@ -57,7 +57,8 @@ create table pago
 (
 numeroInt int not null identity(1,1) primary key,
 fecha date not null default getdate(),
-montoTotal int not null check(montoTotal > 0)
+montoTotal int not null check(montoTotal > 0),
+cedulaCajero int not null foreign key references cajero(cedula)
 )
 
 go
@@ -109,16 +110,20 @@ GO
 CREATE USER [IIS APPPOOL\DefaultAppPool] FOR LOGIN [IIS APPPOOL\DefaultAppPool]
 GO
 
-GRANT Execute to [IIS APPPOOL\DefaultAppPool]
-go
 
+USE BiosMoney;
+CREATE ROLE UsuarioWeb AUTHORIZATION [IIS APPPOOL\DefaultAppPool];
+GO
 
-------------------------------------------
+CREATE ROLE UsuarioCajero
+GO
 
+CREATE ROLE UsuarioAdministrador
+GO
 
-
-
-
+--GRANT Execute on "Procedimientos del Usuario Web" to UsuarioWeb
+--GRANT Execute on "Procedimientos del Usuario Cajero" to UsuarioCajero
+--GRANT Execute on "Procedimientos del Usuario Gerente" to UsuarioGerente
 
 
 
