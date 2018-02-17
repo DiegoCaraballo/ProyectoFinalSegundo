@@ -46,7 +46,7 @@ go
 create table horasExtras
 (
 cedula int not null foreign key references cajero(cedula),
-fecha date not null check(fecha = getdate()),
+fecha date not null default getdate(),
 minutos int not null check(minutos>0)
 primary key(cedula, fecha)
 )
@@ -118,12 +118,31 @@ GO
 CREATE ROLE UsuarioCajero
 GO
 
-CREATE ROLE UsuarioAdministrador
-GO
 
 --GRANT Execute on "Procedimientos del Usuario Web" to UsuarioWeb
 --GRANT Execute on "Procedimientos del Usuario Cajero" to UsuarioCajero
---GRANT Execute on "Procedimientos del Usuario Gerente" to UsuarioGerente
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

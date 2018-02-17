@@ -19,8 +19,11 @@ namespace EntidadesCompartidas
             set { correo = value; }
         }
 
+
         public Gerente()
         { }
+
+
         public Gerente(int pCedula, string pNomUsu, string pPass, string pNomComp, string pCorreo)
             : base(pCedula, pNomUsu, pPass, pNomComp)
         {

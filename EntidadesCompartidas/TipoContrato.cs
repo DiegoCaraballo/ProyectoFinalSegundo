@@ -11,16 +11,23 @@ namespace EntidadesCompartidas
     [DataContract]
     public class TipoContrato
     {
-        private int codEmp;
+        private Empresa unaEmp;
         private int codContrato;
         private string nombre;
 
 
+        public Empresa UnaEmp
+        {
+            get { return unaEmp; }
+            set { unaEmp = value; }
+        }
         public string Nombre
         {
             get { return nombre; }
             set { nombre = value; }
         }
+
+        
         public int CodContrato
         {
             get { return codContrato; }
@@ -33,20 +40,17 @@ namespace EntidadesCompartidas
             }
         }
 
-        public int CodEmp
-        {
-            get { return codEmp; }
-            set { codEmp = value; }
-        }
-
+        
+     
         public TipoContrato()
         { }
 
-        public TipoContrato(int pCodEmp, int pCodContrato, string pNombre)
+        
+        public TipoContrato(Empresa pUnaEmp, int pCodContrato, string pNombre)
         {
             Nombre = pNombre;
             CodContrato = pCodContrato;
-            CodEmp = pCodEmp;
+            UnaEmp = pUnaEmp;
         }
     }
 }

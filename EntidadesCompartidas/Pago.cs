@@ -16,16 +16,20 @@ namespace EntidadesCompartidas
         private int montoTotal;
         private Cajero usuCajero;
 
+
+        
         public Cajero UsuCajero
         {
             get { return usuCajero; }
             set { usuCajero = value; }
         }
 
+        
         public int MontoTotal
         {
             get { return montoTotal; }
-            set {
+            set
+            {
                 if (montoTotal > 0)
                     montoTotal = value;
                 else
@@ -33,6 +37,7 @@ namespace EntidadesCompartidas
             }
         }
 
+       
         public DateTime Fecha
         {
             get { return fecha; }
@@ -44,15 +49,19 @@ namespace EntidadesCompartidas
                     throw new Exception("La fecha tiene que ser igual a la fecha actual");
             }
         }
+
+       
         public int NumeroInt
         {
             get { return numeroInt; }
             set { numeroInt = value; }
         }
 
+        
         public Pago()
         { }
 
+        
         public Pago(int pNumeroInt, DateTime pFecha, int pMontoTotal, Cajero pUsuCajero)
         {
             NumeroInt = pNumeroInt;

@@ -11,13 +11,21 @@ namespace EntidadesCompartidas
     [DataContract]
     public class Factura
     {
-        private int idPago;
-        private int codContrato;
-        private int codEmp;
+        private Pago unPago;
+        private Empresa unaEmp;
         private int monto;
         private int codCli;
 
-
+        public Pago UnPago
+        {
+            get { return unPago; }
+            set { unPago = value; }
+        }
+        public Empresa UnaEmp
+        {
+            get { return unaEmp; }
+            set { unaEmp = value; }
+        }
         public int CodCli
         {
             get { return codCli; }
@@ -31,6 +39,7 @@ namespace EntidadesCompartidas
             }
         }
 
+        
         public int Monto
         {
             get { return monto; }
@@ -43,33 +52,17 @@ namespace EntidadesCompartidas
             }
         }
 
-        public int CodEmp
-        {
-            get { return codEmp; }
-            set { codEmp = value; }
-        }
-
-        public int CodContrato
-        {
-            get { return codContrato; }
-            set { codContrato = value; }
-        }
-        public int IdPago
-        {
-            get { return idPago; }
-            set { idPago = value; }
-        }
-
+        
         public Factura()
         { }
 
-        public Factura(int pIdPago, int pCodContrato, int pCodEmp, int pMonto, int pCodCli)
+        
+        public Factura(int pMonto, int pCodCli, Empresa pUnaEmp, Pago pUnPago)
         {
             CodCli = pCodCli;
             Monto = pMonto;
-            CodEmp = CodEmp;
-            CodContrato = pCodContrato;
-            IdPago = pIdPago;
+            UnaEmp = pUnaEmp;
+            UnPago = pUnPago;
         }
     }
 }

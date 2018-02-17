@@ -15,12 +15,14 @@ namespace EntidadesCompartidas
         private DateTime horaIni;
         private DateTime horaFin;
 
+        
         public DateTime HoranIni
         {
             get { return horaIni; }
             set { horaIni = value; }
         }
 
+        
         public DateTime HoranFin
         {
             get { return horaFin; }
@@ -34,9 +36,11 @@ namespace EntidadesCompartidas
             }
         }
 
+        
         public Cajero()
         { }
 
+        
         public Cajero(int pCedula, string pNomUsu, string pPass, string pNomComp, DateTime pHoraIni, DateTime pHoraFin)
             : base(pCedula, pNomUsu, pPass, pNomComp)
         {

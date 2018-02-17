@@ -8,6 +8,8 @@ using System.Runtime.Serialization;
 
 namespace EntidadesCompartidas
 {
+    [KnownType(typeof(Cajero))]
+    [KnownType(typeof(Gerente))]
     [DataContract]
     public class Usuario
     {
@@ -16,18 +18,21 @@ namespace EntidadesCompartidas
         private string pass;
         private string nomCompleto;
 
+        
         public int Cedula
         {
             get { return cedula; }
             set { cedula = value; }
         }
 
+        
         public string NomUsu
         {
             get { return nomUsu; }
             set { nomUsu = value; }
         }
 
+        
         public string Pass
         {
             get { return pass; }
@@ -41,15 +46,18 @@ namespace EntidadesCompartidas
             }
         }
 
+        
         public string NomCompleto
         {
             get { return nomCompleto; }
             set { nomCompleto = value; }
         }
 
+        
         public Usuario()
         { }
 
+        
         public Usuario(int pCedula, string pNomUsu, string pPass, string pNomCompleto)
         {
             Cedula = pCedula;
