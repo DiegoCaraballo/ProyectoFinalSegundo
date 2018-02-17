@@ -26,7 +26,7 @@ go
 create table gerente
 (
 cedula int not null primary key foreign key references usuario(cedula),
-correo varchar(50) not null check(correo LIKE '%_@_%_.__%')
+correo varchar(70) not null check(correo LIKE '%_@_%_.__%')
 )
 
 
@@ -37,7 +37,7 @@ create table cajero
 cedula int not null primary key foreign key references usuario(cedula),
 horaIni time not null,
 horaFin time not null,
-activo bit not null default 1,
+activo bit not null default 1,--1=activo // 0 = inactivo
 check(horaFin >horaIni)
 )
 
@@ -112,7 +112,7 @@ GO
 
 
 USE BiosMoney;
-CREATE ROLE UsuarioWeb AUTHORIZATION [IIS APPPOOL\DefaultAppPool];
+CREATE ROLE UsuarioWeb 
 GO
 
 CREATE ROLE UsuarioCajero
@@ -121,45 +121,4 @@ GO
 
 --GRANT Execute on "Procedimientos del Usuario Web" to UsuarioWeb
 --GRANT Execute on "Procedimientos del Usuario Cajero" to UsuarioCajero
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
