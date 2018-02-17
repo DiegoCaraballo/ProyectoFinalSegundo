@@ -313,24 +313,222 @@ go
 
 
 
+
+create proc BajaCajero @cedula int as
+begin
+
+declare @Error int;
+
+if not exists(select * from cajero where cedula=@cedula)
+return -1
+
+if exists(select * from gerente where cedula=@cedula)
+return -2
+
+if exists(select * from pago where cedulaCajero=@cedula)
+update cajero set activo = 0 where cedula=@cedula
+else 
+begin tran
+
+
+	Declare @VarSentenciaSQL varchar(200)
+	Set @VarSentenciaSQL = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentenciaSQL)
+
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -3
+	end
+
+		Declare @VarSentenciaBD varchar(200)
+	Set @VarSentenciaBD = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentenciaBD)
+
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -4
+	end
+
+
+	delete from cajero where cedula = @cedula
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -5
+	end
+
+delete from usuario where cedula =@cedula
+set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -6
+	end
+
+	begin 
+	commit tran 
+end
+
+End
+go
+
+
+
+create proc ModificarCajero @cedula int, @nomUsu varchar(15), @pass varchar(7), @nomCompleto varchar(50), @horaini time, @horaFin time as
+begin
+
+if not exists(select * from cajero where cedula=@cedula)
+return -1 
+
+if exists(select * from gerente where cedula= @cedula)
+return -2
+
+declare @Error int
+
+begin tran
+
+
+	Declare @VarSentenciaBD varchar(200)
+	Set @VarSentenciaBD = 'Alter User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) +  ' WITH NAME = ' +@nomUsu+']'
+	Exec (@VarSentenciaBD)
+
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -3
+	end
+	Declare @VarSentenciaSQL varchar(200)
+	Set @VarSentenciaSQL = 'Alter Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) +  ' WITH NAME = ' +@nomUsu+']'
+	Exec (@VarSentenciaSQL)
+
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -4
+	end
+
+
+
+	update cajero set horaIni=@horaini, horaFin=@horaFin where cedula=@cedula
+
+set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -5
+	end
+
+update usuario set nomUsu=@nomUsu, pass=@pass, nomCompleto=@nomCompleto where cedula = @cedula
+set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -6
+	end
+
+
+	begin 
+		commit tran
+	end
+
+	end
+
+go
+
+
+	create proc BuscarCajero @cedula int as
+	begin
+	if not exists (select * from cajero where cedula=@cedula)
+	return -1
+
+	select * from cajero where cedula = @cedula;
+	end 
+	go
+
+--drop proc CambioPass
+	create proc CambioPass @cedula int, @pass varchar(7) as
+
+begin
+if not exists(select * from usuario where cedula=@cedula)
+return -1
+
+declare @Error int;
+
+Declare @VarSentenciaSQL varchar(200)
+	Set @VarSentenciaSQL = 'Alter Login [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' +@pass+ ']'
+	Exec (@VarSentenciaSQL)
+
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -2
+	end
+	
+	Declare @VarSentenciaBD varchar(200)
+	Set @VarSentenciaBD = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' + @pass+']'
+	Exec (@VarSentenciaBD)
+
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -3
+	end
+
+	update usuario set pass = @pass where cedula=@cedula
+
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -4
+	end
+
+	begin 
+	commit tran
+	end
+
+end
+
+go
+
+
+
+--exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
+
+--exec BajaCajero 4565442
+
+
 --exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '00:00:00','08:00:00';
+
+exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
+
 
 select * from usuario
 
-select * from cajero
+select *from cajero
+--exec CambioPass 45848621,'1231231'
+
+--TODO 
+--El Alta Gerente Funciona, revisar los rollback tran
+--El Alta Cajero Funciona, Revisar los rollback tran
+
+--El Baja Cajero Funciona, REvisar con datos de pagos cuando esten prontos.
 
 
+--El cambio de Pass no Funciona....
 
 
-
-
-
-
-
-
-
-
-
+	
+	go
 
 
 
