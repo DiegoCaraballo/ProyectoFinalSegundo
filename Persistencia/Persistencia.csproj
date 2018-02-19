@@ -40,12 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\CajeroPersistencia.cs" />
+    <Compile Include="Clases\GerentePersistencia.cs" />
+    <Compile Include="FabricaPersistencia.cs" />
+    <Compile Include="Interfaces\ICajeroPersistencia.cs" />
+    <Compile Include="Interfaces\IGerentePersistencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Clases\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\EntidadesCompartidas\EntidadesCompartidas.csproj">
       <Project>{986AAA80-E0D1-4E23-BAE1-2F6821C56927}</Project>
