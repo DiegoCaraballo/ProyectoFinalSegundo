@@ -1,3 +1,4 @@
+
 USE master
 GO
 
@@ -26,7 +27,7 @@ go
 create table gerente
 (
 cedula int not null primary key foreign key references usuario(cedula),
-correo varchar(70) not null check(correo LIKE '%_@_%_.__%')
+correo varchar(50) not null check(correo LIKE '%_@_%_.__%')
 )
 
 
@@ -37,7 +38,7 @@ create table cajero
 cedula int not null primary key foreign key references usuario(cedula),
 horaIni time not null,
 horaFin time not null,
-activo bit not null default 1,--1=activo // 0 = inactivo
+activo bit not null default 1,
 check(horaFin >horaIni)
 )
 
@@ -112,13 +113,114 @@ GO
 
 
 USE BiosMoney;
-CREATE ROLE UsuarioWeb 
+CREATE ROLE UsuarioWeb AUTHORIZATION [IIS APPPOOL\DefaultAppPool];
 GO
 
 CREATE ROLE UsuarioCajero
 GO
 
 
+--Alta Empresa
+Create Proc AltaEmpresa
+@codEmpresa int,@rut int,@dirFiscal varchar(100),@telefono varchar(30),@activo bit as
+Begin
+
+  If exists (Select codEmpresa from empresa where codEmpresa = @codEmpresa and rut <> @rut)
+   return -1;
+
+If exists (Select rut from empresa where rut = @rut)
+   return -2;
+
+If exists (Select codEmpresa from empresa where codEmpresa = @codEmpresa and rut = @rut and activo=0)
+	update empresa set activo =1 where codEmpresa = @codEmpresa and rut = @rut
+	return 2
+
+    Insert Into empresa(codEmpresa,rut,dirFiscal ,telefono ,activo)
+    Values(@codEmpresa,@rut,@dirFiscal,@telefono,@activo);
+
+if(@@ERROR=0)
+begin
+commit tran
+return 1;
+end
+else
+begin
+rollback tran
+return -3;
+end
+End
+Go
+
+
+--Eliminar Empresa
+create proc BajaEmpresa @codEmpresa int
+as
+begin
+ 
+  If not exists (Select codEmpresa from empresa  where codEmpresa = @codEmpresa)
+   return -1;
+
+If not exists (Select codEmp from factura  where codEmp = @codEmpresa)
+	delete from empresa where codEmpresa =@codEmpresa
+ if(@@ERROR = 0)
+	begin
+		commit tran;
+		return 1;
+	end
+else
+	begin
+		rollback tran;
+		return -2;
+	end		
+
+ If exists (Select codEmp from factura  where codEmp = @codEmpresa)
+	update empresa set activo=0 where codEmpresa =@codEmpresa
+
+if(@@ERROR = 0)
+	begin
+		commit tran;
+		return 2;
+	end
+else
+	begin
+		rollback tran;
+		return -2;
+	end		
+end	
+ 
+go
+
+--Modificacion Empresa
+create proc ModificoEmpresa
+@codEmpresa int,@rut int,@dirFiscal varchar(100),@telefono varchar(30),@activo bit as
+ 
+Begin
+ 
+if (not exists(select * from empresa  where codEmpresa=@codEmpresa))
+return -1;
+ 
+Update empresa set rut = @rut, dirFiscal= @dirFiscal,telefono=@telefono,activo= @activo where codEmpresa=@codEmpresa;
+ 			 
+	if(@@ERROR=0)
+	begin
+		commit tran;
+		return 1;
+	end
+	else
+	begin
+		rollback tran;
+		return 0;
+	end	
+end
+ 
+go
+
+--Listar facturas de empresa especifica
+create proc FacturasEmpresa @codEmpresa int as
+begin 
+select * from factura where codEmp =@codEmpresa
+END
+go
 --GRANT Execute on "Procedimientos del Usuario Web" to UsuarioWeb
 --GRANT Execute on "Procedimientos del Usuario Cajero" to UsuarioCajero
 
