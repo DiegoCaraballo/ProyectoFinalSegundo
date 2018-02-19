@@ -111,6 +111,48 @@ CREATE USER [IIS APPPOOL\DefaultAppPool] FOR LOGIN [IIS APPPOOL\DefaultAppPool]
 GO
 
 
+-------------------------------------------------------------------------------------------
+--PAGO
+
+
+
+-------------------------------------------------------------------------------------------
+--FACTURA
+
+--AGREGAR FACTURA
+CREATE PROC AltaFactura @idPago int, @codContrato int, @codEmp int, @monto int, @codCli int AS
+BEGIN
+	IF (EXISTS (SELECT * from factura WHERE idPago = @idPago AND codEmp = @codEmp AND codContrato = @codContrato))
+		RETURN -1
+
+	INSERT INTO factura (idPago, codContrato, codEmp, monto, codCli) VALUES (@idPago, @codContrato, @codEmp, @monto, @codCli)	
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
+
+--ELIMINAR FACTURA
+CREATE PROC EliminarFactura @idPago int, @codContrato int, @codEmp int AS
+BEGIN
+	DELETE FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
+
+--BUSCAR FACTURA
+CREATE PROC BuscarFactura @idPago int, @codContrato int, @codEmp int AS
+BEGIN
+	SELECT * FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp
+END
+GO
+
+----------------------------------------------------------------------------------------------------
+
 USE BiosMoney;
 CREATE ROLE UsuarioWeb 
 GO
