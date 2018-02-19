@@ -114,8 +114,54 @@ GO
 -------------------------------------------------------------------------------------------
 --PAGO
 
+--AGREGAR PAGO
+CREATE PROC AltaPago @numeroInt int, @fecha date, @montoTotal int, @cedulaCajero int AS
+BEGIN
+	IF(EXISTS(SELECT * FROM pago WHERE numeroInt = @numeroInt))
+		RETURN -1
 
+	INSERT INTO pago (numeroInt, fecha, montoTotal, cedulaCajero) VALUES (@numeroInt, @fecha, @montoTotal, @cedulaCajero)
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
 
+--BUSCAR PAGO
+CREATE PROC BuscarPago @numeroInt int AS
+BEGIN
+	SELECT * FROM pago WHERE numeroInt = @numeroInt
+END
+GO
+
+--ELIMINAR PAGO
+CREATE PROC EliminarPago @numeroInt int AS
+BEGIN
+	IF(NOT EXISTS(SELECT * FROM pago WHERE numeroInt = @numeroInt))
+		RETURN -1
+
+	DELETE FROM pago WHERE numeroInt = @numeroInt
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
+
+--MODIFICAR PAGO
+CREATE PROC ModificarPago @numeroInt int, @fecha date, @montoTotal int, @cedulaCajero int AS
+BEGIN
+	IF(EXISTS(SELECT * FROM pago WHERE numeroInt = @numeroInt))
+		RETURN -1
+
+	UPDATE pago SET fecha = @fecha, montoTotal = @montoTotal, @cedulaCajero = @cedulaCajero WHERE numeroInt = @numeroInt
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
 -------------------------------------------------------------------------------------------
 --FACTURA
 
@@ -136,6 +182,9 @@ GO
 --ELIMINAR FACTURA
 CREATE PROC EliminarFactura @idPago int, @codContrato int, @codEmp int AS
 BEGIN
+	IF(NOT EXISTS(SELECT * FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp))
+		RETURN -1
+
 	DELETE FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp
 	IF(@@ERROR = 0)
 		RETURN 1
