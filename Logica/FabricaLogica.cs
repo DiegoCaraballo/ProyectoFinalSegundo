@@ -5,7 +5,11 @@ using System.Text;
 
 namespace Logica
 {
-    class FabricaLogica
+    public class FabricaLogica
     {
+        public static IUusuarioLogica GetLogicaUsuario()
+        {
+            return (UsuarioLogica.GetInstancia());
+        }
     }
 }

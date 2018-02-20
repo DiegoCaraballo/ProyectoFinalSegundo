@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using EntidadesCompartidas;
 
 namespace Persistencia
 {
     public class FabricaPersistencia
     {
+        public static ICajeroPersistencia GetPersistenciaCajero()
+        {
+            return (CajeroPersistencia.GetInstancia());
+        }
+
+        public static IGerentePersistencia GetPersistenciaGerente()
+        {
+            return (GerentePersistencia.GetInstancia());
+        }
     }
 }

@@ -9,5 +9,8 @@ namespace Persistencia
 {
     public interface IGerentePersistencia
     {
+        void AltaGerente(Gerente unGerente);
+        void CambioPass(Gerente unGerente);
+
     }
 }
