@@ -162,6 +162,13 @@ BEGIN
 		RETURN -2
 END
 GO
+
+--LISTAR PAGOS
+CREATE PROC ListarPagos AS
+BEGIN
+	SELECT * FROM pago
+END
+GO
 -------------------------------------------------------------------------------------------
 --FACTURA
 
