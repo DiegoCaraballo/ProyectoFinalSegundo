@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\PagoLogica.cs" />
     <Compile Include="Clases\UsuarioLogica.cs" />
     <Compile Include="FabricaLogica.cs" />
+    <Compile Include="Interfaces\IPagoLogica.cs" />
     <Compile Include="Interfaces\IUusuarioLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

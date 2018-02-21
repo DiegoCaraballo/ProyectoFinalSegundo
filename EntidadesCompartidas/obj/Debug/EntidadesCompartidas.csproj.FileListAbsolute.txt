@@ -6,3 +6,7 @@ C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompa
 C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
 C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
 C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
