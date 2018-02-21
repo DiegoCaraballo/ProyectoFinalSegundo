@@ -11,6 +11,8 @@ namespace EntidadesCompartidas
     [KnownType(typeof(Cajero))]
     [KnownType(typeof(Gerente))]
     [DataContract]
+
+
     public class Usuario
     {
         private int cedula;

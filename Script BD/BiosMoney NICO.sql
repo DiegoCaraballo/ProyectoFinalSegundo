@@ -118,14 +118,6 @@ GO
 CREATE ROLE UsuarioCajero
 GO
 
-
---GRANT Execute on "Procedimientos del Usuario Web" to UsuarioWeb
---GRANT Execute on "Procedimientos del Usuario Cajero" to UsuarioCajero
-
-
---Gerente Solo alta de Gerente
-
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--												Alta Gerente																       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -194,7 +186,7 @@ Declare @VarSentenciaBD varchar(200)
 		rollback tran
 		return -6
 	end
-	----segundo asigno rol especificao al usuario recien creado
+	----segundo asigno rol especifico al usuario recien creado
 	--Exec sp_addrolemember @rolename='public', @membername=@nomUsu
 	
 	--if (@@ERROR = 0)
@@ -209,8 +201,6 @@ end
 go
 
 --exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
-
-
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -228,7 +218,7 @@ if exists(select * from cajero where cedula=@cedula and activo=0)
 begin
 	update cajero set activo =1, horaIni=@horaini,horaFin=@horaFin where cedula=@cedula;
 
-	--Ver si se actualiza el usaurio tambien, mas que nada por el tema de la cedula...
+
 end
 if exists(select * from usuario where cedula=@cedula)
 return-2
@@ -452,8 +442,8 @@ go
 	end 
 	go
 
---drop proc CambioPass
-	create proc CambioPass @cedula int, @pass varchar(7) as
+
+create proc CambioPass @cedula int, @pass varchar(7) as
 
 begin
 if not exists(select * from usuario where cedula=@cedula)
@@ -501,21 +491,113 @@ end
 go
 
 
+-------------------------------------------------------------------------------------------
+--PAGO
+
+--AGREGAR PAGO
+CREATE PROC AltaPago @numeroInt int, @fecha date, @montoTotal int, @cedulaCajero int AS
+BEGIN
+	IF(EXISTS(SELECT * FROM pago WHERE numeroInt = @numeroInt))
+		RETURN -1
+
+	INSERT INTO pago (numeroInt, fecha, montoTotal, cedulaCajero) VALUES (@numeroInt, @fecha, @montoTotal, @cedulaCajero)
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
+
+--BUSCAR PAGO
+CREATE PROC BuscarPago @numeroInt int AS
+BEGIN
+	SELECT * FROM pago WHERE numeroInt = @numeroInt
+END
+GO
+
+--ELIMINAR PAGO
+CREATE PROC EliminarPago @numeroInt int AS
+BEGIN
+	IF(NOT EXISTS(SELECT * FROM pago WHERE numeroInt = @numeroInt))
+		RETURN -1
+
+	DELETE FROM pago WHERE numeroInt = @numeroInt
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
+
+--MODIFICAR PAGO
+CREATE PROC ModificarPago @numeroInt int, @fecha date, @montoTotal int, @cedulaCajero int AS
+BEGIN
+	IF(EXISTS(SELECT * FROM pago WHERE numeroInt = @numeroInt))
+		RETURN -1
+
+	UPDATE pago SET fecha = @fecha, montoTotal = @montoTotal, @cedulaCajero = @cedulaCajero WHERE numeroInt = @numeroInt
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
+
+--LISTAR PAGOS
+CREATE PROC ListarPagos AS
+BEGIN
+	SELECT * FROM pago
+END
+GO
+-------------------------------------------------------------------------------------------
+--FACTURA
+
+--AGREGAR FACTURA
+CREATE PROC AltaFactura @idPago int, @codContrato int, @codEmp int, @monto int, @codCli int AS
+BEGIN
+	IF (EXISTS (SELECT * from factura WHERE idPago = @idPago AND codEmp = @codEmp AND codContrato = @codContrato))
+		RETURN -1
+
+	INSERT INTO factura (idPago, codContrato, codEmp, monto, codCli) VALUES (@idPago, @codContrato, @codEmp, @monto, @codCli)	
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
+
+--ELIMINAR FACTURA
+CREATE PROC EliminarFactura @idPago int, @codContrato int, @codEmp int AS
+BEGIN
+	IF(NOT EXISTS(SELECT * FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp))
+		RETURN -1
+
+	DELETE FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp
+	IF(@@ERROR = 0)
+		RETURN 1
+	ELSE
+		RETURN -2
+END
+GO
+
+--BUSCAR FACTURA
+CREATE PROC BuscarFactura @idPago int, @codContrato int, @codEmp int AS
+BEGIN
+	SELECT * FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp
+END
+GO
+
+----------------------------------------------------------------------------------------------------
+
+
 
 --exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
 
---exec BajaCajero 4565442
-
-
 --exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '00:00:00','08:00:00';
 
-exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
+--exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
 
 
-select * from usuario
-
-select *from cajero
---exec CambioPass 45848621,'1231231'
 
 --TODO 
 --El Alta Gerente Funciona, revisar los rollback tran
@@ -528,7 +610,7 @@ select *from cajero
 
 
 	
-	go
+
 
 
 
