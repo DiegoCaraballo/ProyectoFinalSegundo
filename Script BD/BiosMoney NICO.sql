@@ -90,7 +90,8 @@ idPago int foreign key references pago(numeroInt),
 codContrato int not null,
 codEmp int not null,
 monto int not null check(len(monto) >= 1 AND len(monto) <= 5),
-codCli int not null check(len(codCli) >= 1 AND len(codCli) <= 6)
+codCli int not null check(len(codCli) >= 1 AND len(codCli) <= 6),
+fechaVto Date not null,
 foreign key (codEmp, codContrato) references tipoContrato,
 primary key (idPago, codEmp, CodContrato)
 )

@@ -15,15 +15,19 @@ namespace EntidadesCompartidas
         private DateTime fecha;
         private int montoTotal;
         private Cajero usuCajero;
+        private List<Factura> lasFacturas;
 
+        public List<Factura> LasFacturas
+        {
+            get { return lasFacturas; }
+            set { lasFacturas = value; }
+        }
 
-        
         public Cajero UsuCajero
         {
             get { return usuCajero; }
             set { usuCajero = value; }
         }
-
         
         public int MontoTotal
         {
@@ -36,8 +40,7 @@ namespace EntidadesCompartidas
                     throw new Exception("El monto no puede ser menor a 0");
             }
         }
-
-       
+   
         public DateTime Fecha
         {
             get { return fecha; }
@@ -49,18 +52,15 @@ namespace EntidadesCompartidas
                     throw new Exception("La fecha tiene que ser igual a la fecha actual");
             }
         }
-
        
         public int NumeroInt
         {
             get { return numeroInt; }
             set { numeroInt = value; }
         }
-
         
         public Pago()
         { }
-
         
         public Pago(int pNumeroInt, DateTime pFecha, int pMontoTotal, Cajero pUsuCajero)
         {

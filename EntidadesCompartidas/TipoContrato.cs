@@ -15,7 +15,6 @@ namespace EntidadesCompartidas
         private int codContrato;
         private string nombre;
 
-
         public Empresa UnaEmp
         {
             get { return unaEmp; }
@@ -26,7 +25,6 @@ namespace EntidadesCompartidas
             get { return nombre; }
             set { nombre = value; }
         }
-
         
         public int CodContrato
         {
@@ -38,13 +36,10 @@ namespace EntidadesCompartidas
                 else
                     throw new Exception("El codigo debe de tener 1 o 2 digitos");
             }
-        }
-
-        
+        }  
      
         public TipoContrato()
         { }
-
         
         public TipoContrato(Empresa pUnaEmp, int pCodContrato, string pNombre)
         {

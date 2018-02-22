@@ -17,5 +17,10 @@ namespace Persistencia
         {
             return (GerentePersistencia.GetInstancia());
         }
+
+        public static IPagoPersistencia GetPersistenciaPago()
+        {
+            return (PagoPersistencia.GetInstancia());
+        }
     }
 }

@@ -7,7 +7,7 @@ using EntidadesCompartidas;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace Persistencia.Clases
+namespace Persistencia
 {
     internal class PagoPersistencia : IPagoPersistencia
     {

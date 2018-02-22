@@ -11,16 +11,24 @@ namespace EntidadesCompartidas
     [DataContract]
     public class Factura
     {
-        private Pago unPago;
         private Empresa unaEmp;
         private int monto;
         private int codCli;
+        private DateTime fechaVto;
 
-        public Pago UnPago
+        public DateTime FechaVto
         {
-            get { return unPago; }
-            set { unPago = value; }
+            get { return fechaVto; }
+            set {
+                if (fechaVto > DateTime.Now)
+                {
+                    throw new Exception("La factura está vencida");
+                }
+                else
+                    fechaVto = value;
+                }
         }
+        
         public Empresa UnaEmp
         {
             get { return unaEmp; }
@@ -38,7 +46,6 @@ namespace EntidadesCompartidas
 
             }
         }
-
         
         public int Monto
         {
@@ -51,18 +58,15 @@ namespace EntidadesCompartidas
                     throw new Exception("El monto debe tener entre 1 y 5 digitos");
             }
         }
-
         
         public Factura()
         { }
-
-        
+     
         public Factura(int pMonto, int pCodCli, Empresa pUnaEmp, Pago pUnPago)
         {
             CodCli = pCodCli;
             Monto = pMonto;
             UnaEmp = pUnaEmp;
-            UnPago = pUnPago;
         }
     }
 }

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\CajeroPersistencia.cs" />
+    <Compile Include="Clases\FacturaPersistencia.cs" />
     <Compile Include="Clases\GerentePersistencia.cs" />
     <Compile Include="Clases\PagoPersistencia.cs" />
     <Compile Include="Conexion.cs" />
