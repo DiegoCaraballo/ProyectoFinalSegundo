@@ -90,7 +90,8 @@ idPago int foreign key references pago(numeroInt),
 codContrato int not null,
 codEmp int not null,
 monto int not null check(len(monto) >= 1 AND len(monto) <= 5),
-codCli int not null check(len(codCli) >= 1 AND len(codCli) <= 6)
+codCli int not null check(len(codCli) >= 1 AND len(codCli) <= 6),
+fechaVto Date not null,
 foreign key (codEmp, codContrato) references tipoContrato,
 primary key (idPago, codEmp, CodContrato)
 )
@@ -226,6 +227,7 @@ return-2
 declare @Error int;
 
 begin tran
+
 insert into usuario values (@cedula,@nomUsu,@pass, @nomCompleto)
 
 set @Error=@@ERROR
@@ -234,6 +236,8 @@ set @Error=@@ERROR
 		rollback tran
 		return-3
 	end
+
+
 
 insert into cajero values(@cedula,@horaini,@horaFin,1)
 set @Error=@@ERROR
@@ -244,11 +248,7 @@ set @Error=@@ERROR
 	end
 
 
-	begin 
-	commit tran 
-end
-
-	
+		
 Declare @VarSentenciaSQL varchar(200)
 	Set @VarSentenciaSQL = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
 	Exec (@VarSentenciaSQL)
@@ -256,6 +256,7 @@ Declare @VarSentenciaSQL varchar(200)
 	set @Error=@@ERROR
 	if(@Error<>0)
 	begin
+		rollback tran
 		return -5
 	end
 		
@@ -276,6 +277,7 @@ Declare @VarSentenciaBD varchar(200)
 	set @Error=@@ERROR
 	if(@Error<>0)
 	begin
+		rollback tran
 		return -6
 	end
 	----segundo asigno rol especificao al usuario recien creado
@@ -284,10 +286,19 @@ Declare @VarSentenciaBD varchar(200)
 	set @Error=@@ERROR
 	if(@Error<>0)
 	begin
+		rollback tran
 		return -6
 	end
 
+begin 
+	commit tran 
 end
+end
+
+
+
+
+
 
 go
 
@@ -307,54 +318,38 @@ return -2
 
 if exists(select * from pago where cedulaCajero=@cedula)
 update cajero set activo = 0 where cedula=@cedula
-Declare @VarSentenciaSQL varchar(200)
+else 
+begin tran
+
+
+	Declare @VarSentenciaSQL varchar(200)
 	Set @VarSentenciaSQL = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
 	Exec (@VarSentenciaSQL)
 
 	set @Error=@@Error
 	if(@Error<>0)
 	begin
+		rollback tran
 		return -3
 	end
 
-	Declare @VarSentenciaBD varchar(200)
+		Declare @VarSentenciaBD varchar(200)
 	Set @VarSentenciaBD = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
 	Exec (@VarSentenciaBD)
 
 	set @Error=@@Error
 	if(@Error<>0)
 	begin
-		return -4
-	end
-return 1
- 
-
-	Declare @VarSentenciaSQL2 varchar(200)
-	Set @VarSentenciaSQL2 = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentenciaSQL2)
-
-	set @Error=@@Error
-	if(@Error<>0)
-	begin
-		return -3
-	end
-
-	Declare @VarSentenciaBD2 varchar(200)
-	Set @VarSentenciaBD2 = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentenciaBD2)
-
-	set @Error=@@Error
-	if(@Error<>0)
-	begin
+		rollback tran
 		return -4
 	end
 
-begin tran
 
 	delete from cajero where cedula = @cedula
 	set @Error=@@Error
 	if(@Error<>0)
 	begin
+		rollback tran
 		return -5
 	end
 
@@ -375,7 +370,7 @@ go
 
 
 
-create proc ModificarCajero @cedula int, @nomUsu varchar(15), @nomCompleto varchar(50), @horaini time, @horaFin time as
+create proc ModificarCajero @cedula int, @nomUsu varchar(15), @pass varchar(7), @nomCompleto varchar(50), @horaini time, @horaFin time as
 begin
 
 if not exists(select * from cajero where cedula=@cedula)
@@ -386,6 +381,9 @@ return -2
 
 declare @Error int
 
+begin tran
+
+
 	Declare @VarSentenciaBD varchar(200)
 	Set @VarSentenciaBD = 'Alter User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) +  ' WITH NAME = ' +@nomUsu+']'
 	Exec (@VarSentenciaBD)
@@ -393,6 +391,7 @@ declare @Error int
 	set @Error=@@Error
 	if(@Error<>0)
 	begin
+		rollback tran
 		return -3
 	end
 	Declare @VarSentenciaSQL varchar(200)
@@ -402,21 +401,22 @@ declare @Error int
 	set @Error=@@Error
 	if(@Error<>0)
 	begin
+		rollback tran
 		return -4
 	end
 
 
-begin tran
+
 	update cajero set horaIni=@horaini, horaFin=@horaFin where cedula=@cedula
 
 set @Error=@@Error
 	if(@Error<>0)
 	begin
-	rollback tran
+		rollback tran
 		return -5
 	end
 
-update usuario set nomUsu=@nomUsu, nomCompleto=@nomCompleto where cedula = @cedula
+update usuario set nomUsu=@nomUsu, pass=@pass, nomCompleto=@nomCompleto where cedula = @cedula
 set @Error=@@Error
 	if(@Error<>0)
 	begin
@@ -459,6 +459,7 @@ Declare @VarSentenciaSQL varchar(200)
 	set @Error=@@Error
 	if(@Error<>0)
 	begin
+		rollback tran
 		return -2
 	end
 	
@@ -469,10 +470,10 @@ Declare @VarSentenciaSQL varchar(200)
 	set @Error=@@Error
 	if(@Error<>0)
 	begin
+		rollback tran
 		return -3
 	end
 
-begin tran
 	update usuario set pass = @pass where cedula=@cedula
 
 	set @Error=@@Error
