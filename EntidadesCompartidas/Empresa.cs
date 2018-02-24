@@ -16,7 +16,6 @@ namespace EntidadesCompartidas
         private int rut;
         private string dirFiscal;
         private string telefono;
-        private List<TipoContrato> listaContratos;
        
         public int Codigo
         {
@@ -53,23 +52,16 @@ namespace EntidadesCompartidas
             get { return telefono; }
             set { telefono = value; }
         }
-        
-        public List<TipoContrato> ListaContratos
-        {
-            get { return listaContratos; }
-            set { listaContratos = value; }
-        }
-        
+              
         public Empresa()
         { }
       
-        public Empresa(int pCodigo, int pRut, string pDirFiscal, string pTelefono, List<TipoContrato> pLista)
+        public Empresa(int pCodigo, int pRut, string pDirFiscal, string pTelefono)
         {
             Codigo = pCodigo;
             Rut = pRut;
             DirFiscal = pDirFiscal;
             Telefono = pTelefono;
-            ListaContratos = pLista;
         }
 
 

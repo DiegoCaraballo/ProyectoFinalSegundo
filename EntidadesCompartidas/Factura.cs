@@ -11,7 +11,6 @@ namespace EntidadesCompartidas
     [DataContract]
     public class Factura
     {
-        private Empresa unaEmp;
         private int monto;
         private int codCli;
         private DateTime fechaVto;
@@ -27,13 +26,8 @@ namespace EntidadesCompartidas
                 else
                     fechaVto = value;
                 }
-        }
-        
-        public Empresa UnaEmp
-        {
-            get { return unaEmp; }
-            set { unaEmp = value; }
-        }
+        }       
+       
         public int CodCli
         {
             get { return codCli; }
@@ -62,11 +56,11 @@ namespace EntidadesCompartidas
         public Factura()
         { }
      
-        public Factura(int pMonto, int pCodCli, Empresa pUnaEmp, Pago pUnPago)
+        public Factura(int pMonto, int pCodCli, DateTime pFechaVto)
         {
             CodCli = pCodCli;
             Monto = pMonto;
-            UnaEmp = pUnaEmp;
+            FechaVto = pFechaVto;
         }
     }
 }
