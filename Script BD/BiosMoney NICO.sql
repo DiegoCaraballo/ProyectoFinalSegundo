@@ -155,6 +155,10 @@ set @Error=@@ERROR
 		return -4
 	end
 	
+	begin 
+		commit tran 
+	end
+
 Declare @VarSentenciaSQL varchar(200)
 	Set @VarSentenciaSQL = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
 	Exec (@VarSentenciaSQL)
@@ -162,7 +166,6 @@ Declare @VarSentenciaSQL varchar(200)
 	set @Error=@@ERROR
 	if(@Error<>0)
 	begin
-		rollback tran
 		return -5
 	end
 		
@@ -184,7 +187,6 @@ Declare @VarSentenciaBD varchar(200)
 	set @Error=@@ERROR
 	if(@Error<>0)
 	begin
-		rollback tran
 		return -6
 	end
 	----segundo asigno rol especifico al usuario recien creado
@@ -194,9 +196,7 @@ Declare @VarSentenciaBD varchar(200)
 	--	return 1
 	--else
 	--	return -6
-	begin 
-		commit tran 
-	end
+	
 end
 
 go
@@ -261,13 +261,12 @@ Declare @VarSentenciaSQL varchar(200)
 	end
 		
 	----Asigno rol al usuario recien creado
-	--Exec sp_addsrvrolemember @loginame=@nomUsu, @rolename='public'
+	Exec sp_addsrvrolemember @loginame=@nomUsu, @rolename='UsuarioCajero'
 	
-	--if (@@ERROR = 0)
-	--	return 1
-	--else
-	--	return -4
-
+	if (@@ERROR <> 0)
+	begin
+		return -4
+		end
 
 --Creo usuario de acceso a base de datos 
 Declare @VarSentenciaBD varchar(200)
@@ -307,7 +306,11 @@ if exists(select * from gerente where cedula=@cedula)
 return -2
 
 if exists(select * from pago where cedulaCajero=@cedula)
+begin
 update cajero set activo = 0 where cedula=@cedula
+
+delete from horasExtras where cedula=@cedula;
+
 Declare @VarSentenciaSQL varchar(200)
 	Set @VarSentenciaSQL = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
 	Exec (@VarSentenciaSQL)
@@ -327,8 +330,9 @@ Declare @VarSentenciaSQL varchar(200)
 	begin
 		return -4
 	end
-return 1
- 
+	return 1
+ end
+
 
 	Declare @VarSentenciaSQL2 varchar(200)
 	Set @VarSentenciaSQL2 = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
@@ -366,6 +370,16 @@ set @Error=@@Error
 		rollback tran
 		return -6
 	end
+
+	
+delete from horasExtras where cedula=@cedula;
+set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -7
+	end
+
 
 	begin 
 	commit tran 
@@ -597,7 +611,10 @@ GO
 
 ----------------------------------------------------------------------------------------------------
 
-
+grant execute  on AltaPago to UsuarioCajero
+grant execute  on CambioPass to UsuarioCajero
+go
+----------------
 
 --exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
 
