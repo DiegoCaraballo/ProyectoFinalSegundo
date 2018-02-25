@@ -554,12 +554,12 @@ GO
 --FACTURA
 
 --AGREGAR FACTURA
-CREATE PROC AltaFactura @idPago int, @codContrato int, @codEmp int, @monto int, @codCli int AS
+CREATE PROC AltaFactura @idPago int, @codContrato int, @codEmp int, @monto int, @codCli int, @fechaVto datetime AS
 BEGIN
 	IF (EXISTS (SELECT * from factura WHERE idPago = @idPago AND codEmp = @codEmp AND codContrato = @codContrato))
 		RETURN -1
 
-	INSERT INTO factura (idPago, codContrato, codEmp, monto, codCli) VALUES (@idPago, @codContrato, @codEmp, @monto, @codCli)	
+	INSERT INTO factura (idPago, codContrato, codEmp, monto, codCli, fechaVto) VALUES (@idPago, @codContrato, @codEmp, @monto, @codCli, @fechaVto)	
 	IF(@@ERROR = 0)
 		RETURN 1
 	ELSE
@@ -585,6 +585,13 @@ GO
 CREATE PROC BuscarFactura @idPago int, @codContrato int, @codEmp int AS
 BEGIN
 	SELECT * FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp
+END
+GO
+
+--FACTURAS E UN PAGO
+CREATE PROC CargarFacturaDeUnPago @idPago int AS 
+BEGIN
+	SELECT * FROM factura WHERE idPago = @idPago
 END
 GO
 
