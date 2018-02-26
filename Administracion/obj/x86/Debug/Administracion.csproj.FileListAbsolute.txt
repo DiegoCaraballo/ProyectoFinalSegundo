@@ -4,13 +4,6 @@ C:\desarrollo\ProyectoSegundo\Administracion\obj\x86\Debug\Administracion.Proper
 C:\desarrollo\ProyectoSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
 C:\desarrollo\ProyectoSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\desarrollo\ProyectoSegundo\Administracion\obj\x86\Debug\Administracion.pdb
-C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe
-C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.pdb
-C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Properties.Resources.resources
-C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
-C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
-C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
-C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe
@@ -27,6 +20,8 @@ C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\A
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.AltaPago.resources
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.CambioPassword.resources
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ListadoDePagos.resources
+C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe
+C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.pdb
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMCajero.resources
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMEmpresa.resources
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMGerente.resources
@@ -36,3 +31,8 @@ C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.C
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Default.resources
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ListadoDePagos.resources
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Login.resources
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Properties.Resources.resources
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
+C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe.config
