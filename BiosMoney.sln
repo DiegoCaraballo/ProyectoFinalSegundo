@@ -32,6 +32,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebConsultas", "WebConsulta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicioWCF", "ServicioWCF\ServicioWCF.csproj", "{E7FA8808-AE04-44BA-8341-A88C383620D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicioWIN", "ServicioWIN\ServicioWIN.csproj", "{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InstaladorBiosMoney", "InstaladorBiosMoney\InstaladorBiosMoney.vdproj", "{63A189DE-3C2C-491A-A5DD-5E1EC2663459}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +106,22 @@ Global
 		{E7FA8808-AE04-44BA-8341-A88C383620D9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E7FA8808-AE04-44BA-8341-A88C383620D9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E7FA8808-AE04-44BA-8341-A88C383620D9}.Release|x86.ActiveCfg = Release|Any CPU
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Debug|x86.ActiveCfg = Debug|x86
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Debug|x86.Build.0 = Debug|x86
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Release|Any CPU.ActiveCfg = Release|x86
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Release|x86.ActiveCfg = Release|x86
+		{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}.Release|x86.Build.0 = Release|x86
+		{63A189DE-3C2C-491A-A5DD-5E1EC2663459}.Debug|Any CPU.ActiveCfg = Debug
+		{63A189DE-3C2C-491A-A5DD-5E1EC2663459}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{63A189DE-3C2C-491A-A5DD-5E1EC2663459}.Debug|x86.ActiveCfg = Debug
+		{63A189DE-3C2C-491A-A5DD-5E1EC2663459}.Release|Any CPU.ActiveCfg = Release
+		{63A189DE-3C2C-491A-A5DD-5E1EC2663459}.Release|Mixed Platforms.ActiveCfg = Release
+		{63A189DE-3C2C-491A-A5DD-5E1EC2663459}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

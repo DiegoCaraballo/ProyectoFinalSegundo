@@ -1,0 +1,15 @@
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\ServicioWIN.exe.config
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\ServicioWIN.exe
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\ServicioWIN.pdb
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\EntidadesCompartidas.dll
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\Logica.dll
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\Persistencia.dll
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\EntidadesCompartidas.pdb
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\Logica.pdb
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\Persistencia.pdb
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csprojResolveAssemblyReference.cache
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.ProjectInstaller.resources
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.ServicioExtras.resources
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csproj.GenerateResource.Cache
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.exe
+C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.pdb

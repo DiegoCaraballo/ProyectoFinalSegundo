@@ -14,7 +14,14 @@ namespace EntidadesCompartidas
         private int monto;
         private int codCli;
         private DateTime fechaVto;
+        private TipoContrato unTipoContrato;
 
+        public TipoContrato UnTipoContrato
+        {
+            get { return unTipoContrato; }
+            set { unTipoContrato = value; }
+        }
+        
         public DateTime FechaVto
         {
             get { return fechaVto; }
@@ -56,11 +63,12 @@ namespace EntidadesCompartidas
         public Factura()
         { }
      
-        public Factura(int pMonto, int pCodCli, DateTime pFechaVto)
+        public Factura(int pMonto, int pCodCli, DateTime pFechaVto,TipoContrato pUnContrato)
         {
             CodCli = pCodCli;
             Monto = pMonto;
             FechaVto = pFechaVto;
+            UnTipoContrato = pUnContrato;
         }
     }
 }

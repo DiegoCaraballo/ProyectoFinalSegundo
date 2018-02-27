@@ -64,7 +64,7 @@ namespace Persistencia
                     int _cedulaCajero = (int)lector["cedulaCajero"];
                     //TODO - Ver como agregar tipo contrato y facturas en el SP
                     TipoContrato _unTipoContrato = (TipoContrato)lector[""];
-                    unPago = new Pago(_numeroInt, _fecha, _montoTotal, CajeroPersistencia.GetInstancia().BuscarCajero(_cedulaCajero), _unTipoContrato);
+                    unPago = new Pago(_numeroInt, _fecha, _montoTotal, CajeroPersistencia.GetInstancia().BuscarCajero(_cedulaCajero));
                 }
                 lector.Close();
             }

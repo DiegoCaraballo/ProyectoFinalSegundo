@@ -15,14 +15,7 @@ namespace EntidadesCompartidas
         private DateTime fecha;
         private int montoTotal;
         private Cajero usuCajero;
-        private TipoContrato unTipoContrato;
         private List<Factura> lasFacturas;
-
-        public TipoContrato UnTipoContrato
-        {
-            get { return unTipoContrato; }
-            set { unTipoContrato = value; }
-        } 
 
         public List<Factura> LasFacturas
         {
@@ -69,13 +62,12 @@ namespace EntidadesCompartidas
         public Pago()
         { }
         
-        public Pago(int pNumeroInt, DateTime pFecha, int pMontoTotal, Cajero pUsuCajero, TipoContrato pUnTipoContrato)
+        public Pago(int pNumeroInt, DateTime pFecha, int pMontoTotal, Cajero pUsuCajero)
         {
             NumeroInt = pNumeroInt;
             Fecha = pFecha;
             NumeroInt = pMontoTotal;
             UsuCajero = pUsuCajero;
-            UnTipoContrato = pUnTipoContrato;
         }
     }
 }
