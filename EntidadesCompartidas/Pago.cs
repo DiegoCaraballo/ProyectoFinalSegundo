@@ -67,12 +67,13 @@ namespace EntidadesCompartidas
         public Pago()
         { }
         
-        public Pago(int pNumeroInt, DateTime pFecha, int pMontoTotal, Cajero pUsuCajero)
+        public Pago(int pNumeroInt, DateTime pFecha, int pMontoTotal, Cajero pUsuCajero, List<Factura> pLasFacturas)
         {
             NumeroInt = pNumeroInt;
             Fecha = pFecha;
             NumeroInt = pMontoTotal;
             UsuCajero = pUsuCajero;
+            LasFacturas = pLasFacturas;
         }
     }
 }
