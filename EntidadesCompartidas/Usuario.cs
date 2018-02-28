@@ -40,11 +40,11 @@ namespace EntidadesCompartidas
             get { return pass; }
             set
             {
-                if (pass.Length == 7)
+               // if (pass.Length == 7)
                     pass = value;
 
-                else
-                    throw new Exception("La contraseña debe contener 7 caracteres");
+                //else
+                  //  throw new Exception("La contraseña debe contener 7 caracteres");
             }
         }
 

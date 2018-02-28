@@ -36,8 +36,8 @@ go
 create table cajero
 (
 cedula int not null primary key foreign key references usuario(cedula),
-horaIni time not null,
-horaFin time not null,
+horaIni datetime not null,
+horaFin datetime not null,
 activo bit not null default 1,--1=activo // 0 = inactivo
 check(horaFin >horaIni)
 )
@@ -627,7 +627,7 @@ go
 
 --exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
 
---exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '00:00:00','08:00:00';
+--exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
 
 --exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
 

@@ -28,7 +28,7 @@ namespace EntidadesCompartidas
             get { return horaFin; }
             set
             {
-                if (horaIni < horaFin)
+                if (horaIni > horaFin)
                     horaFin = value;
                 else
                     throw new Exception("La hora fin debe ser mayor a la hora de inicio");
