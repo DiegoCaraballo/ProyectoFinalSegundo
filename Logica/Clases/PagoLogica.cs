@@ -6,7 +6,7 @@ using System.Text;
 using EntidadesCompartidas;
 using Persistencia;
 
-namespace Logica.Clases
+namespace Logica
 {
     internal class PagoLogica : IPagoLogica
     {

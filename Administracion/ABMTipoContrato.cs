@@ -15,5 +15,13 @@ namespace Administracion
         {
             InitializeComponent();
         }
+
+        //Borro los datos del tipo de contrato
+        private void LimpiarDatosTipoContrato()
+        {
+            txtCodEmpresa.Text = "";
+            txtCodTipoContrato.Text = "";
+            txtNombre.Text = "";
+        }
     }
 }

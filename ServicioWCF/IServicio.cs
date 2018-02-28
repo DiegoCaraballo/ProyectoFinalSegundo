@@ -13,6 +13,7 @@ namespace ServicioWCF
     [ServiceContract]
     public interface IServicio
     {
+        #region Usuario
         [OperationContract]
         void AltaUsuario(Usuario unUsuario);
 
@@ -30,5 +31,11 @@ namespace ServicioWCF
 
         [OperationContract]
         Usuario Logueo(string pNomUsu);
+        #endregion
+
+        #region Pago
+        [OperationContract]
+        Pago AltaPago(Pago unPago);
+        #endregion
     }
 }

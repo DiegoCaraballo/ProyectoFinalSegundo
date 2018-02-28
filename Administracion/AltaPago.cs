@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using Administracion.ServicioWCF;
+
 namespace Administracion
 {
     public partial class AltaPago : Form
@@ -78,6 +80,15 @@ namespace Administracion
             catch(Exception ex)
             {
                 lblMensaje.Text = "Error: " + ex.Message;
+            }
+
+            try
+            {
+                
+            }
+            catch(Exception ex)
+            {
+
             }
         }
     }

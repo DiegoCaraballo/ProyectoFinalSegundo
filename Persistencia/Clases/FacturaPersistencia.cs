@@ -46,18 +46,13 @@ namespace Persistencia
             }
         }
 
-        internal static List<Factura> CargoFactura(int pIdPago, int pCodContrato, int pCodEmp, int pMonto, int pCodCli, DateTime pFechaVto, SqlTransaction pTransaccion)
+        internal static List<Factura> CargoFactura(int pIdPago)
         {
             SqlConnection _cnn = new SqlConnection(Conexion.Cnn);
             SqlCommand comando = new SqlCommand("CargarFacturaDeUnPago", _cnn);
 
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idPago", pIdPago);
-            comando.Parameters.AddWithValue("@codContrato", pCodContrato);
-            comando.Parameters.AddWithValue("@codEmp", pCodEmp);
-            comando.Parameters.AddWithValue("@monto", pMonto);
-            comando.Parameters.AddWithValue("@codCli", pCodCli);
-            comando.Parameters.AddWithValue("@fechaVto", pFechaVto);
 
             List<Factura> _ListaFacturas = new List<Factura>();
 
@@ -71,8 +66,16 @@ namespace Persistencia
                 {
                     while (_lector.Read())
                     {
-                        //TODO - Ver como cargar las facturas
-                        //_ListaFacturas.Add((Factura)_lector["servicio"]);
+                        _lector.Read();
+
+                        Factura fac = new Factura();
+                        fac.CodCli = Convert.ToInt32(_lector["codCli"]);
+                        fac.FechaVto = Convert.ToDateTime(_lector["fechaVto"]);
+                        fac.Monto = Convert.ToInt32(_lector["monto"]);
+                        //fac.UnTipoContrato = 
+                        //TODO - Ver como cargo el tipo de contrato que es otro objeto
+
+                        _ListaFacturas.Add(fac);
                     }
                 }
                 _lector.Close();
