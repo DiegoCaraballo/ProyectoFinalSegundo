@@ -107,5 +107,40 @@ namespace Persistencia
             }
         }
 
+        public Gerente LogueoGerente(string nomUsu)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            Gerente unGerente = null;
+
+            SqlCommand cmd = new SqlCommand("LogueoGerente", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@nomUsu", nomUsu);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                if (lector.HasRows)
+                {
+                    lector.Read();
+                    //TODO - ver tema de fechas... en BD es time y aca es DATE TIME
+
+                    unGerente = new Gerente((int)lector["cedula"], (string)lector["nomUsu"], (string)lector["pass"], (string)lector["nomCompleto"],(string)lector["correo"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return unGerente;
+        }
+
+
     }
 }

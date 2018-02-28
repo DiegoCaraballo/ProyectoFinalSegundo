@@ -20,21 +20,21 @@ namespace EntidadesCompartidas
         private string pass;
         private string nomCompleto;
 
-        
+    [DataMember]
         public int Cedula
         {
             get { return cedula; }
             set { cedula = value; }
         }
 
-        
+    [DataMember]    
         public string NomUsu
         {
             get { return nomUsu; }
             set { nomUsu = value; }
         }
 
-        
+        [DataMember]
         public string Pass
         {
             get { return pass; }
@@ -48,14 +48,14 @@ namespace EntidadesCompartidas
             }
         }
 
-        
+        [DataMember]
         public string NomCompleto
         {
             get { return nomCompleto; }
             set { nomCompleto = value; }
         }
 
-        
+      
         public Usuario()
         { }
 

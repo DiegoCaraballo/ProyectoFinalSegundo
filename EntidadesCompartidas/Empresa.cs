@@ -16,7 +16,8 @@ namespace EntidadesCompartidas
         private int rut;
         private string dirFiscal;
         private string telefono;
-       
+
+        [DataMember]
         public int Codigo
         {
             get { return codigo; }
@@ -28,7 +29,8 @@ namespace EntidadesCompartidas
                     throw new Exception("El codigo de la emprea debe tener entre 1 y 4 digitos");
             }
         }
-        
+
+        [DataMember]
         public int Rut
         {
             get { return rut; }
@@ -40,13 +42,15 @@ namespace EntidadesCompartidas
                     throw new Exception("El rut debe ser un nuemero entre 1 y 12 digitos");
             }
         }
-        
+
+        [DataMember]
         public string DirFiscal
         {
             get { return dirFiscal; }
             set { dirFiscal = value; }
         }
-        
+
+        [DataMember]
         public string Telefono
         {
             get { return telefono; }

@@ -33,5 +33,9 @@ namespace ServicioWCF
         {
             FabricaLogica.GetLogicaUsuario().CambioPass(unUsuario);
         }
+        public Usuario Logueo(string pNomUsu)
+        {
+            return (FabricaLogica.GetLogicaUsuario().Logueo(pNomUsu));
+        }
     }
 }

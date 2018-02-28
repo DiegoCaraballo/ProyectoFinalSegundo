@@ -225,6 +225,41 @@ namespace Persistencia
             return unCajero;
         }
 
+
+        public Cajero LogueoCajero(string nomUsu)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            Cajero unCajero = null;
+
+            SqlCommand cmd = new SqlCommand("LogueoCajero", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@nomUsu", nomUsu);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                if (lector.HasRows)
+                {
+                    lector.Read();
+                    //TODO - ver tema de fechas... en BD es time y aca es DATE TIME
+
+                    unCajero = new Cajero((int)lector["cedula"], (string)lector["nomUsu"], (string)lector["pass"], (string)lector["nomCompleto"], Convert.ToDateTime(lector["horaIni"]), Convert.ToDateTime(lector["horaFin"]));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return unCajero;
+        }
+
         #endregion
 
 

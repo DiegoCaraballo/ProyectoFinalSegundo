@@ -63,4 +63,18 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="Logueo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pNomUsu" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogueoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/EntidadesCompartidas" minOccurs="0" name="LogueoResult" nillable="true" type="q6:Usuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

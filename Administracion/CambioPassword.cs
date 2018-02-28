@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using Administracion.ServicioWCF;
+
 namespace Administracion
 {
     public partial class CambioPassword : Form
     {
-        public CambioPassword()
+        Usuario usuLogueado = null;
+        public CambioPassword(Usuario pUsuLogueado)
         {
+            usuLogueado = pUsuLogueado;
             InitializeComponent();
         }
     }

@@ -15,14 +15,14 @@ namespace EntidadesCompartidas
         private DateTime horaIni;
         private DateTime horaFin;
 
-        
+        [DataMember]
         public DateTime HoranIni
         {
             get { return horaIni; }
             set { horaIni = value; }
         }
 
-        
+        [DataMember]
         public DateTime HoranFin
         {
             get { return horaFin; }

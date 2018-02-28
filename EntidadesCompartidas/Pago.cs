@@ -17,18 +17,21 @@ namespace EntidadesCompartidas
         private Cajero usuCajero;
         private List<Factura> lasFacturas;
 
+               [DataMember]
         public List<Factura> LasFacturas
         {
             get { return lasFacturas; }
             set { lasFacturas = value; }
         }
 
+               [DataMember]
         public Cajero UsuCajero
         {
             get { return usuCajero; }
             set { usuCajero = value; }
         }
-        
+
+               [DataMember]
         public int MontoTotal
         {
             get { return montoTotal; }
@@ -40,7 +43,8 @@ namespace EntidadesCompartidas
                     throw new Exception("El monto no puede ser menor a 0");
             }
         }
-   
+
+               [DataMember]
         public DateTime Fecha
         {
             get { return fecha; }
@@ -52,7 +56,8 @@ namespace EntidadesCompartidas
                     throw new Exception("La fecha tiene que ser igual a la fecha actual");
             }
         }
-       
+
+               [DataMember]
         public int NumeroInt
         {
             get { return numeroInt; }

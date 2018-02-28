@@ -15,17 +15,21 @@ namespace EntidadesCompartidas
         private int codContrato;
         private string nombre;
 
+               [DataMember]
         public Empresa UnaEmp
         {
             get { return unaEmp; }
             set { unaEmp = value; }
         }
+
+               [DataMember]
         public string Nombre
         {
             get { return nombre; }
             set { nombre = value; }
         }
-        
+
+               [DataMember]
         public int CodContrato
         {
             get { return codContrato; }

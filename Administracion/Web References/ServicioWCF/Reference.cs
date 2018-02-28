@@ -39,6 +39,8 @@ namespace Administracion.ServicioWCF {
         
         private System.Threading.SendOrPostCallback CambioPassOperationCompleted;
         
+        private System.Threading.SendOrPostCallback LogueoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -91,6 +93,9 @@ namespace Administracion.ServicioWCF {
         
         /// <remarks/>
         public event CambioPassCompletedEventHandler CambioPassCompleted;
+        
+        /// <remarks/>
+        public event LogueoCompletedEventHandler LogueoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicio/AltaUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -237,6 +242,36 @@ namespace Administracion.ServicioWCF {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicio/Logueo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Usuario Logueo([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] string pNomUsu) {
+            object[] results = this.Invoke("Logueo", new object[] {
+                        pNomUsu});
+            return ((Usuario)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LogueoAsync(string pNomUsu) {
+            this.LogueoAsync(pNomUsu, null);
+        }
+        
+        /// <remarks/>
+        public void LogueoAsync(string pNomUsu, object userState) {
+            if ((this.LogueoOperationCompleted == null)) {
+                this.LogueoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLogueoOperationCompleted);
+            }
+            this.InvokeAsync("Logueo", new object[] {
+                        pNomUsu}, this.LogueoOperationCompleted, userState);
+        }
+        
+        private void OnLogueoOperationCompleted(object arg) {
+            if ((this.LogueoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LogueoCompleted(this, new LogueoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -256,23 +291,78 @@ namespace Administracion.ServicioWCF {
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Gerente))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Cajero))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Gerente))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
     public partial class Usuario {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
-    public partial class Gerente : Usuario {
+        
+        private int cedulaField;
+        
+        private bool cedulaFieldSpecified;
+        
+        private string nomCompletoField;
+        
+        private string nomUsuField;
+        
+        private string passField;
+        
+        /// <remarks/>
+        public int Cedula {
+            get {
+                return this.cedulaField;
+            }
+            set {
+                this.cedulaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool CedulaSpecified {
+            get {
+                return this.cedulaFieldSpecified;
+            }
+            set {
+                this.cedulaFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string NomCompleto {
+            get {
+                return this.nomCompletoField;
+            }
+            set {
+                this.nomCompletoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string NomUsu {
+            get {
+                return this.nomUsuField;
+            }
+            set {
+                this.nomUsuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Pass {
+            get {
+                return this.passField;
+            }
+            set {
+                this.passField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -282,6 +372,78 @@ namespace Administracion.ServicioWCF {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
     public partial class Cajero : Usuario {
+        
+        private System.DateTime horanFinField;
+        
+        private bool horanFinFieldSpecified;
+        
+        private System.DateTime horanIniField;
+        
+        private bool horanIniFieldSpecified;
+        
+        /// <remarks/>
+        public System.DateTime HoranFin {
+            get {
+                return this.horanFinField;
+            }
+            set {
+                this.horanFinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool HoranFinSpecified {
+            get {
+                return this.horanFinFieldSpecified;
+            }
+            set {
+                this.horanFinFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime HoranIni {
+            get {
+                return this.horanIniField;
+            }
+            set {
+                this.horanIniField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool HoranIniSpecified {
+            get {
+                return this.horanIniFieldSpecified;
+            }
+            set {
+                this.horanIniFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
+    public partial class Gerente : Usuario {
+        
+        private string correoField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Correo {
+            get {
+                return this.correoField;
+            }
+            set {
+                this.correoField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -325,6 +487,32 @@ namespace Administracion.ServicioWCF {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void CambioPassCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void LogueoCompletedEventHandler(object sender, LogueoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LogueoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LogueoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Usuario Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Usuario)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

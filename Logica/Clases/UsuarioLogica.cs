@@ -58,5 +58,26 @@ namespace Logica
             }
         }
 
+
+        public Usuario Logueo(string pNomUsu)
+        {
+            try
+            {
+                Usuario usu = null;
+                usu = FabricaPersistencia.GetPersistenciaCajero().LogueoCajero(pNomUsu);
+                if (usu == null)
+                {
+                    usu = FabricaPersistencia.GetPersistenciaGerente().LogueoGerente(pNomUsu);
+                }
+                return usu;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+
     }
 }

@@ -13,6 +13,7 @@ namespace EntidadesCompartidas
     {
         private string correo;
 
+        [DataMember]
         public string Correo
         {
             get { return correo; }

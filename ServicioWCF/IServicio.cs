@@ -27,5 +27,8 @@ namespace ServicioWCF
 
         [OperationContract]
         void CambioPass(Usuario unUsuario);
+
+        [OperationContract]
+        Usuario Logueo(string pNomUsu);
     }
 }

@@ -15,5 +15,6 @@ namespace Persistencia
         void ModificarCajero(Cajero unCajero);
         void CambioPass(Cajero unCajero);
         Cajero BuscarCajero(int cedula);
+        Cajero LogueoCajero(string nomUsu);
     }
 }

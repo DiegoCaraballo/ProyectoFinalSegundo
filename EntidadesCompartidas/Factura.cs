@@ -16,12 +16,14 @@ namespace EntidadesCompartidas
         private DateTime fechaVto;
         private TipoContrato unTipoContrato;
 
+        [DataMember]
         public TipoContrato UnTipoContrato
         {
             get { return unTipoContrato; }
             set { unTipoContrato = value; }
         }
-        
+
+        [DataMember]
         public DateTime FechaVto
         {
             get { return fechaVto; }
@@ -33,8 +35,9 @@ namespace EntidadesCompartidas
                 else
                     fechaVto = value;
                 }
-        }       
-       
+        }
+
+        [DataMember]
         public int CodCli
         {
             get { return codCli; }
@@ -47,7 +50,8 @@ namespace EntidadesCompartidas
 
             }
         }
-        
+
+        [DataMember]
         public int Monto
         {
             get { return monto; }

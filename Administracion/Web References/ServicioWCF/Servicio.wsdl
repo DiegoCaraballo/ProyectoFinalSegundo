@@ -37,6 +37,12 @@
   <wsdl:message name="IServicio_CambioPass_OutputMessage">
     <wsdl:part name="parameters" element="tns:CambioPassResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicio_Logueo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Logueo" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_Logueo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogueoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicio">
     <wsdl:operation name="AltaUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/AltaUsuario" message="tns:IServicio_AltaUsuario_InputMessage" />
@@ -57,6 +63,10 @@
     <wsdl:operation name="CambioPass">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/CambioPass" message="tns:IServicio_CambioPass_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicio/CambioPassResponse" message="tns:IServicio_CambioPass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Logueo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/Logueo" message="tns:IServicio_Logueo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/LogueoResponse" message="tns:IServicio_Logueo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicio" type="tns:IServicio">
@@ -99,6 +109,15 @@
     </wsdl:operation>
     <wsdl:operation name="CambioPass">
       <soap:operation soapAction="http://tempuri.org/IServicio/CambioPass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logueo">
+      <soap:operation soapAction="http://tempuri.org/IServicio/Logueo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

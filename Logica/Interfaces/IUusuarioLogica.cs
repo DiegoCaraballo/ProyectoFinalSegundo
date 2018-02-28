@@ -15,5 +15,6 @@ namespace Logica
         void Modificarusuario(Usuario unUsuario);
         Usuario Buscar(int cedula);
         void CambioPass(Usuario unUsuario);
+        Usuario Logueo(string pNomUsu);
     }
 }
