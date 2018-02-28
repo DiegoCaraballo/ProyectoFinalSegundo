@@ -11,5 +11,10 @@ namespace Logica
         {
             return (UsuarioLogica.GetInstancia());
         }
+
+        public static IPagoLogica GetLogicaPago()
+        {
+            return (PagoLogica.GetInstancia());
+        }
     }
 }

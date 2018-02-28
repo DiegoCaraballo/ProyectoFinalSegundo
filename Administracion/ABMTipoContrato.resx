@@ -169,4 +169,10 @@
         x31i3eLE51kB8D93NPcIZo/7Bee7L/Rw+ARvVBGQ1fhVJgAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="EPCodEmpresa.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>148, 17</value>
+  </metadata>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>303, 17</value>
+  </metadata>
 </root>

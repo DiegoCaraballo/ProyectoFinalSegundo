@@ -17,21 +17,21 @@ namespace EntidadesCompartidas
         private Cajero usuCajero;
         private List<Factura> lasFacturas;
 
-               [DataMember]
+        [DataMember]
         public List<Factura> LasFacturas
         {
             get { return lasFacturas; }
             set { lasFacturas = value; }
         }
 
-               [DataMember]
+        [DataMember]
         public Cajero UsuCajero
         {
             get { return usuCajero; }
             set { usuCajero = value; }
         }
 
-               [DataMember]
+        [DataMember]
         public int MontoTotal
         {
             get { return montoTotal; }
@@ -44,7 +44,7 @@ namespace EntidadesCompartidas
             }
         }
 
-               [DataMember]
+        [DataMember]
         public DateTime Fecha
         {
             get { return fecha; }
@@ -57,7 +57,7 @@ namespace EntidadesCompartidas
             }
         }
 
-               [DataMember]
+        [DataMember]
         public int NumeroInt
         {
             get { return numeroInt; }
