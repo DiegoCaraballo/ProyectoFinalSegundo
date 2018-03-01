@@ -77,4 +77,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AltaPago">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/EntidadesCompartidas" minOccurs="0" name="unPago" nillable="true" type="q7:Pago" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AltaPagoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

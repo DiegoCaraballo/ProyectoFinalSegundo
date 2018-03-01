@@ -24,6 +24,7 @@ namespace Administracion
             {
                 Usuario usu = null;
 
+                
                 Servicio serv = new Servicio();
 
                 usu = serv.Logueo(txtUsuario.Text);
@@ -37,6 +38,7 @@ namespace Administracion
                     Form unForm = new Default(usu);
                     unForm.ShowDialog();
                     this.Close();
+                
                 }
 
             }

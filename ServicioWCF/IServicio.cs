@@ -35,7 +35,7 @@ namespace ServicioWCF
 
         #region Pago
         [OperationContract]
-        Pago AltaPago(Pago unPago);
+        void AltaPago(Pago unPago);
         #endregion
     }
 }

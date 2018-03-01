@@ -41,6 +41,8 @@ namespace Administracion.ServicioWCF {
         
         private System.Threading.SendOrPostCallback LogueoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AltaPagoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -96,6 +98,9 @@ namespace Administracion.ServicioWCF {
         
         /// <remarks/>
         public event LogueoCompletedEventHandler LogueoCompleted;
+        
+        /// <remarks/>
+        public event AltaPagoCompletedEventHandler AltaPagoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicio/AltaUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -272,6 +277,34 @@ namespace Administracion.ServicioWCF {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicio/AltaPago", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void AltaPago([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] Pago unPago) {
+            this.Invoke("AltaPago", new object[] {
+                        unPago});
+        }
+        
+        /// <remarks/>
+        public void AltaPagoAsync(Pago unPago) {
+            this.AltaPagoAsync(unPago, null);
+        }
+        
+        /// <remarks/>
+        public void AltaPagoAsync(Pago unPago, object userState) {
+            if ((this.AltaPagoOperationCompleted == null)) {
+                this.AltaPagoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAltaPagoOperationCompleted);
+            }
+            this.InvokeAsync("AltaPago", new object[] {
+                        unPago}, this.AltaPagoOperationCompleted, userState);
+        }
+        
+        private void OnAltaPagoOperationCompleted(object arg) {
+            if ((this.AltaPagoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AltaPagoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -361,6 +394,358 @@ namespace Administracion.ServicioWCF {
             }
             set {
                 this.passField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
+    public partial class Empresa {
+        
+        private int codigoField;
+        
+        private bool codigoFieldSpecified;
+        
+        private string dirFiscalField;
+        
+        private int rutField;
+        
+        private bool rutFieldSpecified;
+        
+        private string telefonoField;
+        
+        /// <remarks/>
+        public int Codigo {
+            get {
+                return this.codigoField;
+            }
+            set {
+                this.codigoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool CodigoSpecified {
+            get {
+                return this.codigoFieldSpecified;
+            }
+            set {
+                this.codigoFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string DirFiscal {
+            get {
+                return this.dirFiscalField;
+            }
+            set {
+                this.dirFiscalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Rut {
+            get {
+                return this.rutField;
+            }
+            set {
+                this.rutField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool RutSpecified {
+            get {
+                return this.rutFieldSpecified;
+            }
+            set {
+                this.rutFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Telefono {
+            get {
+                return this.telefonoField;
+            }
+            set {
+                this.telefonoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
+    public partial class TipoContrato {
+        
+        private int codContratoField;
+        
+        private bool codContratoFieldSpecified;
+        
+        private string nombreField;
+        
+        private Empresa unaEmpField;
+        
+        /// <remarks/>
+        public int CodContrato {
+            get {
+                return this.codContratoField;
+            }
+            set {
+                this.codContratoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool CodContratoSpecified {
+            get {
+                return this.codContratoFieldSpecified;
+            }
+            set {
+                this.codContratoFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                this.nombreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Empresa UnaEmp {
+            get {
+                return this.unaEmpField;
+            }
+            set {
+                this.unaEmpField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
+    public partial class Factura {
+        
+        private int codCliField;
+        
+        private bool codCliFieldSpecified;
+        
+        private System.DateTime fechaVtoField;
+        
+        private bool fechaVtoFieldSpecified;
+        
+        private int montoField;
+        
+        private bool montoFieldSpecified;
+        
+        private TipoContrato unTipoContratoField;
+        
+        /// <remarks/>
+        public int CodCli {
+            get {
+                return this.codCliField;
+            }
+            set {
+                this.codCliField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool CodCliSpecified {
+            get {
+                return this.codCliFieldSpecified;
+            }
+            set {
+                this.codCliFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime FechaVto {
+            get {
+                return this.fechaVtoField;
+            }
+            set {
+                this.fechaVtoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool FechaVtoSpecified {
+            get {
+                return this.fechaVtoFieldSpecified;
+            }
+            set {
+                this.fechaVtoFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Monto {
+            get {
+                return this.montoField;
+            }
+            set {
+                this.montoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool MontoSpecified {
+            get {
+                return this.montoFieldSpecified;
+            }
+            set {
+                this.montoFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public TipoContrato UnTipoContrato {
+            get {
+                return this.unTipoContratoField;
+            }
+            set {
+                this.unTipoContratoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
+    public partial class Pago {
+        
+        private System.DateTime fechaField;
+        
+        private bool fechaFieldSpecified;
+        
+        private Factura[] lasFacturasField;
+        
+        private int montoTotalField;
+        
+        private bool montoTotalFieldSpecified;
+        
+        private int numeroIntField;
+        
+        private bool numeroIntFieldSpecified;
+        
+        private Cajero usuCajeroField;
+        
+        /// <remarks/>
+        public System.DateTime Fecha {
+            get {
+                return this.fechaField;
+            }
+            set {
+                this.fechaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool FechaSpecified {
+            get {
+                return this.fechaFieldSpecified;
+            }
+            set {
+                this.fechaFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        public Factura[] LasFacturas {
+            get {
+                return this.lasFacturasField;
+            }
+            set {
+                this.lasFacturasField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int MontoTotal {
+            get {
+                return this.montoTotalField;
+            }
+            set {
+                this.montoTotalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool MontoTotalSpecified {
+            get {
+                return this.montoTotalFieldSpecified;
+            }
+            set {
+                this.montoTotalFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int NumeroInt {
+            get {
+                return this.numeroIntField;
+            }
+            set {
+                this.numeroIntField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool NumeroIntSpecified {
+            get {
+                return this.numeroIntFieldSpecified;
+            }
+            set {
+                this.numeroIntFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Cajero UsuCajero {
+            get {
+                return this.usuCajeroField;
+            }
+            set {
+                this.usuCajeroField = value;
             }
         }
     }
@@ -513,6 +898,10 @@ namespace Administracion.ServicioWCF {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void AltaPagoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591
