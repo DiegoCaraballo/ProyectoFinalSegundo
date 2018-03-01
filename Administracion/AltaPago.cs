@@ -84,11 +84,13 @@ namespace Administracion
 
             try
             {
-                
+                Empresa unaEmpresa = null;
+                TipoContrato unContrato = null;
+
             }
             catch(Exception ex)
             {
-
+                lblMensaje.Text = "Error: " + ex.Message;
             }
         }
     }

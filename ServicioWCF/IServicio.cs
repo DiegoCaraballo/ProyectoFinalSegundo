@@ -37,5 +37,15 @@ namespace ServicioWCF
         [OperationContract]
         void AltaPago(Pago unPago);
         #endregion
+
+        #region Empresa
+        [OperationContract]
+        Empresa BuscarEmpresa(int codEmp);
+        #endregion
+
+        #region Tipo Contrato
+        [OperationContract]
+        TipoContrato BuscarContrato(int codEmp, int codTipoContrato);
+        #endregion
     }
 }

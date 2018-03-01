@@ -93,7 +93,7 @@
             this.txtMonto.Enabled = false;
             this.txtMonto.Location = new System.Drawing.Point(294, 206);
             this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(100, 22);
+            this.txtMonto.Size = new System.Drawing.Size(155, 22);
             this.txtMonto.TabIndex = 67;
             // 
             // txtCodCli
@@ -101,7 +101,7 @@
             this.txtCodCli.Enabled = false;
             this.txtCodCli.Location = new System.Drawing.Point(294, 178);
             this.txtCodCli.Name = "txtCodCli";
-            this.txtCodCli.Size = new System.Drawing.Size(100, 22);
+            this.txtCodCli.Size = new System.Drawing.Size(155, 22);
             this.txtCodCli.TabIndex = 66;
             // 
             // txtFVencimiento
@@ -109,7 +109,7 @@
             this.txtFVencimiento.Enabled = false;
             this.txtFVencimiento.Location = new System.Drawing.Point(294, 150);
             this.txtFVencimiento.Name = "txtFVencimiento";
-            this.txtFVencimiento.Size = new System.Drawing.Size(100, 22);
+            this.txtFVencimiento.Size = new System.Drawing.Size(155, 22);
             this.txtFVencimiento.TabIndex = 65;
             // 
             // txtTipoContrato
@@ -117,7 +117,7 @@
             this.txtTipoContrato.Enabled = false;
             this.txtTipoContrato.Location = new System.Drawing.Point(294, 122);
             this.txtTipoContrato.Name = "txtTipoContrato";
-            this.txtTipoContrato.Size = new System.Drawing.Size(100, 22);
+            this.txtTipoContrato.Size = new System.Drawing.Size(155, 22);
             this.txtTipoContrato.TabIndex = 64;
             // 
             // txtCodEmp
@@ -125,7 +125,7 @@
             this.txtCodEmp.Enabled = false;
             this.txtCodEmp.Location = new System.Drawing.Point(294, 96);
             this.txtCodEmp.Name = "txtCodEmp";
-            this.txtCodEmp.Size = new System.Drawing.Size(100, 22);
+            this.txtCodEmp.Size = new System.Drawing.Size(155, 22);
             this.txtCodEmp.TabIndex = 63;
             // 
             // label9
@@ -158,24 +158,24 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(194, 124);
+            this.label12.Location = new System.Drawing.Point(228, 124);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(94, 17);
+            this.label12.Size = new System.Drawing.Size(62, 17);
             this.label12.TabIndex = 59;
-            this.label12.Text = "Tipo Contrato";
+            this.label12.Text = "Contrato";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(219, 98);
+            this.label13.Location = new System.Drawing.Point(227, 98);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(69, 17);
+            this.label13.Size = new System.Drawing.Size(64, 17);
             this.label13.TabIndex = 58;
-            this.label13.Text = "Cod. Emp";
+            this.label13.Text = "Empresa";
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(430, 158);
+            this.btnLimpiar.Location = new System.Drawing.Point(477, 158);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 37);
             this.btnLimpiar.TabIndex = 57;
@@ -185,7 +185,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(430, 115);
+            this.btnAgregar.Location = new System.Drawing.Point(477, 115);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 37);
             this.btnAgregar.TabIndex = 56;

@@ -600,12 +600,38 @@ BEGIN
 END
 GO
 
---FACTURAS E UN PAGO
+--FACTURAS DE UN PAGO
 CREATE PROC CargarFacturaDeUnPago @idPago int AS 
 BEGIN
 	SELECT * FROM factura WHERE idPago = @idPago
 END
 GO
+
+
+------------------------------------------------------------------------
+--TIPO DE CONTRATO
+
+--BUSCAR CONTRATO
+CREATE PROC BuscarContrato @codEmp int, @codContrato int AS
+BEGIN
+	SELECT * FROM tipoContrato WHERE codEmp = @codContrato AND codContrato = @codContrato
+END
+GO
+
+
+-------------------------------------------------------------------------
+--EMPRESA
+
+--BUSCAR EMPRESA
+CREATE PROC BuscarEmpresa @codEmpresa int AS
+BEGIN
+	SELECT * FROM empresa WHERE codEmpresa = @codEmpresa
+END
+GO
+
+
+--------------------------------------------------------------------------
+
 
 create proc LogueoCajero @nomUsu varchar(15) as
 begin
@@ -621,6 +647,8 @@ begin
 select u.*,g.correo from gerente g join usuario u on g.cedula= u.cedula where nomUsu= @nomUsu; 
 
 end
+
+
 
 
 

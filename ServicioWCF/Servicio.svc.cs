@@ -47,5 +47,19 @@ namespace ServicioWCF
         }
 
         #endregion
+
+        #region Empresa
+        public Empresa BuscarEmpresa(int codEmp)
+        {
+            return (FabricaLogica.GetLogicaEmpresa().BuscarEmpresa(codEmp));
+        }
+        #endregion
+
+        #region Tipo Contrato
+        public TipoContrato BuscarContrato(int codEmp, int codTipoContrato)
+        {
+            return (FabricaLogica.GetLogicaTipoContrato().BuscarContrato(codEmp, codTipoContrato));
+        }
+        #endregion
     }
 }

@@ -16,5 +16,15 @@ namespace Logica
         {
             return (PagoLogica.GetInstancia());
         }
+
+        public static IEmpresaLogica GetLogicaEmpresa()
+        {
+            return (EmpresaLogica.GetInstancia());
+        }
+
+        public static ITipoContratoLogica GetLogicaTipoContrato()
+        {
+            return (TipoContratoLogica.GetInstancia());
+        }
     }
 }

@@ -22,5 +22,15 @@ namespace Persistencia
         {
             return (PagoPersistencia.GetInstancia());
         }
+
+        public static IEmpresaPersistencia GetPersistenciaEmpresa()
+        {
+            return (EmpresaPersistencia.GetInstancia());
+        }
+
+        public static ITipoContratoPersistencia GetPersistenciaTipoContrato()
+        {
+            return (TipoContratoPersistencia.GetInstancia());
+        }
     }
 }
