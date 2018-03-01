@@ -20,14 +20,14 @@ namespace EntidadesCompartidas
         private string pass;
         private string nomCompleto;
 
-    [DataMember]
+        [DataMember]
         public int Cedula
         {
             get { return cedula; }
             set { cedula = value; }
         }
 
-    [DataMember]    
+        [DataMember]
         public string NomUsu
         {
             get { return nomUsu; }
@@ -40,11 +40,11 @@ namespace EntidadesCompartidas
             get { return pass; }
             set
             {
-               // if (pass.Length == 7)
-                    pass = value;
+                // if (pass.Length == 7)
+                pass = value;
 
                 //else
-                  //  throw new Exception("La contraseña debe contener 7 caracteres");
+                //  throw new Exception("La contraseña debe contener 7 caracteres");
             }
         }
 
@@ -55,11 +55,11 @@ namespace EntidadesCompartidas
             set { nomCompleto = value; }
         }
 
-      
+
         public Usuario()
         { }
 
-        
+
         public Usuario(int pCedula, string pNomUsu, string pPass, string pNomCompleto)
         {
             Cedula = pCedula;

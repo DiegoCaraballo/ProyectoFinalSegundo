@@ -37,7 +37,7 @@ namespace Persistencia
             cmd.Parameters.AddWithValue("@pass", unGerente.Pass);
             cmd.Parameters.AddWithValue("@nomCompleto", unGerente.NomCompleto);
 
-            cmd.Parameters.AddWithValue("@horaini", unGerente.Correo);
+            cmd.Parameters.AddWithValue("@correo", unGerente.Correo);
 
             SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;

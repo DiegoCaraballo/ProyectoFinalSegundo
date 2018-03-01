@@ -119,7 +119,6 @@ GO
 
 CREATE ROLE UsuarioCajero
 GO
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--												Alta Gerente																       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -136,7 +135,7 @@ declare @Error int;
 
 begin tran
 
-	insert into Usuario values(@cedula,@nomUsu,@pass,@nomCompleto)
+	insert into Usuario(cedula,nomUsu,pass,nomCompleto) values(@cedula,@nomUsu,@pass,@nomCompleto)
 
 
 set @Error = @@ERROR
@@ -201,9 +200,7 @@ Declare @VarSentenciaBD varchar(200)
 end
 
 go
-
 --exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
-
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--														ABM Cajero															       --*--
@@ -617,8 +614,15 @@ select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedul
 
 end
 
-exec LogueoCajero 'rafiki'
-----------------------------------------------------------------------------------------------------
+go
+create proc LogueoGerente @nomUsu varchar(15) as
+begin
+
+select u.*,g.correo from gerente g join usuario u on g.cedula= u.cedula where nomUsu= @nomUsu; 
+
+end
+
+
 
 grant execute  on AltaPago to UsuarioCajero
 grant execute  on CambioPass to UsuarioCajero
