@@ -22,15 +22,15 @@ namespace Administracion
         {
             try
             {
-                Gerente usu = new Gerente();
-                usu.Cedula = Convert.ToInt32(txtCedula.Text);
-                usu.NomUsu = txtUsuario.Text;
-                usu.Pass = txtPass.Text;
-                usu.NomCompleto = txtNomApe.Text;
-                usu.Correo = txtCorreo.Text;
+                Gerente gerente = new Gerente();
+                gerente.Cedula = Convert.ToInt32(txtCedula.Text);
+                gerente.NomUsu = txtUsuario.Text;
+                gerente.Pass = txtPass.Text;
+                gerente.NomCompleto = txtNomApe.Text;
+                gerente.Correo = txtCorreo.Text;
 
                 Servicio serv = new Servicio();
-                serv.AltaUsuario(usu);
+                serv.AltaUsuario(gerente);
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {

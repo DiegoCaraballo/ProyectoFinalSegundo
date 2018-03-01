@@ -24,7 +24,6 @@ C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\bin\Debug\Admin
 C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe.config
 C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe
 C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.pdb
-C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMCajero.resources
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMEmpresa.resources
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMGerente.resources
