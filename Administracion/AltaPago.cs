@@ -16,7 +16,10 @@ namespace Administracion
         public AltaPago()
         {
             InitializeComponent();
+            CargarColumnasGridView();
         }
+
+        DataTable dt = new DataTable();
 
         //Borra los datos de la factura
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -34,6 +37,7 @@ namespace Administracion
             txtMonto.Text = "";
             txtTipoContrato.Text = "";
             lblMensaje.Text = "";
+            btnAgregar.Enabled = false;
         }
 
         //Dejar todos los datos en 0
@@ -42,6 +46,7 @@ namespace Administracion
             LimpiarDatosFactura();
             txtMontoTotal.Text = "";
             gvListaFacturas.DataSource = null;
+            btnAgregar.Enabled = false;
         }
 
         //Quitar linea de factura del GridView
@@ -50,7 +55,9 @@ namespace Administracion
             try
             {
                 if (gvListaFacturas.Rows.Count == 0)
+                {
                     throw new Exception("No hay Facturas");
+                }
                 else if (gvListaFacturas.CurrentRow == null)
                     throw new Exception("No hay una factura seleccionada");
                 else
@@ -71,6 +78,29 @@ namespace Administracion
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             // TODO - Agregar filas al grid
+
+            DataRow dr = this.dt.NewRow();
+            dr["codEmp"] = txtCodEmp.Text;
+            dr["codContrato"] = txtTipoContrato.Text;
+            dr["fechaVto"] = txtFVencimiento.Text;
+            dr["codCli"] = txtCodCli.Text;
+            dr["monto"] = txtMonto.Text;
+
+            dt.Rows.Add(dr);
+
+            //Limpio los dato de la factura
+            LimpiarDatosFactura();
+        }
+
+        private void CargarColumnasGridView()
+        {
+            dt.Columns.Add("codEmp");
+            dt.Columns.Add("codContrato");
+            dt.Columns.Add("fechaVto");
+            dt.Columns.Add("codCli");
+            dt.Columns.Add("monto");
+
+            this.gvListaFacturas.DataSource = dt;
         }
 
         //Validación del Codigo de barras y carga de factura
@@ -78,13 +108,10 @@ namespace Administracion
         {
             try
             {
-                if (txtCodBarra.Text.Trim() == "")
-                    throw new Exception("Debe ingresar un código de barras numérico");
-                else if (txtCodBarra.Text.Trim().Count() != 25)
-                    throw new Exception("El código de barras debe tener 25 caracteres");
-                    //TODO - Ver como capturar que no ingrese letras
-                else
+                if (txtCodBarra.Text.Trim() != "" && txtCodBarra.Text.Trim().Length == 25)
                     EPBarras.Clear();
+                else
+                    throw new Exception("El código de barras debe contener 25 números");
             }
             catch (Exception ex)
             {
@@ -111,6 +138,8 @@ namespace Administracion
                 if (unContrato == null)
                     throw new Exception("El tipo de contrato no existe");
 
+                btnAgregar.Enabled = true;
+
                 //Cargo todos los textbox
                 txtCodCli.Text = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0')).ToString();
                 txtCodEmp.Text = unaEmpresa.Rut.ToString();
@@ -122,6 +151,36 @@ namespace Administracion
             catch (Exception ex)
             {
                 lblMensaje.Text = "Error: " + ex.Message;
+            }
+        }
+
+        //Calcular el total de las facturas
+        private void gvListaFacturas_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            int total = 0;
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                total = total + Convert.ToInt32(dr["monto"]);
+            }
+
+            txtMontoTotal.Text = total.ToString();
+        }
+
+
+        //Si no quedan filas se deja en 0 el monto total
+        private void gvListaFacturas_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            try
+            {
+                if (gvListaFacturas.Rows.Count == 0)
+                {
+                    txtMontoTotal.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 

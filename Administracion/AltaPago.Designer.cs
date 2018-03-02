@@ -49,17 +49,17 @@
             this.label15 = new System.Windows.Forms.Label();
             this.txtCodBarra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.gvListaFacturas = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMontoTotal = new System.Windows.Forms.TextBox();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblMensaje = new System.Windows.Forms.ToolStripStatusLabel();
             this.EPBarras = new System.Windows.Forms.ErrorProvider(this.components);
+            this.gvListaFacturas = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvListaFacturas)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EPBarras)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListaFacturas)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -188,6 +188,7 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.Enabled = false;
             this.btnAgregar.Location = new System.Drawing.Point(477, 115);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 37);
@@ -233,15 +234,6 @@
             this.label1.TabIndex = 68;
             this.label1.Text = "---------------------------------------------------------------------------------" +
     "---------------";
-            // 
-            // gvListaFacturas
-            // 
-            this.gvListaFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvListaFacturas.Location = new System.Drawing.Point(127, 268);
-            this.gvListaFacturas.Name = "gvListaFacturas";
-            this.gvListaFacturas.RowTemplate.Height = 24;
-            this.gvListaFacturas.Size = new System.Drawing.Size(439, 172);
-            this.gvListaFacturas.TabIndex = 69;
             // 
             // label2
             // 
@@ -290,16 +282,27 @@
             // 
             this.EPBarras.ContainerControl = this;
             // 
+            // gvListaFacturas
+            // 
+            this.gvListaFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvListaFacturas.Location = new System.Drawing.Point(109, 247);
+            this.gvListaFacturas.Name = "gvListaFacturas";
+            this.gvListaFacturas.RowTemplate.Height = 24;
+            this.gvListaFacturas.Size = new System.Drawing.Size(454, 213);
+            this.gvListaFacturas.TabIndex = 74;
+            this.gvListaFacturas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvListaFacturas_RowsAdded);
+            this.gvListaFacturas.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gvListaFacturas_RowsRemoved);
+            // 
             // AltaPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(632, 520);
+            this.Controls.Add(this.gvListaFacturas);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnQuitar);
             this.Controls.Add(this.txtMontoTotal);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.gvListaFacturas);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtMonto);
             this.Controls.Add(this.txtCodCli);
@@ -322,10 +325,10 @@
             this.Text = "AltaPago";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvListaFacturas)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EPBarras)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListaFacturas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -352,12 +355,12 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtCodBarra;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView gvListaFacturas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtMontoTotal;
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblMensaje;
         private System.Windows.Forms.ErrorProvider EPBarras;
+        private System.Windows.Forms.DataGridView gvListaFacturas;
     }
 }

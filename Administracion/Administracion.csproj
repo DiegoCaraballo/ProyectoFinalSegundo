@@ -113,6 +113,7 @@
     </Compile>
     <EmbeddedResource Include="ABMCajero.resx">
       <DependentUpon>ABMCajero.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABMEmpresa.resx">
       <DependentUpon>ABMEmpresa.cs</DependentUpon>
