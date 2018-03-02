@@ -27,6 +27,7 @@ namespace Persistencia
         #region Operaciones
 
         //Altar pago
+        //TODO - ver que cambié el sp en la bd
         public void AltaPago(Pago unPago)
         {
             SqlConnection oConexion = new SqlConnection(Conexion.Cnn);
@@ -62,10 +63,8 @@ namespace Persistencia
                 //verifico si hay errores
 
                 afectados = (int)oComando.Parameters["@Retorno"].Value;
-                if (afectados == -1)
-                    throw new Exception("El pago ya existe");
-                else if (afectados == -2)
-                    throw new Exception("Error en la base de datos");
+                if (afectados == -2)
+                    throw new Exception("Error en la base de datos al insertar pago");
 
                 //si llego hasta aca es xq pude dar de alta el pago
 

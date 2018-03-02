@@ -501,12 +501,9 @@ go
 --PAGO
 
 --AGREGAR PAGO
-CREATE PROC AltaPago @numeroInt int, @fecha date, @montoTotal int, @cedulaCajero int AS
+CREATE PROC AltaPago @fecha date, @montoTotal int, @cedulaCajero int AS
 BEGIN
-	IF(EXISTS(SELECT * FROM pago WHERE numeroInt = @numeroInt))
-		RETURN -1
-
-	INSERT INTO pago (numeroInt, fecha, montoTotal, cedulaCajero) VALUES (@numeroInt, @fecha, @montoTotal, @cedulaCajero)
+	INSERT INTO pago (fecha, montoTotal, cedulaCajero) VALUES (@fecha, @montoTotal, @cedulaCajero)
 	IF(@@ERROR = 0)
 		RETURN 1
 	ELSE
@@ -518,34 +515,6 @@ GO
 CREATE PROC BuscarPago @numeroInt int AS
 BEGIN
 	SELECT * FROM pago WHERE numeroInt = @numeroInt
-END
-GO
-
---ELIMINAR PAGO
-CREATE PROC EliminarPago @numeroInt int AS
-BEGIN
-	IF(NOT EXISTS(SELECT * FROM pago WHERE numeroInt = @numeroInt))
-		RETURN -1
-
-	DELETE FROM pago WHERE numeroInt = @numeroInt
-	IF(@@ERROR = 0)
-		RETURN 1
-	ELSE
-		RETURN -2
-END
-GO
-
---MODIFICAR PAGO
-CREATE PROC ModificarPago @numeroInt int, @fecha date, @montoTotal int, @cedulaCajero int AS
-BEGIN
-	IF(EXISTS(SELECT * FROM pago WHERE numeroInt = @numeroInt))
-		RETURN -1
-
-	UPDATE pago SET fecha = @fecha, montoTotal = @montoTotal, @cedulaCajero = @cedulaCajero WHERE numeroInt = @numeroInt
-	IF(@@ERROR = 0)
-		RETURN 1
-	ELSE
-		RETURN -2
 END
 GO
 
