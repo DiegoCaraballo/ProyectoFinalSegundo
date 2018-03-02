@@ -70,7 +70,7 @@ namespace Administracion
         //Agregar facturas al GridView
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            
+            // TODO - Agregar filas al grid
         }
 
         //Validación del Codigo de barras y carga de factura
@@ -79,9 +79,10 @@ namespace Administracion
             try
             {
                 if (txtCodBarra.Text.Trim() == "")
-                    throw new Exception("Debe ingresar un código de barras");
+                    throw new Exception("Debe ingresar un código de barras numérico");
                 else if (txtCodBarra.Text.Trim().Count() != 25)
                     throw new Exception("El código de barras debe tener 25 caracteres");
+                    //TODO - Ver como capturar que no ingrese letras
                 else
                     EPBarras.Clear();
             }
@@ -102,10 +103,20 @@ namespace Administracion
 
                 //Busco la Empresa
                 Empresa unaEmpresa = serv.BuscarEmpresa(codEmp);
+                if (unaEmpresa == null)
+                    throw new Exception("La empresa no existe");
 
                 //Busco el Tipo de Contrato
                 TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato);
+                if (unContrato == null)
+                    throw new Exception("El tipo de contrato no existe");
 
+                //Cargo todos los textbox
+                txtCodCli.Text = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0')).ToString();
+                txtCodEmp.Text = unaEmpresa.Rut.ToString();
+                txtFVencimiento.Text = Convert.ToInt32(txtCodBarra.Text.Substring(6, 8).TrimStart('0')).ToString();
+                txtMonto.Text = Convert.ToInt32(txtCodBarra.Text.Substring(20, 5).TrimStart('0')).ToString();
+                txtTipoContrato.Text = unContrato.Nombre.ToString();
 
             }
             catch (Exception ex)
@@ -113,5 +124,6 @@ namespace Administracion
                 lblMensaje.Text = "Error: " + ex.Message;
             }
         }
+
     }
 }

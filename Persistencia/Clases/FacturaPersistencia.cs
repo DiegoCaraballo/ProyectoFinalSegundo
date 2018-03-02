@@ -69,6 +69,7 @@ namespace Persistencia
                         _lector.Read();
 
                         Factura fac = new Factura();
+                        //TipoContrato tipoContrato = TipoContratoPersistencia.GetInstancia().BuscarContrato(
                         fac.CodCli = Convert.ToInt32(_lector["codCli"]);
                         fac.FechaVto = Convert.ToDateTime(_lector["fechaVto"]);
                         fac.Monto = Convert.ToInt32(_lector["monto"]);

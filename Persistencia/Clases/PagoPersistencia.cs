@@ -93,14 +93,10 @@ namespace Persistencia
         }
 
         public void BajaPago(Pago unPago)
-        {
-
-        }
+        { }
 
         public void ModificarPago(Pago unPago)
-        {
-
-        }
+        { }
 
         //Buscar un pago con todas sus facturas
         public Pago BuscarPago(int numeroInt)

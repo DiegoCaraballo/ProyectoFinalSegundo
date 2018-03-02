@@ -170,11 +170,11 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(227, 98);
+            this.label13.Location = new System.Drawing.Point(199, 98);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 17);
+            this.label13.Size = new System.Drawing.Size(90, 17);
             this.label13.TabIndex = 58;
-            this.label13.Text = "Empresa";
+            this.label13.Text = "Rut Empresa";
             // 
             // btnLimpiar
             // 
