@@ -159,9 +159,9 @@ set @Error=@@ERROR
 		commit tran 
 	end
 
-Declare @VarSentenciaSQL varchar(200)
-	Set @VarSentenciaSQL = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
-	Exec (@VarSentenciaSQL)
+Declare @VarSentencia varchar(200)
+	Set @VarSentencia = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
+	Exec (@VarSentencia)
 	
 	set @Error=@@ERROR
 	if(@Error<>0)
@@ -169,38 +169,39 @@ Declare @VarSentenciaSQL varchar(200)
 		return -5
 	end
 		
-	----Asigno rol al usuario recien creado
-	--Exec sp_addsrvrolemember @loginame=@nomUsu, @rolename='public'
+	--Asigno rol al usuario recien creado
+	Exec sp_addsrvrolemember @loginame=@nomUsu, @rolename='securityadmin'
 	
-	--if (@@ERROR = 0)
-	--	return 1
-	--else
-	--	return -4
-
-
+	if (@@ERROR <> 0)
+	if(@Error<>0)
+	begin
+		return -5
+	end
 
 --Creo usuario de acceso a base de datos 
-Declare @VarSentenciaBD varchar(200)
-	Set @VarSentenciaBD = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
-	Exec (@VarSentenciaBD)
+	Set @VarSentencia = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
+	Exec (@VarSentencia)
 	
 	set @Error=@@ERROR
 	if(@Error<>0)
 	begin
-		return -6
+		return -5
 	end
-	----segundo asigno rol especifico al usuario recien creado
-	--Exec sp_addrolemember @rolename='public', @membername=@nomUsu
+	--segundo asigno rol especifico al usuario recien creado
+	Exec sp_addrolemember @rolename='db_owner', @membername=@nomUsu
 	
-	--if (@@ERROR = 0)
-	--	return 1
-	--else
-	--	return -6
+	if (@@ERROR <> 0)
+if(@Error<>0)
+	begin
+		return -5
+	end
 	
 end
 
 go
 --exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
+--delete from gerente
+--delete from usuario
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--														ABM Cajero															       --*--
@@ -248,9 +249,9 @@ set @Error=@@ERROR
 end
 
 	
-Declare @VarSentenciaSQL varchar(200)
-	Set @VarSentenciaSQL = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
-	Exec (@VarSentenciaSQL)
+Declare @VarSentencia varchar(200)
+	Set @VarSentencia = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
+	Exec (@VarSentencia)
 	
 	set @Error=@@ERROR
 	if(@Error<>0)
@@ -267,9 +268,8 @@ Declare @VarSentenciaSQL varchar(200)
 		end
 
 --Creo usuario de acceso a base de datos 
-Declare @VarSentenciaBD varchar(200)
-	Set @VarSentenciaBD = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
-	Exec (@VarSentenciaBD)
+	Set @VarSentencia = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
+	Exec (@VarSentencia)
 	
 	set @Error=@@ERROR
 	if(@Error<>0)
@@ -291,7 +291,6 @@ go
 
 
 
-
 create proc BajaCajero @cedula int as
 begin
 
@@ -309,9 +308,9 @@ update cajero set activo = 0 where cedula=@cedula
 
 delete from horasExtras where cedula=@cedula;
 
-Declare @VarSentenciaSQL varchar(200)
-	Set @VarSentenciaSQL = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentenciaSQL)
+Declare @VarSentencia varchar(200)
+	Set @VarSentencia = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
@@ -319,9 +318,8 @@ Declare @VarSentenciaSQL varchar(200)
 		return -3
 	end
 
-	Declare @VarSentenciaBD varchar(200)
-	Set @VarSentenciaBD = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentenciaBD)
+	Set @VarSentencia = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
@@ -332,9 +330,8 @@ Declare @VarSentenciaSQL varchar(200)
  end
 
 
-	Declare @VarSentenciaSQL2 varchar(200)
-	Set @VarSentenciaSQL2 = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentenciaSQL2)
+	Set @VarSentencia = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
@@ -342,9 +339,8 @@ Declare @VarSentenciaSQL varchar(200)
 		return -3
 	end
 
-	Declare @VarSentenciaBD2 varchar(200)
-	Set @VarSentenciaBD2 = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentenciaBD2)
+	Set @VarSentencia = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
@@ -399,18 +395,17 @@ return -2
 
 declare @Error int
 
-	Declare @VarSentenciaBD varchar(200)
-	Set @VarSentenciaBD = 'Alter User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) +  ' WITH NAME = ' +@nomUsu+']'
-	Exec (@VarSentenciaBD)
+	Declare @VarSentencia varchar(200)
+	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) +  ' WITH NAME = ' +@nomUsu+']'
+	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
 	begin
 		return -3
 	end
-	Declare @VarSentenciaSQL varchar(200)
-	Set @VarSentenciaSQL = 'Alter Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) +  ' WITH NAME = ' +@nomUsu+']'
-	Exec (@VarSentenciaSQL)
+	Set @VarSentencia = 'Alter Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) +  ' WITH NAME = ' +@nomUsu+']'
+	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
@@ -464,9 +459,9 @@ return -1
 
 declare @Error int;
 
-Declare @VarSentenciaSQL varchar(200)
-	Set @VarSentenciaSQL = 'Alter Login [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' +@pass+ ']'
-	Exec (@VarSentenciaSQL)
+Declare @VarSentencia varchar(200)
+	Set @VarSentencia = 'Alter Login [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' +@pass+ ']'
+	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
@@ -474,9 +469,8 @@ Declare @VarSentenciaSQL varchar(200)
 		return -2
 	end
 	
-	Declare @VarSentenciaBD varchar(200)
-	Set @VarSentenciaBD = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' + @pass+']'
-	Exec (@VarSentenciaBD)
+	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' + @pass+']'
+	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
@@ -672,6 +666,3 @@ go
 
 
 --El cambio de Pass no Funciona....
-
-
-	
