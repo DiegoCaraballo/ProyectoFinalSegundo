@@ -43,6 +43,7 @@ namespace Persistencia
             oComando.Parameters.Add(_Fecha);
             oComando.Parameters.Add(_MontoTotal);
             oComando.Parameters.Add(_CedulaCajero);
+            oComando.Parameters.Add("@numInterno", SqlDbType.Int).Direction = ParameterDirection.Output;
             oComando.Parameters.Add(_Retorno);
 
             int afectados = -1;
@@ -65,6 +66,9 @@ namespace Persistencia
                 afectados = (int)oComando.Parameters["@Retorno"].Value;
                 if (afectados == -2)
                     throw new Exception("Error en la base de datos al insertar pago");
+
+                //Obtengo id de pago
+                string id = oComando.Parameters["@numInterno"].Value.ToString();
 
                 //si llego hasta aca es xq pude dar de alta el pago
 

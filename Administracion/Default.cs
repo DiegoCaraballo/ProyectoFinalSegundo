@@ -90,7 +90,7 @@ namespace Administracion
         {
             if (usuLogueado is Cajero)
             {
-                AltaPago _unForm = new AltaPago();
+                AltaPago _unForm = new AltaPago((Cajero)usuLogueado);
                 _unForm.ShowDialog();
             }
             else

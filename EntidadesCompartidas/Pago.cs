@@ -50,10 +50,12 @@ namespace EntidadesCompartidas
             get { return fecha; }
             set
             {
-                if (fecha == DateTime.Now)
-                    fecha = value;
-                else
-                    throw new Exception("La fecha tiene que ser igual a la fecha actual");
+                fecha = value;
+                // TODO - ver porque no paso este codigo defensivo
+                //if (fecha == DateTime.Today)
+                //    fecha = value;
+                //else
+                //    throw new Exception("La fecha tiene que ser igual a la fecha actual");
             }
         }
 

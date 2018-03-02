@@ -14,3 +14,4 @@ C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\A
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache

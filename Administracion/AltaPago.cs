@@ -8,17 +8,22 @@ using System.Text;
 using System.Windows.Forms;
 
 using Administracion.ServicioWCF;
+using System.Globalization;
 
 namespace Administracion
 {
     public partial class AltaPago : Form
     {
-        public AltaPago()
+        Cajero usuLogueado = null;
+
+        public AltaPago(Cajero pUsuLogueado)
         {
             InitializeComponent();
             CargarColumnasGridView();
+            usuLogueado = pUsuLogueado;
         }
 
+        List<Factura> lasFacturas = new List<Factura>();
         DataTable dt = new DataTable();
 
         //Borra los datos de la factura
@@ -77,19 +82,50 @@ namespace Administracion
         //Agregar facturas al GridView
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // TODO - Agregar filas al grid
+            try
+            {             
+                int codEmp = Convert.ToInt32(txtCodBarra.Text.Substring(0, 4).TrimStart('0'));
+                int codTipoContrato = Convert.ToInt32(txtCodBarra.Text.Substring(4, 2).TrimStart('0'));
 
-            DataRow dr = this.dt.NewRow();
-            dr["codEmp"] = txtCodEmp.Text;
-            dr["codContrato"] = txtTipoContrato.Text;
-            dr["fechaVto"] = txtFVencimiento.Text;
-            dr["codCli"] = txtCodCli.Text;
-            dr["monto"] = txtMonto.Text;
+                ServicioClient serv = new ServicioClient();
 
-            dt.Rows.Add(dr);
+                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato);
+                if (unContrato == null)
+                    throw new Exception("El tipo de contrato no existe");
 
-            //Limpio los dato de la factura
-            LimpiarDatosFactura();
+                Factura unaFactura = new Factura();
+
+                unaFactura.UnTipoContrato = unContrato;
+                unaFactura.Monto = Convert.ToInt32(txtMonto.Text);
+                unaFactura.CodCli = Convert.ToInt32(txtCodCli.Text);
+                var fechaFactura = DateTime.ParseExact(txtCodBarra.Text.Substring(6, 8).TrimStart('0').ToString(),
+                  "yyyyMMdd",
+                   CultureInfo.InvariantCulture);
+                unaFactura.FechaVto = fechaFactura;
+
+                if (fechaFactura < DateTime.Now)
+                    throw new Exception("La factura esta vencida");
+
+                //Agrego a la lista de facturas
+                lasFacturas.Add(unaFactura);
+
+                //Agrego al Grid
+                DataRow dr = this.dt.NewRow();
+                dr["codEmp"] = txtCodEmp.Text;
+                dr["codContrato"] = txtTipoContrato.Text;
+                dr["fechaVto"] = txtFVencimiento.Text;
+                dr["codCli"] = txtCodCli.Text;
+                dr["monto"] = txtMonto.Text;
+
+                dt.Rows.Add(dr);
+
+                //Limpio los dato de la factura
+                LimpiarDatosFactura();
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = "Error: " + ex.Message;
+            }
         }
 
         private void CargarColumnasGridView()
@@ -143,7 +179,11 @@ namespace Administracion
                 //Cargo todos los textbox
                 txtCodCli.Text = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0')).ToString();
                 txtCodEmp.Text = unaEmpresa.Rut.ToString();
-                txtFVencimiento.Text = Convert.ToInt32(txtCodBarra.Text.Substring(6, 8).TrimStart('0')).ToString();
+                var newDate = DateTime.ParseExact(txtCodBarra.Text.Substring(6, 8).TrimStart('0').ToString(),
+                                  "yyyyMMdd",
+                                   CultureInfo.InvariantCulture);
+                txtFVencimiento.Text = newDate.ToString();
+                //txtFVencimiento.Text = Convert.ToInt32(txtCodBarra.Text.Substring(6, 8).TrimStart('0')).ToString();
                 txtMonto.Text = Convert.ToInt32(txtCodBarra.Text.Substring(20, 5).TrimStart('0')).ToString();
                 txtTipoContrato.Text = unContrato.Nombre.ToString();
 
@@ -181,6 +221,42 @@ namespace Administracion
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        //Ingresar pago
+        private void ingresarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ServicioClient serv = new ServicioClient();                
+                try
+                {
+                    if (lasFacturas.Count != 0)
+                    {
+                        Pago unPago = new Pago();
+                          
+                        unPago.NumeroInt = 0;
+                        unPago.MontoTotal = Convert.ToInt32(txtMontoTotal.Text);
+                        unPago.Fecha = DateTime.Today;
+                        unPago.LasFacturas = lasFacturas.ToArray();
+                        unPago.UsuCajero = usuLogueado;                   
+
+                        serv.AltaPago(unPago);
+                    }
+                    else
+                    {
+                        throw new Exception("El pago debe contener al menos una factura");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    lblMensaje.Text = "Error: " + ex.Message;
+                }
+            }
+            catch(Exception ex)
+            {
+                lblMensaje.Text = "Error: " + ex.Message;
             }
         }
 

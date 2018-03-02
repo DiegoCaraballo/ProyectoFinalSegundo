@@ -501,9 +501,10 @@ go
 --PAGO
 
 --AGREGAR PAGO
-CREATE PROC AltaPago @fecha date, @montoTotal int, @cedulaCajero int AS
+CREATE PROC AltaPago @fecha date, @montoTotal int, @cedulaCajero int, @numInterno int output AS
 BEGIN
 	INSERT INTO pago (fecha, montoTotal, cedulaCajero) VALUES (@fecha, @montoTotal, @cedulaCajero)
+	SET @numInterno = SCOPE_IDENTITY()
 	IF(@@ERROR = 0)
 		RETURN 1
 	ELSE
@@ -649,7 +650,7 @@ go
 
 --exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
 
---exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
+exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
 
 --exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
 
