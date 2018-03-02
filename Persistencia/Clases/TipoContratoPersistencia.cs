@@ -43,7 +43,10 @@ namespace Persistencia
                 if (lector.HasRows)
                 {
                     lector.Read();
-                    unContrato = new TipoContrato((Empresa)lector["codEmp"], (int)lector["codContrato"], (string)lector["nombre"]);
+                    //TODO - Funciona, pero ver si esta bien
+                    Empresa emp = new Empresa();
+                    emp = EmpresaPersistencia.GetInstancia().BuscarEmpresa((int)lector["codEmp"]);
+                    unContrato = new TipoContrato(emp, (int)lector["codContrato"], (string)lector["nombre"]);
                 }
             }
             catch (Exception ex)

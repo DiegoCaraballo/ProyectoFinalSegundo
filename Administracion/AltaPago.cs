@@ -70,25 +70,45 @@ namespace Administracion
         //Agregar facturas al GridView
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        //Validación del Codigo de barras y carga de factura
+        private void txtCodBarra_Validating_1(object sender, CancelEventArgs e)
+        {
             try
             {
                 if (txtCodBarra.Text.Trim() == "")
                     throw new Exception("Debe ingresar un código de barras");
                 else if (txtCodBarra.Text.Trim().Count() != 25)
                     throw new Exception("El código de barras debe tener 25 caracteres");
+                else
+                    EPBarras.Clear();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                lblMensaje.Text = "Error: " + ex.Message;
+                EPBarras.SetError(txtCodBarra, ex.Message);
+                e.Cancel = true;
+                return;
             }
 
             try
             {
-                Empresa unaEmpresa = null;
-                TipoContrato unContrato = null;
+
+                int codEmp = Convert.ToInt32(txtCodBarra.Text.Substring(0, 4).TrimStart('0'));
+                int codTipoContrato = Convert.ToInt32(txtCodBarra.Text.Substring(4, 2).TrimStart('0'));
+
+                ServicioClient serv = new ServicioClient();
+
+                //Busco la Empresa
+                Empresa unaEmpresa = serv.BuscarEmpresa(codEmp);
+
+                //Busco el Tipo de Contrato
+                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato);
+
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblMensaje.Text = "Error: " + ex.Message;
             }

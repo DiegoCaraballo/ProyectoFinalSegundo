@@ -613,11 +613,37 @@ GO
 --BUSCAR CONTRATO
 CREATE PROC BuscarContrato @codEmp int, @codContrato int AS
 BEGIN
-	SELECT * FROM tipoContrato WHERE codEmp = @codContrato AND codContrato = @codContrato
+	SELECT * FROM tipoContrato WHERE codEmp = @codEmp AND codContrato = @codContrato
 END
 GO
 
+--Alta Tipo de Contrato
+Create Proc AltaTipoContrato @codEmp int , @codContrato int,@nombre varchar (30),@activo bit as
+Begin
 
+	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato =@codContrato and activo =1)
+		return -1;
+
+	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato =@codContrato and activo=0)
+		update TipoContrato set activo =1 where codEmp = @codEmp and codContrato =@codContrato	
+
+	else
+		Insert Into TipoContrato(codEmp,codContrato ,nombre, activo)
+		Values(@codEmp,@codContrato,@nombre,@activo);
+
+	IF(@@Error=0)
+		RETURN 1;
+	ELSE
+		RETURN -2;
+End
+Go
+
+exec AltaTipoContrato 1234, 33, "Hola Mundo", 1
+
+select * from empresa
+select * from tipoContrato WHERE codEmp = 1234 AND codContrato = 33
+
+EXEC BuscarContrato 1234, 33
 -------------------------------------------------------------------------
 --EMPRESA
 
@@ -627,6 +653,8 @@ BEGIN
 	SELECT * FROM empresa WHERE codEmpresa = @codEmpresa
 END
 GO
+
+--Altar Empresa
 
 
 --------------------------------------------------------------------------

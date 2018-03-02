@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaPago));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ingresarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,9 +55,11 @@
             this.btnQuitar = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblMensaje = new System.Windows.Forms.ToolStripStatusLabel();
+            this.EPBarras = new System.Windows.Forms.ErrorProvider(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvListaFacturas)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EPBarras)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -219,6 +222,7 @@
             this.txtCodBarra.Name = "txtCodBarra";
             this.txtCodBarra.Size = new System.Drawing.Size(221, 22);
             this.txtCodBarra.TabIndex = 53;
+            this.txtCodBarra.Validating += new System.ComponentModel.CancelEventHandler(this.txtCodBarra_Validating_1);
             // 
             // label1
             // 
@@ -282,6 +286,10 @@
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(0, 17);
             // 
+            // EPBarras
+            // 
+            this.EPBarras.ContainerControl = this;
+            // 
             // AltaPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -317,6 +325,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvListaFacturas)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EPBarras)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -349,5 +358,6 @@
         private System.Windows.Forms.Button btnQuitar;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblMensaje;
+        private System.Windows.Forms.ErrorProvider EPBarras;
     }
 }
