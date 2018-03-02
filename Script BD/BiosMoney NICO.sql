@@ -12,7 +12,7 @@ CREATE DATABASE BiosMoney
 GO
 
 USE BiosMoney
-GO
+GO---
 
 create table usuario
 (
