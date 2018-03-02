@@ -29,7 +29,7 @@ namespace Administracion
                 gerente.NomCompleto = txtNomApe.Text;
                 gerente.Correo = txtCorreo.Text;
 
-                Servicio serv = new Servicio();
+                ServicioClient serv = new ServicioClient();
                 serv.AltaUsuario(gerente);
             }
             catch (System.Web.Services.Protocols.SoapException ex)

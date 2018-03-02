@@ -22,15 +22,5 @@ namespace Administracion.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:6151/Servicio.svc")]
-        public string Administracion_ServicioWCF_Servicio {
-            get {
-                return ((string)(this["Administracion_ServicioWCF_Servicio"]));
-            }
-        }
     }
 }

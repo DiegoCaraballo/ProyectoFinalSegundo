@@ -48,6 +48,7 @@
             this.txtHoraFin = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblMensajes = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnEliminar = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -142,6 +143,7 @@
             this.btnIngresar,
             this.toolStripLabel1,
             this.btnModificar,
+            this.btnEliminar,
             this.btnLimpiar,
             this.btnSalir});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -212,6 +214,13 @@
             this.lblMensajes.Name = "lblMensajes";
             this.lblMensajes.Size = new System.Drawing.Size(0, 17);
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(50, 22);
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // ABMCajero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,5 +276,6 @@
         private System.Windows.Forms.TextBox txtHoraFin;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblMensajes;
+        private System.Windows.Forms.ToolStripLabel btnEliminar;
     }
 }

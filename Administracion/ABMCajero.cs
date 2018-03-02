@@ -36,8 +36,10 @@ namespace Administracion
                 cajero.HoranIni = Convert.ToDateTime(txtHoraInicio.Text);
                 cajero.HoranFin = Convert.ToDateTime(txtHoraFin.Text);
 
-                Servicio serv = new Servicio();
+                ServicioClient serv = new ServicioClient();
                 serv.AltaUsuario(cajero);
+
+                lblMensajes.Text = "El usuario ingresado exitosamente";
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -59,14 +61,14 @@ namespace Administracion
         {
             try
             {
-                Servicio serv = new Servicio();
-                usuBuscado = serv.BuscarUsuario(Convert.ToInt32(txtCedula.Text), true);
+                ServicioClient serv = new ServicioClient();
+                usuBuscado = serv.BuscarUsuario(Convert.ToInt32(txtCedula.Text));
                 txtCedula.Text = usuBuscado.Cedula.ToString();
                 txtUsuario.Text = usuBuscado.NomUsu;
                 txtNomApe.Text = usuBuscado.NomCompleto;
                 txtHoraFin.Text = ((Cajero)usuBuscado).HoranFin.ToString();
                 txtHoraInicio.Text = ((Cajero)usuBuscado).HoranIni.ToString();
-
+                
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -94,10 +96,36 @@ namespace Administracion
                 usuBuscado.NomCompleto=txtNomApe.Text;
               ((Cajero)usuBuscado).HoranFin=Convert.ToDateTime( txtHoraFin.Text);
                  ((Cajero)usuBuscado).HoranIni=Convert.ToDateTime( txtHoraInicio.Text);
-             
-                Servicio serv = new Servicio();
+
+                 ServicioClient serv = new ServicioClient();
                 serv.ModificarUsuario(usuBuscado);
+
+                lblMensajes.Text = "El usuario fue modificado exitosamente";
                 
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                if (ex.Detail.InnerText.Length > 80)
+                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
+                else
+                    lblMensajes.Text = ex.Detail.InnerText;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Length > 80)
+                    lblMensajes.Text = ex.Message.Substring(0, 80);
+                else
+                    lblMensajes.Text = ex.Message;
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ServicioClient serv = new ServicioClient();
+                serv.BajaUsuario(usuBuscado);
+                lblMensajes.Text = "El usuario fue modificado exitosamente";
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {

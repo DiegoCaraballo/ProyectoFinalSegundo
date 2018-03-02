@@ -25,7 +25,7 @@ namespace Administracion
                 Usuario usu = null;
 
                 
-                Servicio serv = new Servicio();
+               ServicioClient  serv = new ServicioClient();
 
                 usu = serv.Logueo(txtUsuario.Text);
                 if (usu == null)

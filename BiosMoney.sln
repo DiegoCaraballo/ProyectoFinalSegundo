@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistencia", "Persistencia\Persistencia.csproj", "{3CF6DAFF-B5B5-4A4D-9421-B81DAF9B8C73}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Administracion", "Administracion\Administracion.csproj", "{8C736133-94CF-4FB6-A8A0-C7858F3C08A9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E7FA8808-AE04-44BA-8341-A88C383620D9} = {E7FA8808-AE04-44BA-8341-A88C383620D9}
+	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebConsultas", "WebConsultas\", "{BDF8FE15-EC78-4CD6-B263-7E7A1370C4CD}"
 	ProjectSection(WebsiteProperties) = preProject

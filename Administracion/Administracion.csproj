@@ -37,6 +37,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -104,10 +106,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web References\ServicioWCF\Reference.cs">
+    <Compile Include="Service References\ServicioWCF\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ABMCajero.resx">
       <DependentUpon>ABMCajero.cs</DependentUpon>
@@ -155,28 +157,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Web References\ServicioWCF\Empresa.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
+    <None Include="Service References\ServicioWCF\Administracion.ServicioWCF.Empresa.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Web References\ServicioWCF\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
+    <None Include="Service References\ServicioWCF\Administracion.ServicioWCF.TipoContrato.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Web References\ServicioWCF\Servicio.wsdl" />
-    <None Include="Web References\ServicioWCF\Servicio.xsd">
+    <None Include="Service References\ServicioWCF\Administracion.ServicioWCF.Usuario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicioWCF\Servicio.wsdl" />
+    <None Include="Service References\ServicioWCF\Servicio.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Web References\ServicioWCF\Servicio0.xsd">
+    <None Include="Service References\ServicioWCF\Servicio1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Web References\ServicioWCF\Servicio1.xsd">
+    <None Include="Service References\ServicioWCF\Servicio2.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Web References\ServicioWCF\TipoContrato.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\ServicioWCF\Usuario.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -186,23 +184,22 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferences Include="Web References\" />
+    <WCFMetadataStorage Include="Service References\ServicioWCF\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:6151/Servicio.svc">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\ServicioWCF\</RelPath>
-      <UpdateFromURL>http://localhost:6151/Servicio.svc</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Administracion_ServicioWCF_Servicio</CachedSettingsPropName>
-    </WebReferenceUrl>
+    <None Include="Service References\ServicioWCF\Servicio.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\ServicioWCF\Servicio.disco" />
+    <None Include="Service References\ServicioWCF\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicioWCF\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicioWCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
