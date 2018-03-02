@@ -49,6 +49,18 @@
   <wsdl:message name="IServicio_AltaPago_OutputMessage">
     <wsdl:part name="parameters" element="tns:AltaPagoResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicio_BuscarEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_BuscarEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_BuscarContrato_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarContrato" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_BuscarContrato_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarContratoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicio">
     <wsdl:operation name="AltaUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/AltaUsuario" message="tns:IServicio_AltaUsuario_InputMessage" />
@@ -77,6 +89,14 @@
     <wsdl:operation name="AltaPago">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/AltaPago" message="tns:IServicio_AltaPago_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicio/AltaPagoResponse" message="tns:IServicio_AltaPago_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/BuscarEmpresa" message="tns:IServicio_BuscarEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/BuscarEmpresaResponse" message="tns:IServicio_BuscarEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarContrato">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/BuscarContrato" message="tns:IServicio_BuscarContrato_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/BuscarContratoResponse" message="tns:IServicio_BuscarContrato_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicio" type="tns:IServicio">
@@ -137,6 +157,24 @@
     </wsdl:operation>
     <wsdl:operation name="AltaPago">
       <soap:operation soapAction="http://tempuri.org/IServicio/AltaPago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarEmpresa">
+      <soap:operation soapAction="http://tempuri.org/IServicio/BuscarEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarContrato">
+      <soap:operation soapAction="http://tempuri.org/IServicio/BuscarContrato" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

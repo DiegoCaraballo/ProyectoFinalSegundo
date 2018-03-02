@@ -155,6 +155,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Web References\ServicioWCF\Empresa.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\ServicioWCF\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -168,6 +171,9 @@
     </None>
     <None Include="Web References\ServicioWCF\Servicio1.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\ServicioWCF\TipoContrato.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\ServicioWCF\Usuario.datasource">
       <DependentUpon>Reference.map</DependentUpon>

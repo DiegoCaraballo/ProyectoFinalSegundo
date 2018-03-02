@@ -89,4 +89,33 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="BuscarEmpresa">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codEmp" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarEmpresaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/EntidadesCompartidas" minOccurs="0" name="BuscarEmpresaResult" nillable="true" type="q8:Empresa" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarContrato">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codEmp" type="xs:int" />
+        <xs:element minOccurs="0" name="codTipoContrato" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarContratoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/EntidadesCompartidas" minOccurs="0" name="BuscarContratoResult" nillable="true" type="q9:TipoContrato" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

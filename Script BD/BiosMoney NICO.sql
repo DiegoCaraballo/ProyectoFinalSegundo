@@ -446,13 +446,12 @@ set @Error=@@Error
 
 go
 
-
 	create proc BuscarCajero @cedula int as
 	begin
 	if not exists (select * from cajero where cedula=@cedula)
 	return -1
 
-	select * from cajero where cedula = @cedula;
+	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where u.cedula= @cedula; 
 	end 
 	go
 

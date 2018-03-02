@@ -26,7 +26,7 @@ namespace ServicioWIN
 
             Mensajes.Source = "MiServicioExtras";
             Mensajes.Log = "ServicioExtrasLog";
-            fswRevision.Path = ConfigurationManager.AppSettings["fswPath"];
+  
         }
 
         protected override void OnStart(string[] args)

@@ -31,24 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.cronometro = new System.Windows.Forms.Timer(this.components);
             this.Mensajes = new System.Diagnostics.EventLog();
-            this.fswRevision = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.Mensajes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fswRevision)).BeginInit();
             // 
             // cronometro
             // 
             this.cronometro.Interval = 5000;
             // 
-            // fswRevision
-            // 
-            this.fswRevision.EnableRaisingEvents = true;
-            this.fswRevision.Created += new System.IO.FileSystemEventHandler(this.fswRevision_Created);
-            // 
             // ServicioExtras
             // 
             this.ServiceName = "ServicioExtras";
             ((System.ComponentModel.ISupportInitialize)(this.Mensajes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fswRevision)).EndInit();
 
         }
 
@@ -56,6 +48,5 @@
 
         private System.Windows.Forms.Timer cronometro;
         private System.Diagnostics.EventLog Mensajes;
-        private System.IO.FileSystemWatcher fswRevision;
     }
 }

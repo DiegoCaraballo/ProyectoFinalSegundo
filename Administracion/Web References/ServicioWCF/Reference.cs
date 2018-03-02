@@ -43,6 +43,10 @@ namespace Administracion.ServicioWCF {
         
         private System.Threading.SendOrPostCallback AltaPagoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback BuscarEmpresaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback BuscarContratoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -101,6 +105,12 @@ namespace Administracion.ServicioWCF {
         
         /// <remarks/>
         public event AltaPagoCompletedEventHandler AltaPagoCompleted;
+        
+        /// <remarks/>
+        public event BuscarEmpresaCompletedEventHandler BuscarEmpresaCompleted;
+        
+        /// <remarks/>
+        public event BuscarContratoCompletedEventHandler BuscarContratoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicio/AltaUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -301,6 +311,74 @@ namespace Administracion.ServicioWCF {
             if ((this.AltaPagoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AltaPagoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicio/BuscarEmpresa", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Empresa BuscarEmpresa(int codEmp, [System.Xml.Serialization.XmlIgnoreAttribute()] bool codEmpSpecified) {
+            object[] results = this.Invoke("BuscarEmpresa", new object[] {
+                        codEmp,
+                        codEmpSpecified});
+            return ((Empresa)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void BuscarEmpresaAsync(int codEmp, bool codEmpSpecified) {
+            this.BuscarEmpresaAsync(codEmp, codEmpSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void BuscarEmpresaAsync(int codEmp, bool codEmpSpecified, object userState) {
+            if ((this.BuscarEmpresaOperationCompleted == null)) {
+                this.BuscarEmpresaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBuscarEmpresaOperationCompleted);
+            }
+            this.InvokeAsync("BuscarEmpresa", new object[] {
+                        codEmp,
+                        codEmpSpecified}, this.BuscarEmpresaOperationCompleted, userState);
+        }
+        
+        private void OnBuscarEmpresaOperationCompleted(object arg) {
+            if ((this.BuscarEmpresaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.BuscarEmpresaCompleted(this, new BuscarEmpresaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IServicio/BuscarContrato", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public TipoContrato BuscarContrato(int codEmp, [System.Xml.Serialization.XmlIgnoreAttribute()] bool codEmpSpecified, int codTipoContrato, [System.Xml.Serialization.XmlIgnoreAttribute()] bool codTipoContratoSpecified) {
+            object[] results = this.Invoke("BuscarContrato", new object[] {
+                        codEmp,
+                        codEmpSpecified,
+                        codTipoContrato,
+                        codTipoContratoSpecified});
+            return ((TipoContrato)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void BuscarContratoAsync(int codEmp, bool codEmpSpecified, int codTipoContrato, bool codTipoContratoSpecified) {
+            this.BuscarContratoAsync(codEmp, codEmpSpecified, codTipoContrato, codTipoContratoSpecified, null);
+        }
+        
+        /// <remarks/>
+        public void BuscarContratoAsync(int codEmp, bool codEmpSpecified, int codTipoContrato, bool codTipoContratoSpecified, object userState) {
+            if ((this.BuscarContratoOperationCompleted == null)) {
+                this.BuscarContratoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnBuscarContratoOperationCompleted);
+            }
+            this.InvokeAsync("BuscarContrato", new object[] {
+                        codEmp,
+                        codEmpSpecified,
+                        codTipoContrato,
+                        codTipoContratoSpecified}, this.BuscarContratoOperationCompleted, userState);
+        }
+        
+        private void OnBuscarContratoOperationCompleted(object arg) {
+            if ((this.BuscarContratoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.BuscarContratoCompleted(this, new BuscarContratoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -902,6 +980,58 @@ namespace Administracion.ServicioWCF {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void AltaPagoCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void BuscarEmpresaCompletedEventHandler(object sender, BuscarEmpresaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class BuscarEmpresaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal BuscarEmpresaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Empresa Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Empresa)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void BuscarContratoCompletedEventHandler(object sender, BuscarContratoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class BuscarContratoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal BuscarContratoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public TipoContrato Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((TipoContrato)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591
