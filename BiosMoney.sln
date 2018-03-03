@@ -32,6 +32,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebConsultas", "WebConsulta
 		VWDPort = "6138"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+		{E7FA8808-AE04-44BA-8341-A88C383620D9} = {E7FA8808-AE04-44BA-8341-A88C383620D9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicioWCF", "ServicioWCF\ServicioWCF.csproj", "{E7FA8808-AE04-44BA-8341-A88C383620D9}"
 EndProject
