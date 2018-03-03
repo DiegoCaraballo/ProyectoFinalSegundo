@@ -567,7 +567,7 @@ GO
 --FACTURAS DE UN PAGO
 CREATE PROC CargarFacturaDeUnPago @idPago int AS 
 BEGIN
-	SELECT * FROM factura WHERE idPago = @idPago
+	SELECT * FROM factura WHERE idPago =  @idPago
 END
 GO
 
@@ -583,7 +583,7 @@ END
 GO
 
 --Alta Tipo de Contrato ---TODO REvisar, agregue un para de IF mas para verificar la foreign key
-Create Proc AltaTipoContrato @codEmp int , @codContrato int,@nombre varchar (30),@activo bit as
+Create Proc AltaTipoContrato @codEmp int , @codContrato int,@nombre varchar (30) as
 Begin
 if not exists (select * from empresa where codEmpresa=@codEmp)
 return -1
@@ -599,8 +599,8 @@ return -2
 		update TipoContrato set activo =1 where codEmp = @codEmp and codContrato =@codContrato	
 
 	else
-		Insert Into TipoContrato(codEmp,codContrato ,nombre, activo)
-		Values(@codEmp,@codContrato,@nombre,@activo);
+		Insert Into TipoContrato(codEmp,codContrato ,nombre)
+		Values(@codEmp,@codContrato,@nombre);
 
 	IF(@@Error=0)
 		RETURN 1;
@@ -608,6 +608,7 @@ return -2
 		RETURN -4;
 End
 Go
+
 Create Proc ModificarTipoContrato @codEmp int , @codContrato int,@nombre varchar (30)as
 Begin
 
@@ -802,7 +803,7 @@ go
 --exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
 
 --exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
-
+select * from usuario
 --exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
 
 

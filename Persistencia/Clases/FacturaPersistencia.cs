@@ -107,7 +107,7 @@ namespace Persistencia
             int monto;
             int codEmpresa;
             int codContrato;
-
+            int idPago;
 
             try
             {
@@ -119,13 +119,14 @@ namespace Persistencia
                 {
                     while (_lector.Read())
                     {
-                        _lector.Read();
+                      
 
-                        codCli = Convert.ToInt32(_lector["codCli"]);
-                        fechaVto = (DateTime)_lector["fechaVto"];
-                        monto = (int)_lector["monto"];
+                        idPago = (int)_lector["idPago"];
                         codContrato = (int)_lector["codContrato"];
                         codEmpresa = (int)_lector["codEmp"];
+                        monto = (int)_lector["monto"];
+                        codCli = Convert.ToInt32(_lector["codCli"]);
+                        fechaVto = (DateTime)_lector["fechaVto"];
 
                         Factura fac = new Factura(monto, codCli, fechaVto, TipoContratoPersistencia.GetInstancia().BuscarContrato(codEmpresa, codContrato));     
                         _ListaFacturas.Add(fac);

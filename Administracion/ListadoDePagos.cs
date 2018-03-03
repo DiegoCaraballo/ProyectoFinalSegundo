@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using System.Xml.Linq;
-//using Administracion.ServicioWeb;
+using Administracion.ServicioWCF;
 
 using System.Xml;
 
@@ -16,7 +16,7 @@ namespace Administracion
 {
     public partial class ListadoDePagos : Form
     {
-        private XElement documento = null;
+       // private XElement documento = null;
         public ListadoDePagos()
         {
             InitializeComponent();
@@ -25,9 +25,15 @@ namespace Administracion
             CargoListaPagos();
         }
 
+        List<Pago> listadoPagos = new List<Pago>();
+
         //Se carga la lista de pagos por defecto con més y año actual
         private void CargoListaPagos()
         {
+            ServicioClient serv = new ServicioClient();
+            listadoPagos = serv.listar().ToList();
+
+            gvPagos.DataSource = listadoPagos;
 
         }
 
@@ -37,7 +43,7 @@ namespace Administracion
             gvPagos.DataSource = null;
             cboEmpresa.SelectedIndex = 0;
             cboCajero.SelectedIndex = 0;
-            XElement doc = documento;
+          //  XElement doc = documento;
         }
 
         //Filtrar por Cajero

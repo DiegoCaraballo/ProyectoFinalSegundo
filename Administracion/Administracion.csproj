@@ -162,6 +162,9 @@
     <None Include="Service References\ServicioWCF\Administracion.ServicioWCF.Empresa.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServicioWCF\Administracion.ServicioWCF.Pago.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServicioWCF\Administracion.ServicioWCF.TipoContrato.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

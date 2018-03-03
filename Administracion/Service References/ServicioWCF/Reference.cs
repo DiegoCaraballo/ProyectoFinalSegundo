@@ -567,6 +567,9 @@ namespace Administracion.ServicioWCF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AltaPago", ReplyAction="http://tempuri.org/IServicio/AltaPagoResponse")]
         void AltaPago(Administracion.ServicioWCF.Pago unPago);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/listar", ReplyAction="http://tempuri.org/IServicio/listarResponse")]
+        Administracion.ServicioWCF.Pago[] listar();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarEmpresa", ReplyAction="http://tempuri.org/IServicio/BuscarEmpresaResponse")]
         Administracion.ServicioWCF.Empresa BuscarEmpresa(int codEmp);
         
@@ -645,6 +648,10 @@ namespace Administracion.ServicioWCF {
         
         public void AltaPago(Administracion.ServicioWCF.Pago unPago) {
             base.Channel.AltaPago(unPago);
+        }
+        
+        public Administracion.ServicioWCF.Pago[] listar() {
+            return base.Channel.listar();
         }
         
         public Administracion.ServicioWCF.Empresa BuscarEmpresa(int codEmp) {

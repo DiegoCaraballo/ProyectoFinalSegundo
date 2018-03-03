@@ -72,4 +72,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Empresa" nillable="true" type="tns:Empresa" />
+  <xs:complexType name="ArrayOfPago">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Pago" nillable="true" type="tns:Pago" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPago" nillable="true" type="tns:ArrayOfPago" />
 </xs:schema>

@@ -152,9 +152,9 @@ namespace Persistencia
             List<Pago> lista = new List<Pago>();
             int idPago;
             DateTime fecha;
-            Cajero unCajero;
+            // Cajero unCajero;
             int monto;
-
+            int codCajero;
 
             try
             {
@@ -165,10 +165,10 @@ namespace Persistencia
                 {
                     idPago = (int)lector["numeroInt"];
                     fecha = (DateTime)lector["fecha"];
-                    unCajero = (Cajero)lector["cedulaCajero"];
+                    codCajero = (int)lector["cedulaCajero"];
                     monto = (int)lector["montoTotal"];
 
-                    Pago unPago = new Pago(idPago, fecha, monto, CajeroPersistencia.GetInstancia().BuscarCajero(unCajero.Cedula), FacturaPersistencia.CargoFactura(idPago));
+                    Pago unPago = new Pago(idPago, fecha, monto, CajeroPersistencia.GetInstancia().BuscarCajero(codCajero), FacturaPersistencia.ListarFactura(idPago));
                     lista.Add(unPago);
                 }
                 lector.Close();

@@ -24,11 +24,11 @@ namespace Administracion
             try
             {
                 ServicioClient serv = new ServicioClient();
-            empBuscada=    serv.BuscarEmpresa(Convert.ToInt32(txtCodigo.Text));
-            txtCodigo.Text = empBuscada.Codigo.ToString();
-            txtRut.Text = empBuscada.Rut.ToString();
-            txtDireccion.Text = empBuscada.DirFiscal;
-            txtTelefono.Text = empBuscada.Telefono;
+                empBuscada = serv.BuscarEmpresa(Convert.ToInt32(txtCodigo.Text));
+                txtCodigo.Text = empBuscada.Codigo.ToString();
+                txtRut.Text = empBuscada.Rut.ToString();
+                txtDireccion.Text = empBuscada.DirFiscal;
+                txtTelefono.Text = empBuscada.Telefono;
 
             }
             catch (System.Web.Services.Protocols.SoapException ex)
@@ -49,33 +49,8 @@ namespace Administracion
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Empresa emp = new Empresa();
-                emp.Codigo = Convert.ToInt32(txtCodigo.Text);
-                emp.Rut = Convert.ToInt32(txtRut.Text);
-                emp.DirFiscal = txtDireccion.Text;
-                emp.Telefono = txtTelefono.Text;
 
-                ServicioClient serv = new ServicioClient();
-                serv.AltaEmpresa(emp);
 
-                lblMensajes.Text = "Empresa ingresada exitosamente";
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Length > 80)
-                    lblMensajes.Text = ex.Message.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Message;
-            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -136,12 +111,43 @@ namespace Administracion
             LimpiarCampos();
         }
 
-        private void LimpiarCampos() 
+        private void LimpiarCampos()
         {
             txtCodigo.Text = "";
             txtDireccion.Text = "";
             txtRut.Text = "";
             txtTelefono.Text = "";
+        }
+
+        private void btnIngresar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                Empresa emp = new Empresa();
+                emp.Codigo = Convert.ToInt32(txtCodigo.Text);
+                emp.Rut = Convert.ToInt32(txtRut.Text);
+                emp.DirFiscal = txtDireccion.Text;
+                emp.Telefono = txtTelefono.Text;
+
+                ServicioClient serv = new ServicioClient();
+                serv.AltaEmpresa(emp);
+
+                lblMensajes.Text = "Empresa ingresada exitosamente";
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                if (ex.Detail.InnerText.Length > 80)
+                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
+                else
+                    lblMensajes.Text = ex.Detail.InnerText;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Length > 80)
+                    lblMensajes.Text = ex.Message.Substring(0, 80);
+                else
+                    lblMensajes.Text = ex.Message;
+            }
         }
     }
 }
