@@ -36,7 +36,7 @@ namespace Persistencia
 
             SqlParameter _Fecha = new SqlParameter("@fecha", unPago.Fecha);
             SqlParameter _MontoTotal = new SqlParameter("@montoTotal", unPago.MontoTotal);
-            SqlParameter _CedulaCajero = new SqlParameter("@cedulaCajero", unPago.UsuCajero);
+            SqlParameter _CedulaCajero = new SqlParameter("@cedulaCajero", unPago.UsuCajero.Cedula);
             SqlParameter _Retorno = new SqlParameter("@Retorno", SqlDbType.Int);
             _Retorno.Direction = ParameterDirection.ReturnValue;
 
@@ -68,7 +68,7 @@ namespace Persistencia
                     throw new Exception("Error en la base de datos al insertar pago");
 
                 //Obtengo id de pago
-                string id = oComando.Parameters["@numInterno"].Value.ToString();
+                int idPago = Convert.ToInt32(oComando.Parameters["@numInterno"].Value.ToString());
 
                 //si llego hasta aca es xq pude dar de alta el pago
 
@@ -76,7 +76,7 @@ namespace Persistencia
                 foreach (Factura unaFactura in unPago.LasFacturas)
                 {
                     // TODO - Revisar que esto funcione
-                    FacturaPersistencia.AgregarFactura(unPago.NumeroInt, unaFactura.UnTipoContrato.CodContrato, unaFactura.UnTipoContrato.UnaEmp.Codigo, unaFactura.Monto, unaFactura.CodCli, unaFactura.FechaVto, _miTransaccion);
+                    FacturaPersistencia.AgregarFactura(idPago, unaFactura.UnTipoContrato.CodContrato, unaFactura.UnTipoContrato.UnaEmp.Codigo, unaFactura.Monto, unaFactura.CodCli, unaFactura.FechaVto, _miTransaccion);
                 }
 
                 //si llegue aca es xq no hubo problemas con las facturas

@@ -664,3 +664,7 @@ exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:0
 
 
 --El cambio de Pass no Funciona....
+
+use BiosMoney
+select * from factura
+select * from pago

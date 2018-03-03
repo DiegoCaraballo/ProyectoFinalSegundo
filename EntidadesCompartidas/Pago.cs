@@ -37,10 +37,11 @@ namespace EntidadesCompartidas
             get { return montoTotal; }
             set
             {
-                if (montoTotal > 0)
-                    montoTotal = value;
-                else
-                    throw new Exception("El monto no puede ser menor a 0");
+                montoTotal = value;
+                //if (montoTotal > 0)
+                //    montoTotal = value;
+                //else
+                //    throw new Exception("El monto no puede ser menor a 0");
             }
         }
 
