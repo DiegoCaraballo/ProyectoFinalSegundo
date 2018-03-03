@@ -40,5 +40,9 @@ namespace Logica
         {
             return FabricaPersistencia.GetPersistenciaPago().BuscarPago((int)numInterno);
         }
+        public List<Pago> listar() 
+        {
+            return (FabricaPersistencia.GetPersistenciaPago().listar());
+        }
     }
 }

@@ -84,6 +84,11 @@ namespace ServicioWCF
         {
             FabricaLogica.GetLogicaTipoContrato().ModificarTipoContrato(unTipoContrato);
         }
+
+        public List<Pago> listar()
+        {
+            return (FabricaLogica.GetLogicaPago().listar());
+        }
         #endregion
     }
 }

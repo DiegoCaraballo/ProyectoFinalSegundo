@@ -13,5 +13,6 @@ namespace Persistencia
         void BajaPago(Pago unPago);
         void ModificarPago(Pago unPago);
         Pago BuscarPago(int numeroInt);
+        List<Pago> listar();
     }
 }

@@ -92,5 +92,57 @@ namespace Persistencia
 
             return _ListaFacturas;
         }
+
+        internal static List<Factura> ListarFactura(int pIdPago)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            SqlCommand cmd = new SqlCommand("CargarFacturaDeUnPago", cnn);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPago", pIdPago);
+
+            List<Factura> _ListaFacturas = new List<Factura>();
+            int codCli;
+            DateTime fechaVto;
+            int monto;
+            int codEmpresa;
+            int codContrato;
+
+
+            try
+            {
+                cnn.Open();
+
+                SqlDataReader _lector = cmd.ExecuteReader();
+
+                if (_lector.HasRows)
+                {
+                    while (_lector.Read())
+                    {
+                        _lector.Read();
+
+                        codCli = Convert.ToInt32(_lector["codCli"]);
+                        fechaVto = (DateTime)_lector["fechaVto"];
+                        monto = (int)_lector["monto"];
+                        codContrato = (int)_lector["codContrato"];
+                        codEmpresa = (int)_lector["codEmp"];
+
+                        Factura fac = new Factura(monto, codCli, fechaVto, TipoContratoPersistencia.GetInstancia().BuscarContrato(codEmpresa, codContrato));     
+                        _ListaFacturas.Add(fac);
+                    }
+                }
+                _lector.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+            return _ListaFacturas;
+        }
     }
 }

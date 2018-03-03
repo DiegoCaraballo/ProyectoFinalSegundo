@@ -13,5 +13,6 @@ namespace Logica
         void BajaPago(Pago unPago);
         void ModificarPago(Pago unPago);
         Pago Buscar(int numInterno);
+        List<Pago> listar();
     }
 }

@@ -142,6 +142,49 @@ namespace Persistencia
             }
             return unPago;
         }
+
+        public List<Pago> listar()
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            SqlCommand cmd = new SqlCommand("ListarPagos", cnn);
+            SqlDataReader lector;
+
+            List<Pago> lista = new List<Pago>();
+            int idPago;
+            DateTime fecha;
+            Cajero unCajero;
+            int monto;
+
+
+            try
+            {
+                cnn.Open();
+                lector = cmd.ExecuteReader();
+
+                while (lector.Read())
+                {
+                    idPago = (int)lector["numeroInt"];
+                    fecha = (DateTime)lector["fecha"];
+                    unCajero = (Cajero)lector["cedulaCajero"];
+                    monto = (int)lector["montoTotal"];
+
+                    Pago unPago = new Pago(idPago, fecha, monto, CajeroPersistencia.GetInstancia().BuscarCajero(unCajero.Cedula), FacturaPersistencia.CargoFactura(idPago));
+                    lista.Add(unPago);
+                }
+                lector.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+            return lista;
+
+        }
         #endregion
     }
 }

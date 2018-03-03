@@ -815,7 +815,3 @@ go
 
 
 --El cambio de Pass no Funciona....
-
-use BiosMoney
-select * from factura
-select * from pago

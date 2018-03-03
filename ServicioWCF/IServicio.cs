@@ -36,6 +36,9 @@ namespace ServicioWCF
         #region Pago
         [OperationContract]
         void AltaPago(Pago unPago);
+
+        [OperationContract]
+        List<Pago> listar();
         #endregion
 
         #region Empresa
