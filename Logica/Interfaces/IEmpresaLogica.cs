@@ -10,5 +10,8 @@ namespace Logica
     public interface IEmpresaLogica
     {
         Empresa BuscarEmpresa(int codEmp);
+        void AltaEmpresa(Empresa unaEmpresa);
+        void BajaEmpresa(Empresa unaEmpresa);
+        void ModificarEmpresa(Empresa unaEmpresa);
     }
 }

@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ABMTipoContrato));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.ingresarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancelarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnIngresar = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnModificar = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEliminar = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLimpiar = new System.Windows.Forms.ToolStripMenuItem();
             this.txtCodEmpresa = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,90 +54,100 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ingresarToolStripMenuItem,
-            this.modificarToolStripMenuItem,
-            this.eliminarToolStripMenuItem,
-            this.cancelarToolStripMenuItem});
+            this.btnIngresar,
+            this.btnModificar,
+            this.btnEliminar,
+            this.btnLimpiar});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(109, 250);
+            this.menuStrip1.Size = new System.Drawing.Size(92, 203);
             this.menuStrip1.TabIndex = 51;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // ingresarToolStripMenuItem
+            // btnIngresar
             // 
-            this.ingresarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ingresarToolStripMenuItem.Image")));
-            this.ingresarToolStripMenuItem.Name = "ingresarToolStripMenuItem";
-            this.ingresarToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
-            this.ingresarToolStripMenuItem.Text = "Ingresar";
+            this.btnIngresar.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresar.Image")));
+            this.btnIngresar.Name = "btnIngresar";
+            this.btnIngresar.Size = new System.Drawing.Size(79, 20);
+            this.btnIngresar.Text = "Ingresar";
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
-            // modificarToolStripMenuItem
+            // btnModificar
             // 
-            this.modificarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("modificarToolStripMenuItem.Image")));
-            this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
-            this.modificarToolStripMenuItem.Text = "Modificar";
+            this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(79, 20);
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
-            // eliminarToolStripMenuItem
+            // btnEliminar
             // 
-            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
-            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(79, 19);
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // cancelarToolStripMenuItem
+            // btnLimpiar
             // 
-            this.cancelarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cancelarToolStripMenuItem.Image")));
-            this.cancelarToolStripMenuItem.Name = "cancelarToolStripMenuItem";
-            this.cancelarToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
-            this.cancelarToolStripMenuItem.Text = "Cancelar";
+            this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(79, 20);
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // txtCodEmpresa
             // 
-            this.txtCodEmpresa.Location = new System.Drawing.Point(293, 36);
+            this.txtCodEmpresa.Location = new System.Drawing.Point(220, 29);
+            this.txtCodEmpresa.Margin = new System.Windows.Forms.Padding(2);
             this.txtCodEmpresa.Name = "txtCodEmpresa";
-            this.txtCodEmpresa.Size = new System.Drawing.Size(100, 22);
+            this.txtCodEmpresa.Size = new System.Drawing.Size(76, 20);
             this.txtCodEmpresa.TabIndex = 52;
+            this.txtCodEmpresa.Validating += new System.ComponentModel.CancelEventHandler(this.txtCodEmpresa_Validating);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(182, 36);
+            this.label1.Location = new System.Drawing.Point(136, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 17);
+            this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 53;
             this.label1.Text = "Cod. Empresa: ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(160, 68);
+            this.label2.Location = new System.Drawing.Point(120, 55);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 17);
+            this.label2.Size = new System.Drawing.Size(96, 13);
             this.label2.TabIndex = 54;
             this.label2.Text = "Cod.Tip. Contrato: ";
             // 
             // txtCodTipoContrato
             // 
-            this.txtCodTipoContrato.Location = new System.Drawing.Point(293, 65);
+            this.txtCodTipoContrato.Location = new System.Drawing.Point(220, 53);
+            this.txtCodTipoContrato.Margin = new System.Windows.Forms.Padding(2);
             this.txtCodTipoContrato.Name = "txtCodTipoContrato";
-            this.txtCodTipoContrato.Size = new System.Drawing.Size(100, 22);
+            this.txtCodTipoContrato.Size = new System.Drawing.Size(76, 20);
             this.txtCodTipoContrato.TabIndex = 55;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(221, 95);
+            this.label3.Location = new System.Drawing.Point(166, 77);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 17);
+            this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 56;
             this.label3.Text = "Nombre: ";
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(293, 93);
+            this.txtNombre.Location = new System.Drawing.Point(220, 76);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(100, 22);
+            this.txtNombre.Size = new System.Drawing.Size(76, 20);
             this.txtNombre.TabIndex = 57;
             // 
             // EPCodEmpresa
@@ -148,23 +158,23 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblMensaje});
-            this.statusStrip1.Location = new System.Drawing.Point(109, 225);
+            this.statusStrip1.Location = new System.Drawing.Point(92, 181);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(395, 25);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 10, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(286, 22);
             this.statusStrip1.TabIndex = 58;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // lblMensaje
             // 
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(151, 20);
-            this.lblMensaje.Text = "toolStripStatusLabel1";
+            this.lblMensaje.Size = new System.Drawing.Size(0, 17);
             // 
             // ABMTipoContrato
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 250);
+            this.ClientSize = new System.Drawing.Size(378, 203);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label3);
@@ -173,6 +183,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCodEmpresa);
             this.Controls.Add(this.menuStrip1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ABMTipoContrato";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABMTipoContrato";
@@ -189,10 +200,10 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem ingresarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cancelarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnIngresar;
+        private System.Windows.Forms.ToolStripMenuItem btnModificar;
+        private System.Windows.Forms.ToolStripMenuItem btnEliminar;
+        private System.Windows.Forms.ToolStripMenuItem btnLimpiar;
         private System.Windows.Forms.TextBox txtCodEmpresa;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

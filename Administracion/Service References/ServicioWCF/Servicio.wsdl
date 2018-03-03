@@ -55,11 +55,47 @@
   <wsdl:message name="IServicio_BuscarEmpresa_OutputMessage">
     <wsdl:part name="parameters" element="tns:BuscarEmpresaResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicio_AltaEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:AltaEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_AltaEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AltaEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_BajaEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:BajaEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_BajaEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BajaEmpresaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_ModificarEmpresa_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarEmpresa" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_ModificarEmpresa_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarEmpresaResponse" />
+  </wsdl:message>
   <wsdl:message name="IServicio_BuscarContrato_InputMessage">
     <wsdl:part name="parameters" element="tns:BuscarContrato" />
   </wsdl:message>
   <wsdl:message name="IServicio_BuscarContrato_OutputMessage">
     <wsdl:part name="parameters" element="tns:BuscarContratoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_AltaTipoContrato_InputMessage">
+    <wsdl:part name="parameters" element="tns:AltaTipoContrato" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_AltaTipoContrato_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AltaTipoContratoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_BajaTipoContrato_InputMessage">
+    <wsdl:part name="parameters" element="tns:BajaTipoContrato" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_BajaTipoContrato_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BajaTipoContratoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_ModificarTipoContrato_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarTipoContrato" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_ModificarTipoContrato_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModificarTipoContratoResponse" />
   </wsdl:message>
   <wsdl:portType name="IServicio">
     <wsdl:operation name="AltaUsuario">
@@ -94,9 +130,33 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/BuscarEmpresa" message="tns:IServicio_BuscarEmpresa_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicio/BuscarEmpresaResponse" message="tns:IServicio_BuscarEmpresa_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AltaEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/AltaEmpresa" message="tns:IServicio_AltaEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/AltaEmpresaResponse" message="tns:IServicio_AltaEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/BajaEmpresa" message="tns:IServicio_BajaEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/BajaEmpresaResponse" message="tns:IServicio_BajaEmpresa_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarEmpresa">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/ModificarEmpresa" message="tns:IServicio_ModificarEmpresa_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/ModificarEmpresaResponse" message="tns:IServicio_ModificarEmpresa_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="BuscarContrato">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/BuscarContrato" message="tns:IServicio_BuscarContrato_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicio/BuscarContratoResponse" message="tns:IServicio_BuscarContrato_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AltaTipoContrato">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/AltaTipoContrato" message="tns:IServicio_AltaTipoContrato_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/AltaTipoContratoResponse" message="tns:IServicio_AltaTipoContrato_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaTipoContrato">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/BajaTipoContrato" message="tns:IServicio_BajaTipoContrato_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/BajaTipoContratoResponse" message="tns:IServicio_BajaTipoContrato_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificarTipoContrato">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/ModificarTipoContrato" message="tns:IServicio_ModificarTipoContrato_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/ModificarTipoContratoResponse" message="tns:IServicio_ModificarTipoContrato_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicio" type="tns:IServicio">
@@ -173,8 +233,62 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AltaEmpresa">
+      <soap:operation soapAction="http://tempuri.org/IServicio/AltaEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaEmpresa">
+      <soap:operation soapAction="http://tempuri.org/IServicio/BajaEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarEmpresa">
+      <soap:operation soapAction="http://tempuri.org/IServicio/ModificarEmpresa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="BuscarContrato">
       <soap:operation soapAction="http://tempuri.org/IServicio/BuscarContrato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AltaTipoContrato">
+      <soap:operation soapAction="http://tempuri.org/IServicio/AltaTipoContrato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaTipoContrato">
+      <soap:operation soapAction="http://tempuri.org/IServicio/BajaTipoContrato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificarTipoContrato">
+      <soap:operation soapAction="http://tempuri.org/IServicio/ModificarTipoContrato" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

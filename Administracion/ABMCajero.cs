@@ -21,7 +21,7 @@ namespace Administracion
 
         private void ABMCajero_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace Administracion
         {
             try
             {
-                usuBuscado.Cedula =Convert.ToInt32( txtCedula.Text) ;
+               // usuBuscado.Cedula =Convert.ToInt32( txtCedula.Text) ;
                 usuBuscado.NomUsu=txtUsuario.Text ;
                 usuBuscado.NomCompleto=txtNomApe.Text;
               ((Cajero)usuBuscado).HoranFin=Convert.ToDateTime( txtHoraFin.Text);
@@ -142,5 +142,38 @@ namespace Administracion
                     lblMensajes.Text = ex.Message;
             }
         }
+
+        private void LimpiarCampos()
+        {
+            txtCedula.Text = "";
+            txtUsuario.Text = "";
+            txtPass.Text = "";
+            txtNomApe.Text = "";
+            txtHoraInicio.Text = "";
+            txtHoraFin.Text = "";
+
+            txtCedula.Enabled = true;
+            txtUsuario.Enabled = true;
+            txtPass.Enabled = true;
+            txtNomApe.Enabled = true;
+            txtHoraInicio.Enabled = true;
+            txtHoraFin.Enabled = true;
+        }
+
+        private void BLoquearCampos()
+        {
+            txtCedula.Enabled = false;
+            txtUsuario.Enabled = true;
+            txtPass.Enabled = false;
+            txtNomApe.Enabled = true;
+            txtHoraInicio.Enabled = true;
+            txtHoraFin.Enabled = true;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
     }
 }

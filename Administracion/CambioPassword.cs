@@ -19,5 +19,81 @@ namespace Administracion
             usuLogueado = pUsuLogueado;
             InitializeComponent();
         }
+
+        private void txtActualPass_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                if (usuLogueado.Pass != txtActualPass.Text)
+                {
+                    throw new Exception("Su contraseña no es igual a la actual");
+                }
+                else
+                {
+                    txtActualPass.Enabled = false;
+                }
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                if (ex.Detail.InnerText.Length > 80)
+                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
+                else
+                    lblMensajes.Text = ex.Detail.InnerText;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Length > 80)
+                    lblMensajes.Text = ex.Message.Substring(0, 80);
+                else
+                    lblMensajes.Text = ex.Message;
+            }
+        }
+
+        private void txtRepitePass_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                if (txtNuevaPass.Text == txtRepitePass.Text)
+                {
+                    usuLogueado.Pass = txtRepitePass.Text;
+                    ServicioClient serv = new ServicioClient();
+                    serv.CambioPass(usuLogueado);
+                    LimpiarCampos();
+                }
+                else
+                {
+                    throw new Exception("La nueva contraseña ingresada no coincide");
+                }
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                if (ex.Detail.InnerText.Length > 80)
+                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
+                else
+                    lblMensajes.Text = ex.Detail.InnerText;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Length > 80)
+                    lblMensajes.Text = ex.Message.Substring(0, 80);
+                else
+                    lblMensajes.Text = ex.Message;
+            }
+
+        }
+
+        private void LimpiarCampos()
+        {
+            txtActualPass.Text = "";
+            txtNuevaPass.Text = "";
+            txtRepitePass.Text = "";
+            txtActualPass.Enabled = true;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
     }
 }

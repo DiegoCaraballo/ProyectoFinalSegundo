@@ -54,7 +54,113 @@ namespace Persistencia
                 cnn.Close();
             }
             return unaEmpresa;
-        }        
+        }
+
+        public void AltaEmpresa(Empresa unaEmpresa)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            SqlCommand cmd = new SqlCommand("AltaEmpresa", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@codEmp", unaEmpresa.Codigo);
+            cmd.Parameters.AddWithValue("@rut", unaEmpresa.Rut);
+            cmd.Parameters.AddWithValue("@direccion", unaEmpresa.DirFiscal);
+            cmd.Parameters.AddWithValue("@telefono", unaEmpresa.Telefono);
+
+
+            SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == -1)
+                    throw new Exception("");
+           
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+
+            }
+
+
+
+        }
+
+        public void BajaEmpresa(Empresa unaEmpresa)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            SqlCommand cmd = new SqlCommand("BajaEmpresa", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codEmp", unaEmpresa.Codigo);
+
+            SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == -1)
+                    throw new Exception("");
+             
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
+        public void ModificarEmpresa(Empresa unaEmpresa)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            SqlCommand cmd = new SqlCommand("ModificarEmpresa", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@codEmp", unaEmpresa.Codigo);
+            cmd.Parameters.AddWithValue("@rut", unaEmpresa.Rut);
+            cmd.Parameters.AddWithValue("@direccion", unaEmpresa.DirFiscal);
+            cmd.Parameters.AddWithValue("@teledono", unaEmpresa.Telefono);
+
+            
+            SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == -1)
+                    throw new Exception("");
+        
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+
+            }
+        }
         
         #endregion
     }

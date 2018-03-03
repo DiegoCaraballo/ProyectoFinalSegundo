@@ -102,18 +102,19 @@ go
 -- Usuario de IIS que utiliza el WCF para acceder a la Base de Datos
 USE master
 GO
-
+drop login [IIS APPPOOL\DefaultAppPool]
 CREATE LOGIN [IIS APPPOOL\DefaultAppPool] FROM WINDOWS WITH DEFAULT_DATABASE = master
 GO
 
 USE BiosMoney
 GO
-
+drop user [IIS APPPOOL\DefaultAppPool]
 CREATE USER [IIS APPPOOL\DefaultAppPool] FOR LOGIN [IIS APPPOOL\DefaultAppPool]
 GO
 
 
 USE BiosMoney;
+
 CREATE ROLE UsuarioWeb 
 GO
 
@@ -581,12 +582,18 @@ BEGIN
 END
 GO
 
---Alta Tipo de Contrato
+--Alta Tipo de Contrato ---TODO REvisar, agregue un para de IF mas para verificar la foreign key
 Create Proc AltaTipoContrato @codEmp int , @codContrato int,@nombre varchar (30),@activo bit as
 Begin
+if not exists (select * from empresa where codEmpresa=@codEmp)
+return -1
+
+if exists (select * from empresa where codEmpresa=@codEmp and activo =0)
+return -2
+
 
 	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato =@codContrato and activo =1)
-		return -1;
+		return -3;
 
 	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato =@codContrato and activo=0)
 		update TipoContrato set activo =1 where codEmp = @codEmp and codContrato =@codContrato	
@@ -598,19 +605,62 @@ Begin
 	IF(@@Error=0)
 		RETURN 1;
 	ELSE
-		RETURN -2;
+		RETURN -4;
 End
 Go
+Create Proc ModificarTipoContrato @codEmp int , @codContrato int,@nombre varchar (30)as
+Begin
 
-exec AltaTipoContrato 1234, 33, "Hola Mundo", 1
+if not exists (select * from empresa where codEmpresa=@codEmp)
+return -1
 
-select * from empresa
-select * from tipoContrato WHERE codEmp = 1234 AND codContrato = 33
+if exists (select * from empresa where codEmpresa=@codEmp and activo =0)
+return -2
 
-EXEC BuscarContrato 1234, 33
+
+
+	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato =@codContrato and activo=0)
+		return -3	
+
+		update tipoContrato set nombre=@nombre where @codContrato=@codContrato and codEmp=codEmp;
+	
+End
+
+--exec AltaTipoContrato 1234, 33, "Hola Mundo", 1
+
+--select * from empresa
+--select * from tipoContrato WHERE codEmp = 1234 AND codContrato = 33
+
+--EXEC BuscarContrato 1234, 33
 -------------------------------------------------------------------------
 --EMPRESA
+go
 
+
+create proc BajaTipoContrato @codEmp int, @codContrato int as
+begin
+if not exists (select * from empresa where codEmpresa=@codEmp)
+return -1
+
+if not exists (select * from tipoContrato where codContrato=@codContrato and codEmp=@codEmp)
+return -2
+
+if exists ((select codContrato from factura where codContrato in(select codContrato from tipoContrato where codContrato =@codContrato and codEmp =@codEmp)))
+begin
+update tipoContrato set activo = 0 where codContrato=@codContrato and codEmp=@codEmp;
+return 1
+end
+
+delete from tipoContrato where codContrato=@codContrato and codEmp=@codEmp;
+
+end
+
+go
+
+
+
+
+---------------Empresa
 --BUSCAR EMPRESA
 CREATE PROC BuscarEmpresa @codEmpresa int AS
 BEGIN
@@ -619,6 +669,107 @@ END
 GO
 
 --Altar Empresa
+
+
+create proc AltaEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
+begin
+
+if exists(select * from empresa where codEmpresa =@codEmp)
+return -1
+
+if exists (select * from empresa where codEmpresa =@codEmp and activo = 0)
+begin
+update empresa set activo =1 , rut=@rut, dirFiscal=@direccion, telefono=@telefono where codEmpresa=@codEmp;
+return 1
+end
+
+insert into empresa(codEmpresa,rut,dirFiscal,telefono) values(@codEmp,@rut,@direccion,@telefono);
+if (@@ERROR <>0)
+begin
+return-2
+end
+
+
+end
+go
+
+create proc ModificarEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
+begin
+
+if not exists(select * from empresa where codEmpresa =@codEmp)
+return -1
+
+update empresa set  rut=@rut, dirFiscal=@direccion, telefono=@telefono where codEmpresa=@codEmp;
+
+if (@@ERROR <>0)
+begin
+return-2
+end
+
+
+end
+go
+
+create proc BajaEmpresa @codEmp int as
+begin
+declare @Error int;
+if not exists(select * from empresa where codEmpresa=@codEmp)
+return -1
+
+if exists(select * from factura where codContrato in(select codContrato from tipoContrato where codEmp= @codEmp))
+begin
+begin tran
+update tipoContrato set activo = 0 where codContrato in(select codContrato from tipoContrato where codEmp= @codEmp);
+set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -2
+	end
+update empresa set activo=0 where codEmpresa=@codEmp;
+set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -3
+	end
+
+	begin 
+	commit tran
+	end
+
+return 1
+end
+
+
+begin tran 
+
+delete from tipoContrato where codEmp=@codEmp;
+set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -4
+	end
+delete from empresa where codEmpresa=@codEmp;
+set @Error=@@Error
+	if(@Error<>0)
+	begin
+		rollback tran
+		return -5
+	end
+	begin 
+		commit tran
+	 end
+end
+
+go
+
+
+
+
+
+
 
 
 --------------------------------------------------------------------------
@@ -650,7 +801,7 @@ go
 
 --exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
 
-exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
+--exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
 
 --exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
 

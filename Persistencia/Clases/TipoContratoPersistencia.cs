@@ -60,6 +60,113 @@ namespace Persistencia
             return unContrato;
         }
 
+        public void AltaTipoContrato(TipoContrato unTipoContrato)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            SqlCommand cmd = new SqlCommand("AltaTipoContrato", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@codContrato", unTipoContrato.CodContrato);
+            cmd.Parameters.AddWithValue("@codEmp", unTipoContrato.UnaEmp.Codigo);
+            cmd.Parameters.AddWithValue("@nombre", unTipoContrato.Nombre);
+      
+
+
+            SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == -1)
+                    throw new Exception("");
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+
+            }
+
+
+
+        }
+
+        public void BajaTipoContrato(TipoContrato unTipoContrato)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            SqlCommand cmd = new SqlCommand("BajaTipoContrato", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@codContrato", unTipoContrato.CodContrato);
+            cmd.Parameters.AddWithValue("@codEmp", unTipoContrato.UnaEmp.Codigo);
+
+            SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == -1)
+                    throw new Exception("");
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
+        public void ModificarTipoContrato(TipoContrato unTipoContrato)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            SqlCommand cmd = new SqlCommand("ModificarTipoContrato", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@codContrato", unTipoContrato.CodContrato);
+            cmd.Parameters.AddWithValue("@codEmp", unTipoContrato.UnaEmp.Codigo);
+            cmd.Parameters.AddWithValue("@nombre", unTipoContrato.Nombre);
+        
+
+
+            SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == -1)
+                    throw new Exception("");
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+
+            }
+        }
+
         #endregion
     }
 }

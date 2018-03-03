@@ -570,8 +570,26 @@ namespace Administracion.ServicioWCF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarEmpresa", ReplyAction="http://tempuri.org/IServicio/BuscarEmpresaResponse")]
         Administracion.ServicioWCF.Empresa BuscarEmpresa(int codEmp);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AltaEmpresa", ReplyAction="http://tempuri.org/IServicio/AltaEmpresaResponse")]
+        void AltaEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BajaEmpresa", ReplyAction="http://tempuri.org/IServicio/BajaEmpresaResponse")]
+        void BajaEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ModificarEmpresa", ReplyAction="http://tempuri.org/IServicio/ModificarEmpresaResponse")]
+        void ModificarEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarContrato", ReplyAction="http://tempuri.org/IServicio/BuscarContratoResponse")]
         Administracion.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AltaTipoContrato", ReplyAction="http://tempuri.org/IServicio/AltaTipoContratoResponse")]
+        void AltaTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BajaTipoContrato", ReplyAction="http://tempuri.org/IServicio/BajaTipoContratoResponse")]
+        void BajaTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ModificarTipoContrato", ReplyAction="http://tempuri.org/IServicio/ModificarTipoContratoResponse")]
+        void ModificarTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -633,8 +651,32 @@ namespace Administracion.ServicioWCF {
             return base.Channel.BuscarEmpresa(codEmp);
         }
         
+        public void AltaEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa) {
+            base.Channel.AltaEmpresa(unaEmpresa);
+        }
+        
+        public void BajaEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa) {
+            base.Channel.BajaEmpresa(unaEmpresa);
+        }
+        
+        public void ModificarEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa) {
+            base.Channel.ModificarEmpresa(unaEmpresa);
+        }
+        
         public Administracion.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato) {
             return base.Channel.BuscarContrato(codEmp, codTipoContrato);
+        }
+        
+        public void AltaTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato) {
+            base.Channel.AltaTipoContrato(unTipoContrato);
+        }
+        
+        public void BajaTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato) {
+            base.Channel.BajaTipoContrato(unTipoContrato);
+        }
+        
+        public void ModificarTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato) {
+            base.Channel.ModificarTipoContrato(unTipoContrato);
         }
     }
 }

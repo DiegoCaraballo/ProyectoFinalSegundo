@@ -8,7 +8,7 @@ using Persistencia;
 
 namespace Logica
 {
-    internal class TipoContratoLogica: ITipoContratoLogica
+    internal class TipoContratoLogica : ITipoContratoLogica
     {
         private static TipoContratoLogica _instancia = null;
         private TipoContratoLogica() { }
@@ -22,6 +22,18 @@ namespace Logica
         public TipoContrato BuscarContrato(int codEmp, int codContrato)
         {
             return ((TipoContrato)FabricaPersistencia.GetPersistenciaTipoContrato().BuscarContrato(codEmp, codContrato));
+        }
+        public void AltaTipoContrato(TipoContrato unTipoContrato)
+        {
+            FabricaPersistencia.GetPersistenciaTipoContrato().AltaTipoContrato(unTipoContrato);
+        }
+        public void BajaTipoContrato(TipoContrato unTipoContrato)
+        {
+            FabricaPersistencia.GetPersistenciaTipoContrato().BajaTipoContrato(unTipoContrato);
+        }
+        public void ModificarTipoContrato(TipoContrato unTipoContrato)
+        {
+            FabricaPersistencia.GetPersistenciaTipoContrato().ModificarTipoContrato(unTipoContrato);
         }
     }
 }

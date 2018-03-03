@@ -47,7 +47,34 @@ namespace Administracion
                     lblMensajes.Text = ex.Message;
             }
 
+        }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+        private void LimpiarCampos()
+        {
+            txtCedula.Text = "";
+            txtUsuario.Text = "";
+            txtPass.Text = "";
+            txtNomApe.Text = "";
+            txtCorreo.Text = "";
+
+            txtCedula.Enabled = true;
+            txtUsuario.Enabled = true;
+            txtPass.Enabled = true;
+            txtNomApe.Enabled = true;
+            txtCorreo.Enabled = true;
+        }
+
+        private void BLoquearCampos()
+        {
+            txtCedula.Enabled = false;
+            txtUsuario.Enabled = true;
+            txtPass.Enabled = false;
+            txtNomApe.Enabled = true;
+            txtCorreo.Enabled = true;
         }
     }
 }

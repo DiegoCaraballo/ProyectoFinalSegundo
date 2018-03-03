@@ -42,13 +42,12 @@
             this.btnIngresar = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.btnModificar = new System.Windows.Forms.ToolStripLabel();
+            this.btnEliminar = new System.Windows.Forms.ToolStripLabel();
             this.btnLimpiar = new System.Windows.Forms.ToolStripLabel();
-            this.btnSalir = new System.Windows.Forms.ToolStripLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.txtHoraFin = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblMensajes = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnEliminar = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -139,49 +138,54 @@
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnIngresar,
             this.toolStripLabel1,
             this.btnModificar,
             this.btnEliminar,
-            this.btnLimpiar,
-            this.btnSalir});
+            this.btnLimpiar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(474, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(75, 287);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnIngresar
             // 
+            this.btnIngresar.Image = global::Administracion.Properties.Resources.Nuevo;
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(49, 22);
+            this.btnIngresar.Size = new System.Drawing.Size(72, 16);
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(0, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(72, 0);
             // 
             // btnModificar
             // 
+            this.btnModificar.Image = global::Administracion.Properties.Resources.Modificar;
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(58, 22);
+            this.btnModificar.Size = new System.Drawing.Size(72, 16);
             this.btnModificar.Text = "Modificar";
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(72, 15);
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // btnLimpiar
             // 
+            this.btnLimpiar.Image = global::Administracion.Properties.Resources.Cancelar;
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(47, 22);
+            this.btnLimpiar.Size = new System.Drawing.Size(72, 16);
             this.btnLimpiar.Text = "Limpiar";
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(29, 22);
-            this.btnSalir.Text = "Salir";
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // label6
             // 
@@ -203,9 +207,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblMensajes});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 265);
+            this.statusStrip1.Location = new System.Drawing.Point(75, 265);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(474, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(399, 22);
             this.statusStrip1.TabIndex = 24;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -213,13 +217,6 @@
             // 
             this.lblMensajes.Name = "lblMensajes";
             this.lblMensajes.Size = new System.Drawing.Size(0, 17);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(50, 22);
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // ABMCajero
             // 
@@ -271,7 +268,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel btnModificar;
         private System.Windows.Forms.ToolStripLabel btnLimpiar;
-        private System.Windows.Forms.ToolStripLabel btnSalir;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtHoraFin;
         private System.Windows.Forms.StatusStrip statusStrip1;

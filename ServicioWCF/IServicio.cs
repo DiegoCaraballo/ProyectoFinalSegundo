@@ -41,11 +41,25 @@ namespace ServicioWCF
         #region Empresa
         [OperationContract]
         Empresa BuscarEmpresa(int codEmp);
+        [OperationContract]
+        void AltaEmpresa(Empresa unaEmpresa);
+        [OperationContract]
+        void BajaEmpresa(Empresa unaEmpresa);
+        [OperationContract]
+        void ModificarEmpresa(Empresa unaEmpresa);
+
         #endregion
 
         #region Tipo Contrato
         [OperationContract]
         TipoContrato BuscarContrato(int codEmp, int codTipoContrato);
+        [OperationContract]
+        void AltaTipoContrato(TipoContrato unTipoContrato);
+        [OperationContract]
+        void BajaTipoContrato(TipoContrato unTipoContrato);
+        [OperationContract]
+        void ModificarTipoContrato(TipoContrato unTipoContrato);
+
         #endregion
     }
 }
