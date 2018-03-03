@@ -31,6 +31,9 @@ namespace Administracion
 
                 ServicioClient serv = new ServicioClient();
                 serv.AltaUsuario(gerente);
+
+                lblMensajes.Text = "Usuario ingresado exitosamente";
+                EstadoInicial();
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -51,9 +54,9 @@ namespace Administracion
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            EstadoInicial();
         }
-        private void LimpiarCampos()
+        private void EstadoInicial()
         {
             txtCedula.Text = "";
             txtUsuario.Text = "";
@@ -66,15 +69,10 @@ namespace Administracion
             txtPass.Enabled = true;
             txtNomApe.Enabled = true;
             txtCorreo.Enabled = true;
+
+            
         }
 
-        private void BLoquearCampos()
-        {
-            txtCedula.Enabled = false;
-            txtUsuario.Enabled = true;
-            txtPass.Enabled = false;
-            txtNomApe.Enabled = true;
-            txtCorreo.Enabled = true;
-        }
+     
     }
 }

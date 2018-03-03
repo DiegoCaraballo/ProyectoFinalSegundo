@@ -6,6 +6,8 @@ using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
+using System.Text.RegularExpressions;
+
 namespace EntidadesCompartidas
 {
     [DataContract]
@@ -17,7 +19,16 @@ namespace EntidadesCompartidas
         public string Correo
         {
             get { return correo; }
-            set { correo = value; }
+            set
+            {
+                if (Regex.IsMatch(value,
+                  @"^(?("")("".+?""@)|(([0-9a-zA-Z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-zA-Z])@))" +
+                  @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")
+                   )
+                    correo = value;
+                else
+                    throw new Exception("El formato del correo no es correcto");
+            }
         }
 
 

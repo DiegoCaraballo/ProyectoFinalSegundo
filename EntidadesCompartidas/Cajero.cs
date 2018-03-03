@@ -28,12 +28,11 @@ namespace EntidadesCompartidas
             get { return horaFin; }
             set
             {
-                horaFin = value;
-                //if (horaIni > horaFin)
-                //    horaFin = value;
-                //else
-                //    throw new Exception("La hora fin debe ser mayor a la hora de inicio");
-
+                if (value > HoranIni)
+                    horaFin = value;
+                else
+                    throw new Exception("La hora de Fin debe ser mayor a la de inicio");
+                
             }
         }
 
