@@ -24,14 +24,30 @@ namespace EntidadesCompartidas
         public int Cedula
         {
             get { return cedula; }
-            set { cedula = value; }
+            set
+            {
+                if (value.ToString().Length < 7 || value.ToString().Length > 8)
+                {
+                    throw new Exception("La cedula debe 7 u 8 digitos");
+                }
+                else
+                {
+                    cedula = value;
+                }
+            }
         }
 
         [DataMember]
         public string NomUsu
         {
             get { return nomUsu; }
-            set { nomUsu = value; }
+            set
+            {
+                if (value.Length < 4 || value.Length > 15)
+                    throw new Exception("El Nombre de Usuario debe tener entre 4 y 15 caracteres");
+                else
+                    nomUsu = value;
+            }
         }
 
         [DataMember]
@@ -40,11 +56,11 @@ namespace EntidadesCompartidas
             get { return pass; }
             set
             {
-                // if (pass.Length == 7)
-                pass = value;
+                if (value.Length == 7)
+                    pass = value;
 
-                //else
-                //  throw new Exception("La contraseña debe contener 7 caracteres");
+                else
+                    throw new Exception("La contraseña debe contener 7 caracteres");
             }
         }
 
@@ -52,7 +68,13 @@ namespace EntidadesCompartidas
         public string NomCompleto
         {
             get { return nomCompleto; }
-            set { nomCompleto = value; }
+            set
+            {
+                if (value.Length < 4 || value.Length > 50)
+                    throw new Exception("El Nombre/Apellido debe tener entre 4 y 50 caracteres");
+                else
+                    nomCompleto = value;
+            }
         }
 
 

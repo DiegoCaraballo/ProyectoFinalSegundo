@@ -21,7 +21,7 @@ namespace Administracion
 
         private void ABMCajero_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -38,8 +38,10 @@ namespace Administracion
 
                 ServicioClient serv = new ServicioClient();
                 serv.AltaUsuario(cajero);
-
+                
+                EstadoInicial();
                 lblMensajes.Text = "El usuario ingresado exitosamente";
+              
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -63,12 +65,22 @@ namespace Administracion
             {
                 ServicioClient serv = new ServicioClient();
                 usuBuscado = serv.BuscarUsuario(Convert.ToInt32(txtCedula.Text));
-                txtCedula.Text = usuBuscado.Cedula.ToString();
-                txtUsuario.Text = usuBuscado.NomUsu;
-                txtNomApe.Text = usuBuscado.NomCompleto;
-                txtHoraFin.Text = ((Cajero)usuBuscado).HoranFin.ToString();
-                txtHoraInicio.Text = ((Cajero)usuBuscado).HoranIni.ToString();
-                
+
+                if (usuBuscado != null)
+                {
+                    txtCedula.Text = usuBuscado.Cedula.ToString();
+                    txtUsuario.Text = usuBuscado.NomUsu;
+                    txtNomApe.Text = usuBuscado.NomCompleto;
+                    txtHoraFin.Text = ((Cajero)usuBuscado).HoranFin.ToString();
+                    txtHoraInicio.Text = ((Cajero)usuBuscado).HoranIni.ToString();
+                   
+                    btnEliminar.Enabled = true;
+                    btnModificar.Enabled = true;
+                }
+                else
+                {
+                    btnIngresar.Enabled = true;   
+                }
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -91,17 +103,18 @@ namespace Administracion
         {
             try
             {
-               // usuBuscado.Cedula =Convert.ToInt32( txtCedula.Text) ;
-                usuBuscado.NomUsu=txtUsuario.Text ;
-                usuBuscado.NomCompleto=txtNomApe.Text;
-              ((Cajero)usuBuscado).HoranFin=Convert.ToDateTime( txtHoraFin.Text);
-                 ((Cajero)usuBuscado).HoranIni=Convert.ToDateTime( txtHoraInicio.Text);
 
-                 ServicioClient serv = new ServicioClient();
+                usuBuscado.NomUsu = txtUsuario.Text;
+                usuBuscado.NomCompleto = txtNomApe.Text;
+                ((Cajero)usuBuscado).HoranFin = Convert.ToDateTime(txtHoraFin.Text);
+                ((Cajero)usuBuscado).HoranIni = Convert.ToDateTime(txtHoraInicio.Text);
+
+                ServicioClient serv = new ServicioClient();
                 serv.ModificarUsuario(usuBuscado);
 
+                EstadoInicial();
                 lblMensajes.Text = "El usuario fue modificado exitosamente";
-                
+
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -125,6 +138,8 @@ namespace Administracion
             {
                 ServicioClient serv = new ServicioClient();
                 serv.BajaUsuario(usuBuscado);
+
+                EstadoInicial();
                 lblMensajes.Text = "El usuario fue modificado exitosamente";
             }
             catch (System.Web.Services.Protocols.SoapException ex)
@@ -143,7 +158,7 @@ namespace Administracion
             }
         }
 
-        private void LimpiarCampos()
+        private void EstadoInicial()
         {
             txtCedula.Text = "";
             txtUsuario.Text = "";
@@ -158,21 +173,19 @@ namespace Administracion
             txtNomApe.Enabled = true;
             txtHoraInicio.Enabled = true;
             txtHoraFin.Enabled = true;
+
+            btnEliminar.Enabled = false;
+            btnModificar.Enabled = false;
+            btnIngresar.Enabled = false;
+           
         }
 
-        private void BLoquearCampos()
-        {
-            txtCedula.Enabled = false;
-            txtUsuario.Enabled = true;
-            txtPass.Enabled = false;
-            txtNomApe.Enabled = true;
-            txtHoraInicio.Enabled = true;
-            txtHoraFin.Enabled = true;
-        }
+  
+ 
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            EstadoInicial();
         }
 
     }
