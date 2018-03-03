@@ -23,22 +23,26 @@ namespace Administracion
             try
             {
                 Usuario usu = null;
-
-                
-               ServicioClient  serv = new ServicioClient();
+              
+                ServicioClient  serv = new ServicioClient();
 
                 usu = serv.Logueo(txtUsuario.Text);
+
                 if (usu == null)
                 {
-                    lblMensajes.Text = "No se encontro el usuario";
+                    throw new Exception("No se encontro el usuario");
                 }
+
                 if (usu.Pass == txtPass.Text)
                 {
                     this.Hide();
                     Form unForm = new Default(usu);
                     unForm.ShowDialog();
                     this.Close();
-                
+                }
+                else
+                {
+                    throw new Exception("Contraseña Incorrecta");
                 }
 
             }

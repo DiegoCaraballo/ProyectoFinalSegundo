@@ -292,7 +292,6 @@
             this.gvListaFacturas.Size = new System.Drawing.Size(454, 213);
             this.gvListaFacturas.TabIndex = 74;
             this.gvListaFacturas.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.gvListaFacturas_RowsAdded);
-            this.gvListaFacturas.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.gvListaFacturas_RowsRemoved);
             // 
             // AltaPago
             // 

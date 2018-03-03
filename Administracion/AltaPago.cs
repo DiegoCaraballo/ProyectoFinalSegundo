@@ -71,6 +71,11 @@ namespace Administracion
                     {
                         gvListaFacturas.Rows.RemoveAt(item.Index);
                     }
+
+                    if (gvListaFacturas.Rows.Count == 0)
+                    {
+                        txtMontoTotal.Text = "";
+                    }
                 }
             }
             catch(Exception ex)
@@ -207,29 +212,13 @@ namespace Administracion
             txtMontoTotal.Text = total.ToString();
         }
 
-
-        //Si no quedan filas se deja en 0 el monto total
-        private void gvListaFacturas_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            try
-            {
-                if (gvListaFacturas.Rows.Count == 0)
-                {
-                    txtMontoTotal.Text = "";
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         //Ingresar pago
         private void ingresarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                ServicioClient serv = new ServicioClient();                
+                ServicioClient serv = new ServicioClient(); 
+               
                 try
                 {
                     if (lasFacturas.Count != 0)
@@ -241,8 +230,16 @@ namespace Administracion
                         unPago.Fecha = DateTime.Today;
                         unPago.LasFacturas = lasFacturas.ToArray();
                         unPago.UsuCajero = usuLogueado;                   
-
+                        
+                        //Alto el pago
                         serv.AltaPago(unPago);
+
+                        //Limpio los controles
+                        LimpiarDatosFactura();
+                        gvListaFacturas.Columns.Clear();
+                        lasFacturas.Clear();
+
+                        lblMensaje.Text = "Pago agregado correctamente";
                     }
                     else
                     {
