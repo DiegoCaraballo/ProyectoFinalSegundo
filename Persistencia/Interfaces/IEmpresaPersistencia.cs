@@ -13,5 +13,6 @@ namespace Persistencia
         void AltaEmpresa(Empresa unaEmpresa);
         void BajaEmpresa(Empresa unaEmpresa);
         void ModificarEmpresa(Empresa unaEmpresa);
+        List<Empresa> ListarEmpresas();
     }
 }

@@ -48,3 +48,52 @@
     text-align: left;
   }
 }
+
+article 
+{
+    margin-top: 50px;
+    margin-left: 350px;
+    border-left: 1px solid gray;
+    padding: 2em;
+    overflow: hidden;
+}
+
+td
+{
+    text-align: center;
+    width: 30%;  
+    height:60px;
+   border: 1px solid #ccc;
+    width: 20em; 
+    max-width: 20em; 
+    height: 2em; 
+    line-height: 2em; 
+    overflow: hidden; 
+}
+
+/* css para el repeater*/
+ .container
+    {
+        width:600px;
+        border:solid 1px black;
+        background-color:white;
+    }
+    .empresas
+    {
+        border-collapse:collapse;
+        table-layout:fixed;
+        width:150px;
+       
+    }
+    .empresas th,.empresas td
+    {
+        padding:10px;
+        border-bottom:1px solid black;
+        width:150px;
+        
+    }
+    .alternating
+    {
+        background-color:#eeeeee;
+        width:50px;
+    }
