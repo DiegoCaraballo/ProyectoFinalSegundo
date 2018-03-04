@@ -11,6 +11,17 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        try
+        {
+            if (!IsPostBack)
+            {
+                CargarLista();
+            }
+        }
+        catch(Exception)
+        {
+            throw new Exception();
+        }
 
     }
 
@@ -21,13 +32,20 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
         {
             ServicioClient serv = new ServicioClient();
 
-            //List<Empresa> lasEmpresas = serv.ListarEmpresas();
+            List<Empresa> lasEmpresas = new List<Empresa>();
+            lasEmpresas = serv.ListarEmpresas().ToList();
 
+            //Cargo repeater
+            rpEmpresas.DataSource = lasEmpresas;
+            rpEmpresas.DataBind();
+
+            if(rpEmpresas.Items.Count == 0)
+                throw new Exception("No hay empresas para listar");
 
         }
         catch(Exception ex)
         {
-            lblMensaje.Text = "Error: " + ex.Message;
+            lblMensaje.Text = ex.Message;
         }
     }
 }

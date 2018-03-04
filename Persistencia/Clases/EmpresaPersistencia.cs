@@ -161,6 +161,49 @@ namespace Persistencia
 
             }
         }
+
+        public List<Empresa> ListarEmpresas()
+        {
+            List<Empresa> lista = new List<Empresa>();
+
+            int codigo;
+            int rut;
+            string dirFiscal;
+            string telefono;
+
+            SqlConnection oConexion = new SqlConnection(Conexion.Cnn);
+            SqlCommand oComando = new SqlCommand("ListarEmpresas", oConexion);
+            SqlDataReader oReader;
+
+            try
+            {
+                oConexion.Open();
+                oReader = oComando.ExecuteReader();
+
+                while (oReader.Read())
+                {
+                    codigo = (int)oReader["codEmpresa"];
+                    rut = (int)oReader["rut"];
+                    dirFiscal = (string)oReader["dirFiscal"];
+                    telefono = (string)oReader["telefono"];
+
+                    Empresa unaEmpresa = new Empresa(codigo, rut, dirFiscal, telefono);
+
+                    lista.Add(unaEmpresa);
+                }
+                oReader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Problemas con la base de datos: " + ex.Message);
+            }
+            finally
+            {
+                oConexion.Close();
+            }
+
+            return lista;
+        }
         
         #endregion
     }

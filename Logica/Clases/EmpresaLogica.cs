@@ -28,13 +28,22 @@ namespace Logica
         {
           FabricaPersistencia.GetPersistenciaEmpresa().AltaEmpresa(unaEmpresa);
         }
+
         public void BajaEmpresa(Empresa unaEmpresa)
         {
             FabricaPersistencia.GetPersistenciaEmpresa().BajaEmpresa(unaEmpresa);
         }
+
         public void ModificarEmpresa(Empresa unaEmpresa)
         {
             FabricaPersistencia.GetPersistenciaEmpresa().ModificarEmpresa(unaEmpresa);
+        }
+
+        public List<Empresa> ListarEmpresas()
+        {
+            List<Empresa> lista = FabricaPersistencia.GetPersistenciaEmpresa().ListarEmpresas();
+                
+            return lista;
         }
     }
 }

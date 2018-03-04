@@ -53,18 +53,27 @@ namespace ServicioWCF
         {
             return (FabricaLogica.GetLogicaEmpresa().BuscarEmpresa(codEmp));
         }
+
         public void AltaEmpresa(Empresa unaEmpresa)
         {
             FabricaLogica.GetLogicaEmpresa().AltaEmpresa(unaEmpresa);
         }
+
         public void BajaEmpresa(Empresa unaEmpresa)
         {
             FabricaLogica.GetLogicaEmpresa().BajaEmpresa(unaEmpresa);
         }
+
         public void ModificarEmpresa(Empresa unaEmpresa)
         {
             FabricaLogica.GetLogicaEmpresa().ModificarEmpresa(unaEmpresa);
         }
+
+        public List<Empresa> ListarEmpresas()
+        {
+            return(FabricaLogica.GetLogicaEmpresa().ListarEmpresas());
+        }
+
         #endregion
 
         #region Tipo Contrato

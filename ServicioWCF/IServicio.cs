@@ -50,6 +50,8 @@ namespace ServicioWCF
         void BajaEmpresa(Empresa unaEmpresa);
         [OperationContract]
         void ModificarEmpresa(Empresa unaEmpresa);
+        [OperationContract]
+        List<Empresa> ListarEmpresas();
 
         #endregion
 

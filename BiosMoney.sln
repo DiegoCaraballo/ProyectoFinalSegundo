@@ -29,7 +29,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebConsultas", "WebConsulta
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "6138"
+		VWDPort = "8094"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 	ProjectSection(ProjectDependencies) = postProject
