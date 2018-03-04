@@ -21,7 +21,7 @@ namespace Administracion
 
         private void ABMCajero_Load(object sender, EventArgs e)
         {
-
+//todo
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
