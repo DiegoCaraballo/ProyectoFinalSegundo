@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 
 using Administracion.ServicioWCF;
+using System.Xml;
+//using System.Web.Services.Protocols;
+using System.IO;
 
 namespace Administracion
 {
@@ -35,15 +38,48 @@ namespace Administracion
 
                 if (usu.Pass == txtPass.Text)
                 {
-                    this.Hide();
-                    Form unForm = new Default(usu);
-                    unForm.ShowDialog();
-                    this.Close();
+                    if (usu is Cajero)
+                    {
+                        string destino = @"C:\desarrollo\horas.xml";
+                        XmlDocument horas = new XmlDocument();
+
+                        XmlNode usuCajero = horas.CreateNode(XmlNodeType.Element, "usuCajero", "");
+
+                        XmlNode nodoCedula = horas.CreateNode(XmlNodeType.Element, "Cedula", "");
+                        nodoCedula.InnerText = usu.Cedula.ToString();
+                        usuCajero.AppendChild(nodoCedula);
+
+                        XmlNode nodoHoraIni = horas.CreateNode(XmlNodeType.Element, "HoraIni", "");
+                        nodoHoraIni.InnerText = ((Cajero)usu).HoranIni.ToString();
+                        usuCajero.AppendChild(nodoHoraIni);
+
+                        XmlNode nodoHoraFin = horas.CreateNode(XmlNodeType.Element, "HoraFin", "");
+                        nodoHoraFin.InnerText = ((Cajero)usu).HoranIni.ToString();
+                        usuCajero.AppendChild(nodoHoraFin);
+                        horas.AppendChild(usuCajero);
+
+
+                        horas.Save(destino);
+
+                        this.Hide();
+                        Form unForm = new Default(usu);
+                        unForm.ShowDialog();
+                        this.Close();
+                    }
+                    else 
+                    {
+                        this.Hide();
+                        Form unForm = new Default(usu);
+                        unForm.ShowDialog();
+                        this.Close();
+                    }
                 }
                 else
                 {
                     throw new Exception("Contraseña Incorrecta");
                 }
+
+               
 
             }
             catch (System.Web.Services.Protocols.SoapException ex)

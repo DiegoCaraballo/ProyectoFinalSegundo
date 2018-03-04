@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 
 using Administracion.ServicioWCF;
+using System.IO;
+
 namespace Administracion
 {
     public partial class Default : Form
@@ -110,8 +112,19 @@ namespace Administracion
             else
             {
                 lblMensajes.Text = "Usted no cuenta con permisos para acceder a este formulario";
+
             }
         }
+
+        private void Default_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (File.Exists(@"C:\desarrollo\horas.xml"))
+            {
+                File.Delete(@"C:\desarrollo\horas.xml");
+            }
+        }
+
 
     }
 }
