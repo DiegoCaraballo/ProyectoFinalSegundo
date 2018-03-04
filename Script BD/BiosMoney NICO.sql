@@ -834,3 +834,5 @@ select * from usuario
 
 use BiosMoney
 select * from factura
+select * from cajero
+select * from usuario

@@ -28,7 +28,7 @@ namespace EntidadesCompartidas
             {
                    if (value.ToString().Length < 7 || value.ToString().Length > 8)
                     {
-                        throw new Exception("La cedula debe 7 u 8 digitos");
+                        throw new Exception("La cedula debe tener 7 u 8 digitos");
                     }
                     else
                     {

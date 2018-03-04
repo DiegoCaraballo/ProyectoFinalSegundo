@@ -66,7 +66,6 @@ namespace Persistencia
                 {
                     while (_lector.Read())
                     {
-                        _lector.Read();
 
                         Factura fac = new Factura();
                         

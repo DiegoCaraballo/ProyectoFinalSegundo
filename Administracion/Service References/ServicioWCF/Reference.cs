@@ -567,6 +567,9 @@ namespace Administracion.ServicioWCF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AltaPago", ReplyAction="http://tempuri.org/IServicio/AltaPagoResponse")]
         void AltaPago(Administracion.ServicioWCF.Pago unPago);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/PagoDeUnaFactura", ReplyAction="http://tempuri.org/IServicio/PagoDeUnaFacturaResponse")]
+        Administracion.ServicioWCF.Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, System.DateTime fecha);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/listar", ReplyAction="http://tempuri.org/IServicio/listarResponse")]
         Administracion.ServicioWCF.Pago[] listar();
         
@@ -581,6 +584,9 @@ namespace Administracion.ServicioWCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ModificarEmpresa", ReplyAction="http://tempuri.org/IServicio/ModificarEmpresaResponse")]
         void ModificarEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ListarEmpresas", ReplyAction="http://tempuri.org/IServicio/ListarEmpresasResponse")]
+        Administracion.ServicioWCF.Empresa[] ListarEmpresas();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarContrato", ReplyAction="http://tempuri.org/IServicio/BuscarContratoResponse")]
         Administracion.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato);
@@ -650,6 +656,10 @@ namespace Administracion.ServicioWCF {
             base.Channel.AltaPago(unPago);
         }
         
+        public Administracion.ServicioWCF.Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, System.DateTime fecha) {
+            return base.Channel.PagoDeUnaFactura(codContrato, codEmp, monto, codCli, fecha);
+        }
+        
         public Administracion.ServicioWCF.Pago[] listar() {
             return base.Channel.listar();
         }
@@ -668,6 +678,10 @@ namespace Administracion.ServicioWCF {
         
         public void ModificarEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa) {
             base.Channel.ModificarEmpresa(unaEmpresa);
+        }
+        
+        public Administracion.ServicioWCF.Empresa[] ListarEmpresas() {
+            return base.Channel.ListarEmpresas();
         }
         
         public Administracion.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato) {
