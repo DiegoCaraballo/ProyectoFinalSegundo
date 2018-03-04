@@ -564,6 +564,21 @@ BEGIN
 END
 GO
 
+--BUSCAR FACTURA POR CODIGO DE BARRA
+create proc pagoDeUnaFactura @codContra int, @codEmp int, @monto int, @codCli int, @fecha date as
+begin
+	if exists(select * from factura f where f.codContrato= @codContra and f.codEmp= @codEmp and f.monto= @monto and f.codCli= @codCli and f.fechaVto= @fecha)
+	begin
+
+		select * from pago p where p.numeroInt in(
+		select idPago from factura f where f.codContrato= @codContra and f.codEmp= @codEmp and f.monto= @monto and f.codCli= @codCli and f.fechaVto= @fecha
+		)
+	end
+end
+go
+
+exec CargarFacturaDeUnPago 2
+
 --FACTURAS DE UN PAGO
 CREATE PROC CargarFacturaDeUnPago @idPago int AS 
 BEGIN
@@ -816,3 +831,6 @@ select * from usuario
 
 
 --El cambio de Pass no Funciona....
+
+use BiosMoney
+select * from factura

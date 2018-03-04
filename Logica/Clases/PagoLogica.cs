@@ -40,6 +40,12 @@ namespace Logica
         {
             return FabricaPersistencia.GetPersistenciaPago().BuscarPago((int)numInterno);
         }
+
+        public Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
+        {
+            return FabricaPersistencia.GetPersistenciaPago().PagoDeUnaFactura((int)codContrato, (int)codEmp, (int)monto, (int)codCli, (DateTime)fecha);
+        }
+
         public List<Pago> listar() 
         {
             return (FabricaPersistencia.GetPersistenciaPago().listar());

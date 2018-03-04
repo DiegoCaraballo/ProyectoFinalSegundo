@@ -38,6 +38,9 @@ namespace ServicioWCF
         void AltaPago(Pago unPago);
 
         [OperationContract]
+        Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha);
+
+        [OperationContract]
         List<Pago> listar();
         #endregion
 

@@ -46,7 +46,7 @@ namespace Persistencia
             }
         }
 
-        internal static List<Factura> CargoFactura(int pIdPago)
+        internal static List<Factura> CargoFactura(int pIdPago, int codEmp, int codTipoContrato)
         {
             SqlConnection _cnn = new SqlConnection(Conexion.Cnn);
             SqlCommand comando = new SqlCommand("CargarFacturaDeUnPago", _cnn);
@@ -69,11 +69,11 @@ namespace Persistencia
                         _lector.Read();
 
                         Factura fac = new Factura();
-                        //TipoContrato tipoContrato = TipoContratoPersistencia.GetInstancia().BuscarContrato(
-                        fac.CodCli = Convert.ToInt32(_lector["codCli"]);
-                        fac.FechaVto = Convert.ToDateTime(_lector["fechaVto"]);
-                        fac.Monto = Convert.ToInt32(_lector["monto"]);
-                        //fac.UnTipoContrato = 
+                        
+                        fac.FechaVto = (DateTime)_lector["fechaVto"];
+                        fac.CodCli = (int)_lector["codCli"];
+                        fac.Monto = (int)_lector["monto"];
+                        fac.UnTipoContrato = TipoContratoPersistencia.GetInstancia().BuscarContrato(codEmp, codTipoContrato);
                         //TODO - Ver como cargo el tipo de contrato que es otro objeto
 
                         _ListaFacturas.Add(fac);

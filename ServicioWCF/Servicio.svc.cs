@@ -46,6 +46,11 @@ namespace ServicioWCF
             FabricaLogica.GetLogicaPago().AltaPago(unPago);
         }
 
+        public Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
+        {
+            return (FabricaLogica.GetLogicaPago().PagoDeUnaFactura((int)codContrato, (int)codEmp, (int)monto, (int)codCli, (DateTime)fecha));
+        }
+
         #endregion
 
         #region Empresa

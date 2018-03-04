@@ -13,6 +13,7 @@ namespace Persistencia
         void BajaPago(Pago unPago);
         void ModificarPago(Pago unPago);
         Pago BuscarPago(int numeroInt);
+        Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha);
         List<Pago> listar();
     }
 }

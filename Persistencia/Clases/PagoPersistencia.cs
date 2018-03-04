@@ -104,14 +104,62 @@ namespace Persistencia
         //Buscar un pago con todas sus facturas
         public Pago BuscarPago(int numeroInt)
         {
+            //SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            Pago unPago = null;
+
+            return unPago;
+
+            //SqlCommand cmd = new SqlCommand("BuscarPago", cnn);
+            //cmd.CommandType = CommandType.StoredProcedure;
+
+            //cmd.Parameters.AddWithValue("@numeroInt", numeroInt);
+
+            //try
+            //{
+            //    cnn.Open();
+            //    SqlDataReader lector = cmd.ExecuteReader();
+            //    if (lector.HasRows)
+            //    {
+            //        lector.Read();
+            //        int _numeroInt = (int)lector["numeroInt"];
+            //        DateTime _fecha = (DateTime)lector["fecha"];
+            //        int _montoTotal = (int)lector["montoTotal"];
+            //        int _cedulaCajero = (int)lector["cedulaCajero"];
+
+            //        unPago = new Pago(_numeroInt, _fecha, _montoTotal, CajeroPersistencia.GetInstancia().BuscarCajero(_cedulaCajero), FacturaPersistencia.CargoFactura(numeroInt, codEmp, codTipoContrato));
+            //    }
+
+            //    lector.Close();
+            //}
+
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(ex.Message);
+            //}
+
+            //finally
+            //{
+            //    cnn.Close();
+            //}
+            //return unPago;
+        }
+
+        //Buscar pago de una factura
+        public Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
+        {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);
 
             Pago unPago = null;
 
-            SqlCommand cmd = new SqlCommand("BuscarPago", cnn);
+            SqlCommand cmd = new SqlCommand("pagoDeUnaFactura", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@numeroInt", numeroInt);
+            cmd.Parameters.AddWithValue("@codContra", codContrato);
+            cmd.Parameters.AddWithValue("@codEmp", codEmp);
+            cmd.Parameters.AddWithValue("@monto", monto);
+            cmd.Parameters.AddWithValue("@codCli", codCli);
+            cmd.Parameters.AddWithValue("@fecha", fecha);
 
             try
             {
@@ -125,7 +173,7 @@ namespace Persistencia
                     int _montoTotal = (int)lector["montoTotal"];
                     int _cedulaCajero = (int)lector["cedulaCajero"];
 
-                    unPago = new Pago(_numeroInt, _fecha, _montoTotal, CajeroPersistencia.GetInstancia().BuscarCajero(_cedulaCajero), FacturaPersistencia.CargoFactura(numeroInt));
+                    unPago = new Pago(_numeroInt, _fecha, _montoTotal, CajeroPersistencia.GetInstancia().BuscarCajero(_cedulaCajero), FacturaPersistencia.CargoFactura(_numeroInt, codEmp, codContrato));
                 }
 
                 lector.Close();
