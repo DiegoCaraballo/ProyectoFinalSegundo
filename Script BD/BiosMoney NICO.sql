@@ -102,27 +102,26 @@ go
 -- Usuario de IIS que utiliza el WCF para acceder a la Base de Datos
 USE master
 GO
-drop login [IIS APPPOOL\DefaultAppPool]
+--drop login [IIS APPPOOL\DefaultAppPool]
 CREATE LOGIN [IIS APPPOOL\DefaultAppPool] FROM WINDOWS WITH DEFAULT_DATABASE = master
 GO
 
 USE BiosMoney
 GO
-drop user [IIS APPPOOL\DefaultAppPool]
+--drop user [IIS APPPOOL\DefaultAppPool]
 CREATE USER [IIS APPPOOL\DefaultAppPool] FOR LOGIN [IIS APPPOOL\DefaultAppPool]
 GO
 
 
 USE BiosMoney;
 
-CREATE ROLE UsuarioWeb 
-GO
-
 CREATE ROLE UsuarioCajero
 GO
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--												Alta Gerente																       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------
+
+--Alta Gerente
 create proc AltaGerente @cedula int, @nomUsu varchar(15), @pass varchar(7), @nomCompleto varchar(50), @correo varchar(70) as
 begin
 
@@ -137,19 +136,15 @@ declare @Error int;
 begin tran
 
 	insert into Usuario(cedula,nomUsu,pass,nomCompleto) values(@cedula,@nomUsu,@pass,@nomCompleto)
-
-
-set @Error = @@ERROR
+	set @Error = @@ERROR
 	if(@Error<>0)
 	begin 
 		rollback tran 
 		return -3
 	end
 
---se agrega como gerente
-insert into Gerente values (@cedula,@correo)
-
-set @Error=@@ERROR
+	insert into Gerente values (@cedula,@correo)
+	set @Error=@@ERROR
 	if(@Error<>0)
 	begin
 		rollback tran
@@ -192,7 +187,7 @@ Declare @VarSentencia varchar(200)
 	Exec sp_addrolemember @rolename='db_owner', @membername=@nomUsu
 	
 	if (@@ERROR <> 0)
-if(@Error<>0)
+	if(@Error<>0)
 	begin
 		return -5
 	end
@@ -200,14 +195,22 @@ if(@Error<>0)
 end
 
 go
---exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
---delete from gerente
---delete from usuario
+
+
+--Logeuo Gerente
+create proc LogueoGerente @nomUsu varchar(15) as
+begin
+
+select u.*,g.correo from gerente g join usuario u on g.cedula= u.cedula where nomUsu= @nomUsu; 
+
+end
+go
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--														ABM Cajero															       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------
 
+--Alta Cajero
 create proc AltaCajero @cedula int, @nomUsu varchar(15), @pass varchar(7), @nomCompleto varchar(50), @horaini time, @horaFin time as
 begin
 
@@ -286,12 +289,15 @@ Declare @VarSentencia varchar(200)
 		return -6
 	end
 
+grant execute  on AltaPago to UsuarioCajero
+grant execute  on CambioPass to UsuarioCajero
+
 end
 
 go
 
 
-
+--Baja Cajero
 create proc BajaCajero @cedula int as
 begin
 
@@ -384,7 +390,7 @@ End
 go
 
 
-
+--Modificar Cajero
 create proc ModificarCajero @cedula int, @nomUsu varchar(15), @nomCompleto varchar(50), @horaini time, @horaFin time as
 begin
 
@@ -442,16 +448,19 @@ set @Error=@@Error
 
 go
 
-	create proc BuscarCajero @cedula int as
-	begin
+
+--Buscar Cajero
+create proc BuscarCajero @cedula int as
+begin
 	if not exists (select * from cajero where cedula=@cedula)
 	return -1
 
 	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where u.cedula= @cedula; 
-	end 
-	go
+end 
+go
 
 
+--Cambiar Contraseña
 create proc CambioPass @cedula int, @pass varchar(7) as
 
 begin
@@ -498,8 +507,19 @@ end
 go
 
 
--------------------------------------------------------------------------------------------
---PAGO
+--LogueoCajero
+create proc LogueoCajero @nomUsu varchar(15) as
+begin
+
+select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where nomUsu= @nomUsu; 
+
+end
+
+go
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+--*--											      	Pago																	       --*--
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 --AGREGAR PAGO
 CREATE PROC AltaPago @fecha date, @montoTotal int, @cedulaCajero int, @numInterno int output AS
@@ -513,6 +533,7 @@ BEGIN
 END
 GO
 
+
 --BUSCAR PAGO
 CREATE PROC BuscarPago @numeroInt int AS
 BEGIN
@@ -520,14 +541,18 @@ BEGIN
 END
 GO
 
+
 --LISTAR PAGOS
 CREATE PROC ListarPagos AS
 BEGIN
 	SELECT * FROM pago
 END
 GO
--------------------------------------------------------------------------------------------
---FACTURA
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+--*--												Factura																		       --*--
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 --AGREGAR FACTURA
 CREATE PROC AltaFactura @idPago int, @codContrato int, @codEmp int, @monto int, @codCli int, @fechaVto datetime AS
@@ -577,7 +602,6 @@ begin
 end
 go
 
-exec CargarFacturaDeUnPago 2
 
 --FACTURAS DE UN PAGO
 CREATE PROC CargarFacturaDeUnPago @idPago int AS 
@@ -587,9 +611,9 @@ END
 GO
 
 
-------------------------------------------------------------------------
---TIPO DE CONTRATO
-
+--------------------------------------------------------------------------------------------------------------------------------------------
+--*--												Topo Contrato																       --*--
+--------------------------------------------------------------------------------------------------------------------------------------------
 --BUSCAR CONTRATO
 CREATE PROC BuscarContrato @codEmp int, @codContrato int AS
 BEGIN
@@ -624,6 +648,8 @@ return -2
 End
 Go
 
+
+--Modificar Contrato
 Create Proc ModificarTipoContrato @codEmp int , @codContrato int,@nombre varchar (30)as
 Begin
 
@@ -642,17 +668,10 @@ return -2
 	
 End
 
---exec AltaTipoContrato 1234, 33, "Hola Mundo", 1
-
---select * from empresa
---select * from tipoContrato WHERE codEmp = 1234 AND codContrato = 33
-
---EXEC BuscarContrato 1234, 33
--------------------------------------------------------------------------
---EMPRESA
 go
 
 
+--Baja Contrato
 create proc BajaTipoContrato @codEmp int, @codContrato int as
 begin
 if not exists (select * from empresa where codEmpresa=@codEmp)
@@ -674,9 +693,9 @@ end
 go
 
 
-
-
----------------Empresa
+--------------------------------------------------------------------------------------------------------------------------------------------
+--*--												Empresa																		       --*--
+--------------------------------------------------------------------------------------------------------------------------------------------
 --BUSCAR EMPRESA
 CREATE PROC BuscarEmpresa @codEmpresa int AS
 BEGIN
@@ -685,8 +704,6 @@ END
 GO
 
 --Altar Empresa
-
-
 create proc AltaEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
 begin
 
@@ -709,6 +726,8 @@ end
 end
 go
 
+
+--Modificar Empresa
 create proc ModificarEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
 begin
 
@@ -726,6 +745,8 @@ end
 end
 go
 
+
+--Baja Empresa
 create proc BajaEmpresa @codEmp int as
 begin
 declare @Error int;
@@ -782,57 +803,22 @@ end
 go
 
 
-
-
-
-
-
-
+--------------------------------------------------------------------------
+					----Datos Para Probar
 --------------------------------------------------------------------------
 
-
-create proc LogueoCajero @nomUsu varchar(15) as
-begin
-
-select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where nomUsu= @nomUsu; 
-
-end
+exec AltaTipoContrato 1234, 33, "Hola Mundo"
 
 go
-create proc LogueoGerente @nomUsu varchar(15) as
-begin
 
-select u.*,g.correo from gerente g join usuario u on g.cedula= u.cedula where nomUsu= @nomUsu; 
+--select * from empresa
+--select * from tipoContrato WHERE codEmp = 1234 AND codContrato = 33
 
-end
+--EXEC BuscarContrato 1234, 33
 
-
-
-
-
-grant execute  on AltaPago to UsuarioCajero
-grant execute  on CambioPass to UsuarioCajero
+exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
 go
-----------------
-
---exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
-
---exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
-select * from usuario
+exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
+go
 --exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
 
-
-
---TODO 
---El Alta Gerente Funciona, revisar los rollback tran
---El Alta Cajero Funciona, Revisar los rollback tran
-
---El Baja Cajero Funciona, REvisar con datos de pagos cuando esten prontos.
-
-
---El cambio de Pass no Funciona....
-
-use BiosMoney
-select * from factura
-select * from cajero
-select * from usuario
