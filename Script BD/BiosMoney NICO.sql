@@ -850,3 +850,6 @@ select * from empresa
 use biosmoney
 select * from pago
 select * from factura
+select * from gerente
+select * from usuario
+select * from empresa

@@ -31,7 +31,7 @@ namespace Administracion
                 gerente.NomCompleto = txtNomApe.Text;
                 gerente.Correo = txtCorreo.Text;
 
-               // ServicioClient serv = new ServicioClient();
+               // IServicio serv = new ServicioClient();
                 IServicio serv = new ServicioClient();
                 serv.AltaUsuario(gerente, usuLogueado);
 

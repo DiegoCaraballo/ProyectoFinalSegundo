@@ -92,7 +92,7 @@ namespace Administracion
                 int codEmp = Convert.ToInt32(txtCodBarra.Text.Substring(0, 4).TrimStart('0'));
                 int codTipoContrato = Convert.ToInt32(txtCodBarra.Text.Substring(4, 2).TrimStart('0'));
 
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
 
                 TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato);
                 if (unContrato == null)
@@ -167,7 +167,7 @@ namespace Administracion
                 int codEmp = Convert.ToInt32(txtCodBarra.Text.Substring(0, 4).TrimStart('0'));
                 int codTipoContrato = Convert.ToInt32(txtCodBarra.Text.Substring(4, 2).TrimStart('0'));
 
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
 
                 //Busco la Empresa
                 Empresa unaEmpresa = serv.BuscarEmpresa(codEmp);
@@ -217,7 +217,7 @@ namespace Administracion
         {
             try
             {
-                ServicioClient serv = new ServicioClient(); 
+                IServicio serv = new ServicioClient(); 
                
                 try
                 {

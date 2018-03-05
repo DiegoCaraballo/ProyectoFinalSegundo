@@ -32,7 +32,7 @@ namespace Administracion
         //Se carga la lista de pagos por defecto con més y año actual
         private void CargoListaPagos()
         {
-            ServicioClient serv = new ServicioClient();
+            IServicio serv = new ServicioClient();
             listadoPagos = serv.listar(usuLogueado).ToList();
 
             gvPagos.DataSource = listadoPagos;

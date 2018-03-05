@@ -38,7 +38,7 @@ namespace Administracion
                 cajero.HoranIni = Convert.ToDateTime(txtHoraInicio.Text);
                 cajero.HoranFin = Convert.ToDateTime(txtHoraFin.Text);
 
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 serv.AltaUsuario(cajero, usuLogueado);
                 
                 EstadoInicial();
@@ -65,7 +65,7 @@ namespace Administracion
         {
             try
             {
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 usuBuscado = serv.BuscarUsuario(Convert.ToInt32(txtCedula.Text));
 
                 if (usuBuscado != null)
@@ -111,7 +111,7 @@ namespace Administracion
                 ((Cajero)usuBuscado).HoranFin = Convert.ToDateTime(txtHoraFin.Text);
                 ((Cajero)usuBuscado).HoranIni = Convert.ToDateTime(txtHoraInicio.Text);
 
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 serv.ModificarUsuario(usuBuscado, usuLogueado);
 
                 EstadoInicial();
@@ -138,7 +138,7 @@ namespace Administracion
         {
             try
             {
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 serv.BajaUsuario(usuBuscado, usuLogueado);
 
                 EstadoInicial();

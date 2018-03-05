@@ -19,6 +19,7 @@ namespace Administracion
             usuLogueado = usu;
             InitializeComponent();
         }
+
         TipoContrato TipoContratoBuscado = null;
 
         //Borro los datos del tipo de contrato
@@ -29,35 +30,18 @@ namespace Administracion
             txtNombre.Text = "";
         }
 
-        private void txtCodEmpresa_Validating(object sender, CancelEventArgs e)
+        private void HabilitarBotones()
         {
-            try
-            {
-                ServicioClient serv = new ServicioClient();
-                TipoContratoBuscado = serv.BuscarContrato(Convert.ToInt32(txtCodEmpresa.Text), Convert.ToInt32(txtCodTipoContrato.Text));
-                txtNombre.Text = TipoContratoBuscado.Nombre;
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensaje.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensaje.Text = ex.Detail.InnerText;
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message.Length > 80)
-                    lblMensaje.Text = ex.Message.Substring(0, 80);
-                else
-                    lblMensaje.Text = ex.Message;
-            }
-
+            btnEliminar.Enabled = true;
+            btnModificar.Enabled = true;
         }
+
+        //Ingresar Tipo de contrato
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             try
             {
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
 
                 TipoContrato unTipoContrato = new TipoContrato();
                 unTipoContrato.CodContrato = Convert.ToInt32(txtCodTipoContrato.Text);
@@ -66,6 +50,7 @@ namespace Administracion
 
                 serv.AltaTipoContrato(unTipoContrato, usuLogueado);
                 lblMensaje.Text = "Tipo Contrato ingresado con exito";
+                LimpiarCampos();
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -82,16 +67,18 @@ namespace Administracion
                     lblMensaje.Text = ex.Message;
             }
         }
-
+        
+        //Modificar tipo de contrato
         private void btnModificar_Click(object sender, EventArgs e)
         {
             try
             {
                 TipoContratoBuscado.Nombre = txtNombre.Text;
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 serv.ModificarTipoContrato(TipoContratoBuscado, usuLogueado);
 
                 lblMensaje.Text = "Tipo contrato modificado con exito";
+                LimpiarCampos();
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -109,14 +96,16 @@ namespace Administracion
             }
         }
 
+        //Eliminar tipo de contrato
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 serv.BajaTipoContrato(TipoContratoBuscado, usuLogueado);
 
                 lblMensaje.Text = "Tipo Contrato Dado de Baja exitosamente";
+                LimpiarCampos();
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -134,6 +123,7 @@ namespace Administracion
             }
         }
 
+        //Limpiar campos
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
@@ -144,6 +134,63 @@ namespace Administracion
             txtCodEmpresa.Text = "";
             txtCodTipoContrato.Text = "";
             txtNombre.Text = "";
+            btnModificar.Enabled = false;
+            btnIngresar.Enabled = false;
+            btnEliminar.Enabled = false;
+        }
+
+        //Validar los 2 campos
+        private void txtCodTipoContrato_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                if (txtCodEmpresa.Text.Trim() != "" && txtCodEmpresa.Text.Trim().Length <= 4 && txtCodTipoContrato.Text.Trim() != "" && txtCodTipoContrato.Text.Trim().Length <= 2)
+                {
+                    EPTipoContrato.Clear();
+                }
+                else
+                {
+                    throw new Exception("El codigo de Empresa debe tener entre 1 y 4 dígitos y el CodContrato entre 1 y 2");
+                }
+            }
+            catch (Exception ex)
+            {
+                EPTipoContrato.SetError(txtCodEmpresa, ex.Message);
+                e.Cancel = true;
+                return;
+            }
+
+            try
+            {
+                IServicio serv = new ServicioClient();
+
+                //Busco el tipo de contrato
+                TipoContratoBuscado = serv.BuscarContrato(Convert.ToInt32(txtCodEmpresa.Text), Convert.ToInt32(txtCodTipoContrato.Text));
+
+                if (TipoContratoBuscado != null)
+                {
+                    HabilitarBotones();
+                    txtNombre.Text = TipoContratoBuscado.Nombre;
+                }
+                else
+                {
+                    btnIngresar.Enabled = true;
+                }
+            }
+            catch (System.Web.Services.Protocols.SoapException ex)
+            {
+                if (ex.Detail.InnerText.Length > 80)
+                    lblMensaje.Text = ex.Detail.InnerText.Substring(0, 80);
+                else
+                    lblMensaje.Text = ex.Detail.InnerText;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Length > 80)
+                    lblMensaje.Text = ex.Message.Substring(0, 80);
+                else
+                    lblMensaje.Text = ex.Message;
+            }
         }
 
       

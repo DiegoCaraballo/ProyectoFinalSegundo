@@ -12,26 +12,60 @@ using Administracion.ServicioWCF;
 namespace Administracion
 {
     public partial class ABMEmpresa : Form
-    {Usuario usuLogueado=null;
-        public ABMEmpresa(Usuario usu)
     {
-        usuLogueado = usu;
+        Usuario usuLogueado=null;
+    
+        public ABMEmpresa(Usuario usu)
+        {
+            usuLogueado = usu;
             InitializeComponent();
         }
+
         private Empresa empBuscada = null;
 
+        //Valida código de Empresa
         private void txtCodigo_Validating(object sender, CancelEventArgs e)
         {
             try
             {
-                ServicioClient serv = new ServicioClient();
-                empBuscada = serv.BuscarEmpresa(Convert.ToInt32(txtCodigo.Text));
-                txtCodigo.Text = empBuscada.Codigo.ToString();
-                txtRut.Text = empBuscada.Rut.ToString();
-                txtDireccion.Text = empBuscada.DirFiscal;
-                txtTelefono.Text = empBuscada.Telefono;
-
+                if (txtCodigo.Text.Trim() != "" && txtCodigo.Text.Trim().Length <= 4)
+                {
+                    EPCodigoEmp.Clear();
+                }
+                else
+                    throw new Exception("El código de empresa debe tener entre 1 y 4 dígitos");
             }
+
+            catch (Exception ex)
+            {
+                EPCodigoEmp.SetError(txtCodigo, ex.Message);
+                e.Cancel = true;
+                return;
+            }
+
+            try
+            {
+                IServicio serv = new ServicioClient();
+
+                //Busco empresa
+                empBuscada = serv.BuscarEmpresa(Convert.ToInt32(txtCodigo.Text));
+
+                if (empBuscada != null)
+                {
+                    txtCodigo.Text = empBuscada.Codigo.ToString();
+                    txtRut.Text = empBuscada.Rut.ToString();
+                    txtDireccion.Text = empBuscada.DirFiscal;
+                    txtTelefono.Text = empBuscada.Telefono;
+                    HabilitarBotones();
+                    txtCodigo.Enabled = false;
+                }
+                else
+                {
+                    btnIngresar.Enabled = true;
+                }
+            }
+
+            
             catch (System.Web.Services.Protocols.SoapException ex)
             {
                 if (ex.Detail.InnerText.Length > 80)
@@ -48,12 +82,7 @@ namespace Administracion
             }
         }
 
-        private void btnIngresar_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
+        //Modificar Empresa
         private void btnModificar_Click(object sender, EventArgs e)
         {
             try
@@ -62,9 +91,10 @@ namespace Administracion
                 empBuscada.DirFiscal = txtDireccion.Text;
                 empBuscada.Telefono = txtTelefono.Text;
 
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 serv.ModificarEmpresa(empBuscada, usuLogueado);
                 lblMensajes.Text = "Empresa Modificada con exito";
+                LimpiarCampos();
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {
@@ -82,11 +112,12 @@ namespace Administracion
             }
         }
 
+        //Eliminar Empresa
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 serv.BajaEmpresa(empBuscada, usuLogueado);
                 lblMensajes.Text = "Empresa Dada de Baja";
             }
@@ -107,9 +138,10 @@ namespace Administracion
 
         }
 
+        //Limpisar los controles
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            LimpiarCampos();          
         }
 
         private void LimpiarCampos()
@@ -118,6 +150,19 @@ namespace Administracion
             txtDireccion.Text = "";
             txtRut.Text = "";
             txtTelefono.Text = "";
+            txtCodigo.Enabled = true;
+            txtDireccion.Enabled = false;
+            txtRut.Enabled = false;
+            txtTelefono.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnIngresar.Enabled = false;
+            btnModificar.Enabled = false;
+        }
+
+        private void HabilitarBotones()
+        {
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
         }
 
         private void btnIngresar_Click_1(object sender, EventArgs e)
@@ -130,10 +175,12 @@ namespace Administracion
                 emp.DirFiscal = txtDireccion.Text;
                 emp.Telefono = txtTelefono.Text;
 
-                ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 serv.AltaEmpresa(emp,usuLogueado);
 
                 lblMensajes.Text = "Empresa ingresada exitosamente";
+
+                LimpiarCampos();
             }
             catch (System.Web.Services.Protocols.SoapException ex)
             {

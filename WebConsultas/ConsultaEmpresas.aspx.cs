@@ -30,7 +30,7 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
     {
         try 
         {
-            ServicioClient serv = new ServicioClient();
+            IServicio serv = new ServicioClient();
 
             List<Empresa> lasEmpresas = new List<Empresa>();
             lasEmpresas = serv.ListarEmpresas().ToList();

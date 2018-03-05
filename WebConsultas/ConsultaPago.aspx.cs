@@ -32,7 +32,7 @@ public partial class ConsultaPago : System.Web.UI.Page
         {
 
             IServicio serv = new ServicioClient();
-            //ServicioClient serv = new ServicioClient();
+            //IServicio serv = new ServicioClient();
 
             if (txtCodBarra.Text.Length != 25 || txtCodBarra.Text == "")
                 throw new Exception("El código de barras debe contener 25 números");

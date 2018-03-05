@@ -28,6 +28,7 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
+                lblMensajes.Text = "";
                 ABMGerente _unForm = new ABMGerente(usuLogueado);
                 _unForm.ShowDialog();
             }
@@ -43,6 +44,7 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
+                lblMensajes.Text = "";
                 ABMCajero _unForm = new ABMCajero(usuLogueado);
                 _unForm.ShowDialog();
             }
@@ -57,6 +59,7 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
+                lblMensajes.Text = "";
                 ABMEmpresa _unForm = new ABMEmpresa(usuLogueado);
                 _unForm.ShowDialog();
             }
@@ -71,6 +74,7 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
+                lblMensajes.Text = "";
                 ABMTipoContrato _unForm = new ABMTipoContrato(usuLogueado);
                 _unForm.ShowDialog();
             }
@@ -83,6 +87,7 @@ namespace Administracion
         //Cambio de Contraseña
         private void cambioDeContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            lblMensajes.Text = "";
             CambioPassword _unForm = new CambioPassword(usuLogueado);
             _unForm.ShowDialog();
         }
@@ -92,6 +97,7 @@ namespace Administracion
         {
             if (usuLogueado is Cajero)
             {
+                lblMensajes.Text = "";
                 AltaPago _unForm = new AltaPago((Cajero)usuLogueado);
                 _unForm.ShowDialog();
             }
@@ -106,8 +112,9 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
+                lblMensajes.Text = "";
                 ListadoDePagos _unForm = new ListadoDePagos(usuLogueado);
-                _unForm.ShowDialog();
+                _unForm.ShowDialog();             
             }
             else
             {
