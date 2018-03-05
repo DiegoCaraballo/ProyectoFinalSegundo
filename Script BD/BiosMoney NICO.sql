@@ -30,7 +30,6 @@ cedula int not null primary key foreign key references usuario(cedula),
 correo varchar(70) not null check(correo LIKE '%_@_%_.__%')
 )
 
-
 go
 
 create table cajero
@@ -112,6 +111,7 @@ GO
 CREATE USER [IIS APPPOOL\DefaultAppPool] FOR LOGIN [IIS APPPOOL\DefaultAppPool]
 GO
 
+GRANT Execute TO [IIS APPPOOL\DefaultAppPool]
 
 USE BiosMoney;
 
@@ -264,12 +264,12 @@ Declare @VarSentencia varchar(200)
 	end
 		
 	----Asigno rol al usuario recien creado
-	Exec sp_addsrvrolemember @loginame=@nomUsu, @rolename='UsuarioCajero'
+	--Exec sp_addsrvrolemember @loginame=@nomUsu, @rolename='UsuarioCajero'
 	
-	if (@@ERROR <> 0)
-	begin
-		return -4
-		end
+	--if (@@ERROR <> 0)
+	--begin
+	--	return -4
+	--	end
 
 --Creo usuario de acceso a base de datos 
 	Set @VarSentencia = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
@@ -281,16 +281,17 @@ Declare @VarSentencia varchar(200)
 		return -6
 	end
 	----segundo asigno rol especificao al usuario recien creado
-	Exec sp_addrolemember @rolename='UsuarioCajero', @membername=@nomUsu
+	--Exec sp_addrolemember @rolename='UsuarioCajero', @membername=@nomUsu
 	
-	set @Error=@@ERROR
-	if(@Error<>0)
-	begin
-		return -6
-	end
+	--set @Error=@@ERROR
+	--if(@Error<>0)
+	--begin
+	--	return -6
+	--end
 
-grant execute  on AltaPago to UsuarioCajero
-grant execute  on CambioPass to UsuarioCajero
+grant execute on AltaPago to @nomUsu;
+grant execute on CambioPass to @nomUsu;
+grant execute on LogueoCajero to @nomUsu;
 
 end
 
@@ -703,6 +704,7 @@ BEGIN
 END
 GO
 
+
 --Altar Empresa
 create proc AltaEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
 begin
@@ -802,12 +804,20 @@ end
 
 go
 
+create proc ListarEmpresas as
+begin
+select * from empresa
+end
+go
+
 
 --------------------------------------------------------------------------
 					----Datos Para Probar
 --------------------------------------------------------------------------
-
+exec AltaEmpresa 1234, 123456789, 'asdasdas','123456'
 exec AltaTipoContrato 1234, 33, "Hola Mundo"
+
+
 
 go
 
@@ -819,6 +829,10 @@ go
 exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
 go
 exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
+exec AltaCajero 1233211,'pepegrillo','1234567','Pepe grillo', '2018-01-01 00:00:00','2018-01-01 08:00:00';
 go
 --exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
 
+select * from empresa
+use biosmoney
+select * from pago

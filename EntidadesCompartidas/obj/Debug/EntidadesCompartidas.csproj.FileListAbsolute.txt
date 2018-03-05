@@ -6,3 +6,7 @@ C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompa
 C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
 C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
 C:\desarrollo\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.dll
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\EntidadesCompartidas\bin\Debug\EntidadesCompartidas.pdb
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.dll
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\EntidadesCompartidas\obj\Debug\EntidadesCompartidas.pdb

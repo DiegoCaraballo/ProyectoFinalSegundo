@@ -43,11 +43,12 @@ namespace Persistencia
             retorno.Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add(retorno);
 
+       
             try
             {
                 cnn.Open();
                 cmd.ExecuteNonQuery();
-                if ((int)retorno.Value == -1)
+              if ((int)retorno.Value == -1)
                     throw new Exception("La cedula ingresada ya existe en el sistema.");
                 if ((int)retorno.Value == -2)
                     throw new Exception("La cedula ingresada ya existe como Gerente");

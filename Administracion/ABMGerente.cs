@@ -29,25 +29,17 @@ namespace Administracion
                 gerente.NomCompleto = txtNomApe.Text;
                 gerente.Correo = txtCorreo.Text;
 
-                ServicioClient serv = new ServicioClient();
+               // ServicioClient serv = new ServicioClient();
+                IServicio serv = new ServicioClient();
                 serv.AltaUsuario(gerente);
 
                 lblMensajes.Text = "Usuario ingresado exitosamente";
                 EstadoInicial();
             }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
-            }
+            
             catch (Exception ex)
             {
-                if (ex.Message.Length > 80)
-                    lblMensajes.Text = ex.Message.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Message;
+                lblMensajes.Text = ex.Message; 
             }
 
         }

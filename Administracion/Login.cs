@@ -9,7 +9,6 @@ using System.Windows.Forms;
 
 using Administracion.ServicioWCF;
 using System.Xml;
-//using System.Web.Services.Protocols;
 using System.IO;
 
 namespace Administracion
@@ -25,10 +24,14 @@ namespace Administracion
         {
             try
             {
+              IServicio serv= new ServicioClient();
+                
                 Usuario usu = null;
-              
-                ServicioClient  serv = new ServicioClient();
+                
+                
+        //ServicioClient  serv = new ServicioClient();
 
+        
                 usu = serv.Logueo(txtUsuario.Text);
 
                 if (usu == null)

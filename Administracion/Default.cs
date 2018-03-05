@@ -90,15 +90,15 @@ namespace Administracion
         //Alta de pagos
         private void altaDePagosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (usuLogueado is Cajero)
-            {
+            //if (usuLogueado is Cajero)
+            //{
                 AltaPago _unForm = new AltaPago((Cajero)usuLogueado);
                 _unForm.ShowDialog();
-            }
-            else
-            {
-                lblMensajes.Text = "Usted no cuenta con permisos para acceder a este formulario";
-            }
+            //}
+            //else
+            //{
+            //    lblMensajes.Text = "Usted no cuenta con permisos para acceder a este formulario";
+            //}
         }
 
         //Listado de Pagos

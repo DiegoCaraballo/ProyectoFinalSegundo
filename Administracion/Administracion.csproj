@@ -183,12 +183,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServicioWCF\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Imagenes\Cancelar.png" />
     <Content Include="Imagenes\Modificar.bmp" />
     <Content Include="Imagenes\Nuevo.bmp" />
@@ -199,6 +193,12 @@
     <None Include="Service References\ServicioWCF\configuration.svcinfo" />
     <None Include="Service References\ServicioWCF\configuration91.svcinfo" />
     <None Include="Service References\ServicioWCF\Servicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServicioWCF\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
