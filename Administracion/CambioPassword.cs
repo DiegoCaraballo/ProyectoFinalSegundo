@@ -57,7 +57,7 @@ namespace Administracion
                 {
                     usuLogueado.Pass = txtRepitePass.Text;
                     ServicioClient serv = new ServicioClient();
-                    serv.CambioPass(usuLogueado);
+                    serv.CambioPass(usuLogueado, usuLogueado);
                     LimpiarCampos();
                 }
                 else

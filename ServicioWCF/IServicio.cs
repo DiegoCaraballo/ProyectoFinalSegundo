@@ -15,19 +15,19 @@ namespace ServicioWCF
     {
         #region Usuario
         [OperationContract]
-        void AltaUsuario(Usuario unUsuario);
+        void AltaUsuario(Usuario unUsuario, Usuario usuLogueado);
 
         [OperationContract]
-        void BajaUsuario(Usuario unUsuario);
+        void BajaUsuario(Usuario unUsuario, Usuario usuLogueado);
 
         [OperationContract]
-        void ModificarUsuario(Usuario unUsuario);
+        void ModificarUsuario(Usuario unUsuario, Usuario usuLogueado);
 
         [OperationContract]
         Usuario BuscarUsuario(int pCedula);
 
         [OperationContract]
-        void CambioPass(Usuario unUsuario);
+        void CambioPass(Usuario unUsuario, Usuario usuLogueado);
 
         [OperationContract]
         Usuario Logueo(string pNomUsu);
@@ -35,24 +35,24 @@ namespace ServicioWCF
 
         #region Pago
         [OperationContract]
-        void AltaPago(Pago unPago);
+        void AltaPago(Pago unPago, Usuario usuLogueado);
 
         [OperationContract]
         Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha);
 
         [OperationContract]
-        List<Pago> listar();
+        List<Pago> listar(Usuario usuLogueado);
         #endregion
 
         #region Empresa
         [OperationContract]
         Empresa BuscarEmpresa(int codEmp);
         [OperationContract]
-        void AltaEmpresa(Empresa unaEmpresa);
+        void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado);
         [OperationContract]
-        void BajaEmpresa(Empresa unaEmpresa);
+        void BajaEmpresa(Empresa unaEmpresa, Usuario usuLogueado);
         [OperationContract]
-        void ModificarEmpresa(Empresa unaEmpresa);
+        void ModificarEmpresa(Empresa unaEmpresa, Usuario usuLogueado);
         [OperationContract]
         List<Empresa> ListarEmpresas();
 
@@ -62,11 +62,11 @@ namespace ServicioWCF
         [OperationContract]
         TipoContrato BuscarContrato(int codEmp, int codTipoContrato);
         [OperationContract]
-        void AltaTipoContrato(TipoContrato unTipoContrato);
+        void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         [OperationContract]
-        void BajaTipoContrato(TipoContrato unTipoContrato);
+        void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         [OperationContract]
-        void ModificarTipoContrato(TipoContrato unTipoContrato);
+        void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
 
         #endregion
     }

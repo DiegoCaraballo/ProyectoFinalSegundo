@@ -14,25 +14,25 @@ namespace ServicioWCF
     public class Servicio : IServicio
     {
         #region Usuario
-        public void AltaUsuario(Usuario unUsuario)
+        public void AltaUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaUsuario().AltaUsuario(unUsuario);
+            FabricaLogica.GetLogicaUsuario().AltaUsuario(unUsuario,usuLogueado);
         }
-        public void BajaUsuario(Usuario unUsuario)
+        public void BajaUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaUsuario().BajaUsuario(unUsuario);
+            FabricaLogica.GetLogicaUsuario().BajaUsuario(unUsuario,usuLogueado);
         }
-        public void ModificarUsuario(Usuario unUsuario)
+        public void ModificarUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaUsuario().Modificarusuario(unUsuario);
+            FabricaLogica.GetLogicaUsuario().Modificarusuario(unUsuario,usuLogueado);
         }
         public Usuario BuscarUsuario(int pCedula)
         {
          return   (FabricaLogica.GetLogicaUsuario().Buscar(pCedula));
         }
-        public void CambioPass(Usuario unUsuario)
+        public void CambioPass(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaUsuario().CambioPass(unUsuario);
+            FabricaLogica.GetLogicaUsuario().CambioPass(unUsuario,usuLogueado);
         }
         public Usuario Logueo(string pNomUsu)
         {
@@ -41,9 +41,9 @@ namespace ServicioWCF
         #endregion
 
         #region Pago
-        public void AltaPago(Pago unPago)
+        public void AltaPago(Pago unPago, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaPago().AltaPago(unPago);
+            FabricaLogica.GetLogicaPago().AltaPago(unPago,usuLogueado);
         }
 
         public Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
@@ -59,19 +59,19 @@ namespace ServicioWCF
             return (FabricaLogica.GetLogicaEmpresa().BuscarEmpresa(codEmp));
         }
 
-        public void AltaEmpresa(Empresa unaEmpresa)
+        public void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaEmpresa().AltaEmpresa(unaEmpresa);
+            FabricaLogica.GetLogicaEmpresa().AltaEmpresa(unaEmpresa,usuLogueado);
         }
 
-        public void BajaEmpresa(Empresa unaEmpresa)
+        public void BajaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaEmpresa().BajaEmpresa(unaEmpresa);
+            FabricaLogica.GetLogicaEmpresa().BajaEmpresa(unaEmpresa,usuLogueado);
         }
 
-        public void ModificarEmpresa(Empresa unaEmpresa)
+        public void ModificarEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaEmpresa().ModificarEmpresa(unaEmpresa);
+            FabricaLogica.GetLogicaEmpresa().ModificarEmpresa(unaEmpresa,usuLogueado);
         }
 
         public List<Empresa> ListarEmpresas()
@@ -86,22 +86,22 @@ namespace ServicioWCF
         {
             return (FabricaLogica.GetLogicaTipoContrato().BuscarContrato(codEmp, codTipoContrato));
         }
-        public void AltaTipoContrato(TipoContrato unTipoContrato)
+        public void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaTipoContrato().AltaTipoContrato(unTipoContrato);
+            FabricaLogica.GetLogicaTipoContrato().AltaTipoContrato(unTipoContrato,usuLogueado);
         }
-        public void BajaTipoContrato(TipoContrato unTipoContrato)
+        public void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaTipoContrato().BajaTipoContrato(unTipoContrato);
+            FabricaLogica.GetLogicaTipoContrato().BajaTipoContrato(unTipoContrato,usuLogueado);
         }
-        public void ModificarTipoContrato(TipoContrato unTipoContrato)
+        public void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaTipoContrato().ModificarTipoContrato(unTipoContrato);
+            FabricaLogica.GetLogicaTipoContrato().ModificarTipoContrato(unTipoContrato,usuLogueado);
         }
 
-        public List<Pago> listar()
+        public List<Pago> listar(Usuario usuLogueado)
         {
-            return (FabricaLogica.GetLogicaPago().listar());
+            return (FabricaLogica.GetLogicaPago().listar(usuLogueado));
         }
         #endregion
     }

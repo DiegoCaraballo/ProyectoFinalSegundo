@@ -10,11 +10,11 @@ namespace Logica
     public interface IUusuarioLogica
     {
 
-        void AltaUsuario(Usuario unUsuario);
-        void BajaUsuario(Usuario unUsuario);
-        void Modificarusuario(Usuario unUsuario);
+        void AltaUsuario(Usuario unUsuario, Usuario usuLogueado);
+        void BajaUsuario(Usuario unUsuario, Usuario usuLogueado);
+        void Modificarusuario(Usuario unUsuario, Usuario usuLogueado);
         Usuario Buscar(int cedula);
-        void CambioPass(Usuario unUsuario);
+        void CambioPass(Usuario unUsuario, Usuario usuLogueado);
         Usuario Logueo(string pNomUsu);
     }
 }

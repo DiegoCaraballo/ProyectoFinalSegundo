@@ -16,9 +16,11 @@ namespace Administracion
 {
     public partial class ListadoDePagos : Form
     {
+        Usuario usuLogueado = null;
        // private XElement documento = null;
-        public ListadoDePagos()
+        public ListadoDePagos(Usuario usu)
         {
+            usuLogueado = usu;
             InitializeComponent();
             cboCajero.DropDownStyle = ComboBoxStyle.DropDownList;
             cboEmpresa.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -31,7 +33,7 @@ namespace Administracion
         private void CargoListaPagos()
         {
             ServicioClient serv = new ServicioClient();
-            listadoPagos = serv.listar().ToList();
+            listadoPagos = serv.listar(usuLogueado).ToList();
 
             gvPagos.DataSource = listadoPagos;
 

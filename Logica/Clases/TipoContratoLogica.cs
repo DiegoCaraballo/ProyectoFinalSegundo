@@ -23,17 +23,17 @@ namespace Logica
         {
             return ((TipoContrato)FabricaPersistencia.GetPersistenciaTipoContrato().BuscarContrato(codEmp, codContrato));
         }
-        public void AltaTipoContrato(TipoContrato unTipoContrato)
+        public void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaTipoContrato().AltaTipoContrato(unTipoContrato);
+            FabricaPersistencia.GetPersistenciaTipoContrato().AltaTipoContrato(unTipoContrato,usuLogueado);
         }
-        public void BajaTipoContrato(TipoContrato unTipoContrato)
+        public void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaTipoContrato().BajaTipoContrato(unTipoContrato);
+            FabricaPersistencia.GetPersistenciaTipoContrato().BajaTipoContrato(unTipoContrato,usuLogueado);
         }
-        public void ModificarTipoContrato(TipoContrato unTipoContrato)
+        public void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaTipoContrato().ModificarTipoContrato(unTipoContrato);
+            FabricaPersistencia.GetPersistenciaTipoContrato().ModificarTipoContrato(unTipoContrato,usuLogueado);
         }
     }
 }

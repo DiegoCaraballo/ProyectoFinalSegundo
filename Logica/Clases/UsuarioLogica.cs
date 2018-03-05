@@ -18,26 +18,26 @@ namespace Logica
             return _instancia;
         }
 
-        public void AltaUsuario(Usuario unUsuario)
+        public void AltaUsuario(Usuario unUsuario,Usuario usuLogueado)
         {
             if (unUsuario is Cajero)
             {
-                FabricaPersistencia.GetPersistenciaCajero().AltaCajero((Cajero)unUsuario);
+                FabricaPersistencia.GetPersistenciaCajero().AltaCajero((Cajero)unUsuario,usuLogueado);
             }
             else
             {
-                FabricaPersistencia.GetPersistenciaGerente().AltaGerente((Gerente)unUsuario);
+                FabricaPersistencia.GetPersistenciaGerente().AltaGerente((Gerente)unUsuario,usuLogueado);
             }
         }
 
-        public void BajaUsuario(Usuario unUsuario)
+        public void BajaUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaCajero().BajaCajero((Cajero)unUsuario);
+            FabricaPersistencia.GetPersistenciaCajero().BajaCajero((Cajero)unUsuario,usuLogueado);
         }
 
-        public void Modificarusuario(Usuario unUsuario)
+        public void Modificarusuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaCajero().ModificarCajero((Cajero)unUsuario);
+            FabricaPersistencia.GetPersistenciaCajero().ModificarCajero((Cajero)unUsuario,usuLogueado);
         }
 
         public Usuario Buscar(int cedula)
@@ -46,15 +46,15 @@ namespace Logica
 
         }
 
-        public void CambioPass(Usuario unUsuario)
+        public void CambioPass(Usuario unUsuario, Usuario usuLogueado)
         {
             if (unUsuario is Cajero)
             {
-                FabricaPersistencia.GetPersistenciaCajero().CambioPass((Cajero)unUsuario);
+                FabricaPersistencia.GetPersistenciaCajero().CambioPass((Cajero)unUsuario,usuLogueado);
             }
             else
             {
-                FabricaPersistencia.GetPersistenciaGerente().CambioPass((Gerente)unUsuario);
+                FabricaPersistencia.GetPersistenciaGerente().CambioPass((Gerente)unUsuario,usuLogueado);
             }
         }
 

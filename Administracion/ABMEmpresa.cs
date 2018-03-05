@@ -12,9 +12,10 @@ using Administracion.ServicioWCF;
 namespace Administracion
 {
     public partial class ABMEmpresa : Form
+    {Usuario usuLogueado=null;
+        public ABMEmpresa(Usuario usu)
     {
-        public ABMEmpresa()
-        {
+        usuLogueado = usu;
             InitializeComponent();
         }
         private Empresa empBuscada = null;
@@ -62,7 +63,7 @@ namespace Administracion
                 empBuscada.Telefono = txtTelefono.Text;
 
                 ServicioClient serv = new ServicioClient();
-                serv.ModificarEmpresa(empBuscada);
+                serv.ModificarEmpresa(empBuscada, usuLogueado);
                 lblMensajes.Text = "Empresa Modificada con exito";
             }
             catch (System.Web.Services.Protocols.SoapException ex)
@@ -86,7 +87,7 @@ namespace Administracion
             try
             {
                 ServicioClient serv = new ServicioClient();
-                serv.BajaEmpresa(empBuscada);
+                serv.BajaEmpresa(empBuscada, usuLogueado);
                 lblMensajes.Text = "Empresa Dada de Baja";
             }
             catch (System.Web.Services.Protocols.SoapException ex)
@@ -130,7 +131,7 @@ namespace Administracion
                 emp.Telefono = txtTelefono.Text;
 
                 ServicioClient serv = new ServicioClient();
-                serv.AltaEmpresa(emp);
+                serv.AltaEmpresa(emp,usuLogueado);
 
                 lblMensajes.Text = "Empresa ingresada exitosamente";
             }

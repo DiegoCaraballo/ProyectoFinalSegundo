@@ -10,9 +10,9 @@ namespace Persistencia
     public interface IEmpresaPersistencia
     {
         Empresa BuscarEmpresa(int codEmp);
-        void AltaEmpresa(Empresa unaEmpresa);
-        void BajaEmpresa(Empresa unaEmpresa);
-        void ModificarEmpresa(Empresa unaEmpresa);
+        void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado);
+        void BajaEmpresa(Empresa unaEmpresa, Usuario usuLogueado);
+        void ModificarEmpresa(Empresa unaEmpresa, Usuario usuLogueado);
         List<Empresa> ListarEmpresas();
     }
 }

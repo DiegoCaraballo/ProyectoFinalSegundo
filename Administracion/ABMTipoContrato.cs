@@ -13,8 +13,10 @@ namespace Administracion
 {
     public partial class ABMTipoContrato : Form
     {
-        public ABMTipoContrato()
+        Usuario usuLogueado = null;
+        public ABMTipoContrato(Usuario usu)
         {
+            usuLogueado = usu;
             InitializeComponent();
         }
         TipoContrato TipoContratoBuscado = null;
@@ -62,7 +64,7 @@ namespace Administracion
                 unTipoContrato.UnaEmp = serv.BuscarEmpresa(Convert.ToInt32(txtCodEmpresa.Text));
                 unTipoContrato.Nombre = txtNombre.Text;
 
-                serv.AltaTipoContrato(unTipoContrato);
+                serv.AltaTipoContrato(unTipoContrato, usuLogueado);
                 lblMensaje.Text = "Tipo Contrato ingresado con exito";
             }
             catch (System.Web.Services.Protocols.SoapException ex)
@@ -87,7 +89,7 @@ namespace Administracion
             {
                 TipoContratoBuscado.Nombre = txtNombre.Text;
                 ServicioClient serv = new ServicioClient();
-                serv.ModificarTipoContrato(TipoContratoBuscado);
+                serv.ModificarTipoContrato(TipoContratoBuscado, usuLogueado);
 
                 lblMensaje.Text = "Tipo contrato modificado con exito";
             }
@@ -112,7 +114,7 @@ namespace Administracion
             try
             {
                 ServicioClient serv = new ServicioClient();
-                serv.BajaTipoContrato(TipoContratoBuscado);
+                serv.BajaTipoContrato(TipoContratoBuscado, usuLogueado);
 
                 lblMensaje.Text = "Tipo Contrato Dado de Baja exitosamente";
             }

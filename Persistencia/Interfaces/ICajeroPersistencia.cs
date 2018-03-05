@@ -10,10 +10,10 @@ namespace Persistencia
     public interface ICajeroPersistencia
     {
 
-        void AltaCajero(Cajero unCajero);
-        void BajaCajero(Cajero unCajero);
-        void ModificarCajero(Cajero unCajero);
-        void CambioPass(Cajero unCajero);
+        void AltaCajero(Cajero unCajero, Usuario usuLogueado);
+        void BajaCajero(Cajero unCajero, Usuario usuLogueado);
+        void ModificarCajero(Cajero unCajero, Usuario usuLogueado);
+        void CambioPass(Cajero unCajero, Usuario usuLogueado);
         Cajero BuscarCajero(int cedula);
         Cajero LogueoCajero(string nomUsu);
     }

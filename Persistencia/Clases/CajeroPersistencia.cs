@@ -26,9 +26,10 @@ namespace Persistencia
 
         #region Operaciones
 
-        public void AltaCajero(Cajero unCajero)
+        public void AltaCajero(Cajero unCajero,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("AltaCajero", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -75,9 +76,10 @@ namespace Persistencia
 
         }
 
-        public void BajaCajero(Cajero unCajero)
+        public void BajaCajero(Cajero unCajero,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("BajaCajero", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -112,9 +114,10 @@ namespace Persistencia
             }
         }
 
-        public void ModificarCajero(Cajero unCajero)
+        public void ModificarCajero(Cajero unCajero,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("ModificarCajero", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -157,9 +160,10 @@ namespace Persistencia
             }
         }
 
-        public void CambioPass(Cajero unCajero)
+        public void CambioPass(Cajero unCajero, Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("CambioPass", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -225,7 +229,7 @@ namespace Persistencia
             return unCajero;
         }
 
-
+        //TODO ver si aca se pasa usuario
         public Cajero LogueoCajero(string nomUsu)
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);

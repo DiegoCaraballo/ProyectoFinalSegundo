@@ -28,10 +28,12 @@ namespace Persistencia
 
         //Altar pago
         //TODO - ver que cambié el sp en la bd
-        public void AltaPago(Pago unPago)
+        public void AltaPago(Pago unPago,Usuario usuLogueado)
         {
-            SqlConnection oConexion = new SqlConnection(Conexion.Cnn);
-            SqlCommand oComando = new SqlCommand("AltaPago", oConexion);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+    
+            SqlCommand oComando = new SqlCommand("AltaPago", cnn);
             oComando.CommandType = CommandType.StoredProcedure;
 
             SqlParameter _Fecha = new SqlParameter("@fecha", unPago.Fecha);
@@ -52,10 +54,10 @@ namespace Persistencia
             try
             {
                 //conecto a la bd
-                oConexion.Open();
+                cnn.Open();
 
                 //determino que voy a trabajar en una unica transaccion
-                _miTransaccion = oConexion.BeginTransaction();
+                _miTransaccion = cnn.BeginTransaction();
 
                 //ejecuto comando de alta del servicio en la transaccion
                 oComando.Transaction = _miTransaccion;
@@ -91,20 +93,27 @@ namespace Persistencia
 
             finally
             {
-                oConexion.Close();
+                cnn.Close();
             }
         }
 
-        public void BajaPago(Pago unPago)
-        { }
+        public void BajaPago(Pago unPago,Usuario usuLogueado)
+        {
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+        }
 
-        public void ModificarPago(Pago unPago)
-        { }
+        public void ModificarPago(Pago unPago,Usuario usuLogueado)
+        {
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+        }
 
         //Buscar un pago con todas sus facturas
-        public Pago BuscarPago(int numeroInt)
+        public Pago BuscarPago(int numeroInt,Usuario usuLogueado)
         {
-            //SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            //Conexion con = new Conexion();
+            //SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             Pago unPago = null;
 
@@ -191,9 +200,10 @@ namespace Persistencia
             return unPago;
         }
 
-        public List<Pago> listar()
+        public List<Pago> listar(Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
             SqlCommand cmd = new SqlCommand("ListarPagos", cnn);
             SqlDataReader lector;
 

@@ -9,22 +9,40 @@ namespace Persistencia
 {
     internal class Conexion
     {
-        //Nico
-//        private static string _cnn = "Data Source=PC-NICO-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = true";
-          private static string _cnn = "Data Source=Bios1-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = true";
-
-        
-        //TODO string para conexion a servidor con usuario y contraseña
-        private static string _cnn = "Data Source=Bios1-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; user id =  "+ "  " + "; password= "+" "+   ";";
-
-        //Diego
-       // private static string _cnn = "Data Source=LENOVO-PC\\SA; Initial Catalog = BiosMoney; Integrated Security = true";
 
         public static string Cnn
         {
-            get { return _cnn; }
+            get { return cnn; }
         }
 
-        
+        //Nico
+        private static string cnn = "Data Source=PC-NICO-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = true";
+
+        public string cnnUsu(Usuario unUsuario)
+        {
+            return ("Data Source=PC-NICO-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = false; User ID =" + unUsuario.NomUsu + "; Password =" + unUsuario.Pass);
+        }
+
+
+        //Diego
+
+        // private static string cnn = "Data Source=LENOVO-PC\\SA; Initial Catalog = BiosMoney; Integrated Security = true";
+
+        //public string cnnUsu(Usuario unUsuario)
+        //{
+        //    return ("Data Source=LENOVO-PC\\SA; Initial Catalog = BiosMoney; Integrated Security = false; User ID =" + unUsuario.NomUsu + "; Password =" + unUsuario.Pass);
+        //}
+
+
+
+
+        //Nico Virtual
+        //  private static string cnn = "Data Source=Bios1-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = true";
+
+        //public string cnnUsu(Usuario unUsuario)
+        //{
+        //    return ("Data Source=Bios1-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = false; User ID =" + unUsuario.NomUsu + "; Password =" + unUsuario.Pass);
+        //}
+
     }
 }

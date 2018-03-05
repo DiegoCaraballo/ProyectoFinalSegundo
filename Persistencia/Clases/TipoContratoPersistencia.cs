@@ -60,9 +60,10 @@ namespace Persistencia
             return unContrato;
         }
 
-        public void AltaTipoContrato(TipoContrato unTipoContrato)
+        public void AltaTipoContrato(TipoContrato unTipoContrato,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("AltaTipoContrato", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -100,9 +101,10 @@ namespace Persistencia
 
         }
 
-        public void BajaTipoContrato(TipoContrato unTipoContrato)
+        public void BajaTipoContrato(TipoContrato unTipoContrato,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("BajaTipoContrato", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -131,9 +133,10 @@ namespace Persistencia
             }
         }
 
-        public void ModificarTipoContrato(TipoContrato unTipoContrato)
+        public void ModificarTipoContrato(TipoContrato unTipoContrato,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("ModificarTipoContrato", cnn);
             cmd.CommandType = CommandType.StoredProcedure;

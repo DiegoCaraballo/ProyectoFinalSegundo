@@ -24,19 +24,19 @@ namespace Logica
             return((Empresa)FabricaPersistencia.GetPersistenciaEmpresa().BuscarEmpresa(codEmp));
         }
 
-        public void AltaEmpresa(Empresa unaEmpresa)
+        public void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-          FabricaPersistencia.GetPersistenciaEmpresa().AltaEmpresa(unaEmpresa);
+          FabricaPersistencia.GetPersistenciaEmpresa().AltaEmpresa(unaEmpresa,usuLogueado);
         }
 
-        public void BajaEmpresa(Empresa unaEmpresa)
+        public void BajaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaEmpresa().BajaEmpresa(unaEmpresa);
+            FabricaPersistencia.GetPersistenciaEmpresa().BajaEmpresa(unaEmpresa,usuLogueado);
         }
 
-        public void ModificarEmpresa(Empresa unaEmpresa)
+        public void ModificarEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaEmpresa().ModificarEmpresa(unaEmpresa);
+            FabricaPersistencia.GetPersistenciaEmpresa().ModificarEmpresa(unaEmpresa,usuLogueado);
         }
 
         public List<Empresa> ListarEmpresas()

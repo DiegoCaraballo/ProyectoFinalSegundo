@@ -19,26 +19,26 @@ namespace Logica
             return _instancia;
         }
 
-        public void AltaPago(Pago unPago)
+        public void AltaPago(Pago unPago, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaPago().AltaPago((Pago)unPago);
+            FabricaPersistencia.GetPersistenciaPago().AltaPago((Pago)unPago,usuLogueado);
         }
 
         //TODO - Ver si el BajaPago y ModificarPago se utilizan en algun momento
         //Lo mismo para persistencia
-        public void BajaPago(Pago unPago)
+        public void BajaPago(Pago unPago, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaPago().BajaPago((Pago)unPago);
+            FabricaPersistencia.GetPersistenciaPago().BajaPago((Pago)unPago,usuLogueado);
         }
 
-        public void ModificarPago(Pago unPago)
+        public void ModificarPago(Pago unPago,Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaPago().ModificarPago((Pago)unPago);
+            FabricaPersistencia.GetPersistenciaPago().ModificarPago((Pago)unPago,usuLogueado);
         }
 
-        public Pago Buscar(int numInterno)
+        public Pago Buscar(int numInterno, Usuario usuLogueado)
         {
-            return FabricaPersistencia.GetPersistenciaPago().BuscarPago((int)numInterno);
+            return FabricaPersistencia.GetPersistenciaPago().BuscarPago((int)numInterno,usuLogueado);
         }
 
         public Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
@@ -46,9 +46,9 @@ namespace Logica
             return FabricaPersistencia.GetPersistenciaPago().PagoDeUnaFactura((int)codContrato, (int)codEmp, (int)monto, (int)codCli, (DateTime)fecha);
         }
 
-        public List<Pago> listar() 
+        public List<Pago> listar(Usuario usuLogueado) 
         {
-            return (FabricaPersistencia.GetPersistenciaPago().listar());
+            return (FabricaPersistencia.GetPersistenciaPago().listar(usuLogueado));
         }
     }
 }

@@ -232,7 +232,7 @@ namespace Administracion
                         unPago.UsuCajero = usuLogueado;                   
                         
                         //Alto el pago
-                        serv.AltaPago(unPago);
+                        serv.AltaPago(unPago, usuLogueado);
 
                         //Limpio los controles
                         LimpiarDatosFactura();

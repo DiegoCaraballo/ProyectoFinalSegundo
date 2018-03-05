@@ -13,8 +13,10 @@ namespace Administracion
 {
     public partial class ABMGerente : Form
     {
-        public ABMGerente()
+        Usuario usuLogueado = null;
+        public ABMGerente(Usuario usu)
         {
+            usuLogueado = usu;
             InitializeComponent();
         }
 
@@ -31,7 +33,7 @@ namespace Administracion
 
                // ServicioClient serv = new ServicioClient();
                 IServicio serv = new ServicioClient();
-                serv.AltaUsuario(gerente);
+                serv.AltaUsuario(gerente, usuLogueado);
 
                 lblMensajes.Text = "Usuario ingresado exitosamente";
                 EstadoInicial();

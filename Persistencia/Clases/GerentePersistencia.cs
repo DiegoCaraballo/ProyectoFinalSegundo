@@ -25,9 +25,10 @@ namespace Persistencia
         #endregion
 
 
-        public void AltaGerente(Gerente unGerente)
+        public void AltaGerente(Gerente unGerente,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("AltaGerente", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -74,9 +75,10 @@ namespace Persistencia
 
         }
 
-        public void CambioPass(Gerente unGerente)
+        public void CambioPass(Gerente unGerente,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("CambioPass", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -108,6 +110,8 @@ namespace Persistencia
             }
         }
 
+
+        //TODO ver si aca va tambien el usu
         public Gerente LogueoGerente(string nomUsu)
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);

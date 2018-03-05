@@ -9,8 +9,8 @@ namespace Persistencia
 {
     public interface IGerentePersistencia
     {
-        void AltaGerente(Gerente unGerente);
-        void CambioPass(Gerente unGerente);
+        void AltaGerente(Gerente unGerente, Usuario usuLogueado);
+        void CambioPass(Gerente unGerente, Usuario usuLogueado);
         Gerente LogueoGerente(string nomUsu);
 
     }

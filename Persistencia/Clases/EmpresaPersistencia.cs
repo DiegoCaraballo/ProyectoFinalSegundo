@@ -25,7 +25,7 @@ namespace Persistencia
         #region Operaciones
 
         public Empresa BuscarEmpresa(int codEmp)
-        { 
+        {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);
 
             Empresa unaEmpresa = null;
@@ -56,9 +56,10 @@ namespace Persistencia
             return unaEmpresa;
         }
 
-        public void AltaEmpresa(Empresa unaEmpresa)
+        public void AltaEmpresa(Empresa unaEmpresa,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("AltaEmpresa", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -96,9 +97,10 @@ namespace Persistencia
 
         }
 
-        public void BajaEmpresa(Empresa unaEmpresa)
+        public void BajaEmpresa(Empresa unaEmpresa,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("BajaEmpresa", cnn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -126,9 +128,10 @@ namespace Persistencia
             }
         }
 
-        public void ModificarEmpresa(Empresa unaEmpresa)
+        public void ModificarEmpresa(Empresa unaEmpresa,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             SqlCommand cmd = new SqlCommand("ModificarEmpresa", cnn);
             cmd.CommandType = CommandType.StoredProcedure;

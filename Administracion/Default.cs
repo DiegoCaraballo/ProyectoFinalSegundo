@@ -28,7 +28,7 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
-                ABMGerente _unForm = new ABMGerente();
+                ABMGerente _unForm = new ABMGerente(usuLogueado);
                 _unForm.ShowDialog();
             }
             else
@@ -43,7 +43,7 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
-                ABMCajero _unForm = new ABMCajero();
+                ABMCajero _unForm = new ABMCajero(usuLogueado);
                 _unForm.ShowDialog();
             }
             else
@@ -57,7 +57,7 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
-                ABMEmpresa _unForm = new ABMEmpresa();
+                ABMEmpresa _unForm = new ABMEmpresa(usuLogueado);
                 _unForm.ShowDialog();
             }
             else
@@ -71,7 +71,7 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
-                ABMTipoContrato _unForm = new ABMTipoContrato();
+                ABMTipoContrato _unForm = new ABMTipoContrato(usuLogueado);
                 _unForm.ShowDialog();
             }
             else
@@ -90,15 +90,15 @@ namespace Administracion
         //Alta de pagos
         private void altaDePagosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (usuLogueado is Cajero)
-            //{
+            if (usuLogueado is Cajero)
+            {
                 AltaPago _unForm = new AltaPago((Cajero)usuLogueado);
                 _unForm.ShowDialog();
-            //}
-            //else
-            //{
-            //    lblMensajes.Text = "Usted no cuenta con permisos para acceder a este formulario";
-            //}
+            }
+            else
+            {
+                lblMensajes.Text = "Usted no cuenta con permisos para acceder a este formulario";
+            }
         }
 
         //Listado de Pagos
@@ -106,7 +106,7 @@ namespace Administracion
         {
             if (usuLogueado is Gerente)
             {
-                ListadoDePagos _unForm = new ListadoDePagos();
+                ListadoDePagos _unForm = new ListadoDePagos(usuLogueado);
                 _unForm.ShowDialog();
             }
             else

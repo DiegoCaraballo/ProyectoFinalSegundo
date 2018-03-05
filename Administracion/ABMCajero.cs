@@ -14,8 +14,10 @@ namespace Administracion
     public partial class ABMCajero : Form
     {
         Usuario usuBuscado = null;
-        public ABMCajero()
+        Usuario usuLogueado=null;
+        public ABMCajero(Usuario usu)
         {
+            usuLogueado = usu;
             InitializeComponent();
         }
 
@@ -37,7 +39,7 @@ namespace Administracion
                 cajero.HoranFin = Convert.ToDateTime(txtHoraFin.Text);
 
                 ServicioClient serv = new ServicioClient();
-                serv.AltaUsuario(cajero);
+                serv.AltaUsuario(cajero, usuLogueado);
                 
                 EstadoInicial();
                 lblMensajes.Text = "El usuario ingresado exitosamente";
@@ -110,7 +112,7 @@ namespace Administracion
                 ((Cajero)usuBuscado).HoranIni = Convert.ToDateTime(txtHoraInicio.Text);
 
                 ServicioClient serv = new ServicioClient();
-                serv.ModificarUsuario(usuBuscado);
+                serv.ModificarUsuario(usuBuscado, usuLogueado);
 
                 EstadoInicial();
                 lblMensajes.Text = "El usuario fue modificado exitosamente";
@@ -137,7 +139,7 @@ namespace Administracion
             try
             {
                 ServicioClient serv = new ServicioClient();
-                serv.BajaUsuario(usuBuscado);
+                serv.BajaUsuario(usuBuscado, usuLogueado);
 
                 EstadoInicial();
                 lblMensajes.Text = "El usuario fue modificado exitosamente";
