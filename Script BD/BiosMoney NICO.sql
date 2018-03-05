@@ -561,11 +561,17 @@ BEGIN
 	IF (EXISTS (SELECT * from factura WHERE idPago = @idPago AND codEmp = @codEmp AND codContrato = @codContrato))
 		RETURN -1
 
+	IF (EXISTS (SELECT * FROM empresa WHERE codEmpresa = @codEmp AND activo = 0))
+		RETURN -2
+
+	--TODO - VER COMO FIJARME QUE EL TIPO DE CONTRATO NO ESTE DESACTIVADO
+	--IF (EXISTS (SELECT * FROM tipoContrato WHERE codEmp = @codEmp
+
 	INSERT INTO factura (idPago, codContrato, codEmp, monto, codCli, fechaVto) VALUES (@idPago, @codContrato, @codEmp, @monto, @codCli, @fechaVto)	
 	IF(@@ERROR = 0)
 		RETURN 1
 	ELSE
-		RETURN -2
+		RETURN -4
 END
 GO
 
@@ -593,11 +599,10 @@ GO
 --BUSCAR FACTURA POR CODIGO DE BARRA
 create proc pagoDeUnaFactura @codContra int, @codEmp int, @monto int, @codCli int, @fecha date as
 begin
-	if exists(select * from factura f where f.codContrato= @codContra and f.codEmp= @codEmp and f.monto= @monto and f.codCli= @codCli and f.fechaVto= @fecha)
+	if exists(select * from factura f where f.codContrato= @codContra and f.codEmp = @codEmp and f.monto = @monto and f.codCli = @codCli and f.fechaVto = @fecha)
 	begin
-
 		select * from pago p where p.numeroInt in(
-		select idPago from factura f where f.codContrato= @codContra and f.codEmp= @codEmp and f.monto= @monto and f.codCli= @codCli and f.fechaVto= @fecha
+		select idPago from factura f where f.codContrato = @codContra and f.codEmp = @codEmp and f.monto = @monto and f.codCli = @codCli and f.fechaVto = @fecha
 		)
 	end
 end
@@ -607,13 +612,13 @@ go
 --FACTURAS DE UN PAGO
 CREATE PROC CargarFacturaDeUnPago @idPago int AS 
 BEGIN
-	SELECT * FROM factura WHERE idPago =  @idPago
+	SELECT * FROM factura WHERE idPago = @idPago
 END
 GO
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
---*--												Topo Contrato																       --*--
+--*--												Tipo Contrato																       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------
 --BUSCAR CONTRATO
 CREATE PROC BuscarContrato @codEmp int, @codContrato int AS
@@ -625,18 +630,17 @@ GO
 --Alta Tipo de Contrato ---TODO REvisar, agregue un para de IF mas para verificar la foreign key
 Create Proc AltaTipoContrato @codEmp int , @codContrato int,@nombre varchar (30) as
 Begin
-if not exists (select * from empresa where codEmpresa=@codEmp)
-return -1
+	if not exists (select * from empresa where codEmpresa = @codEmp)
+	return -1
 
-if exists (select * from empresa where codEmpresa=@codEmp and activo =0)
-return -2
+	if exists (select * from empresa where codEmpresa = @codEmp and activo = 0)
+	return -2
 
-
-	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato =@codContrato and activo =1)
+	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato = @codContrato and activo = 1)
 		return -3;
 
-	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato =@codContrato and activo=0)
-		update TipoContrato set activo =1 where codEmp = @codEmp and codContrato =@codContrato	
+	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato = @codContrato and activo = 0)
+		update TipoContrato set activo =1 where codEmp = @codEmp and codContrato = @codContrato	
 
 	else
 		Insert Into TipoContrato(codEmp,codContrato ,nombre)
@@ -654,18 +658,17 @@ Go
 Create Proc ModificarTipoContrato @codEmp int , @codContrato int,@nombre varchar (30)as
 Begin
 
-if not exists (select * from empresa where codEmpresa=@codEmp)
-return -1
+	if not exists (select * from empresa where codEmpresa = @codEmp)
+	return -1
 
-if exists (select * from empresa where codEmpresa=@codEmp and activo =0)
-return -2
+	if exists (select * from empresa where codEmpresa = @codEmp and activo = 0)
+	return -2
 
-
-
-	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato =@codContrato and activo=0)
+	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato = @codContrato and activo = 0)
 		return -3	
-
-		update tipoContrato set nombre=@nombre where @codContrato=@codContrato and codEmp=codEmp;
+	
+	Else --TODO - AGREGUE ELSE, FALTAN LOS @@ERROR?
+		update tipoContrato set nombre = @nombre where @codContrato = @codContrato and codEmp = codEmp;
 	
 End
 
@@ -675,19 +678,22 @@ go
 --Baja Contrato
 create proc BajaTipoContrato @codEmp int, @codContrato int as
 begin
-if not exists (select * from empresa where codEmpresa=@codEmp)
-return -1
+	if not exists (select * from empresa where codEmpresa = @codEmp)
+		return -1
 
-if not exists (select * from tipoContrato where codContrato=@codContrato and codEmp=@codEmp)
-return -2
+	if not exists (select * from tipoContrato where codContrato = @codContrato and codEmp = @codEmp)
+		return -2
 
-if exists ((select codContrato from factura where codContrato in(select codContrato from tipoContrato where codContrato =@codContrato and codEmp =@codEmp)))
-begin
-update tipoContrato set activo = 0 where codContrato=@codContrato and codEmp=@codEmp;
-return 1
-end
 
-delete from tipoContrato where codContrato=@codContrato and codEmp=@codEmp;
+	--TODO - ACA SI EXISTE PERO ESTA INACTIVO, NO HAY QUE DESACTIVARLO NOMAS?
+	if exists ((select codContrato from factura where codContrato in(select codContrato from tipoContrato where codContrato = @codContrato and codEmp = @codEmp)))
+	begin
+		update tipoContrato set activo = 0 where codContrato=@codContrato and codEmp = @codEmp;
+		return 1
+	end
+
+	--TODO - FALTA ELSE? FALTA @@ERROR?
+	delete from tipoContrato where codContrato=@codContrato and codEmp=@codEmp;
 
 end
 
@@ -704,26 +710,30 @@ BEGIN
 END
 GO
 
-
 --Altar Empresa
 create proc AltaEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
 begin
 
-if exists(select * from empresa where codEmpresa =@codEmp)
-return -1
+	if exists(select * from empresa where codEmpresa = @codEmp)
+		return -1
 
-if exists (select * from empresa where codEmpresa =@codEmp and activo = 0)
-begin
-update empresa set activo =1 , rut=@rut, dirFiscal=@direccion, telefono=@telefono where codEmpresa=@codEmp;
-return 1
-end
+	if exists (select * from empresa where codEmpresa = @codEmp and activo = 0)
+	begin --PORQUE LOS BEGIN?
+		update empresa set activo =1 , rut = @rut, dirFiscal = @direccion, telefono = @telefono where codEmpresa = @codEmp;
+		return 1
+	end
 
-insert into empresa(codEmpresa,rut,dirFiscal,telefono) values(@codEmp,@rut,@direccion,@telefono);
-if (@@ERROR <>0)
-begin
-return-2
-end
+	insert into empresa(codEmpresa, rut, dirFiscal, telefono) values(@codEmp, @rut, @direccion, @telefono);
+	if (@@ERROR <> 0)
+	begin
+	return-2
+	end
 
+	--TODO - PORQUE LOS BEGIN EN @@ERROR, EN TODOS LOS EJEMPLOS LOS TENEMOS ASI (ENCONTRE MUCHOS CASOS)
+	--IF(@@ERROR = 0)
+		--RETURN 1
+	--ELSE
+		--RETURN -3
 
 end
 go
@@ -733,16 +743,18 @@ go
 create proc ModificarEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
 begin
 
-if not exists(select * from empresa where codEmpresa =@codEmp)
-return -1
+	if not exists(select * from empresa where codEmpresa = @codEmp)
+		return -1
 
-update empresa set  rut=@rut, dirFiscal=@direccion, telefono=@telefono where codEmpresa=@codEmp;
+	--TODO - FALTA? IF EXISTS (SELECT * FROM empresa where codEmpresa = @codEmp and activo = 0
+	--						return -2
 
-if (@@ERROR <>0)
-begin
-return-2
-end
+	update empresa set  rut=@rut, dirFiscal=@direccion, telefono=@telefono where codEmpresa=@codEmp;
 
+	if (@@ERROR <>0)
+	begin
+	return-2
+	end
 
 end
 go
@@ -751,31 +763,32 @@ go
 --Baja Empresa
 create proc BajaEmpresa @codEmp int as
 begin
-declare @Error int;
-if not exists(select * from empresa where codEmpresa=@codEmp)
-return -1
+	declare @Error int;
 
-if exists(select * from factura where codContrato in(select codContrato from tipoContrato where codEmp= @codEmp))
-begin
-begin tran
-update tipoContrato set activo = 0 where codContrato in(select codContrato from tipoContrato where codEmp= @codEmp);
-set @Error=@@Error
-	if(@Error<>0)
-	begin
-		rollback tran
-		return -2
-	end
-update empresa set activo=0 where codEmpresa=@codEmp;
-set @Error=@@Error
-	if(@Error<>0)
-	begin
-		rollback tran
-		return -3
-	end
+	if not exists(select * from empresa where codEmpresa = @codEmp)
+		return -1
 
-	begin 
-	commit tran
-	end
+	if exists(select * from factura where codContrato in(select codContrato from tipoContrato where codEmp = @codEmp))
+	begin
+	begin tran
+	update tipoContrato set activo = 0 where codContrato in(select codContrato from tipoContrato where codEmp = @codEmp);
+	set @Error=@@Error
+		if(@Error<>0)
+		begin
+			rollback tran
+			return -2
+		end
+	update empresa set activo = 0 where codEmpresa = @codEmp;
+	set @Error=@@Error
+		if(@Error<>0)
+		begin
+			rollback tran
+			return -3
+		end
+
+		begin 
+		commit tran
+		end
 
 return 1
 end
@@ -783,7 +796,7 @@ end
 
 begin tran 
 
-delete from tipoContrato where codEmp=@codEmp;
+delete from tipoContrato where codEmp = @codEmp;
 set @Error=@@Error
 	if(@Error<>0)
 	begin
@@ -806,7 +819,7 @@ go
 
 create proc ListarEmpresas as
 begin
-select * from empresa
+	select * from empresa
 end
 go
 
@@ -836,3 +849,4 @@ go
 select * from empresa
 use biosmoney
 select * from pago
+select * from factura

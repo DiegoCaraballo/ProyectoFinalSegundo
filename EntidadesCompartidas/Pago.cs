@@ -74,7 +74,7 @@ namespace EntidadesCompartidas
         {
             NumeroInt = pNumeroInt;
             Fecha = pFecha;
-            NumeroInt = pMontoTotal;
+            MontoTotal = pMontoTotal;
             UsuCajero = pUsuCajero;
             LasFacturas = pLasFacturas;
         }

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ConsultaPago.aspx.cs" Inherits="ConsultaPago" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-<style type="text/css">
+    <style type="text/css">
         .style1
         {
         }
@@ -14,7 +14,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div class="container text-center">
+    <div class="container text-center">
         <div class="row">
             <div class="col-lg-12">
                 <br><br><br><br>
@@ -56,14 +56,16 @@
                     </tr>
                     <tr>
                         <td style="text-align: right">
-                            <asp:Label ID="lblIdPago" runat="server" Text="Id Pago: "></asp:Label></td>
+                            <asp:Label ID="lblIdPago" runat="server" Text="Id Pago:  "></asp:Label></td>
                         <td style="text-align: left">
+                            &nbsp;&nbsp;
                             <asp:TextBox ID="txtIdPago" runat="server" Enabled="False"></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td style="text-align: right">
                             <asp:Label ID="lblFecha" runat="server" Text="Fecha: "></asp:Label></td>
                         <td style="text-align: left">
+                            &nbsp;&nbsp;
                             <asp:TextBox ID="txtFecha" runat="server" Enabled="False"></asp:TextBox></td>
                     </tr>
                 </table>

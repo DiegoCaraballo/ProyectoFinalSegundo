@@ -30,7 +30,9 @@ public partial class ConsultaPago : System.Web.UI.Page
     {
         try
         {
-            ServicioClient serv = new ServicioClient();
+
+            IServicio serv = new ServicioClient();
+            //ServicioClient serv = new ServicioClient();
 
             if (txtCodBarra.Text.Length != 25 || txtCodBarra.Text == "")
                 throw new Exception("El código de barras debe contener 25 números");
@@ -43,8 +45,7 @@ public partial class ConsultaPago : System.Web.UI.Page
             int codCli = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0'));
             int monto = Convert.ToInt32(txtCodBarra.Text.Substring(20, 5).TrimStart('0'));
 
-
-
+            //Armo el pago para buscar
             Pago unPago = serv.PagoDeUnaFactura(codTipoContrato, codEmp, monto, codCli, fechaFactura);
 
             if (unPago != null)

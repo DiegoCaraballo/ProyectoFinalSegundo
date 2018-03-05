@@ -97,6 +97,7 @@ namespace Persistencia
             }
         }
 
+        //TODO - sacar bajaj y modificar
         public void BajaPago(Pago unPago,Usuario usuLogueado)
         {
             Conexion con = new Conexion();
