@@ -35,7 +35,9 @@
             // 
             // cronometro
             // 
+            this.cronometro.Enabled = true;
             this.cronometro.Interval = 5000;
+            this.cronometro.Tick += new System.EventHandler(this.cronometro_Tick);
             // 
             // ServicioExtras
             // 

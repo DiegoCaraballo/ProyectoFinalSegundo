@@ -14,10 +14,12 @@ using System.Configuration;
 using System.Xml;
 using System.Xml.Linq;
 
+using System.Timers;
 namespace ServicioWIN
 {
     partial class ServicioExtras : ServiceBase
     {
+
         public ServicioExtras()
         {
             InitializeComponent();
@@ -26,14 +28,23 @@ namespace ServicioWIN
 
             Mensajes.Source = "MiServicioExtras";
             Mensajes.Log = "ServicioExtrasLog";
-  
+            
         }
 
         protected override void OnStart(string[] args)
         {
+            //Timer para el control del tiempo entre llamadas.
+            Timer myTimer = new System.Timers.Timer();
+            //Intervalo de tiempo entre llamadas.
+             myTimer.Interval = 1500;
+            //Evento a ejecutar cuando se cumple el tiempo.
+             myTimer.Elapsed += OnTimedEvent;
+            //Habilitar el Timer.
+            myTimer.Enabled = true;
             Mensajes.WriteEntry("Inicia el servicio - ServicioExtras");
             cronometro.Enabled = true;
             cronometro.Start();
+            
         }
 
         protected override void OnStop()
@@ -58,40 +69,27 @@ namespace ServicioWIN
             Mensajes.WriteEntry("Se continua ejecutando el servicio - ServicioExtras");
             cronometro.Enabled = true;
             cronometro.Start();
-
+            
         }
 
-        private void fswRevision_Created(object sender, FileSystemEventArgs e)
+
+        private void cronometro_Tick(object sender, EventArgs e)
         {
-            try 
-            {
-                if (e.Name.ToLowerInvariant().Contains("xmlExtras"))
-                {
-                    FileInfo info = new FileInfo(e.FullPath);
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(info.ToString());
-                    XElement docu = new XElement(doc.ToString());
-                  int horafin= Convert.ToInt32( docu.Element("HoraFin"));
+        
+            RevisarHorasExtras();
+        }
 
-                    int horactual = DateTime.Now.Hour;
-
-                    if (horactual > horafin)
-                    {
-                        Mensajes.WriteEntry("Suma minutos " + horactual);
-                    }
-                }
-                else
-                    Mensajes.WriteEntry("El archivo " + e.Name + " no existe");
-            }
-            catch (Exception ex)
-            {
-                Mensajes.WriteEntry(ex.Message + " - arcvhivo " + e.Name);
-            }
-
+        private void RevisarHorasExtras()
+        {
+            File.Create(@"C:\desarrollo\horaskjsdnfkj.txt");
+            
         }
 
 
-
+        private static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        {
+            File.Create(@"C:\desarrollo\horaskjsdnfkj"+DateTime.Now.ToString()+".txt"); 
+        }
 
     }
 }

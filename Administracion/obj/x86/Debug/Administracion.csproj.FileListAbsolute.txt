@@ -31,6 +31,7 @@ C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\bin\Debug\Administrac
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
 C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe.config
 C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe
 C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.pdb
@@ -47,5 +48,4 @@ C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.P
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache

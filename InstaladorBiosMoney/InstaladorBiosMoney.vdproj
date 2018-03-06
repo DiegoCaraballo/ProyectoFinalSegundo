@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_22DFFDA87FCF0AD1CECED49AF5DB8F7B"
         "OwnerKey" = "8:_77A8552A5E83B79A8E6EF995A5B1A6FB"
         "MsmSig" = "8:_UNDEFINED"
@@ -22,19 +28,19 @@
         "Entry"
         {
         "MsmKey" = "8:_22DFFDA87FCF0AD1CECED49AF5DB8F7B"
-        "OwnerKey" = "8:_C9325721E4BA45A58E1A0F6875A9A731"
+        "OwnerKey" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_77A8552A5E83B79A8E6EF995A5B1A6FB"
-        "OwnerKey" = "8:_C9325721E4BA45A58E1A0F6875A9A731"
+        "OwnerKey" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_7C141CDC974500A7CF6F6F89A5478AC0"
-        "OwnerKey" = "8:_C9325721E4BA45A58E1A0F6875A9A731"
+        "OwnerKey" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -51,12 +57,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C9325721E4BA45A58E1A0F6875A9A731"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_7C141CDC974500A7CF6F6F89A5478AC0"
         "MsmSig" = "8:_UNDEFINED"
@@ -64,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C9325721E4BA45A58E1A0F6875A9A731"
+        "OwnerKey" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -97,6 +97,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -113,65 +134,86 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_2E964B22FE724AD2913945654994007D"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_10AA437AD7FA4B1FB70B8FDCDF342F52"
             {
             "Name" = "8:Resultado principal de ServicioWIN (Activo)"
             "Condition" = "8:"
-            "Object" = "8:_C9325721E4BA45A58E1A0F6875A9A731"
+            "Object" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
             "FileType" = "3:2"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_2774CF5A_4DA1_4DE8_A874_E265C2CDD8F6"
+            "Identifier" = "8:_906C82D4_4F11_4104_96A0_2463BFDADB00"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_39B94E50239F4103A04D036705B6716B"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_1C6A5E2AB88147928F5A7D783093A5D6"
             {
             "Name" = "8:Resultado principal de ServicioWIN (Activo)"
             "Condition" = "8:"
-            "Object" = "8:_C9325721E4BA45A58E1A0F6875A9A731"
-            "FileType" = "3:2"
-            "InstallAction" = "3:3"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_725C78CD_1545_414C_931A_754F7F74A7DC"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_9F67BECDCA934666BF8E681BEC3664DF"
-            {
-            "Name" = "8:Resultado principal de ServicioWIN (Activo)"
-            "Condition" = "8:"
-            "Object" = "8:_C9325721E4BA45A58E1A0F6875A9A731"
-            "FileType" = "3:2"
-            "InstallAction" = "3:2"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_26E27476_595D_480B_BE0C_17324AD00689"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_AE593496857544F390D930E9DFDD9D43"
-            {
-            "Name" = "8:Resultado principal de ServicioWIN (Activo)"
-            "Condition" = "8:"
-            "Object" = "8:_C9325721E4BA45A58E1A0F6875A9A731"
+            "Object" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
             "FileType" = "3:2"
             "InstallAction" = "3:4"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_8F4D71AD_C11B_4935_8C73_52E686706784"
+            "Identifier" = "8:_F9FA54CB_55F3_411C_A910_DDA8523E07DC"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_340E2BDE158644F592AC867C3F329B1F"
+            {
+            "Name" = "8:Resultado principal de ServicioWIN (Activo)"
+            "Condition" = "8:"
+            "Object" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_F6E9709E_4F76_4037_82FF_CE023ECDF281"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_3C81E37A6DA1471C9CEF9559E68CA271"
+            {
+            "Name" = "8:Resultado principal de ServicioWIN (Activo)"
+            "Condition" = "8:"
+            "Object" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
+            "FileType" = "3:2"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_E43E8803_2DA2_49A1_9F4C_5A5FBAFB1008"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -348,7 +390,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:InstaladorBiosMoney"
         "ProductCode" = "8:{C766620F-8B05-4E66-8BCB-CCFD79737E4F}"
-        "PackageCode" = "8:{1B320DCA-325C-46B2-939C-3816D653C3AD}"
+        "PackageCode" = "8:{D72298E8-9CD7-4CE7-8018-965EEB4EBED4}"
         "UpgradeCode" = "8:{8C5BA5C4-9308-4866-84E1-1B2E49F7464C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -867,7 +909,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_C9325721E4BA45A58E1A0F6875A9A731"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_1B426F1CB00341279CF2C6AEEB3ACF96"
             {
             "SourcePath" = "8:..\\ServicioWIN\\obj\\x86\\Debug\\ServicioWIN.exe"
             "TargetName" = "8:"
