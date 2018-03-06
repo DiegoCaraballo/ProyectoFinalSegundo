@@ -21,44 +21,38 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_22DFFDA87FCF0AD1CECED49AF5DB8F7B"
-        "OwnerKey" = "8:_77A8552A5E83B79A8E6EF995A5B1A6FB"
+        "MsmKey" = "8:_461AE2102FF90F52625153ADB95CA314"
+        "OwnerKey" = "8:_B36714FBF6F57BA1A03E8664D4EE76DF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_22DFFDA87FCF0AD1CECED49AF5DB8F7B"
+        "MsmKey" = "8:_461AE2102FF90F52625153ADB95CA314"
         "OwnerKey" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_77A8552A5E83B79A8E6EF995A5B1A6FB"
+        "MsmKey" = "8:_B36714FBF6F57BA1A03E8664D4EE76DF"
         "OwnerKey" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7C141CDC974500A7CF6F6F89A5478AC0"
+        "MsmKey" = "8:_E01B0E3F08CEEF6FA19F10C86379686F"
         "OwnerKey" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7C141CDC974500A7CF6F6F89A5478AC0"
-        "OwnerKey" = "8:_22DFFDA87FCF0AD1CECED49AF5DB8F7B"
+        "MsmKey" = "8:_E01B0E3F08CEEF6FA19F10C86379686F"
+        "OwnerKey" = "8:_461AE2102FF90F52625153ADB95CA314"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7C141CDC974500A7CF6F6F89A5478AC0"
-        "OwnerKey" = "8:_77A8552A5E83B79A8E6EF995A5B1A6FB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7C141CDC974500A7CF6F6F89A5478AC0"
+        "MsmKey" = "8:_E01B0E3F08CEEF6FA19F10C86379686F"
+        "OwnerKey" = "8:_B36714FBF6F57BA1A03E8664D4EE76DF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,13 +64,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_77A8552A5E83B79A8E6EF995A5B1A6FB"
+        "OwnerKey" = "8:_B36714FBF6F57BA1A03E8664D4EE76DF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_22DFFDA87FCF0AD1CECED49AF5DB8F7B"
+        "OwnerKey" = "8:_461AE2102FF90F52625153ADB95CA314"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E01B0E3F08CEEF6FA19F10C86379686F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -240,14 +240,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_22DFFDA87FCF0AD1CECED49AF5DB8F7B"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_461AE2102FF90F52625153ADB95CA314"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Persistencia, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_22DFFDA87FCF0AD1CECED49AF5DB8F7B"
+                    "_461AE2102FF90F52625153ADB95CA314"
                     {
                     "Name" = "8:Persistencia.dll"
                     "Attributes" = "3:512"
@@ -271,14 +271,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_77A8552A5E83B79A8E6EF995A5B1A6FB"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B36714FBF6F57BA1A03E8664D4EE76DF"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Logica, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_77A8552A5E83B79A8E6EF995A5B1A6FB"
+                    "_B36714FBF6F57BA1A03E8664D4EE76DF"
                     {
                     "Name" = "8:Logica.dll"
                     "Attributes" = "3:512"
@@ -302,14 +302,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7C141CDC974500A7CF6F6F89A5478AC0"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E01B0E3F08CEEF6FA19F10C86379686F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:EntidadesCompartidas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7C141CDC974500A7CF6F6F89A5478AC0"
+                    "_E01B0E3F08CEEF6FA19F10C86379686F"
                     {
                     "Name" = "8:EntidadesCompartidas.dll"
                     "Attributes" = "3:512"
@@ -390,7 +390,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:InstaladorBiosMoney"
         "ProductCode" = "8:{C766620F-8B05-4E66-8BCB-CCFD79737E4F}"
-        "PackageCode" = "8:{D72298E8-9CD7-4CE7-8018-965EEB4EBED4}"
+        "PackageCode" = "8:{E7F8B2C8-0925-4E5D-931B-635E74CA2A29}"
         "UpgradeCode" = "8:{8C5BA5C4-9308-4866-84E1-1B2E49F7464C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

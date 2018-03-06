@@ -15,6 +15,8 @@ using System.Xml;
 using System.Xml.Linq;
 
 using System.Timers;
+using System.Windows.Forms;
+using System.Globalization;
 namespace ServicioWIN
 {
     partial class ServicioExtras : ServiceBase
@@ -32,19 +34,14 @@ namespace ServicioWIN
         }
 
         protected override void OnStart(string[] args)
-        {
-            //Timer para el control del tiempo entre llamadas.
-            Timer myTimer = new System.Timers.Timer();
-            //Intervalo de tiempo entre llamadas.
-             myTimer.Interval = 1500;
-            //Evento a ejecutar cuando se cumple el tiempo.
-             myTimer.Elapsed += OnTimedEvent;
-            //Habilitar el Timer.
-            myTimer.Enabled = true;
-            Mensajes.WriteEntry("Inicia el servicio - ServicioExtras");
-            cronometro.Enabled = true;
-            cronometro.Start();
-            
+        {          
+            Mensajes.WriteEntry("Se inicia el servicio - ServicioExtras");
+
+            //Creamos le Timer aquí
+            System.Timers.Timer crono = new System.Timers.Timer();
+            crono.Interval = 10000;
+            crono.Elapsed += new ElapsedEventHandler(crono_tick);
+            crono.Enabled = true;     
         }
 
         protected override void OnStop()
@@ -68,28 +65,38 @@ namespace ServicioWIN
         {
             Mensajes.WriteEntry("Se continua ejecutando el servicio - ServicioExtras");
             cronometro.Enabled = true;
-            cronometro.Start();
-            
+            cronometro.Start();          
         }
 
-
-        private void cronometro_Tick(object sender, EventArgs e)
+        private void crono_tick(object sender, ElapsedEventArgs e)
         {
-        
-            RevisarHorasExtras();
+            Mensajes.WriteEntry("Esto se debería ejecutar cada 10 seg..");
+
+            int horaActual = DateTime.Now.Hour;
+
+            if(File.Exists(@"C:\desarrollo\horas.xml"))
+            {
+                try
+                {
+                    XmlDocument documento = new XmlDocument();
+                    documento.Load(@"C:\desarrollo\horas.xml");
+
+                    XmlNodeList horas = documento.GetElementsByTagName("HoraFin");
+
+                    //DateTime horaFin = DateTime.ParseExact(horas[0].InnerText.Trim().ToString(),
+                    //  "dd/MM/yyyy HH:mm:ss tt",
+                    //   CultureInfo.InvariantCulture);
+
+                    Mensajes.WriteEntry("Hora Fin - " + horas[0].InnerText);
+                    Mensajes.WriteEntry("Hora Actual - " + horaActual.ToString());
+                }
+                catch (Exception ex)
+                {
+                    Mensajes.WriteEntry("Error: " + ex.Message);
+                }
+            }
         }
 
-        private void RevisarHorasExtras()
-        {
-            File.Create(@"C:\desarrollo\horaskjsdnfkj.txt");
-            
-        }
-
-
-        private static void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
-        {
-            File.Create(@"C:\desarrollo\horaskjsdnfkj"+DateTime.Now.ToString()+".txt"); 
-        }
 
     }
 }
