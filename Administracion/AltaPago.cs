@@ -52,11 +52,14 @@ namespace Administracion
             txtMontoTotal.Text = "";
             gvListaFacturas.DataSource = null;
             btnAgregar.Enabled = false;
+            txtMontoTotal.Text = "";
         }
 
         //Quitar linea de factura del GridView
         private void btnQuitar_Click(object sender, EventArgs e)
         {
+            int total = 0;
+
             try
             {
                 if (gvListaFacturas.Rows.Count == 0)
@@ -67,14 +70,28 @@ namespace Administracion
                     throw new Exception("No hay una factura seleccionada");
                 else
                 {
+                    //Quito las facturas de la lista
+                    int indice = gvListaFacturas.CurrentCell.RowIndex;
+                    lasFacturas.RemoveAt(indice);
+
                     foreach (DataGridViewRow item in this.gvListaFacturas.SelectedRows)
                     {
+                        //Quito las facturas del grid
                         gvListaFacturas.Rows.RemoveAt(item.Index);
                     }
 
-                    if (gvListaFacturas.Rows.Count == 0)
+                    if (gvListaFacturas.Rows.Count == 1)
                     {
                         txtMontoTotal.Text = "";
+                    }
+                    else 
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            total = total + Convert.ToInt32(dr["monto"]);
+                        }
+
+                        txtMontoTotal.Text = total.ToString();
                     }
                 }
             }
