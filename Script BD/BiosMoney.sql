@@ -115,8 +115,7 @@ GRANT Execute TO [IIS APPPOOL\DefaultAppPool]
 
 USE BiosMoney;
 
-CREATE ROLE UsuarioCajero
-GO
+go
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--												Alta Gerente																       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -161,18 +160,14 @@ Declare @VarSentencia varchar(200)
 	
 	set @Error=@@ERROR
 	if(@Error<>0)
-	begin
 		return -5
-	end
 		
 	--Asigno rol al usuario recien creado
 	Exec sp_addsrvrolemember @loginame=@nomUsu, @rolename='securityadmin'
 	
-	if (@@ERROR <> 0)
+set @Error=@@ERROR
 	if(@Error<>0)
-	begin
 		return -5
-	end
 
 --Creo usuario de acceso a base de datos 
 	Set @VarSentencia = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
@@ -180,17 +175,13 @@ Declare @VarSentencia varchar(200)
 	
 	set @Error=@@ERROR
 	if(@Error<>0)
-	begin
 		return -5
-	end
 	--segundo asigno rol especifico al usuario recien creado
 	Exec sp_addrolemember @rolename='db_owner', @membername=@nomUsu
 	
-	if (@@ERROR <> 0)
+	set @Error=@@ERROR
 	if(@Error<>0)
-	begin
 		return -5
-	end
 	
 end
 
@@ -213,297 +204,312 @@ go
 --Alta Cajero
 create proc AltaCajero @cedula int, @nomUsu varchar(15), @pass varchar(7), @nomCompleto varchar(50), @horaini time, @horaFin time as
 begin
+	Declare @VarSentencia varchar(200);
 
+	declare @Error int;
 
-if exists(select * from cajero where cedula=@cedula and activo=1)
-return-1
+	if exists(select * from usuario where cedula=@cedula)
+		return-2
 
-if exists(select * from cajero where cedula=@cedula and activo=0)
-begin
-	update cajero set activo =1, horaIni=@horaini,horaFin=@horaFin where cedula=@cedula;
+	if exists(select * from cajero where cedula=@cedula and activo=1)
+		return-1
 
-
-end
-if exists(select * from usuario where cedula=@cedula)
-return-2
-
-declare @Error int;
-
-begin tran
-insert into usuario values (@cedula,@nomUsu,@pass, @nomCompleto)
-
-set @Error=@@ERROR
-	if(@Error<>0)
+	if exists(select * from cajero where cedula=@cedula and activo=0)
 	begin
-		rollback tran
-		return-3
-	end
+	begin tran
 
-insert into cajero values(@cedula,@horaini,@horaFin,1)
-set @Error=@@ERROR
-	if(@Error<>0)
-	begin 
-		rollback tran
-		return-4
-	end
+		update cajero set activo =1, horaIni=@horaini,horaFin=@horaFin where cedula=@cedula;
+		set @Error=@@ERROR
+		if(@Error<>0)
+		begin
+			rollback tran
+			return -5
+		end
 
-
-	begin 
-	commit tran 
-end
+		update usuario set nomUsu = @nomUsu, pass =@pass, nomCompleto=@nomCompleto where cedula=@cedula
+		set @Error=@@ERROR
+		if(@Error<>0)
+			begin
+				rollback tran
+				return -5
+			end	
+		begin
+			commit tran
+		end
 
 	
-Declare @VarSentencia varchar(200)
-	Set @VarSentencia = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
-	Exec (@VarSentencia)
+		Set @VarSentencia = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
+		Exec (@VarSentencia)
 	
-	set @Error=@@ERROR
-	if(@Error<>0)
-	begin
-		return -5
-	end
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -5
 		
-	----Asigno rol al usuario recien creado
-	--Exec sp_addsrvrolemember @loginame=@nomUsu, @rolename='UsuarioCajero'
-	
-	--if (@@ERROR <> 0)
-	--begin
-	--	return -4
-	--	end
 
---Creo usuario de acceso a base de datos 
-	Set @VarSentencia = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
-	Exec (@VarSentencia)
+	--Creo usuario de acceso a base de datos 
+		Set @VarSentencia = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
+		Exec (@VarSentencia)
 	
-	set @Error=@@ERROR
-	if(@Error<>0)
-	begin
-		return -6
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -6
+		else
+			return 1
 	end
-	----segundo asigno rol especificao al usuario recien creado
-	--Exec sp_addrolemember @rolename='UsuarioCajero', @membername=@nomUsu
-	
-	--set @Error=@@ERROR
-	--if(@Error<>0)
-	--begin
-	--	return -6
-	--end
 
-grant execute on AltaPago to @nomUsu;
-grant execute on CambioPass to @nomUsu;
-grant execute on LogueoCajero to @nomUsu;
+	begin tran
+		insert into usuario values (@cedula,@nomUsu,@pass, @nomCompleto)
+
+		set @Error=@@ERROR
+			if(@Error<>0)
+			begin
+				rollback tran
+				return-3
+			end
+
+		insert into cajero values(@cedula,@horaini,@horaFin,1)
+		set @Error=@@ERROR
+			if(@Error<>0)
+			begin 
+				rollback tran
+				return-4
+			end
+
+		begin 
+			commit tran 
+		end
+
+	
+		Set @VarSentencia = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
+		Exec (@VarSentencia)
+	
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -5		
+
+	--Creo usuario de acceso a base de datos 
+		Set @VarSentencia = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
+		Exec (@VarSentencia)
+	
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -6	
+
+	grant execute on AltaPago to [@nomUsu];
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -6
+
+	grant execute on CambioPass to [@nomUsu];
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -6
+
+	grant execute on LogueoCajero to [@nomUsu];
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -6
+	else
+		return 1
 
 end
-
 go
-
 
 --Baja Cajero
 create proc BajaCajero @cedula int as
 begin
 
-declare @Error int;
+	declare @Error int;
+	Declare @VarSentencia varchar(200);
 
-if not exists(select * from cajero where cedula=@cedula)
-return -1
+	if not exists(select * from cajero where cedula=@cedula)
+		return -1
 
-if exists(select * from gerente where cedula=@cedula)
-return -2
+	if exists(select * from gerente where cedula=@cedula)
+		return -2
 
-if exists(select * from pago where cedulaCajero=@cedula)
-begin
-update cajero set activo = 0 where cedula=@cedula
-
-delete from horasExtras where cedula=@cedula;
-
-Declare @VarSentencia varchar(200)
-	Set @VarSentencia = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentencia)
-
-	set @Error=@@Error
-	if(@Error<>0)
+	if exists(select * from pago where cedulaCajero=@cedula)
 	begin
-		return -3
-	end
+		begin tran
+			update cajero set activo = 0 where cedula=@cedula
+				set @Error=@@Error
+				if(@Error<>0)
+				begin 
+					rollback tran
+					return -3
+				end
 
-	Set @VarSentencia = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentencia)
-
-	set @Error=@@Error
-	if(@Error<>0)
-	begin
-		return -4
-	end
-	return 1
- end
-
-
-	Set @VarSentencia = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentencia)
-
-	set @Error=@@Error
-	if(@Error<>0)
-	begin
-		return -3
-	end
-
-	Set @VarSentencia = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
-	Exec (@VarSentencia)
-
-	set @Error=@@Error
-	if(@Error<>0)
-	begin
-		return -4
-	end
-
-begin tran
-
-	delete from cajero where cedula = @cedula
-	set @Error=@@Error
-	if(@Error<>0)
-	begin
-		return -5
-	end
-
-delete from usuario where cedula =@cedula
-set @Error=@@Error
-	if(@Error<>0)
-	begin
-		rollback tran
-		return -6
-	end
-
-	
-delete from horasExtras where cedula=@cedula;
-set @Error=@@Error
-	if(@Error<>0)
-	begin
-		rollback tran
-		return -7
-	end
-
-
+	delete from horasExtras where cedula=@cedula;
+		set @Error=@@Error
+		if(@Error<>0)
+		begin
+			rollback tran
+			return -3
+		end
 	begin 
-	commit tran 
-end
+		commit tran
+	end
 
+
+	Set @VarSentencia = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentencia)
+
+	set @Error=@@Error
+	if(@Error<>0)
+		return -3
+
+
+	Set @VarSentencia = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentencia)
+
+	set @Error=@@Error
+	if(@Error<>0)
+		return -4
+	else
+		return 1
+	end
+
+
+	Set @VarSentencia = 'Drop Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentencia)
+
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		return -3
+	end
+
+	Set @VarSentencia = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
+	Exec (@VarSentencia)
+
+	set @Error=@@Error
+	if(@Error<>0)
+	begin
+		return -4
+	end
+
+	begin tran
+
+		delete from horasExtras where cedula=@cedula;
+		set @Error=@@Error
+			if(@Error<>0)
+			begin
+				rollback tran
+				return -5
+			end
+
+			delete from cajero where cedula = @cedula
+			set @Error=@@Error
+			if(@Error<>0)
+			begin
+				rollback tran
+				return -6
+			end
+
+			delete from usuario where cedula =@cedula
+			set @Error=@@Error
+				if(@Error<>0)
+				begin
+					rollback tran
+					return -7
+				end
+				else
+					begin 
+						commit tran
+						return 1 
+					end
+		
 End
 go
 
 
 --Modificar Cajero
-create proc ModificarCajero @cedula int, @nomUsu varchar(15), @nomCompleto varchar(50), @horaini time, @horaFin time as
+create proc ModificarCajero @cedula int, @nomCompleto varchar(50), @horaini time, @horaFin time as
 begin
 
-if not exists(select * from cajero where cedula=@cedula)
-return -1 
+	if not exists(select * from cajero where cedula=@cedula)
+		return -1 
 
-if exists(select * from gerente where cedula= @cedula)
-return -2
+	if exists(select * from gerente where cedula= @cedula)
+		return -2
 
-declare @Error int
+	declare @Error int
 
-	Declare @VarSentencia varchar(200)
-	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) +  ' WITH NAME = ' +@nomUsu+']'
-	Exec (@VarSentencia)
-
-	set @Error=@@Error
-	if(@Error<>0)
-	begin
-		return -3
-	end
-	Set @VarSentencia = 'Alter Login [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) +  ' WITH NAME = ' +@nomUsu+']'
-	Exec (@VarSentencia)
+	begin tran
+		update cajero set horaIni=@horaini, horaFin=@horaFin where cedula=@cedula
 
 	set @Error=@@Error
-	if(@Error<>0)
-	begin
-		return -4
-	end
-
-
-begin tran
-	update cajero set horaIni=@horaini, horaFin=@horaFin where cedula=@cedula
-
-set @Error=@@Error
-	if(@Error<>0)
-	begin
-	rollback tran
-		return -5
-	end
-
-update usuario set nomUsu=@nomUsu, nomCompleto=@nomCompleto where cedula = @cedula
-set @Error=@@Error
-	if(@Error<>0)
-	begin
+		if(@Error<>0)
+		begin
 		rollback tran
-		return -6
-	end
+			return -5
+		end
 
+	update usuario set nomCompleto=@nomCompleto where cedula = @cedula
+	set @Error=@@Error
+		if(@Error<>0)
+		begin
+			rollback tran
+			return -6
+		end
 
-	begin 
-		commit tran
-	end
+		begin 
+			commit tran
+		end
 
-	end
-
+end
 go
 
 
 --Buscar Cajero
 create proc BuscarCajero @cedula int as
 begin
-	if not exists (select * from cajero where cedula=@cedula)
-	return -1
-
-	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where u.cedula= @cedula; 
+	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where u.cedula= @cedula and activo =1 
+end 
+go
+create proc BuscarCajeroInactivo @cedula int as
+begin
+	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where u.cedula= @cedula and activo =0 
 end 
 go
 
-
 --Cambiar Contraseña
 create proc CambioPass @cedula int, @pass varchar(7) as
-
 begin
-if not exists(select * from usuario where cedula=@cedula)
-return -1
+	if not exists(select * from usuario where cedula=@cedula)
+		return -1
 
-declare @Error int;
+	declare @Error int;
 
-Declare @VarSentencia varchar(200)
+	Declare @VarSentencia varchar(200)
 	Set @VarSentencia = 'Alter Login [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' +@pass+ ']'
 	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
-	begin
 		return -2
-	end
 	
 	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' + @pass+']'
 	Exec (@VarSentencia)
 
 	set @Error=@@Error
 	if(@Error<>0)
-	begin
 		return -3
+
+	begin tran
+		update usuario set pass = @pass where cedula=@cedula
+
+		set @Error=@@Error
+		if(@Error<>0)
+		begin
+			rollback tran
+			return -4
+		end
+
+		begin 
+			commit tran
+		end
 	end
-
-begin tran
-	update usuario set pass = @pass where cedula=@cedula
-
-	set @Error=@@Error
-	if(@Error<>0)
-	begin
-		rollback tran
-		return -4
-	end
-
-	begin 
-	commit tran
-	end
-
-end
 
 go
 
@@ -511,9 +517,7 @@ go
 --LogueoCajero
 create proc LogueoCajero @nomUsu varchar(15) as
 begin
-
-select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where nomUsu= @nomUsu; 
-
+	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where nomUsu= @nomUsu; 
 end
 
 go
@@ -563,9 +567,9 @@ BEGIN
 
 	IF (EXISTS (SELECT * FROM empresa WHERE codEmpresa = @codEmp AND activo = 0))
 		RETURN -2
-
-	--TODO - VER COMO FIJARME QUE EL TIPO DE CONTRATO NO ESTE DESACTIVADO
-	--IF (EXISTS (SELECT * FROM tipoContrato WHERE codEmp = @codEmp
+		 
+	IF (EXISTS (SELECT * FROM tipoContrato WHERE codEmp = @codEmp AND codContrato = @codContrato AND activo = 0))
+		RETURN -3
 
 	INSERT INTO factura (idPago, codContrato, codEmp, monto, codCli, fechaVto) VALUES (@idPago, @codContrato, @codEmp, @monto, @codCli, @fechaVto)	
 	IF(@@ERROR = 0)
@@ -575,19 +579,6 @@ BEGIN
 END
 GO
 
---ELIMINAR FACTURA
-CREATE PROC EliminarFactura @idPago int, @codContrato int, @codEmp int AS
-BEGIN
-	IF(NOT EXISTS(SELECT * FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp))
-		RETURN -1
-
-	DELETE FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp
-	IF(@@ERROR = 0)
-		RETURN 1
-	ELSE
-		RETURN -2
-END
-GO
 
 --BUSCAR FACTURA
 CREATE PROC BuscarFactura @idPago int, @codContrato int, @codEmp int AS
@@ -599,12 +590,8 @@ GO
 --BUSCAR FACTURA POR CODIGO DE BARRA
 create proc pagoDeUnaFactura @codContra int, @codEmp int, @monto int, @codCli int, @fecha date as
 begin
-	if exists(select * from factura f where f.codContrato= @codContra and f.codEmp = @codEmp and f.monto = @monto and f.codCli = @codCli and f.fechaVto = @fecha)
-	begin
-		select * from pago p where p.numeroInt in(
-		select idPago from factura f where f.codContrato = @codContra and f.codEmp = @codEmp and f.monto = @monto and f.codCli = @codCli and f.fechaVto = @fecha
-		)
-	end
+	select * from pago p where p.numeroInt in(
+	select idPago from factura f where f.codContrato = @codContra and f.codEmp = @codEmp and f.monto = @monto and f.codCli = @codCli and f.fechaVto = @fecha)
 end
 go
 
@@ -627,14 +614,14 @@ BEGIN
 END
 GO
 
---Alta Tipo de Contrato ---TODO REvisar, agregue un para de IF mas para verificar la foreign key
+--Alta Tipo de Contrato 
 Create Proc AltaTipoContrato @codEmp int , @codContrato int,@nombre varchar (30) as
 Begin
 	if not exists (select * from empresa where codEmpresa = @codEmp)
-	return -1
+		return -1
 
 	if exists (select * from empresa where codEmpresa = @codEmp and activo = 0)
-	return -2
+		return -2
 
 	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato = @codContrato and activo = 1)
 		return -3;
@@ -659,16 +646,19 @@ Create Proc ModificarTipoContrato @codEmp int , @codContrato int,@nombre varchar
 Begin
 
 	if not exists (select * from empresa where codEmpresa = @codEmp)
-	return -1
+		return -1
 
 	if exists (select * from empresa where codEmpresa = @codEmp and activo = 0)
-	return -2
+		return -2
 
 	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato = @codContrato and activo = 0)
 		return -3	
-	
-	Else --TODO - AGREGUE ELSE, FALTAN LOS @@ERROR?
-		update tipoContrato set nombre = @nombre where @codContrato = @codContrato and codEmp = codEmp;
+
+	update tipoContrato set nombre = @nombre where @codContrato = @codContrato and codEmp = codEmp;
+	IF(@@Error=0)
+		RETURN 1;
+	ELSE
+		RETURN -4;
 	
 End
 
@@ -684,16 +674,17 @@ begin
 	if not exists (select * from tipoContrato where codContrato = @codContrato and codEmp = @codEmp)
 		return -2
 
-
-	--TODO - ACA SI EXISTE PERO ESTA INACTIVO, NO HAY QUE DESACTIVARLO NOMAS?
 	if exists ((select codContrato from factura where codContrato in(select codContrato from tipoContrato where codContrato = @codContrato and codEmp = @codEmp)))
 	begin
 		update tipoContrato set activo = 0 where codContrato=@codContrato and codEmp = @codEmp;
-		return 1
+			return 1
 	end
 
-	--TODO - FALTA ELSE? FALTA @@ERROR?
 	delete from tipoContrato where codContrato=@codContrato and codEmp=@codEmp;
+	IF(@@Error=0)
+		RETURN 1;
+	ELSE
+		RETURN -4;
 
 end
 
@@ -718,22 +709,14 @@ begin
 		return -1
 
 	if exists (select * from empresa where codEmpresa = @codEmp and activo = 0)
-	begin --PORQUE LOS BEGIN?
-		update empresa set activo =1 , rut = @rut, dirFiscal = @direccion, telefono = @telefono where codEmpresa = @codEmp;
+	update empresa set activo =1 , rut = @rut, dirFiscal = @direccion, telefono = @telefono where codEmpresa = @codEmp;
 		return 1
-	end
 
 	insert into empresa(codEmpresa, rut, dirFiscal, telefono) values(@codEmp, @rut, @direccion, @telefono);
-	if (@@ERROR <> 0)
-	begin
-	return-2
-	end
-
-	--TODO - PORQUE LOS BEGIN EN @@ERROR, EN TODOS LOS EJEMPLOS LOS TENEMOS ASI (ENCONTRE MUCHOS CASOS)
-	--IF(@@ERROR = 0)
-		--RETURN 1
-	--ELSE
-		--RETURN -3
+	IF(@@Error=0)
+		RETURN 1;
+	ELSE
+		RETURN -2;
 
 end
 go
@@ -746,15 +729,14 @@ begin
 	if not exists(select * from empresa where codEmpresa = @codEmp)
 		return -1
 
-	--TODO - FALTA? IF EXISTS (SELECT * FROM empresa where codEmpresa = @codEmp and activo = 0
-	--						return -2
+	IF EXISTS (SELECT * FROM empresa where codEmpresa = @codEmp and activo = 0)
+		return -2
 
 	update empresa set  rut=@rut, dirFiscal=@direccion, telefono=@telefono where codEmpresa=@codEmp;
-
-	if (@@ERROR <>0)
-	begin
-	return-2
-	end
+	IF(@@Error=0)
+		RETURN 1;
+	ELSE
+		RETURN -3;
 
 end
 go
@@ -768,7 +750,7 @@ begin
 	if not exists(select * from empresa where codEmpresa = @codEmp)
 		return -1
 
-	if exists(select * from factura where codContrato in(select codContrato from tipoContrato where codEmp = @codEmp))
+	if exists(select * from factura where codEmp  = @codEmp)
 	begin
 	begin tran
 	update tipoContrato set activo = 0 where codContrato in(select codContrato from tipoContrato where codEmp = @codEmp);
@@ -787,32 +769,31 @@ begin
 		end
 
 		begin 
-		commit tran
+			commit tran
 		end
 
-return 1
-end
-
-
-begin tran 
-
-delete from tipoContrato where codEmp = @codEmp;
-set @Error=@@Error
-	if(@Error<>0)
-	begin
-		rollback tran
-		return -4
+	return 1
 	end
-delete from empresa where codEmpresa=@codEmp;
-set @Error=@@Error
-	if(@Error<>0)
-	begin
-		rollback tran
-		return -5
-	end
-	begin 
-		commit tran
-	 end
+
+	begin tran 
+
+	delete from tipoContrato where codEmp = @codEmp;
+	set @Error=@@Error
+		if(@Error<>0)
+		begin
+			rollback tran
+			return -4
+		end
+	delete from empresa where codEmpresa=@codEmp;
+	set @Error=@@Error
+		if(@Error<>0)
+		begin
+			rollback tran
+			return -5
+		end
+		begin 
+			commit tran
+		 end
 end
 
 go

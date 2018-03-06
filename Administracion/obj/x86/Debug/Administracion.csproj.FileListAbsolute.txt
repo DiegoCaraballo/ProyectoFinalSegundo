@@ -48,3 +48,4 @@ C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.c
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
