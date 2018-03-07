@@ -56,13 +56,6 @@
                     </tr>
                     <tr>
                         <td style="text-align: right">
-                            <asp:Label ID="lblIdPago" runat="server" Text="Id Pago:  "></asp:Label></td>
-                        <td style="text-align: left">
-                            &nbsp;&nbsp;
-                            <asp:TextBox ID="txtIdPago" runat="server" Enabled="False"></asp:TextBox></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: right">
                             <asp:Label ID="lblFecha" runat="server" Text="Fecha: "></asp:Label></td>
                         <td style="text-align: left">
                             &nbsp;&nbsp;

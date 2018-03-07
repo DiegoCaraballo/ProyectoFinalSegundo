@@ -1,12 +1,3 @@
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\Logica.dll
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\Logica.pdb
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\EntidadesCompartidas.dll
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\Persistencia.dll
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\EntidadesCompartidas.pdb
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\Persistencia.pdb
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\obj\Debug\Logica.csprojResolveAssemblyReference.cache
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\obj\Debug\Logica.dll
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\obj\Debug\Logica.pdb
 C:\desarrollo\ProyectoFinalSegundo\Logica\bin\Debug\Logica.dll
 C:\desarrollo\ProyectoFinalSegundo\Logica\bin\Debug\Logica.pdb
 C:\desarrollo\ProyectoFinalSegundo\Logica\bin\Debug\EntidadesCompartidas.dll
@@ -25,3 +16,12 @@ C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Logica\bin\Debug\Persistencia.pdb
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Logica\obj\Debug\Logica.csprojResolveAssemblyReference.cache
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Logica\obj\Debug\Logica.dll
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Logica\obj\Debug\Logica.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\Logica.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\Logica.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\EntidadesCompartidas.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\Persistencia.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\EntidadesCompartidas.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\bin\Debug\Persistencia.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\obj\Debug\Logica.csprojResolveAssemblyReference.cache
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\obj\Debug\Logica.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Logica\obj\Debug\Logica.pdb

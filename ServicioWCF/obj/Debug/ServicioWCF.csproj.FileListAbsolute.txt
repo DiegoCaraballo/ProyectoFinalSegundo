@@ -1,14 +1,3 @@
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.dll
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.pdb
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.dll
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\Logica.dll
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.dll
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.pdb
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\Logica.pdb
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.pdb
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.csprojResolveAssemblyReference.cache
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.dll
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.pdb
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.dll
@@ -31,3 +20,14 @@ C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.pdb
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.csprojResolveAssemblyReference.cache
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\Logica.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\Logica.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.csprojResolveAssemblyReference.cache
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb

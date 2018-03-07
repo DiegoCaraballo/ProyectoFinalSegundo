@@ -50,7 +50,7 @@ namespace ServicioWCF
             FabricaLogica.GetLogicaPago().AltaPago(unPago, usuLogueado);
         }
 
-        public Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
+        public DateTime PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
         {
             return (FabricaLogica.GetLogicaPago().PagoDeUnaFactura((int)codContrato, (int)codEmp, (int)monto, (int)codCli, (DateTime)fecha));
         }

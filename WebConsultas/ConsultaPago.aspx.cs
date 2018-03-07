@@ -44,14 +44,14 @@ public partial class ConsultaPago : System.Web.UI.Page
             int monto = Convert.ToInt32(txtCodBarra.Text.Substring(20, 5).TrimStart('0'));
 
             //Armo el pago para buscar
-            Pago unPago = serv.PagoDeUnaFactura(codTipoContrato, codEmp, monto, codCli, fechaFactura);
+            //DateTime fechaDeUnPago = serv.PagoDeUnaFactura(codTipoContrato, codEmp, monto, codCli, fechaFactura);
+            DateTime fechaDeUnPago = serv.PagoDeUnaFactura(codTipoContrato, codEmp, monto, codCli, fechaFactura);
 
             //Si el pago existe muestro los controles con los datos
-            if (unPago != null)
+            if (fechaDeUnPago != null)
             {
                 MostrarControles();
-                txtFecha.Text = unPago.Fecha.ToString();
-                txtIdPago.Text = unPago.NumeroInt.ToString();
+                txtFecha.Text = fechaDeUnPago.ToString();
             }
             else
                 throw new Exception("No existe un pago asociado a la factura ingresada");
@@ -67,17 +67,13 @@ public partial class ConsultaPago : System.Web.UI.Page
     protected void QuitarControles()
     {
         lblFecha.Visible = false;
-        lblIdPago.Visible = false;
         txtFecha.Visible = false;
-        txtIdPago.Visible = false;
     }
 
     //Dejar los controles visibles
     protected void MostrarControles()
     {
         lblFecha.Visible = true;
-        lblIdPago.Visible = true;
         txtFecha.Visible = true;
-        txtIdPago.Visible = true;
     }
 }

@@ -544,6 +544,8 @@ go
 --AGREGAR PAGO
 CREATE PROC AltaPago @fecha date, @montoTotal int, @cedulaCajero int, @numInterno int output AS
 BEGIN
+	IF EXISTS(SELECT * FROM usuario WHERE cedula = @cedulaCajero)
+		RETURN -1
 	INSERT INTO pago (fecha, montoTotal, cedulaCajero) VALUES (@fecha, @montoTotal, @cedulaCajero)
 	SET @numInterno = SCOPE_IDENTITY()
 	IF(@@ERROR = 0)
@@ -594,18 +596,10 @@ BEGIN
 END
 GO
 
-
---BUSCAR FACTURA
-CREATE PROC BuscarFactura @idPago int, @codContrato int, @codEmp int AS
-BEGIN
-	SELECT * FROM factura WHERE idPago = @idPago AND codContrato = @codContrato AND codEmp = @codEmp
-END
-GO
-
 --BUSCAR FACTURA POR CODIGO DE BARRA
 create proc pagoDeUnaFactura @codContra int, @codEmp int, @monto int, @codCli int, @fecha date as
 begin
-	select * from pago p where p.numeroInt in(
+	select p.fecha from pago p where p.numeroInt in(
 	select idPago from factura f where f.codContrato = @codContra and f.codEmp = @codEmp and f.monto = @monto and f.codCli = @codCli and f.fechaVto = @fecha)
 end
 go
@@ -720,11 +714,11 @@ GO
 create proc AltaEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
 begin
 
-	if exists(select * from empresa where codEmpresa = @codEmp)
+	if exists(select * from empresa where codEmpresa = @codEmp and activo = 1)
 		return -1
 
 	if exists (select * from empresa where codEmpresa = @codEmp and activo = 0)
-	update empresa set activo =1 , rut = @rut, dirFiscal = @direccion, telefono = @telefono where codEmpresa = @codEmp;
+	update empresa set activo = 1 , rut = @rut, dirFiscal = @direccion, telefono = @telefono where codEmpresa = @codEmp;
 		return 1
 
 	insert into empresa(codEmpresa, rut, dirFiscal, telefono) values(@codEmp, @rut, @direccion, @telefono);
@@ -826,7 +820,7 @@ go
 exec AltaEmpresa 1234, 123456789, 'asdasdas','123456'
 exec AltaTipoContrato 1234, 33, "Hola Mundo"
 
-
+exec AltaEmpresa 2345, 121212121, 'pepe grillo', '123456'
 
 go
 

@@ -41,7 +41,7 @@ namespace ServicioWCF
         void AltaPago(Pago unPago, Usuario usuLogueado);
 
         [OperationContract]
-        Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha);
+        DateTime PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha);
 
         [OperationContract]
         List<Pago> listar(Usuario usuLogueado);

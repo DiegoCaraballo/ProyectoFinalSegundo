@@ -571,7 +571,7 @@ namespace Administracion.ServicioWCF {
         void AltaPago(Administracion.ServicioWCF.Pago unPago, Administracion.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/PagoDeUnaFactura", ReplyAction="http://tempuri.org/IServicio/PagoDeUnaFacturaResponse")]
-        Administracion.ServicioWCF.Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, System.DateTime fecha);
+        System.DateTime PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, System.DateTime fecha);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/listar", ReplyAction="http://tempuri.org/IServicio/listarResponse")]
         Administracion.ServicioWCF.Pago[] listar(Administracion.ServicioWCF.Usuario usuLogueado);
@@ -663,7 +663,7 @@ namespace Administracion.ServicioWCF {
             base.Channel.AltaPago(unPago, usuLogueado);
         }
         
-        public Administracion.ServicioWCF.Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, System.DateTime fecha) {
+        public System.DateTime PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, System.DateTime fecha) {
             return base.Channel.PagoDeUnaFactura(codContrato, codEmp, monto, codCli, fecha);
         }
         
