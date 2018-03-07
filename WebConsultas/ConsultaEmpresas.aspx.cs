@@ -39,6 +39,7 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
             rpEmpresas.DataSource = lasEmpresas;
             rpEmpresas.DataBind();
 
+            //Si no hay empresas
             if(rpEmpresas.Items.Count == 0)
                 throw new Exception("No hay empresas para listar");
 

@@ -20,6 +20,7 @@ namespace Administracion
             InitializeComponent();
         }
 
+        //Ingresar Gerente
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             try
@@ -31,7 +32,6 @@ namespace Administracion
                 gerente.NomCompleto = txtNomApe.Text;
                 gerente.Correo = txtCorreo.Text;
 
-               // IServicio serv = new ServicioClient();
                 IServicio serv = new ServicioClient();
                 serv.AltaUsuario(gerente, usuLogueado);
 
@@ -46,10 +46,13 @@ namespace Administracion
 
         }
 
+        //Limpiar
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             EstadoInicial();
         }
+
+        //Controles en estado inicial
         private void EstadoInicial()
         {
             txtCedula.Text = "";
@@ -62,11 +65,8 @@ namespace Administracion
             txtUsuario.Enabled = true;
             txtPass.Enabled = true;
             txtNomApe.Enabled = true;
-            txtCorreo.Enabled = true;
-
-            
+            txtCorreo.Enabled = true;           
         }
-
      
     }
 }

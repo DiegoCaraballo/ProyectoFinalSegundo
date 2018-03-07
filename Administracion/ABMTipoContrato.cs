@@ -139,7 +139,7 @@ namespace Administracion
             btnEliminar.Enabled = false;
         }
 
-        //Validar los 2 campos
+        //Validar los 2 campos (Código de Empresa y Tipo de Contrato)
         private void txtCodTipoContrato_Validating(object sender, CancelEventArgs e)
         {
             try
@@ -191,10 +191,6 @@ namespace Administracion
                 else
                     lblMensaje.Text = ex.Message;
             }
-        }
-
-      
-
-
+        }   
     }
 }

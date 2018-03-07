@@ -20,6 +20,7 @@ namespace Administracion
             InitializeComponent();
         }
 
+        //Validación de Password
         private void txtActualPass_Validating(object sender, CancelEventArgs e)
         {
             try
@@ -49,6 +50,7 @@ namespace Administracion
             }
         }
 
+        //Validación de nuevo password
         private void txtRepitePass_Validating(object sender, CancelEventArgs e)
         {
             try
@@ -90,6 +92,7 @@ namespace Administracion
             txtActualPass.Enabled = true;
         }
 
+        //Limpiar
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();

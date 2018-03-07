@@ -138,7 +138,7 @@ namespace Administracion
 
         }
 
-        //Limpisar los controles
+        //Limpiar los controles
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();          
@@ -165,6 +165,7 @@ namespace Administracion
             btnEliminar.Enabled = true;
         }
 
+        //Ingresar Empresa
         private void btnIngresar_Click_1(object sender, EventArgs e)
         {
             try

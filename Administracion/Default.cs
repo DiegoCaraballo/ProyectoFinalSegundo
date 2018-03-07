@@ -123,9 +123,9 @@ namespace Administracion
             }
         }
 
+        //Cuando se cierra el formulario se elimina el XML para las Horas Extras
         private void Default_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             if (File.Exists(@"C:\desarrollo\horas.xml"))
             {
                 File.Delete(@"C:\desarrollo\horas.xml");

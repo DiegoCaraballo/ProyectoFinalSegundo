@@ -80,12 +80,13 @@ namespace Administracion
                         gvListaFacturas.Rows.RemoveAt(item.Index);
                     }
 
+                    //Borro el monto total si no hay facturas
                     if (gvListaFacturas.Rows.Count == 1)
                     {
                         txtMontoTotal.Text = "";
                     }
                     else 
-                    {
+                    {   //Si no lo vuelvo a calcualar
                         foreach (DataRow dr in dt.Rows)
                         {
                             total = total + Convert.ToInt32(dr["monto"]);
@@ -106,17 +107,20 @@ namespace Administracion
         {
             try
             {             
+                //Capturo el codEmp y codTipoContrato de la facutra ingresada por el usuario
                 int codEmp = Convert.ToInt32(txtCodBarra.Text.Substring(0, 4).TrimStart('0'));
                 int codTipoContrato = Convert.ToInt32(txtCodBarra.Text.Substring(4, 2).TrimStart('0'));
 
                 IServicio serv = new ServicioClient();
 
+                //Si no existe tipo de contrato salgo
                 TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato);
                 if (unContrato == null)
                     throw new Exception("El tipo de contrato no existe");
 
                 Factura unaFactura = new Factura();
 
+                //Agrego datos a la factura
                 unaFactura.UnTipoContrato = unContrato;
                 unaFactura.Monto = Convert.ToInt32(txtMonto.Text);
                 unaFactura.CodCli = Convert.ToInt32(txtCodCli.Text);
@@ -125,6 +129,7 @@ namespace Administracion
                    CultureInfo.InvariantCulture);
                 unaFactura.FechaVto = fechaFactura;
 
+                //Si la factura esta vencida salgo
                 if (fechaFactura < DateTime.Now)
                     throw new Exception("La factura esta vencida");
 
@@ -201,11 +206,11 @@ namespace Administracion
                 //Cargo todos los textbox
                 txtCodCli.Text = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0')).ToString();
                 txtCodEmp.Text = unaEmpresa.Rut.ToString();
+                //TODO - Ver como capturar exception del error de conversión a DateTime
                 var newDate = DateTime.ParseExact(txtCodBarra.Text.Substring(6, 8).TrimStart('0').ToString(),
                                   "yyyyMMdd",
                                    CultureInfo.InvariantCulture);
                 txtFVencimiento.Text = newDate.ToString();
-                //txtFVencimiento.Text = Convert.ToInt32(txtCodBarra.Text.Substring(6, 8).TrimStart('0')).ToString();
                 txtMonto.Text = Convert.ToInt32(txtCodBarra.Text.Substring(20, 5).TrimStart('0')).ToString();
                 txtTipoContrato.Text = unContrato.Nombre.ToString();
 
@@ -237,7 +242,7 @@ namespace Administracion
                 IServicio serv = new ServicioClient(); 
                
                 try
-                {
+                {   //Si hay facturas ingresadas
                     if (lasFacturas.Count != 0)
                     {
                         Pago unPago = new Pago();

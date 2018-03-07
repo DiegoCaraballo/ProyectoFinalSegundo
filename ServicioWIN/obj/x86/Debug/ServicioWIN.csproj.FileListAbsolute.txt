@@ -28,3 +28,4 @@ C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWI
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csproj.GenerateResource.Cache
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.exe
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWIN\bin\Debug\ServicioWIN.exe.config

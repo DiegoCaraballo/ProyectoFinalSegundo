@@ -24,26 +24,25 @@ namespace Administracion
         {
             try
             {
-              IServicio serv= new ServicioClient();
+                IServicio serv= new ServicioClient();
                 
                 Usuario usu = null;
-                
-                
-        //ServicioClient  serv = new ServicioClient();
-
         
                 usu = serv.Logueo(txtUsuario.Text);
 
+                //Si el usuario no existe
                 if (usu == null)
                 {
                     throw new Exception("No se encontro el usuario");
                 }
 
+                //Si el usuario Existe reviso que tipo de usuario es
                 if (usu.Pass == txtPass.Text)
                 {
+                    //Si es Cajero
                     if (usu is Cajero)
                     {
-
+                        //Creo el XML para las horas extras
                         string destino = @"C:\desarrollo\horas.xml";
                         if (File.Exists(destino))
                         {
@@ -86,9 +85,7 @@ namespace Administracion
                 else
                 {
                     throw new Exception("Contraseña Incorrecta");
-                }
-
-               
+                }              
 
             }
             catch (System.Web.Services.Protocols.SoapException ex)

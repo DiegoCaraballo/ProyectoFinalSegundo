@@ -38,7 +38,7 @@ namespace ServicioWIN
         {
             Mensajes.WriteEntry("Se inicia el servicio - ServicioExtras");
 
-            //Creamos le Timer aquí
+            //Creamos el Timer aquí
             System.Timers.Timer crono = new System.Timers.Timer();
             crono.Interval = 10000;
             crono.Elapsed += new ElapsedEventHandler(crono_tick);
@@ -69,37 +69,46 @@ namespace ServicioWIN
             cronometro.Start();
         }
 
+        //Se repite cada 10 Segundos
         private void crono_tick(object sender, ElapsedEventArgs e)
         {
+            //Hora Actual del Sistema
             DateTime horaActual = DateTime.Now;
 
-
+            //Si existe el archivo
             if (File.Exists(@"C:\desarrollo\horas.xml"))
             {
                 try
                 {
+                    //Cargo el XML
                     XmlDocument documento = new XmlDocument();
                     documento.Load(@"C:\desarrollo\horas.xml");
 
+                    //Saco los datos necesarios
                     XmlNodeList horas = (documento.GetElementsByTagName("HoraFin"));
                     XmlNodeList cedula = (documento.GetElementsByTagName("Cedula"));
 
                     DateTime h = DateTime.Parse(horas[0].InnerText.Trim().ToString());
 
+                    //Hora actual
                     var t1 = TimeSpan.Parse(horaActual.ToShortTimeString());
-
+                    //Hora del finalización del Cajero
                     var t2 = TimeSpan.Parse(h.ToShortTimeString());
 
+                    //Si la hora actual es mayor a la de finalización de tareas
+                    //Registramos los minutos extras
                     if (t1 > t2)
                     {
-
+                        //Diferencia
                         TimeSpan totalMinutos = (t1 - t2);
+                        //Pasado a minutos
                         int minutosExtras = Convert.ToInt32(totalMinutos.TotalMinutes);
-                        //TODO
+                        
+                        //LLamada al servicio para registrar los minutos
                         IServicio serv = new ServicioClient();
                         serv.AgregaExtras(Convert.ToInt32(cedula[0].InnerText.Trim().ToString()), horaActual.Date, minutosExtras);
 
-
+                        //Registro en Log
                         Mensajes.WriteEntry("Se generaron " + minutosExtras + " Minutos Extras");
                     }
 

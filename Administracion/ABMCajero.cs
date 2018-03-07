@@ -26,6 +26,7 @@ namespace Administracion
 //todo
         }
 
+        //Ingresar un Cajero
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             try
@@ -61,6 +62,7 @@ namespace Administracion
             }
         }
 
+        //Validar el Cajero por la cédula
         private void txtCedula_Validating(object sender, CancelEventArgs e)
         {
             try
@@ -101,6 +103,7 @@ namespace Administracion
 
         }
 
+        //Modificar Cajero
         private void btnModificar_Click(object sender, EventArgs e)
         {
             try
@@ -134,6 +137,7 @@ namespace Administracion
             }
         }
 
+        //Eliminar Cajero
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
@@ -160,6 +164,7 @@ namespace Administracion
             }
         }
 
+        //Los controles quedan en estado inicial
         private void EstadoInicial()
         {
             txtCedula.Text = "";
@@ -182,9 +187,7 @@ namespace Administracion
            
         }
 
-  
- 
-
+        //Limpiar
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             EstadoInicial();
