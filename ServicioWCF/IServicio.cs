@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Xml;
 
 using EntidadesCompartidas;
 
@@ -70,6 +71,8 @@ namespace ServicioWCF
         void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         [OperationContract]
         void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
+        [OperationContract]
+        XmlDocument ListarContratos();
 
         #endregion
     }

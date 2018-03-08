@@ -13,5 +13,6 @@ namespace Logica
         void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
+        List<TipoContrato> ListarContratos();
     }
 }

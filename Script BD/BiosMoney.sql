@@ -1,4 +1,3 @@
-
 USE master
 GO
 
@@ -295,20 +294,29 @@ begin
 		if(@Error<>0)
 			return -6	
 
-	grant execute on AltaPago to [@nomUsu];
+Set @VarSentencia = 'Grant execute on AltaPago to [' +  @nomUsu + ']'
+		Exec (@VarSentencia)
 		set @Error=@@ERROR
 		if(@Error<>0)
 			return -6
 
-	grant execute on CambioPass to [@nomUsu];
-		set @Error=@@ERROR
-		if(@Error<>0)
-			return -6
+Set @VarSentencia = 'Grant execute on CambioPass to [' +  @nomUsu + ']'
+	Exec (@VarSentencia)
+	set @Error=@@ERROR
+	if(@Error<>0)
+	return -6
 
-	grant execute on LogueoCajero to [@nomUsu];
+	Set @VarSentencia = 'Grant execute on AltaFactura to [' +  @nomUsu + ']'
+		Exec (@VarSentencia)
 		set @Error=@@ERROR
 		if(@Error<>0)
 			return -6
+Set @VarSentencia = 'Grant execute on LogueoCajero to [' +  @nomUsu + ']'
+	Exec (@VarSentencia)
+--	grant execute on LogueoCajero to [@nomUsu];
+	set @Error=@@ERROR
+	if(@Error<>0)
+		return -6
 	else
 		return 1
 
@@ -536,7 +544,6 @@ begin
 	end
 go
 
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--											      	Pago																	       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -544,8 +551,11 @@ go
 --AGREGAR PAGO
 CREATE PROC AltaPago @fecha date, @montoTotal int, @cedulaCajero int, @numInterno int output AS
 BEGIN
-	IF EXISTS(SELECT * FROM usuario WHERE cedula = @cedulaCajero)
+	IF NOT EXISTS(SELECT * FROM cajero WHERE cedula = @cedulaCajero)
 		RETURN -1
+	if exists(select * from cajero where cedula= @cedulaCajero and activo=0)
+	return -3
+
 	INSERT INTO pago (fecha, montoTotal, cedulaCajero) VALUES (@fecha, @montoTotal, @cedulaCajero)
 	SET @numInterno = SCOPE_IDENTITY()
 	IF(@@ERROR = 0)
@@ -699,6 +709,12 @@ end
 
 go
 
+create proc ListarContratos as
+begin
+	select * from tipoContrato;
+end
+
+go
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--												Empresa																		       --*--
@@ -718,9 +734,11 @@ begin
 		return -1
 
 	if exists (select * from empresa where codEmpresa = @codEmp and activo = 0)
+	begin
 	update empresa set activo = 1 , rut = @rut, dirFiscal = @direccion, telefono = @telefono where codEmpresa = @codEmp;
 		return 1
-
+	end
+	
 	insert into empresa(codEmpresa, rut, dirFiscal, telefono) values(@codEmp, @rut, @direccion, @telefono);
 	IF(@@Error=0)
 		RETURN 1;
@@ -818,11 +836,12 @@ go
 					----Datos Para Probar
 --------------------------------------------------------------------------
 exec AltaEmpresa 1234, 123456789, 'asdasdas','123456'
-exec AltaTipoContrato 1234, 33, "Hola Mundo"
-
-exec AltaEmpresa 2345, 121212121, 'pepe grillo', '123456'
-
 go
+exec AltaTipoContrato 1234, 33, 'Hola Mundo'
+go
+exec AltaEmpresa 2345, 121212121, 'pepe grillo', '123456'
+go
+
 
 --select * from empresa
 --select * from tipoContrato WHERE codEmp = 1234 AND codContrato = 33
@@ -832,9 +851,14 @@ go
 exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
 go
 exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
+go
+select * from usuario
+select * from cajero
 exec AltaCajero 1233211,'pepegrillo','1234567','Pepe grillo', '2018-01-01 00:00:00','2018-01-01 08:00:00';
 
 go
-update Cajero set HoraFin= '2018-01-01 20:00:00', HoraIni ='2018-01-01 19:00:00';
-go
+--update Cajero set HoraFin= '2018-01-01 20:00:00', HoraIni ='2018-01-01 19:00:00';
+--go
 --exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
+
+select * from pago

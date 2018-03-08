@@ -170,6 +170,53 @@ namespace Persistencia
             }
         }
 
+        public List<TipoContrato> ListarContratos()
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            SqlCommand cmd = new SqlCommand("ListarContratos", cnn);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            List<TipoContrato> Listar = new List<TipoContrato>();
+            int codContrato;
+            int codEmp;
+            string nombre;
+
+
+            try
+            {
+                cnn.Open();
+
+                SqlDataReader _lector = cmd.ExecuteReader();
+
+                if (_lector.HasRows)
+                {
+                    while (_lector.Read())
+                    {
+
+
+                        codContrato = (int)_lector["codContrato"];
+                        codEmp = (int)_lector["codEmp"];
+                        nombre = (string)_lector["nombre"];
+                        TipoContrato tc = new TipoContrato(EmpresaPersistencia.GetInstancia().BuscarEmpresa(codEmp), codContrato, nombre);
+                        Listar.Add(tc);
+                    }
+                }
+                _lector.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+            return Listar;
+        }
+
         #endregion
     }
 }

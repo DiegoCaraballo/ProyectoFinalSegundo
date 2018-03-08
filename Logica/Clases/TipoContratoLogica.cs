@@ -35,5 +35,10 @@ namespace Logica
         {
             FabricaPersistencia.GetPersistenciaTipoContrato().ModificarTipoContrato(unTipoContrato,usuLogueado);
         }
+
+        public List<TipoContrato> ListarContratos()
+        {
+            return (FabricaPersistencia.GetPersistenciaTipoContrato().ListarContratos());
+        }
     }
 }

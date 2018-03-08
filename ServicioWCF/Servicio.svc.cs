@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Xml;
 
 using Logica;
 using EntidadesCompartidas;
@@ -107,6 +108,69 @@ namespace ServicioWCF
         {
             return (FabricaLogica.GetLogicaPago().listar(usuLogueado));
         }
+
+        public XmlDocument ListarContratos()
+        {
+            try
+            {
+                ITipoContratoLogica listado = FabricaLogica.GetLogicaTipoContrato();
+                XmlDocument exportar = ListarContratosXML(listado.ListarContratos());
+                return exportar;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private XmlDocument ListarContratosXML(List<TipoContrato> lista)
+        {
+            try
+            {
+                List<TipoContrato> listado = new List<TipoContrato>();
+                XmlDocument exportar = new XmlDocument();
+
+                XmlNode Contratos = exportar.CreateNode(XmlNodeType.Element, "Contratos", "");
+                exportar.AppendChild(Contratos);
+                foreach (TipoContrato tc in listado)
+                {
+                    XmlNode nodoContrato = exportar.CreateNode(XmlNodeType.Element, "TipoContrato", "");
+
+                    XmlNode nodoEmpCod = exportar.CreateNode(XmlNodeType.Element, "EmpCod", "");
+                    nodoEmpCod.InnerXml = tc.UnaEmp.Codigo.ToString();
+                    nodoContrato.AppendChild(nodoEmpCod);
+
+                    XmlNode nodoEmpRut = exportar.CreateNode(XmlNodeType.Element, "EmpRut", "");
+                    nodoEmpRut.InnerXml = tc.UnaEmp.Rut.ToString();
+                    nodoContrato.AppendChild(nodoEmpRut);
+
+                    XmlNode nodoEmpDir = exportar.CreateNode(XmlNodeType.Element, "EmpDir", "");
+                    nodoEmpDir.InnerXml = tc.UnaEmp.DirFiscal.ToString();
+                    nodoContrato.AppendChild(nodoEmpDir);
+
+                    XmlNode nodoEmpTel = exportar.CreateNode(XmlNodeType.Element, "EmpTel", "");
+                    nodoEmpTel.InnerXml = tc.UnaEmp.Codigo.ToString();
+                    nodoContrato.AppendChild(nodoEmpTel);
+
+                    XmlNode nodoCodContrato = exportar.CreateNode(XmlNodeType.Element, "CodContrato", "");
+                    nodoCodContrato.InnerXml = tc.UnaEmp.Codigo.ToString();
+                    nodoContrato.AppendChild(nodoCodContrato);
+
+                    XmlNode nodoNomContrato = exportar.CreateNode(XmlNodeType.Element, "NomContrato", "");
+                    nodoNomContrato.InnerXml = tc.UnaEmp.Codigo.ToString();
+                    nodoContrato.AppendChild(nodoNomContrato);
+
+                    Contratos.AppendChild(nodoContrato);
+
+                }
+                return exportar;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         #endregion
     }
 }
