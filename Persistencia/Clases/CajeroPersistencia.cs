@@ -264,7 +264,43 @@ namespace Persistencia
             return unCajero;
         }
 
+        public void AgregaExtras(int pCedula,DateTime pFecha,int pMinutos)
+        {
+           
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
 
+            SqlCommand cmd = new SqlCommand("AgregarHorasExtras", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@cedula", pCedula);
+            cmd.Parameters.AddWithValue("@fecha", pFecha);
+            cmd.Parameters.AddWithValue("@minutos", pMinutos);
+            
+
+            SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == -1)
+                    throw new Exception("No existe un cajero con cedula"+pCedula);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+
+            }
+
+
+
+        }
 
         
         #endregion

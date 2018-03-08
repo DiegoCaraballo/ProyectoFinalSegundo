@@ -16,5 +16,6 @@ namespace Persistencia
         void CambioPass(Cajero unCajero, Usuario usuLogueado);
         Cajero BuscarCajero(int cedula);
         Cajero LogueoCajero(string nomUsu);
+        void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos);
     }
 }

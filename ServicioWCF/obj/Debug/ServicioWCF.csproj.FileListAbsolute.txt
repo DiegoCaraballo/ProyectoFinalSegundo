@@ -9,17 +9,6 @@ C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.p
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.csprojResolveAssemblyReference.cache
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.dll
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.pdb
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.dll
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\Logica.dll
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.dll
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.pdb
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\Logica.pdb
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.pdb
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.csprojResolveAssemblyReference.cache
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.dll
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.pdb
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.dll
@@ -31,3 +20,14 @@ C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.pdb
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.csprojResolveAssemblyReference.cache
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
 C:\desarrollo\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.dll
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\ServicioWCF.pdb
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.dll
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\Logica.dll
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.dll
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\EntidadesCompartidas.pdb
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\Logica.pdb
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\bin\Persistencia.pdb
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.csprojResolveAssemblyReference.cache
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.dll
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\ServicioWCF\obj\Debug\ServicioWCF.pdb

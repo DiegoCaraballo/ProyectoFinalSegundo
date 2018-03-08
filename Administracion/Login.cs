@@ -43,7 +43,13 @@ namespace Administracion
                 {
                     if (usu is Cajero)
                     {
+
                         string destino = @"C:\desarrollo\horas.xml";
+                        if (File.Exists(destino))
+                        {
+                            File.Delete(destino);
+                        }
+        
                         XmlDocument horas = new XmlDocument();
 
                         XmlNode usuCajero = horas.CreateNode(XmlNodeType.Element, "usuCajero", "");
@@ -53,14 +59,13 @@ namespace Administracion
                         usuCajero.AppendChild(nodoCedula);
 
                         XmlNode nodoHoraIni = horas.CreateNode(XmlNodeType.Element, "HoraIni", "");
-                        nodoHoraIni.InnerText = ((Cajero)usu).HoranIni.ToString();
+                        nodoHoraIni.InnerText = ((Cajero)usu).HoranIni.ToShortTimeString();
                         usuCajero.AppendChild(nodoHoraIni);
 
                         XmlNode nodoHoraFin = horas.CreateNode(XmlNodeType.Element, "HoraFin", "");
-                        nodoHoraFin.InnerText = ((Cajero)usu).HoranIni.ToString();
+                        nodoHoraFin.InnerText = ((Cajero)usu).HoranFin.ToShortTimeString();
                         usuCajero.AppendChild(nodoHoraFin);
                         horas.AppendChild(usuCajero);
-
 
                         horas.Save(destino);
 
@@ -68,8 +73,9 @@ namespace Administracion
                         Form unForm = new Default(usu);
                         unForm.ShowDialog();
                         this.Close();
+                       
                     }
-                    else 
+                    else
                     {
                         this.Hide();
                         Form unForm = new Default(usu);

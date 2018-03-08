@@ -14,23 +14,6 @@ C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\A
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMCajero.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMEmpresa.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMGerente.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMTipoContrato.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.AltaPago.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.CambioPassword.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Default.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ListadoDePagos.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Login.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Properties.Resources.resources
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe.config
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.pdb
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
-C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
 C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe.config
 C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe
@@ -48,4 +31,19 @@ C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.P
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
-C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe.config
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.exe
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\bin\Debug\Administracion.pdb
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMCajero.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMEmpresa.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMGerente.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ABMTipoContrato.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.AltaPago.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.CambioPassword.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Default.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.ListadoDePagos.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Login.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Properties.Resources.resources
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csproj.GenerateResource.Cache
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
+C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb

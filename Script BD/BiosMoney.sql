@@ -521,6 +521,21 @@ begin
 end
 
 go
+create proc AgregarHorasExtras @cedula int ,@fecha date, @minutos int as
+begin
+	if not exists(select * from cajero where cedula =@cedula)
+		return -1
+	if exists(select * from horasExtras where cedula= @cedula and fecha=@fecha)
+	begin
+		update horasExtras set minutos = @minutos where cedula=@cedula and fecha=@fecha
+		return 1
+	end
+
+	insert into horasExtras(cedula,fecha,minutos) values (@cedula,@fecha,@minutos)
+		return 2
+	end
+go
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--											      	Pago																	       --*--
@@ -824,13 +839,8 @@ exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@ho
 go
 exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
 exec AltaCajero 1233211,'pepegrillo','1234567','Pepe grillo', '2018-01-01 00:00:00','2018-01-01 08:00:00';
+
+go
+update Cajero set HoraFin= '2018-01-01 20:00:00', HoraIni ='2018-01-01 19:00:00';
 go
 --exec ModificarCajero 4565442,'pruebaMod','1236542','usuModificado', '01:00:00','09:00:00'
-
-select * from empresa
-use biosmoney
-select * from pago
-select * from factura
-select * from gerente
-select * from usuario
-select * from empresa

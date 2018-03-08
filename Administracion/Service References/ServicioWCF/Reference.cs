@@ -564,6 +564,9 @@ namespace Administracion.ServicioWCF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/Logueo", ReplyAction="http://tempuri.org/IServicio/LogueoResponse")]
         Administracion.ServicioWCF.Usuario Logueo(string pNomUsu);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AgregaExtras", ReplyAction="http://tempuri.org/IServicio/AgregaExtrasResponse")]
+        void AgregaExtras(int pCedula, System.DateTime pFecha, int pMinutos);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AltaPago", ReplyAction="http://tempuri.org/IServicio/AltaPagoResponse")]
         void AltaPago(Administracion.ServicioWCF.Pago unPago, Administracion.ServicioWCF.Usuario usuLogueado);
         
@@ -650,6 +653,10 @@ namespace Administracion.ServicioWCF {
         
         public Administracion.ServicioWCF.Usuario Logueo(string pNomUsu) {
             return base.Channel.Logueo(pNomUsu);
+        }
+        
+        public void AgregaExtras(int pCedula, System.DateTime pFecha, int pMinutos) {
+            base.Channel.AgregaExtras(pCedula, pFecha, pMinutos);
         }
         
         public void AltaPago(Administracion.ServicioWCF.Pago unPago, Administracion.ServicioWCF.Usuario usuLogueado) {

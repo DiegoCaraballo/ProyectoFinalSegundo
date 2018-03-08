@@ -39,6 +39,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicioWCF", "ServicioWCF\ServicioWCF.csproj", "{E7FA8808-AE04-44BA-8341-A88C383620D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicioWIN", "ServicioWIN\ServicioWIN.csproj", "{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E7FA8808-AE04-44BA-8341-A88C383620D9} = {E7FA8808-AE04-44BA-8341-A88C383620D9}
+	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InstaladorBiosMoney", "InstaladorBiosMoney\InstaladorBiosMoney.vdproj", "{63A189DE-3C2C-491A-A5DD-5E1EC2663459}"
 EndProject

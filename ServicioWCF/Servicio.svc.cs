@@ -16,34 +16,38 @@ namespace ServicioWCF
         #region Usuario
         public void AltaUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaUsuario().AltaUsuario(unUsuario,usuLogueado);
+            FabricaLogica.GetLogicaUsuario().AltaUsuario(unUsuario, usuLogueado);
         }
         public void BajaUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaUsuario().BajaUsuario(unUsuario,usuLogueado);
+            FabricaLogica.GetLogicaUsuario().BajaUsuario(unUsuario, usuLogueado);
         }
         public void ModificarUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaUsuario().Modificarusuario(unUsuario,usuLogueado);
+            FabricaLogica.GetLogicaUsuario().Modificarusuario(unUsuario, usuLogueado);
         }
         public Usuario BuscarUsuario(int pCedula)
         {
-         return   (FabricaLogica.GetLogicaUsuario().Buscar(pCedula));
+            return (FabricaLogica.GetLogicaUsuario().Buscar(pCedula));
         }
         public void CambioPass(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaUsuario().CambioPass(unUsuario,usuLogueado);
+            FabricaLogica.GetLogicaUsuario().CambioPass(unUsuario, usuLogueado);
         }
         public Usuario Logueo(string pNomUsu)
         {
             return (FabricaLogica.GetLogicaUsuario().Logueo(pNomUsu));
+        }
+        public void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos)
+        {
+            FabricaLogica.GetLogicaUsuario().AgregaExtras(pCedula, pFecha, pMinutos);
         }
         #endregion
 
         #region Pago
         public void AltaPago(Pago unPago, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaPago().AltaPago(unPago,usuLogueado);
+            FabricaLogica.GetLogicaPago().AltaPago(unPago, usuLogueado);
         }
 
         public Pago PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
@@ -61,22 +65,22 @@ namespace ServicioWCF
 
         public void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaEmpresa().AltaEmpresa(unaEmpresa,usuLogueado);
+            FabricaLogica.GetLogicaEmpresa().AltaEmpresa(unaEmpresa, usuLogueado);
         }
 
         public void BajaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaEmpresa().BajaEmpresa(unaEmpresa,usuLogueado);
+            FabricaLogica.GetLogicaEmpresa().BajaEmpresa(unaEmpresa, usuLogueado);
         }
 
         public void ModificarEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaEmpresa().ModificarEmpresa(unaEmpresa,usuLogueado);
+            FabricaLogica.GetLogicaEmpresa().ModificarEmpresa(unaEmpresa, usuLogueado);
         }
 
         public List<Empresa> ListarEmpresas()
         {
-            return(FabricaLogica.GetLogicaEmpresa().ListarEmpresas());
+            return (FabricaLogica.GetLogicaEmpresa().ListarEmpresas());
         }
 
         #endregion
@@ -88,15 +92,15 @@ namespace ServicioWCF
         }
         public void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaTipoContrato().AltaTipoContrato(unTipoContrato,usuLogueado);
+            FabricaLogica.GetLogicaTipoContrato().AltaTipoContrato(unTipoContrato, usuLogueado);
         }
         public void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaTipoContrato().BajaTipoContrato(unTipoContrato,usuLogueado);
+            FabricaLogica.GetLogicaTipoContrato().BajaTipoContrato(unTipoContrato, usuLogueado);
         }
         public void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaLogica.GetLogicaTipoContrato().ModificarTipoContrato(unTipoContrato,usuLogueado);
+            FabricaLogica.GetLogicaTipoContrato().ModificarTipoContrato(unTipoContrato, usuLogueado);
         }
 
         public List<Pago> listar(Usuario usuLogueado)

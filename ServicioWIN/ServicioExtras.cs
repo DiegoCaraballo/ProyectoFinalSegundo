@@ -7,8 +7,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 
-using EntidadesCompartidas;
-using Logica;
+
 using System.IO;
 using System.Configuration;
 using System.Xml;
@@ -17,6 +16,8 @@ using System.Xml.Linq;
 using System.Timers;
 using System.Windows.Forms;
 using System.Globalization;
+
+using ServicioWIN.ServicioWCF;
 namespace ServicioWIN
 {
     partial class ServicioExtras : ServiceBase
@@ -30,18 +31,18 @@ namespace ServicioWIN
 
             Mensajes.Source = "MiServicioExtras";
             Mensajes.Log = "ServicioExtrasLog";
-            
+
         }
 
         protected override void OnStart(string[] args)
-        {          
+        {
             Mensajes.WriteEntry("Se inicia el servicio - ServicioExtras");
 
             //Creamos le Timer aquí
             System.Timers.Timer crono = new System.Timers.Timer();
             crono.Interval = 10000;
             crono.Elapsed += new ElapsedEventHandler(crono_tick);
-            crono.Enabled = true;     
+            crono.Enabled = true;
         }
 
         protected override void OnStop()
@@ -65,30 +66,43 @@ namespace ServicioWIN
         {
             Mensajes.WriteEntry("Se continua ejecutando el servicio - ServicioExtras");
             cronometro.Enabled = true;
-            cronometro.Start();          
+            cronometro.Start();
         }
 
         private void crono_tick(object sender, ElapsedEventArgs e)
         {
-            Mensajes.WriteEntry("Esto se debería ejecutar cada 10 seg..");
+            DateTime horaActual = DateTime.Now;
 
-            int horaActual = DateTime.Now.Hour;
 
-            if(File.Exists(@"C:\desarrollo\horas.xml"))
+            if (File.Exists(@"C:\desarrollo\horas.xml"))
             {
                 try
                 {
                     XmlDocument documento = new XmlDocument();
                     documento.Load(@"C:\desarrollo\horas.xml");
 
-                    XmlNodeList horas = documento.GetElementsByTagName("HoraFin");
+                    XmlNodeList horas = (documento.GetElementsByTagName("HoraFin"));
+                    XmlNodeList cedula = (documento.GetElementsByTagName("Cedula"));
 
-                    //DateTime horaFin = DateTime.ParseExact(horas[0].InnerText.Trim().ToString(),
-                    //  "dd/MM/yyyy HH:mm:ss tt",
-                    //   CultureInfo.InvariantCulture);
+                    DateTime h = DateTime.Parse(horas[0].InnerText.Trim().ToString());
 
-                    Mensajes.WriteEntry("Hora Fin - " + horas[0].InnerText);
-                    Mensajes.WriteEntry("Hora Actual - " + horaActual.ToString());
+                    var t1 = TimeSpan.Parse(horaActual.ToShortTimeString());
+
+                    var t2 = TimeSpan.Parse(h.ToShortTimeString());
+
+                    if (t1 > t2)
+                    {
+
+                        TimeSpan totalMinutos = (t1 - t2);
+                        int minutosExtras = Convert.ToInt32(totalMinutos.TotalMinutes);
+                        //TODO
+                        IServicio serv = new ServicioClient();
+                        serv.AgregaExtras(Convert.ToInt32(cedula[0].InnerText.Trim().ToString()), horaActual.Date, minutosExtras);
+
+
+                        Mensajes.WriteEntry("Se generaron " + minutosExtras + " Minutos Extras");
+                    }
+
                 }
                 catch (Exception ex)
                 {

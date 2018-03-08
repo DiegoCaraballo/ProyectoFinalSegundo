@@ -13,6 +13,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -54,6 +54,8 @@
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -71,22 +73,17 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ServicioWCF\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ServicioExtras.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ServicioExtras.Designer.cs">
       <DependentUpon>ServicioExtras.cs</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EntidadesCompartidas\EntidadesCompartidas.csproj">
-      <Project>{986AAA80-E0D1-4E23-BAE1-2F6821C56927}</Project>
-      <Name>EntidadesCompartidas</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logica\Logica.csproj">
-      <Project>{3B692578-A7B1-4E1A-A048-D85ED76B6C3F}</Project>
-      <Name>Logica</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">
@@ -117,6 +114,56 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\EntidadesCompartidas.Empresa.datasource" />
+    <None Include="Properties\DataSources\EntidadesCompartidas.Pago.datasource" />
+    <None Include="Properties\DataSources\EntidadesCompartidas.TipoContrato.datasource" />
+    <None Include="Properties\DataSources\EntidadesCompartidas.Usuario.datasource" />
+    <None Include="Service References\ServicioWCF\Servicio.wsdl" />
+    <None Include="Service References\ServicioWCF\Servicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioWCF\Servicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioWCF\Servicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicioWCF\ServicioWIN.ServicioWCF.Empresa.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicioWCF\ServicioWIN.ServicioWCF.Pago.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicioWCF\ServicioWIN.ServicioWCF.TipoContrato.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServicioWCF\ServicioWIN.ServicioWCF.Usuario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServicioWCF\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicioWCF\Servicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicioWCF\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicioWCF\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicioWCF\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

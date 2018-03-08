@@ -18,26 +18,26 @@ namespace Logica
             return _instancia;
         }
 
-        public void AltaUsuario(Usuario unUsuario,Usuario usuLogueado)
+        public void AltaUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
             if (unUsuario is Cajero)
             {
-                FabricaPersistencia.GetPersistenciaCajero().AltaCajero((Cajero)unUsuario,usuLogueado);
+                FabricaPersistencia.GetPersistenciaCajero().AltaCajero((Cajero)unUsuario, usuLogueado);
             }
             else
             {
-                FabricaPersistencia.GetPersistenciaGerente().AltaGerente((Gerente)unUsuario,usuLogueado);
+                FabricaPersistencia.GetPersistenciaGerente().AltaGerente((Gerente)unUsuario, usuLogueado);
             }
         }
 
         public void BajaUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaCajero().BajaCajero((Cajero)unUsuario,usuLogueado);
+            FabricaPersistencia.GetPersistenciaCajero().BajaCajero((Cajero)unUsuario, usuLogueado);
         }
 
         public void Modificarusuario(Usuario unUsuario, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaCajero().ModificarCajero((Cajero)unUsuario,usuLogueado);
+            FabricaPersistencia.GetPersistenciaCajero().ModificarCajero((Cajero)unUsuario, usuLogueado);
         }
 
         public Usuario Buscar(int cedula)
@@ -50,11 +50,11 @@ namespace Logica
         {
             if (unUsuario is Cajero)
             {
-                FabricaPersistencia.GetPersistenciaCajero().CambioPass((Cajero)unUsuario,usuLogueado);
+                FabricaPersistencia.GetPersistenciaCajero().CambioPass((Cajero)unUsuario, usuLogueado);
             }
             else
             {
-                FabricaPersistencia.GetPersistenciaGerente().CambioPass((Gerente)unUsuario,usuLogueado);
+                FabricaPersistencia.GetPersistenciaGerente().CambioPass((Gerente)unUsuario, usuLogueado);
             }
         }
 
@@ -76,7 +76,17 @@ namespace Logica
                 throw new Exception(ex.Message);
             }
         }
-
+        public void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos)
+        {
+            try
+            {
+                FabricaPersistencia.GetPersistenciaCajero().AgregaExtras(pCedula, pFecha, pMinutos);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
 
     }
