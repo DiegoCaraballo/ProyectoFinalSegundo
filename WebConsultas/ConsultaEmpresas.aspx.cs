@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 using ServicioWCF;
+using System.Xml;
 
 public partial class ConsultaEmpresas : System.Web.UI.Page
 {
@@ -18,7 +20,7 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
                 CargarLista();
             }
         }
-        catch(Exception)
+        catch (Exception)
         {
             throw new Exception();
         }
@@ -28,23 +30,37 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
     //Cargar lista de empresas al repeater
     protected void CargarLista()
     {
-        try 
+        try
         {
             IServicio serv = new ServicioClient();
 
-            List<Empresa> lasEmpresas = new List<Empresa>();
-            lasEmpresas = serv.ListarEmpresas().ToList();
+            //obtengo el xml desde el WCF
+            string st = serv.ListarContratos().ToString();
+
+            //creo y cargo con los datos el documento q me devolvio el WS- formato para Linq
+            XElement _documento = XElement.Parse(st);
+            Session["Documento"] = _documento;
+
+            var resultado = (from res in _documento.Elements("TipoContrato")
+                             group res by res.Element("EmpCod").Value into codigos
+                             select new
+                             {
+                                 Rut = codigos.First().Element("EmpRut").Value,
+                                 Codigo = codigos.First().Element("EmpCod").Value,
+                                 DirFiscal = codigos.First().Element("EmpDir").Value,
+                                 Telefono = codigos.First().Element("EmpTel").Value
+                             }).ToList();
 
             //Cargo repeater
-            rpEmpresas.DataSource = lasEmpresas;
+            rpEmpresas.DataSource = resultado;
             rpEmpresas.DataBind();
 
             //Si no hay empresas
-            if(rpEmpresas.Items.Count == 0)
+            if (rpEmpresas.Items.Count == 0)
                 throw new Exception("No hay empresas para listar");
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             lblMensaje.Text = ex.Message;
         }

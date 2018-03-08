@@ -72,7 +72,7 @@ namespace ServicioWCF
         [OperationContract]
         void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         [OperationContract]
-        XmlDocument ListarContratos();
+        string ListarContratos();
 
         #endregion
     }
