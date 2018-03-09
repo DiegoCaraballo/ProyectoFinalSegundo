@@ -47,3 +47,7 @@ C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\A
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
+C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\yo-NG\Administracion.resources.dll
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Default.yo-NG.resources
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\yo-NG\Administracion.resources.dll

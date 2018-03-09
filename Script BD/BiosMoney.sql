@@ -500,6 +500,9 @@ end
 go
 
 --Cambiar Pass
+--drop proc CambioPass
+--exec CambioPass 1233211,'rafiki1'
+--alter login rafiki with password = '1231231'
 create proc CambioPass @cedula int, @pass varchar(7) as
 begin
 	if not exists(select * from usuario where cedula=@cedula)
@@ -509,7 +512,7 @@ begin
 	Declare @VarSentencia varchar(200);
 	
 	begin tran
-	Set @VarSentencia = 'Alter Login [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' +@pass+ ']'
+	Set @VarSentencia = 'Alter Login [' + (select nomUsu from usuario  where cedula=@cedula ) +  '] WITH PASSWORD = ''' +@pass+ ';';
 	Exec (@VarSentencia)
 	set @Error=@@Error
 	if(@Error<>0)
@@ -518,7 +521,7 @@ begin
 		return -4
 	end
 
-	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' +@pass+']'
+	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +  '] WITH PASSWORD = ''' +@pass+';';
 	Exec (@VarSentencia)
 	set @Error=@@Error
 	if(@Error<>0)

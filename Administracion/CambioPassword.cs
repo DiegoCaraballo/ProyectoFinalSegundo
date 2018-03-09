@@ -25,21 +25,31 @@ namespace Administracion
         {
             try
             {
+                if (txtActualPass.Text == "")
+                {
+                    throw new Exception();
+                }
+                else
+                {
+                    epPass.Clear();
+                }
+            }
+            catch (Exception)
+            {
+                epPass.SetError(txtActualPass, "la contraseña no puede esta vacia");
+                e.Cancel = true;
+                return;
+            }
+            try
+            {
                 if (usuLogueado.Pass != txtActualPass.Text)
                 {
-                    throw new Exception("Su contraseña no es igual a la actual");
+                    throw new Exception("La Contraseña actual ingresada no es correcta");
                 }
                 else
                 {
                     txtActualPass.Enabled = false;
                 }
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
             }
             catch (Exception ex)
             {
@@ -55,6 +65,23 @@ namespace Administracion
         {
             try
             {
+                if (txtRepitePass.Text == "")
+                {
+                    throw new Exception();
+                }
+                else
+                {
+                    epPass.Clear();
+                }
+            }
+            catch (Exception)
+            {
+                epPass.SetError(txtRepitePass, "la contraseña no puede esta vacia");
+                e.Cancel = true;
+                return;
+            }
+            try
+            {
                 if (txtNuevaPass.Text == txtRepitePass.Text)
                 {
                     usuLogueado.Pass = txtRepitePass.Text;
@@ -66,13 +93,6 @@ namespace Administracion
                 {
                     throw new Exception("La nueva contraseña ingresada no coincide");
                 }
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
             }
             catch (Exception ex)
             {
@@ -96,6 +116,27 @@ namespace Administracion
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+        }
+
+        private void txtNuevaPass_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                if (txtNuevaPass.Text == "")
+                {
+                    throw new Exception();
+                }
+                else
+                {
+                    epPass.Clear();
+                }
+            }
+            catch (Exception)
+            {
+                epPass.SetError(txtNuevaPass, "la contraseña no puede esta vacia");
+                e.Cancel = true;
+                return;
+            }
         }
 
     }

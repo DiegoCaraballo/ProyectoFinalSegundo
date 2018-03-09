@@ -21,6 +21,19 @@ namespace Administracion
         {
             usuLogueado = pUsuLogueado;
             InitializeComponent();
+            if (usuLogueado is Cajero)
+            {
+                altaDeUsuariosTipoGerenteToolStripMenuItem.Visible = false;
+                aBMDeUsuarioTipoCajeroToolStripMenuItem.Visible = false;
+                aBMDeEmpresasToolStripMenuItem.Visible = false;
+                aBMTipoDeContratoToolStripMenuItem.Visible = false;
+                listadoDePagosToolStripMenuItem.Visible = false;
+            }
+            else
+            {
+                altaDePagosToolStripMenuItem.Visible = false;
+
+            }
         }
 
         // ABM Usuario de tipo Gerente
@@ -126,10 +139,15 @@ namespace Administracion
         //Cuando se cierra el formulario se elimina el XML para las Horas Extras
         private void Default_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (File.Exists(@"C:\desarrollo\horas.xml"))
+            try
             {
-                File.Delete(@"C:\desarrollo\horas.xml");
+                if (File.Exists(@"C:\desarrollo\horas.xml"))
+                {
+                    File.Delete(@"C:\desarrollo\horas.xml");
+                }
             }
+            catch (Exception ex)
+            { lblMensajes.Text = ex.Message; }
         }
 
 

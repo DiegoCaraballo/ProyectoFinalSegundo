@@ -602,6 +602,9 @@ namespace Administracion.ServicioWCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ModificarTipoContrato", ReplyAction="http://tempuri.org/IServicio/ModificarTipoContratoResponse")]
         void ModificarTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato, Administracion.ServicioWCF.Usuario usuLogueado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ListarContratos", ReplyAction="http://tempuri.org/IServicio/ListarContratosResponse")]
+        string ListarContratos();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -705,6 +708,10 @@ namespace Administracion.ServicioWCF {
         
         public void ModificarTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato, Administracion.ServicioWCF.Usuario usuLogueado) {
             base.Channel.ModificarTipoContrato(unTipoContrato, usuLogueado);
+        }
+        
+        public string ListarContratos() {
+            return base.Channel.ListarContratos();
         }
     }
 }

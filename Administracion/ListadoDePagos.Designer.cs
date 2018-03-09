@@ -42,17 +42,17 @@
             // gvPagos
             // 
             this.gvPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvPagos.Location = new System.Drawing.Point(-1, 155);
+            this.gvPagos.Location = new System.Drawing.Point(-1, 137);
             this.gvPagos.Name = "gvPagos";
             this.gvPagos.RowTemplate.Height = 24;
-            this.gvPagos.Size = new System.Drawing.Size(786, 548);
+            this.gvPagos.Size = new System.Drawing.Size(787, 384);
             this.gvPagos.TabIndex = 0;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(613, 62);
+            this.btnLimpiar.Location = new System.Drawing.Point(547, 29);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(107, 38);
+            this.btnLimpiar.Size = new System.Drawing.Size(107, 27);
             this.btnLimpiar.TabIndex = 1;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -60,9 +60,9 @@
             // 
             // btnResumenCajero
             // 
-            this.btnResumenCajero.Location = new System.Drawing.Point(454, 62);
+            this.btnResumenCajero.Location = new System.Drawing.Point(416, 29);
             this.btnResumenCajero.Name = "btnResumenCajero";
-            this.btnResumenCajero.Size = new System.Drawing.Size(125, 38);
+            this.btnResumenCajero.Size = new System.Drawing.Size(125, 27);
             this.btnResumenCajero.TabIndex = 2;
             this.btnResumenCajero.Text = "Resumen Cajero";
             this.btnResumenCajero.UseVisualStyleBackColor = true;
@@ -71,53 +71,54 @@
             // cboCajero
             // 
             this.cboCajero.FormattingEnabled = true;
-            this.cboCajero.Location = new System.Drawing.Point(64, 70);
+            this.cboCajero.Location = new System.Drawing.Point(92, 30);
             this.cboCajero.Name = "cboCajero";
-            this.cboCajero.Size = new System.Drawing.Size(161, 24);
+            this.cboCajero.Size = new System.Drawing.Size(161, 26);
             this.cboCajero.TabIndex = 3;
             this.cboCajero.SelectedIndexChanged += new System.EventHandler(this.cboCajero_SelectedIndexChanged);
             // 
             // cboEmpresa
             // 
             this.cboEmpresa.FormattingEnabled = true;
-            this.cboEmpresa.Location = new System.Drawing.Point(265, 70);
+            this.cboEmpresa.Location = new System.Drawing.Point(259, 29);
             this.cboEmpresa.Name = "cboEmpresa";
-            this.cboEmpresa.Size = new System.Drawing.Size(151, 24);
+            this.cboEmpresa.Size = new System.Drawing.Size(151, 26);
             this.cboEmpresa.TabIndex = 4;
             this.cboEmpresa.SelectedIndexChanged += new System.EventHandler(this.cboEmpresa_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 47);
+            this.label1.Location = new System.Drawing.Point(89, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 17);
+            this.label1.Size = new System.Drawing.Size(47, 18);
             this.label1.TabIndex = 5;
             this.label1.Text = "Cajero";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(265, 47);
+            this.label2.Location = new System.Drawing.Point(256, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 17);
+            this.label2.Size = new System.Drawing.Size(60, 18);
             this.label2.TabIndex = 6;
             this.label2.Text = "Empresa";
             // 
             // lblMensaje
             // 
             this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Location = new System.Drawing.Point(265, 122);
+            this.lblMensaje.Location = new System.Drawing.Point(265, 137);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(0, 17);
+            this.lblMensaje.Size = new System.Drawing.Size(0, 18);
             this.lblMensaje.TabIndex = 7;
             this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // ListadoDePagos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 703);
+            this.BackColor = System.Drawing.Color.AliceBlue;
+            this.ClientSize = new System.Drawing.Size(781, 522);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -126,6 +127,7 @@
             this.Controls.Add(this.btnResumenCajero);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.gvPagos);
+            this.Font = new System.Drawing.Font("Palatino Linotype", 9.75F);
             this.Name = "ListadoDePagos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ListadoDePagos";

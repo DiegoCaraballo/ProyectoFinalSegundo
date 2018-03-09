@@ -133,6 +133,9 @@
     <EmbeddedResource Include="Default.resx">
       <DependentUpon>Default.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Default.yo-NG.resx">
+      <DependentUpon>Default.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListadoDePagos.resx">
       <DependentUpon>ListadoDePagos.cs</DependentUpon>
     </EmbeddedResource>

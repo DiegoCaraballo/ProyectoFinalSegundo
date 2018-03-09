@@ -14,17 +14,15 @@ namespace Administracion
     public partial class ABMCajero : Form
     {
         Usuario usuBuscado = null;
-        Usuario usuLogueado=null;
+        Usuario usuLogueado = null;
         public ABMCajero(Usuario usu)
         {
             usuLogueado = usu;
             InitializeComponent();
+            EstadoInicial();
+
         }
 
-        private void ABMCajero_Load(object sender, EventArgs e)
-        {
-//todo
-        }
 
         //Ingresar un Cajero
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -36,22 +34,14 @@ namespace Administracion
                 cajero.NomUsu = txtUsuario.Text;
                 cajero.Pass = txtPass.Text;
                 cajero.NomCompleto = txtNomApe.Text;
-                cajero.HoranIni = Convert.ToDateTime(txtHoraInicio.Text);
+                cajero.HoranIni = Convert.ToDateTime(txtHoraIni.Text);
                 cajero.HoranFin = Convert.ToDateTime(txtHoraFin.Text);
 
                 IServicio serv = new ServicioClient();
                 serv.AltaUsuario(cajero, usuLogueado);
-                
+
                 EstadoInicial();
                 lblMensajes.Text = "El usuario ingresado exitosamente";
-              
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
             }
             catch (Exception ex)
             {
@@ -67,6 +57,18 @@ namespace Administracion
         {
             try
             {
+                Convert.ToInt32(txtCedula.Text);
+                epCedula.Clear();
+            }
+            catch (Exception)
+            {
+                epCedula.SetError(txtCedula, "La cedula debe ser numerica");
+                e.Cancel = true;
+                return;
+            }
+
+            try
+            {
                 IServicio serv = new ServicioClient();
                 usuBuscado = serv.BuscarUsuario(Convert.ToInt32(txtCedula.Text));
 
@@ -75,23 +77,20 @@ namespace Administracion
                     txtCedula.Text = usuBuscado.Cedula.ToString();
                     txtUsuario.Text = usuBuscado.NomUsu;
                     txtNomApe.Text = usuBuscado.NomCompleto;
-                    txtHoraFin.Text = ((Cajero)usuBuscado).HoranFin.ToString();
-                    txtHoraInicio.Text = ((Cajero)usuBuscado).HoranIni.ToString();
-                   
+                    txtHoraFin.Text = ((Cajero)usuBuscado).HoranFin.ToShortTimeString();
+                    txtHoraIni.Text = ((Cajero)usuBuscado).HoranIni.ToShortTimeString();
+
                     btnEliminar.Enabled = true;
                     btnModificar.Enabled = true;
+                    txtCedula.Enabled = false;
+                    txtCedula.Enabled = false;
+                    txtPass.Enabled = false;
                 }
                 else
                 {
-                    btnIngresar.Enabled = true;   
+                    btnIngresar.Enabled = true;
+
                 }
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
             }
             catch (Exception ex)
             {
@@ -100,7 +99,6 @@ namespace Administracion
                 else
                     lblMensajes.Text = ex.Message;
             }
-
         }
 
         //Modificar Cajero
@@ -108,11 +106,10 @@ namespace Administracion
         {
             try
             {
-
                 usuBuscado.NomUsu = txtUsuario.Text;
                 usuBuscado.NomCompleto = txtNomApe.Text;
                 ((Cajero)usuBuscado).HoranFin = Convert.ToDateTime(txtHoraFin.Text);
-                ((Cajero)usuBuscado).HoranIni = Convert.ToDateTime(txtHoraInicio.Text);
+                ((Cajero)usuBuscado).HoranIni = Convert.ToDateTime(txtHoraIni.Text);
 
                 IServicio serv = new ServicioClient();
                 serv.ModificarUsuario(usuBuscado, usuLogueado);
@@ -120,13 +117,6 @@ namespace Administracion
                 EstadoInicial();
                 lblMensajes.Text = "El usuario fue modificado exitosamente";
 
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
             }
             catch (Exception ex)
             {
@@ -148,13 +138,6 @@ namespace Administracion
                 EstadoInicial();
                 lblMensajes.Text = "El usuario fue modificado exitosamente";
             }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
-            }
             catch (Exception ex)
             {
                 if (ex.Message.Length > 80)
@@ -171,20 +154,19 @@ namespace Administracion
             txtUsuario.Text = "";
             txtPass.Text = "";
             txtNomApe.Text = "";
-            txtHoraInicio.Text = "";
+            txtHoraIni.Text = "";
             txtHoraFin.Text = "";
 
             txtCedula.Enabled = true;
             txtUsuario.Enabled = true;
             txtPass.Enabled = true;
             txtNomApe.Enabled = true;
-            txtHoraInicio.Enabled = true;
+            txtHoraIni.Enabled = true;
             txtHoraFin.Enabled = true;
 
             btnEliminar.Enabled = false;
             btnModificar.Enabled = false;
             btnIngresar.Enabled = false;
-           
         }
 
         //Limpiar

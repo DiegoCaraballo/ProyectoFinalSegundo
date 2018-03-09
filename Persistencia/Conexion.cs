@@ -16,22 +16,23 @@ namespace Persistencia
         }
 
       //  //Nico
-      //  private static string cnn = "Data Source=PC-NICO-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = true";
 
-      // public string cnnUsu(Usuario unUsuario)
-      //{
-      //      return ("Data Source=PC-NICO-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = false; User ID =" + unUsuario.NomUsu + "; Password =" + unUsuario.Pass);
-      //  }
+        private static string cnn = "Data Source=PC-NICO-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = true";
+
+        public string cnnUsu(Usuario unUsuario)
+        {
+            return ("Data Source=PC-NICO-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = false; User ID =" + unUsuario.NomUsu + "; Password =" + unUsuario.Pass);
+        }
 
 
         ////Diego
 
-        private static string cnn = "Data Source=LENOVO-PC\\SA; Initial Catalog = BiosMoney; Integrated Security = true";
+        //private static string cnn = "Data Source=LENOVO-PC\\SA; Initial Catalog = BiosMoney; Integrated Security = true";
 
-        public string cnnUsu(Usuario unUsuario)
-        {
-            return ("Data Source=LENOVO-PC\\SA; Initial Catalog = BiosMoney; Integrated Security = false; User ID =" + unUsuario.NomUsu + "; Password =" + unUsuario.Pass);
-        }
+        //public string cnnUsu(Usuario unUsuario)
+        //{
+        //    return ("Data Source=LENOVO-PC\\SA; Initial Catalog = BiosMoney; Integrated Security = false; User ID =" + unUsuario.NomUsu + "; Password =" + unUsuario.Pass);
+        //}
 
 
 

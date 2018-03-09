@@ -123,8 +123,6 @@ namespace Persistencia
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@cedula", unCajero.Cedula);
-            cmd.Parameters.AddWithValue("@nomUsu", unCajero.NomUsu);
-            cmd.Parameters.AddWithValue("@pass", unCajero.Pass);
             cmd.Parameters.AddWithValue("@nomCompleto", unCajero.NomCompleto);
 
             cmd.Parameters.AddWithValue("@horaini", unCajero.HoranIni);
