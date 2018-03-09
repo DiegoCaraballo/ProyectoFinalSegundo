@@ -38,7 +38,7 @@
                     Tipo Contrato
                 </td>
             </tr>
-    <asp:Repeater ID="rpEmpresas" runat="server">
+    <asp:Repeater ID="rpEmpresas" runat="server" onitemcommand="rpEmpresas_ItemCommand">
     <ItemTEmplate>                                                               
                 </table>
                 <table class="empresas">
@@ -89,6 +89,13 @@
                     
      
     </asp:Repeater>
+                    <tr>
+                        <td>
+                            <asp:Xml ID="ctrlXML" runat="server" 
+                                TransformSource="~/XSLT/XSLTContratos.xslt"></asp:Xml>
+                            <br />
+                        </td>
+                    </tr>
     <article>
     </div>
     </div>

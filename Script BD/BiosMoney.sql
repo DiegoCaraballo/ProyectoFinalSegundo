@@ -518,7 +518,7 @@ begin
 		return -4
 	end
 
-	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' + @pass+']'
+	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +  ' WITH PASSWORD =' +@pass+']'
 	Exec (@VarSentencia)
 	set @Error=@@Error
 	if(@Error<>0)
@@ -686,12 +686,6 @@ Go
 --Modificar Contrato
 Create Proc ModificarTipoContrato @codEmp int , @codContrato int,@nombre varchar (30)as
 Begin
-
-	if not exists (select * from empresa where codEmpresa = @codEmp)
-		return -1
-
-	if exists (select * from empresa where codEmpresa = @codEmp and activo = 0)
-		return -2
 
 	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato = @codContrato and activo = 0)
 		return -3

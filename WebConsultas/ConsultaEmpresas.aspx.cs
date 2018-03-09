@@ -65,4 +65,70 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
             lblMensaje.Text = ex.Message;
         }
     }
+
+    //Funcionalidad Mostrar dentro del Repeater
+    protected void rpEmpresas_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        try
+        {
+            if (e.CommandName == "Mostrar")
+            {
+                try
+                {
+                    //Cargo el documento de la session
+                    XElement _documento = (XElement)Session["Documento"];
+
+                    int CodEmp = Convert.ToInt32(((Label)e.Item.FindControl("lblCodigo")).Text);
+                    //LINQ
+                    var resultado = (from res in _documento.Elements("TipoContrato")
+                                     where Convert.ToInt32(res.Element("EmpCod").Value) == CodEmp
+                                     select new
+                                     {
+                                         Codigo = res.Element("CodContrato").Value,
+                                         Nombre = res.Element("NomContrato").Value
+                                     }).ToList();
+
+
+                    //Armamos xml del resultado
+                    XmlDocument exportar = new XmlDocument();
+                    exportar.LoadXml("<?xml version='1.0' encoding='utf-8' ?> <TiposDeContratos> </TiposDeContratos>");
+
+                    XmlNode _raiz = exportar.DocumentElement;
+
+                    foreach (var tc in resultado)
+                    {
+                        XmlElement _Codigo = exportar.CreateElement("CodContrato");
+                        _Codigo.InnerText = tc.Codigo.ToString();
+
+                        XmlElement _Nombre = exportar.CreateElement("NomContrato");
+                        _Nombre.InnerText = tc.Nombre.ToString();
+
+                        XmlNode nodoContrato = exportar.CreateElement("TipoContrato");
+                        nodoContrato.AppendChild(_Codigo);
+                        nodoContrato.AppendChild(_Nombre);
+
+                        _raiz.AppendChild(nodoContrato);
+
+                    }
+
+                    //Cargamos el control XML
+                    //string st = exportar.OuterXml;
+                    ctrlXML.DocumentContent = exportar.OuterXml;
+                    //ctrlXML.DocumentSource = exportar.OuterXml;
+
+
+                    int i = 0;
+                }
+
+                catch (Exception ex)
+                {
+                    lblMensaje.Text = ex.Message;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            lblMensaje.Text = ex.Message;
+        }
+    }
 }
