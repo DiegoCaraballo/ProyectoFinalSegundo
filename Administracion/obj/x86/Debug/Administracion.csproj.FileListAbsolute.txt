@@ -51,3 +51,6 @@ C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.c
 C:\desarrollo\ProyectoFinalSegundo\Administracion\bin\Debug\yo-NG\Administracion.resources.dll
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Default.yo-NG.resources
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\yo-NG\Administracion.resources.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\bin\Debug\yo-NG\Administracion.resources.dll
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.Default.yo-NG.resources
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Administracion\obj\x86\Debug\yo-NG\Administracion.resources.dll

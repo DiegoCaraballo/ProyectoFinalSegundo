@@ -139,7 +139,7 @@ namespace Persistencia
             cmd.Parameters.AddWithValue("@codEmp", unaEmpresa.Codigo);
             cmd.Parameters.AddWithValue("@rut", unaEmpresa.Rut);
             cmd.Parameters.AddWithValue("@direccion", unaEmpresa.DirFiscal);
-            cmd.Parameters.AddWithValue("@teledono", unaEmpresa.Telefono);
+            cmd.Parameters.AddWithValue("@telefono", unaEmpresa.Telefono);
 
             
             SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);

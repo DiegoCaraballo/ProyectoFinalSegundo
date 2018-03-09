@@ -112,12 +112,8 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
                     }
 
                     //Cargamos el control XML
-                    //string st = exportar.OuterXml;
                     ctrlXML.DocumentContent = exportar.OuterXml;
-                    //ctrlXML.DocumentSource = exportar.OuterXml;
 
-
-                    int i = 0;
                 }
 
                 catch (Exception ex)

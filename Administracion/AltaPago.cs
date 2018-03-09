@@ -205,7 +205,7 @@ namespace Administracion
 
                 //Cargo todos los textbox
                 txtCodCli.Text = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0')).ToString();
-                txtCodEmp.Text = unaEmpresa.Codigo.ToString();
+                txtCodEmp.Text = unaEmpresa.Rut.ToString();
                 //TODO - Ver como capturar exception del error de conversión a DateTime
                 var newDate = DateTime.ParseExact(txtCodBarra.Text.Substring(6, 8).TrimStart('0').ToString(),
                                   "yyyyMMdd",

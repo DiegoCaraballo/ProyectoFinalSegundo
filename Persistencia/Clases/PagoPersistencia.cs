@@ -120,7 +120,7 @@ namespace Persistencia
                 if (lector.HasRows)
                 {
                     lector.Read();
-                    fechaPago = (DateTime)lector["numeroInt"];                
+                    fechaPago = (DateTime)lector["fecha"];                
                 }
 
                 lector.Close();

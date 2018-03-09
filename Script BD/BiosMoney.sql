@@ -866,8 +866,6 @@ exec AltaTipoContrato 5555, 52, 'HokjdausndMundo'
 exec AltaTipoContrato 5555, 25, 'Hoanksdjndo'
 
 
-
-
 --select * from empresa
 --select * from tipoContrato WHERE codEmp = 1234 AND codContrato = 33
 
@@ -880,3 +878,5 @@ go
 exec AltaCajero 1233211,'pepegrillo','1234567','Pepe grillo', '2018-01-01 00:00:00','2018-01-01 08:00:00';
 go
 --update Cajero set HoraFin= '2018-01-01 20:00:00', HoraIni ='2018-01-01 19:00:00';
+
+select * from empresa

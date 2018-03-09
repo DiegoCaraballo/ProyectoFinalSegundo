@@ -87,9 +87,9 @@ namespace Administracion
         {
             try
             {
-                empBuscada.Rut = Convert.ToInt32(txtRut.Text);
-                empBuscada.DirFiscal = txtDireccion.Text;
-                empBuscada.Telefono = txtTelefono.Text;
+                empBuscada.Rut = Convert.ToInt32(txtRut.Text.Trim());
+                empBuscada.DirFiscal = txtDireccion.Text.Trim();
+                empBuscada.Telefono = txtTelefono.Text.Trim();
 
                 IServicio serv = new ServicioClient();
                 serv.ModificarEmpresa(empBuscada, usuLogueado);
@@ -103,6 +103,12 @@ namespace Administracion
                 else
                     lblMensajes.Text = ex.Detail.InnerText;
             }
+
+            catch (FormatException)
+            {
+                lblMensajes.Text = "El Código y Rut de la Empresa deben ser numéricos"; 
+            }
+
             catch (Exception ex)
             {
                 if (ex.Message.Length > 80)
@@ -119,6 +125,7 @@ namespace Administracion
             {
                 IServicio serv = new ServicioClient();
                 serv.BajaEmpresa(empBuscada, usuLogueado);
+                LimpiarCampos();
                 lblMensajes.Text = "Empresa Dada de Baja";
             }
             catch (System.Web.Services.Protocols.SoapException ex)
@@ -141,7 +148,8 @@ namespace Administracion
         //Limpiar los controles
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();          
+            LimpiarCampos();
+            lblMensajes.Text = "";
         }
 
         private void LimpiarCampos()
@@ -150,13 +158,10 @@ namespace Administracion
             txtDireccion.Text = "";
             txtRut.Text = "";
             txtTelefono.Text = "";
-            txtCodigo.Enabled = true;
-            txtDireccion.Enabled = false;
-            txtRut.Enabled = false;
-            txtTelefono.Enabled = false;
             btnEliminar.Enabled = false;
             btnIngresar.Enabled = false;
             btnModificar.Enabled = false;
+            txtCodigo.Enabled = true;
         }
 
         private void HabilitarBotones()
@@ -171,10 +176,10 @@ namespace Administracion
             try
             {
                 Empresa emp = new Empresa();
-                emp.Codigo = Convert.ToInt32(txtCodigo.Text);
-                emp.Rut = Convert.ToInt32(txtRut.Text);
-                emp.DirFiscal = txtDireccion.Text;
-                emp.Telefono = txtTelefono.Text;
+                emp.Codigo = Convert.ToInt32(txtCodigo.Text.Trim());
+                emp.Rut = Convert.ToInt32(txtRut.Text.Trim());
+                emp.DirFiscal = txtDireccion.Text.Trim();
+                emp.Telefono = txtTelefono.Text.Trim();
 
                 IServicio serv = new ServicioClient();
                 serv.AltaEmpresa(emp,usuLogueado);
@@ -190,6 +195,12 @@ namespace Administracion
                 else
                     lblMensajes.Text = ex.Detail.InnerText;
             }
+
+            catch (FormatException)
+            {
+                lblMensajes.Text = "El Código y Rut de la Empresa deben ser numéricos";
+            }
+
             catch (Exception ex)
             {
                 if (ex.Message.Length > 80)
