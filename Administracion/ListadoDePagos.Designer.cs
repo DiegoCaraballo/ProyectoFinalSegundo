@@ -31,11 +31,11 @@
             this.gvPagos = new System.Windows.Forms.DataGridView();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnResumenCajero = new System.Windows.Forms.Button();
-            this.cboCajero = new System.Windows.Forms.ComboBox();
-            this.cboEmpresa = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblMensaje = new System.Windows.Forms.Label();
+            this.txtCajero = new System.Windows.Forms.TextBox();
+            this.txtEmpresa = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gvPagos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,24 +68,6 @@
             this.btnResumenCajero.UseVisualStyleBackColor = true;
             this.btnResumenCajero.Click += new System.EventHandler(this.btnResumenCajero_Click);
             // 
-            // cboCajero
-            // 
-            this.cboCajero.FormattingEnabled = true;
-            this.cboCajero.Location = new System.Drawing.Point(92, 30);
-            this.cboCajero.Name = "cboCajero";
-            this.cboCajero.Size = new System.Drawing.Size(161, 26);
-            this.cboCajero.TabIndex = 3;
-            this.cboCajero.SelectedIndexChanged += new System.EventHandler(this.cboCajero_SelectedIndexChanged);
-            // 
-            // cboEmpresa
-            // 
-            this.cboEmpresa.FormattingEnabled = true;
-            this.cboEmpresa.Location = new System.Drawing.Point(259, 29);
-            this.cboEmpresa.Name = "cboEmpresa";
-            this.cboEmpresa.Size = new System.Drawing.Size(151, 26);
-            this.cboEmpresa.TabIndex = 4;
-            this.cboEmpresa.SelectedIndexChanged += new System.EventHandler(this.cboEmpresa_SelectedIndexChanged);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -113,17 +95,33 @@
             this.lblMensaje.TabIndex = 7;
             this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // txtCajero
+            // 
+            this.txtCajero.Location = new System.Drawing.Point(92, 31);
+            this.txtCajero.Name = "txtCajero";
+            this.txtCajero.Size = new System.Drawing.Size(100, 25);
+            this.txtCajero.TabIndex = 8;
+            this.txtCajero.Validating += new System.ComponentModel.CancelEventHandler(this.txtCajero_Validating);
+            // 
+            // txtEmpresa
+            // 
+            this.txtEmpresa.Location = new System.Drawing.Point(216, 30);
+            this.txtEmpresa.Name = "txtEmpresa";
+            this.txtEmpresa.Size = new System.Drawing.Size(100, 25);
+            this.txtEmpresa.TabIndex = 9;
+            this.txtEmpresa.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmpresa_Validating);
+            // 
             // ListadoDePagos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(781, 522);
+            this.Controls.Add(this.txtEmpresa);
+            this.Controls.Add(this.txtCajero);
             this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cboEmpresa);
-            this.Controls.Add(this.cboCajero);
             this.Controls.Add(this.btnResumenCajero);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.gvPagos);
@@ -142,10 +140,10 @@
         private System.Windows.Forms.DataGridView gvPagos;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnResumenCajero;
-        private System.Windows.Forms.ComboBox cboCajero;
-        private System.Windows.Forms.ComboBox cboEmpresa;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblMensaje;
+        private System.Windows.Forms.TextBox txtCajero;
+        private System.Windows.Forms.TextBox txtEmpresa;
     }
 }

@@ -1,10 +1,3 @@
-C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\Persistencia.dll
-C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\Persistencia.pdb
-C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\EntidadesCompartidas.dll
-C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\EntidadesCompartidas.pdb
-C:\desarrollo\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
-C:\desarrollo\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.dll
-C:\desarrollo\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.pdb
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Persistencia\bin\Debug\Persistencia.dll
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Persistencia\bin\Debug\Persistencia.pdb
 C:\Users\Bios1\Desktop\ProyectoFinalSegundo\Persistencia\bin\Debug\EntidadesCompartidas.dll
@@ -19,3 +12,10 @@ C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Persistencia\bin\Debug\Entidad
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.dll
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.pdb
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\Persistencia.dll
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\Persistencia.pdb
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\EntidadesCompartidas.dll
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\bin\Debug\EntidadesCompartidas.pdb
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.dll
+C:\desarrollo\ProyectoFinalSegundo\Persistencia\obj\Debug\Persistencia.pdb

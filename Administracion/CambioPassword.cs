@@ -84,9 +84,15 @@ namespace Administracion
             {
                 if (txtNuevaPass.Text == txtRepitePass.Text)
                 {
-                    usuLogueado.Pass = txtRepitePass.Text;
+                    Usuario usuCambiado = new Usuario();
+                    usuCambiado.Cedula = usuLogueado.Cedula;
+                    usuLogueado.NomUsu = usuLogueado.NomUsu;
+                    usuLogueado.NomCompleto = usuLogueado.NomCompleto;
+                    usuCambiado.Pass = txtNuevaPass.Text;
+                    
+
                     IServicio serv = new ServicioClient();
-                    serv.CambioPass(usuLogueado, usuLogueado);
+                    serv.CambioPass(usuCambiado, usuLogueado);
                     LimpiarCampos();
                 }
                 else
