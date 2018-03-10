@@ -53,3 +53,4 @@ C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.c
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\yo-NG\Administracion.resources.dll
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.exe
 C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.pdb
+C:\desarrollo\ProyectoFinalSegundo\Administracion\obj\x86\Debug\Administracion.csprojResolveAssemblyReference.cache
