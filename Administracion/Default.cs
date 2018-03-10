@@ -141,9 +141,9 @@ namespace Administracion
         {
             try
             {
-                if (File.Exists(@"C:\desarrollo\horas.xml"))
+                if (File.Exists(@"C:\Program Files\BiosMoney\horas.xml"))
                 {
-                    File.Delete(@"C:\desarrollo\horas.xml");
+                    File.Delete(@"C:\Program Files\BiosMoney\horas.xml");
                 }
             }
             catch (Exception ex)

@@ -76,13 +76,13 @@ namespace ServicioWIN
             DateTime horaActual = DateTime.Now;
 
             //Si existe el archivo
-            if (File.Exists(@"C:\desarrollo\horas.xml"))
+            if (File.Exists(@"C:\Program Files\BiosMoney\horas.xml"))
             {
                 try
                 {
                     //Cargo el XML
                     XmlDocument documento = new XmlDocument();
-                    documento.Load(@"C:\desarrollo\horas.xml");
+                    documento.Load(@"C:\Program Files\BiosMoney\horas.xml");
 
                     //Saco los datos necesarios
                     XmlNodeList horas = (documento.GetElementsByTagName("HoraFin"));

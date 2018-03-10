@@ -43,7 +43,7 @@ namespace Administracion
                     if (usu is Cajero)
                     {
                         //Creo el XML para las horas extras
-                        string destino = @"C:\desarrollo\horas.xml";
+                        string destino = @"C:\Program Files\BiosMoney\horas.xml";
                         if (File.Exists(destino))
                         {
                             File.Delete(destino);
@@ -87,13 +87,6 @@ namespace Administracion
                     throw new Exception("Contraseña Incorrecta");
                 }
 
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 40)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 40);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
             }
             catch (Exception ex)
             {

@@ -38,11 +38,19 @@ namespace Persistencia
 
 
         // Nico Virtual
-        //  private static string cnn = "Data Source=Bios1-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = true";
+        //private static string cnn = "Data Source=Bios1-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = true";
 
         //public string cnnUsu(Usuario unUsuario)
         //{
         //    return ("Data Source=Bios1-PC\\SQLEXPRESS; Initial Catalog = BiosMoney; Integrated Security = false; User ID =" + unUsuario.NomUsu + "; Password =" + unUsuario.Pass);
+        //}
+
+        // BIOS
+        //private static string cnn = "Data Source=.; Initial Catalog = BiosMoney; Integrated Security = true";
+
+        //public string cnnUsu(Usuario unUsuario)
+        //{
+        //    return ("Data Source=.; Initial Catalog = BiosMoney; Integrated Security = false; User ID =" + unUsuario.NomUsu + "; Password =" + unUsuario.Pass);
         //}
 
     }

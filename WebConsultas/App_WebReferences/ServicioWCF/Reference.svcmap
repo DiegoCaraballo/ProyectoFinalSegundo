@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5ef1e5f4-4504-4eff-a712-7c5f8898a0b2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="672c6661-62ba-4298-a874-07352a424786" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,14 +18,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8105/Servicio.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://pc-nico-pc/WCF/Servicio.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Servicio.xsd" MetadataType="Schema" ID="8027ebdb-7422-47a4-8046-b93b28a5ce47" SourceId="1" SourceUrl="http://localhost:8105/Servicio.svc?xsd=xsd2" />
-    <MetadataFile FileName="Servicio.wsdl" MetadataType="Wsdl" ID="11234952-8aa6-467c-ab43-5efd25578203" SourceId="1" SourceUrl="http://localhost:8105/Servicio.svc?wsdl" />
-    <MetadataFile FileName="Servicio1.xsd" MetadataType="Schema" ID="f78806f5-4156-400f-acd4-98a28c32dced" SourceId="1" SourceUrl="http://localhost:8105/Servicio.svc?xsd=xsd0" />
-    <MetadataFile FileName="Servicio2.xsd" MetadataType="Schema" ID="93e9f557-e1e8-4afe-ba7c-d9e6a671f3e8" SourceId="1" SourceUrl="http://localhost:8105/Servicio.svc?xsd=xsd1" />
-    <MetadataFile FileName="Servicio.disco" MetadataType="Disco" ID="ff94775b-48cc-493c-9da4-4685f8175ca7" SourceId="1" SourceUrl="http://localhost:8105/Servicio.svc?disco" />
+    <MetadataFile FileName="Servicio.disco" MetadataType="Disco" ID="5aa6ba53-24e7-47e1-a846-1db4d944dd45" SourceId="1" SourceUrl="http://pc-nico-pc/WCF/Servicio.svc?disco" />
+    <MetadataFile FileName="Servicio.xsd" MetadataType="Schema" ID="937eabf7-ed41-4e53-b58e-63efffe1cb10" SourceId="1" SourceUrl="http://pc-nico-pc/WCF/Servicio.svc?xsd=xsd2" />
+    <MetadataFile FileName="Servicio1.xsd" MetadataType="Schema" ID="cb979ffb-41a5-4707-8418-5d4be06ac4f9" SourceId="1" SourceUrl="http://pc-nico-pc/WCF/Servicio.svc?xsd=xsd1" />
+    <MetadataFile FileName="Servicio.wsdl" MetadataType="Wsdl" ID="e65ead69-b579-4a31-9373-b55e0a43a079" SourceId="1" SourceUrl="http://pc-nico-pc/WCF/Servicio.svc?wsdl" />
+    <MetadataFile FileName="Servicio2.xsd" MetadataType="Schema" ID="cf6ef2e2-82da-4bc1-ad6c-17802da873aa" SourceId="1" SourceUrl="http://pc-nico-pc/WCF/Servicio.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
