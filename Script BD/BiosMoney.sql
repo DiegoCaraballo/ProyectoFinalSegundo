@@ -498,10 +498,9 @@ begin
 	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where u.cedula= @cedula and activo =0
 end
 go
-
 --Cambiar Pass
 --drop proc CambioPass
---exec CambioPass 1233211,'rafiki1'
+--exec CambioPass 1111111,'rafiki1'
 --alter login rafiki with password = '1231231'
 create proc CambioPass @cedula int, @pass varchar(7) as
 begin
@@ -512,7 +511,7 @@ begin
 	Declare @VarSentencia varchar(200);
 	
 	begin tran
-	Set @VarSentencia = 'Alter Login [' + (select nomUsu from usuario  where cedula=@cedula ) +  '] WITH PASSWORD = ''' +@pass+ ';';
+	Set @VarSentencia = 'Alter Login [' + (select nomUsu from usuario  where cedula=@cedula ) + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') 
 	Exec (@VarSentencia)
 	set @Error=@@Error
 	if(@Error<>0)
@@ -521,7 +520,7 @@ begin
 		return -4
 	end
 
-	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +  '] WITH PASSWORD = ''' +@pass+';';
+	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +'] WITH PASSWORD = ' + QUOTENAME(@pass, '''')
 	Exec (@VarSentencia)
 	set @Error=@@Error
 	if(@Error<>0)
@@ -853,30 +852,28 @@ go
 --------------------------------------------------------------------------
 					----Datos Para Probar
 --------------------------------------------------------------------------
-exec AltaEmpresa 1234, 123456789, 'asdasdas','123456'
-exec AltaEmpresa 9999, 654882789, 'asdasdas','123456'
-exec AltaEmpresa 5555, 66866789, 'asdasdas','123456'
-exec AltaEmpresa 2345, 121212121, 'pepe grillo', '123456'
+--Empresas
+exec AltaEmpresa 1234, 123456789, '18 de Julio 5541','24875521'
+exec AltaEmpresa 9999, 654882789, 'Av Millan 6623','23364852'
+exec AltaEmpresa 5555, 66866789, '8 de Octubre','25642515'
+exec AltaEmpresa 2345, 121212121, 'Av Agraciada', '223584452'
 
-exec AltaTipoContrato 1234, 33, 'Hola Mundo'
-exec AltaTipoContrato 9999, 01, 'kjasnd'
+--Tipos de Contratos
+exec AltaTipoContrato 1234, 33, 'Luz'
+exec AltaTipoContrato 9999, 01, 'Agua'
 exec AltaTipoContrato 9999, 33, 'Hola Mqweniqwue'
-exec AltaTipoContrato 5555, 33, 'Holajhbsdo'
-exec AltaTipoContrato 5555, 52, 'HokjdausndMundo'
-exec AltaTipoContrato 5555, 25, 'Hoanksdjndo'
+exec AltaTipoContrato 5555, 33, 'Telefonia Movil'
+exec AltaTipoContrato 5555, 52, 'Telefonia Fija'
+exec AltaTipoContrato 5555, 25, 'Internet'
 
+--Gerentes
+exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'nicolas@hotmail.com'
+exec AltaGerente 1234567,'keylor','1234567','El Keylor', 'keylor@outlook.com'
+exec AltaGerente 87654321,'diego','1111111','Diego Caraballo', 'diego@gmail.com'
 
---select * from empresa
---select * from tipoContrato WHERE codEmp = 1234 AND codContrato = 33
+--Cajeros
+exec AltaCajero 1111111,'rafiki','123654a','rafiki cajero', '1990-01-01 06:00:00','2018-01-01 12:00:00';
+exec AltaCajero 2222222,'pepegrillo','pepegrillo','Pepe grillo', '1990-01-01 12:00:00','2018-01-01 18:00:00';
+exec AltaCajero 33333333,'cajero1','cajero1','primer cajero', '1990-01-01 19:00:00','2018-01-01 23:59:59';--al agregar una hora de fin mayor no la ingresa, por lo tanto no puede empezar a las 19 y terminar a las 04 por ej.
+exec AltaCajero 44444444,'cajero2','cajero2','segundo cajero', '1990-01-01 00:00:00','2018-01-01 06:00:00';
 
---EXEC BuscarContrato 1234, 33
-
-exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'uncorreo@hotmail.com'
-go
-exec AltaCajero 4565442,'rafiki','123654a','usuario cajero', '2018-01-01 00:00:00','2018-01-01 08:00:00';
-go
-exec AltaCajero 1233211,'pepegrillo','1234567','Pepe grillo', '2018-01-01 00:00:00','2018-01-01 08:00:00';
-go
---update Cajero set HoraFin= '2018-01-01 20:00:00', HoraIni ='2018-01-01 19:00:00';
-
-select * from empresa
