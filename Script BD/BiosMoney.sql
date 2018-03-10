@@ -877,3 +877,25 @@ exec AltaCajero 2222222,'pepegrillo','pepegrillo','Pepe grillo', '1990-01-01 12:
 exec AltaCajero 33333333,'cajero1','cajero1','primer cajero', '1990-01-01 19:00:00','2018-01-01 23:59:59';--al agregar una hora de fin mayor no la ingresa, por lo tanto no puede empezar a las 19 y terminar a las 04 por ej.
 exec AltaCajero 44444444,'cajero2','cajero2','segundo cajero', '1990-01-01 00:00:00','2018-01-01 06:00:00';
 
+
+
+
+
+select * from pago
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

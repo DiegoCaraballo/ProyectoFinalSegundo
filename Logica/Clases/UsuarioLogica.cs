@@ -54,7 +54,7 @@ namespace Logica
             }
             else
             {
-                FabricaPersistencia.GetPersistenciaGerente().CambioPass((Gerente)unUsuario, usuLogueado);
+                FabricaPersistencia.GetPersistenciaGerente().CambioPass(unUsuario, usuLogueado);
             }
         }
 

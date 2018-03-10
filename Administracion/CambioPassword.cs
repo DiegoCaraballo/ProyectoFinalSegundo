@@ -59,27 +59,9 @@ namespace Administracion
                     lblMensajes.Text = ex.Message;
             }
         }
-
-        //Validación de nuevo password
-        private void txtRepitePass_Validating(object sender, CancelEventArgs e)
+        
+        private void btnCambiar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (txtRepitePass.Text == "")
-                {
-                    throw new Exception();
-                }
-                else
-                {
-                    epPass.Clear();
-                }
-            }
-            catch (Exception)
-            {
-                epPass.SetError(txtRepitePass, "la contraseña no puede esta vacia");
-                e.Cancel = true;
-                return;
-            }
             try
             {
                 if (txtNuevaPass.Text == txtRepitePass.Text)
@@ -89,7 +71,7 @@ namespace Administracion
                     usuLogueado.NomUsu = usuLogueado.NomUsu;
                     usuLogueado.NomCompleto = usuLogueado.NomCompleto;
                     usuCambiado.Pass = txtNuevaPass.Text;
-                    
+                   
 
                     IServicio serv = new ServicioClient();
                     serv.CambioPass(usuCambiado, usuLogueado);
@@ -101,13 +83,7 @@ namespace Administracion
                 }
             }
             catch (Exception ex)
-            {
-                if (ex.Message.Length > 80)
-                    lblMensajes.Text = ex.Message.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Message;
-            }
-
+            { lblMensajes.Text = ex.Message; }
         }
 
         private void LimpiarCampos()
@@ -124,26 +100,6 @@ namespace Administracion
             LimpiarCampos();
         }
 
-        private void txtNuevaPass_Validating(object sender, CancelEventArgs e)
-        {
-            try
-            {
-                if (txtNuevaPass.Text == "")
-                {
-                    throw new Exception();
-                }
-                else
-                {
-                    epPass.Clear();
-                }
-            }
-            catch (Exception)
-            {
-                epPass.SetError(txtNuevaPass, "la contraseña no puede esta vacia");
-                e.Cancel = true;
-                return;
-            }
-        }
 
     }
 }

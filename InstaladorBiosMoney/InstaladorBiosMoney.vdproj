@@ -21,8 +21,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8222329BC05845A0BA618EA31371D25F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_1B426F1CB00341279CF2C6AEEB3ACF96"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8222329BC05845A0BA618EA31371D25F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -135,6 +147,34 @@
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_2AE2C56918D54C16BF6C539581864599"
+            {
+            "Name" = "8:Resultado principal de Administracion (Activo)"
+            "Condition" = "8:"
+            "Object" = "8:_8222329BC05845A0BA618EA31371D25F"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_3A233DEF_141E_4EC8_A777_97A9923041D5"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_2C0B608BCA9740F08F6CC5D378737F1C"
+            {
+            "Name" = "8:Resultado principal de Administracion (Activo)"
+            "Condition" = "8:"
+            "Object" = "8:_8222329BC05845A0BA618EA31371D25F"
+            "FileType" = "3:2"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_A8D8FE4F_29AA_4D48_9965_BD9E56931DE8"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_340E2BDE158644F592AC867C3F329B1F"
             {
             "Name" = "8:Resultado principal de ServicioWIN (Activo)"
@@ -160,6 +200,34 @@
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
             "Identifier" = "8:_E43E8803_2DA2_49A1_9F4C_5A5FBAFB1008"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_58E57519969C4AF9B5C868479431896F"
+            {
+            "Name" = "8:Resultado principal de Administracion (Activo)"
+            "Condition" = "8:"
+            "Object" = "8:_8222329BC05845A0BA618EA31371D25F"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_324D958D_AC02_4775_9FC1_84BE4E233AC6"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_BA565AB422C749E89F111FD760C0C671"
+            {
+            "Name" = "8:Resultado principal de Administracion (Activo)"
+            "Condition" = "8:"
+            "Object" = "8:_8222329BC05845A0BA618EA31371D25F"
+            "FileType" = "3:2"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_88DD8C4B_CCC3_4919_AB17_3CC5EF15DF4E"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -363,6 +431,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E87883C1DE7B46E688710AA54E3EB037"
+            {
+            "Name" = "8:BiosMoney(WinAPP)"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_8222329BC05845A0BA618EA31371D25F"
+            "Folder" = "8:_E19A659D26764029ACCB4BD0E9871F1E"
+            "WorkingFolder" = "8:_E185CFB4CD464C7992E50A96F02D6B88"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -785,6 +867,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{BB7F8DDD-6E85-4810-B38E-B4EE71C32E38}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_8222329BC05845A0BA618EA31371D25F"
+            {
+            "SourcePath" = "8:..\\Administracion\\obj\\x86\\Debug\\Administracion.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_E185CFB4CD464C7992E50A96F02D6B88"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{8C736133-94CF-4FB6-A8A0-C7858F3C08A9}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

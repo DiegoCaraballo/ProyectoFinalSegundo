@@ -75,7 +75,7 @@ namespace Persistencia
 
         }
 
-        public void CambioPass(Gerente unGerente,Usuario usuLogueado)
+        public void CambioPass(Usuario unGerente,Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));

@@ -40,6 +40,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblMensajes = new System.Windows.Forms.ToolStripStatusLabel();
             this.epPass = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnCambiar = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epPass)).BeginInit();
@@ -52,6 +53,7 @@
             this.toolStrip1.Font = new System.Drawing.Font("Segoe Print", 10F);
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnCambiar,
             this.btnLimpiar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -76,7 +78,6 @@
             this.txtRepitePass.PasswordChar = '*';
             this.txtRepitePass.Size = new System.Drawing.Size(132, 25);
             this.txtRepitePass.TabIndex = 3;
-            this.txtRepitePass.Validating += new System.ComponentModel.CancelEventHandler(this.txtRepitePass_Validating);
             // 
             // txtNuevaPass
             // 
@@ -87,7 +88,6 @@
             this.txtNuevaPass.PasswordChar = '*';
             this.txtNuevaPass.Size = new System.Drawing.Size(132, 25);
             this.txtNuevaPass.TabIndex = 2;
-            this.txtNuevaPass.Validating += new System.ComponentModel.CancelEventHandler(this.txtNuevaPass_Validating);
             // 
             // txtActualPass
             // 
@@ -150,6 +150,13 @@
             // 
             this.epPass.ContainerControl = this;
             // 
+            // btnCambiar
+            // 
+            this.btnCambiar.Name = "btnCambiar";
+            this.btnCambiar.Size = new System.Drawing.Size(79, 24);
+            this.btnCambiar.Text = "Cambiar";
+            this.btnCambiar.Click += new System.EventHandler(this.btnCambiar_Click);
+            // 
             // CambioPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -191,5 +198,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblMensajes;
         private System.Windows.Forms.ErrorProvider epPass;
+        private System.Windows.Forms.ToolStripLabel btnCambiar;
     }
 }
