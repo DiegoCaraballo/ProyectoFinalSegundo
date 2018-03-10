@@ -24,7 +24,6 @@ namespace Persistencia
 
         #endregion
 
-
         public void AltaGerente(Gerente unGerente,Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -70,9 +69,6 @@ namespace Persistencia
                 cnn.Close();
 
             }
-
-
-
         }
 
         public void CambioPass(Usuario unGerente,Usuario usuLogueado)
@@ -106,10 +102,8 @@ namespace Persistencia
             finally
             {
                 cnn.Close();
-
             }
         }
-
 
         //TODO ver si aca va tambien el usu
         public Gerente LogueoGerente(string nomUsu)
@@ -145,7 +139,6 @@ namespace Persistencia
             }
             return unGerente;
         }
-
 
     }
 }

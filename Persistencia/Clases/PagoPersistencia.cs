@@ -64,9 +64,12 @@ namespace Persistencia
                 oComando.ExecuteNonQuery();
 
                 //verifico si hay errores
-
                 afectados = (int)oComando.Parameters["@Retorno"].Value;
-                if (afectados == -2)
+                if (afectados == -1)
+                    throw new Exception("No existe el cajero");
+                else if (afectados == -3)
+                    throw new Exception("El Cajero no está activo");
+                else if (afectados == -2)
                     throw new Exception("Error en la base de datos al insertar pago");
 
                 //Obtengo id de pago

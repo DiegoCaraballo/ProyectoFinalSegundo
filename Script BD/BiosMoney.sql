@@ -690,13 +690,13 @@ Create Proc ModificarTipoContrato @codEmp int , @codContrato int,@nombre varchar
 Begin
 
 	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato = @codContrato and activo = 0)
-		return -3
+		return -1
 
-	update tipoContrato set nombre = @nombre where @codContrato = @codContrato and codEmp = codEmp;
+	update tipoContrato set nombre = @nombre where codContrato = @codContrato and codEmp = @codEmp;
 	IF(@@Error=0)
 		RETURN 1;
 	ELSE
-		RETURN -4;
+		RETURN -2;
 
 End
 
@@ -708,7 +708,7 @@ create proc BajaTipoContrato @codEmp int, @codContrato int as
 begin
 
 	if not exists (select * from tipoContrato where codContrato = @codContrato and codEmp = @codEmp)
-		return -2
+		return -1
 
 	if exists (select * from factura where codContrato = @codContrato and codEmp = @codEmp)
 	begin
@@ -720,7 +720,7 @@ begin
 	IF(@@Error=0)
 		RETURN 1;
 	ELSE
-		RETURN -4;
+		RETURN -2;
 
 end
 
@@ -728,7 +728,8 @@ go
 
 create proc ListarContratos as
 begin
-	select * from tipoContrato;
+	select * from tipoContrato tc join empresa e on
+	tc.codEmp = e.codEmpresa where e.activo = 1;
 end
 
 go
@@ -809,7 +810,7 @@ begin
 		if(@Error<>0)
 		begin
 			rollback tran
-			return -3
+			return -2
 		end
 
 		begin
@@ -826,14 +827,14 @@ begin
 		if(@Error<>0)
 		begin
 			rollback tran
-			return -4
+			return -3
 		end
 	delete from empresa where codEmpresa=@codEmp;
 	set @Error=@@Error
 		if(@Error<>0)
 		begin
 			rollback tran
-			return -5
+			return -3
 		end
 		begin
 			commit tran
@@ -877,6 +878,7 @@ exec AltaCajero 2222222,'pepegrillo','pepegrillo','Pepe grillo', '1990-01-01 12:
 exec AltaCajero 33333333,'cajero1','cajero1','primer cajero', '1990-01-01 19:00:00','2018-01-01 23:59:59';--al agregar una hora de fin mayor no la ingresa, por lo tanto no puede empezar a las 19 y terminar a las 04 por ej.
 exec AltaCajero 44444444,'cajero2','cajero2','segundo cajero', '1990-01-01 00:00:00','2018-01-01 06:00:00';
 
+<<<<<<< HEAD
 
 
 
@@ -899,3 +901,11 @@ select * from pago
 
 
 
+=======
+<<<<<<< HEAD
+use BiosMoney
+select * from empresa
+select * from tipoContrato
+=======
+>>>>>>> 1a6bbd1b1e6514e2d20835de08a4b71ebf57eebb
+>>>>>>> 5689473e703d2bd9492ca2294322efb68a91de61

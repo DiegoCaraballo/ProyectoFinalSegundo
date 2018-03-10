@@ -48,6 +48,9 @@ namespace Administracion
                 unTipoContrato.UnaEmp = serv.BuscarEmpresa(Convert.ToInt32(txtCodEmpresa.Text));
                 unTipoContrato.Nombre = txtNombre.Text;
 
+                if (unTipoContrato.UnaEmp == null)
+                    throw new Exception("No existe la empresa");
+
                 serv.AltaTipoContrato(unTipoContrato, usuLogueado);
                 lblMensaje.Text = "Tipo Contrato ingresado con exito";
                 LimpiarCampos();
@@ -59,6 +62,12 @@ namespace Administracion
                 else
                     lblMensaje.Text = ex.Detail.InnerText;
             }
+
+            catch (FormatException)
+            {
+                lblMensaje.Text = ("El codigo de Emprasa y de Contratos deben ser numéricos");
+            }
+
             catch (Exception ex)
             {
                 if (ex.Message.Length > 80)
@@ -127,6 +136,8 @@ namespace Administracion
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+            lblMensaje.Text = "";
+            EPTipoContrato.Clear();
         }
 
         private void LimpiarCampos()
@@ -137,6 +148,8 @@ namespace Administracion
             btnModificar.Enabled = false;
             btnIngresar.Enabled = false;
             btnEliminar.Enabled = false;
+            txtCodEmpresa.Enabled = true;
+            txtCodTipoContrato.Enabled = true;
         }
 
         //Validar los 2 campos (Código de Empresa y Tipo de Contrato)
@@ -162,6 +175,7 @@ namespace Administracion
 
             try
             {
+                lblMensaje.Text = "";
                 IServicio serv = new ServicioClient();
 
                 //Busco el tipo de contrato
@@ -171,6 +185,9 @@ namespace Administracion
                 {
                     HabilitarBotones();
                     txtNombre.Text = TipoContratoBuscado.Nombre;
+                    txtCodEmpresa.Enabled = false;
+                    txtCodTipoContrato.Enabled = false;
+                    btnIngresar.Enabled = false;
                 }
                 else
                 {
@@ -184,6 +201,12 @@ namespace Administracion
                 else
                     lblMensaje.Text = ex.Detail.InnerText;
             }
+
+            catch (FormatException)
+            {
+                lblMensaje.Text = ("El codigo de Emprasa y de Contratos deben ser numéricos");
+            }
+
             catch (Exception ex)
             {
                 if (ex.Message.Length > 80)

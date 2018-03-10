@@ -8,8 +8,7 @@
         .style2
         {
             text-align: right;
-            width: 527px;
-        }
+            }
     </style>
 </asp:Content>
 
@@ -27,38 +26,19 @@
                         <td class="style2">
                             
                             Código de barras:&nbsp;
-                        </td>
-                        <td style="text-align: left">
-                            <asp:TextBox ID="txtCodBarra" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtCodBarra" runat="server" Width="300px"></asp:TextBox>
                         &nbsp;<asp:Button ID="btnBuscar" runat="server" onclick="btnBuscar_Click" 
                                 Text="Buscar" />
                         </td>
-                        <td>
-                            &nbsp;
-                        </td>
                     </tr>
                     <tr>
-                        <td class="style1">
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                        <td>
-                            &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: right">
+                        <td style="text-align: center">
+                            <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
                             </td>
-                        <td style="text-align: left">
-                            <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right">
-                            <asp:Label ID="lblFecha" runat="server" Text="Fecha: "></asp:Label></td>
-                        <td style="text-align: left">
-                            &nbsp;&nbsp;
+                        <td style="text-align: center">
+                            <asp:Label ID="lblFecha" runat="server" Text="Fecha: "></asp:Label>&nbsp;&nbsp;
                             <asp:TextBox ID="txtFecha" runat="server" Enabled="False"></asp:TextBox></td>
                     </tr>
                 </table>

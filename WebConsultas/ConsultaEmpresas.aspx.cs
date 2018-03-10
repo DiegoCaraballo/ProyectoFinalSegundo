@@ -18,6 +18,7 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
             if (!IsPostBack)
             {
                 CargarLista();
+                lblTipoContrato.Visible = false;
             }
         }
         catch (Exception)
@@ -75,6 +76,8 @@ public partial class ConsultaEmpresas : System.Web.UI.Page
             {
                 try
                 {
+                    lblTipoContrato.Visible = true;
+
                     //Cargo el documento de la session
                     XElement _documento = (XElement)Session["Documento"];
 
