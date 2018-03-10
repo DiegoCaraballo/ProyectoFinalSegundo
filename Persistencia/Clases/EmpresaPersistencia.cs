@@ -79,8 +79,9 @@ namespace Persistencia
                 cnn.Open();
                 cmd.ExecuteNonQuery();
                 if ((int)retorno.Value == -1)
-                    throw new Exception("");
-           
+                    throw new Exception("La Empresa ya existe");
+                else if ((int)retorno.Value == -2)
+                    throw new Exception("Error en la base de datos");         
 
             }
             catch (Exception ex)
@@ -90,10 +91,7 @@ namespace Persistencia
             finally
             {
                 cnn.Close();
-
             }
-
-
 
         }
 
@@ -115,7 +113,11 @@ namespace Persistencia
                 cnn.Open();
                 cmd.ExecuteNonQuery();
                 if ((int)retorno.Value == -1)
-                    throw new Exception("");
+                    throw new Exception("La empresa no existe");
+                if ((int)retorno.Value == -2)
+                    throw new Exception("Error al desactivar Tipo de Contrato y Empresa");
+                if ((int)retorno.Value == -3)
+                    throw new Exception("Error al eliminar Tipo de Contrato y Empresa");
              
             }
             catch (Exception ex)
@@ -151,7 +153,11 @@ namespace Persistencia
                 cnn.Open();
                 cmd.ExecuteNonQuery();
                 if ((int)retorno.Value == -1)
-                    throw new Exception("");
+                    throw new Exception("La Empresa no existe");
+                else if ((int)retorno.Value == -2)
+                    throw new Exception("La empresa esta inactiva");
+                else if ((int)retorno.Value == -3)
+                    throw new Exception("Errero en la base de datos");
         
             }
             catch (Exception ex)

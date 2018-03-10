@@ -8,11 +8,11 @@
       <xsl:for-each select="TiposDeContratos/TipoContrato">
       
         <tr>  
-            <td style="background-color:#cc0099;padding:4px;font-size:15pt;font-weight:bold;color:white">
-                Codigo:<xsl:value-of select="CodContrato"/>
+            <td style="background-color:#04B486;padding:4px;font-size:15pt;font-weight:bold;color:white">
+                Codigo: <xsl:value-of select="CodContrato"/>
               </td>
 
-              <td style="background-color:#cc0099;padding:4px;font-size:15pt;font-weight:bold;color:white">
+              <td style="background-color:#04B486;padding:4px;font-size:15pt;font-weight:bold;color:white">
                 Nombre: <xsl:value-of select="NomContrato"/>
               </td>
         </tr>

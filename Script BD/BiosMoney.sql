@@ -691,13 +691,13 @@ Create Proc ModificarTipoContrato @codEmp int , @codContrato int,@nombre varchar
 Begin
 
 	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato = @codContrato and activo = 0)
-		return -3
+		return -1
 
-	update tipoContrato set nombre = @nombre where @codContrato = @codContrato and codEmp = codEmp;
+	update tipoContrato set nombre = @nombre where codContrato = @codContrato and codEmp = @codEmp;
 	IF(@@Error=0)
 		RETURN 1;
 	ELSE
-		RETURN -4;
+		RETURN -2;
 
 End
 
@@ -709,7 +709,7 @@ create proc BajaTipoContrato @codEmp int, @codContrato int as
 begin
 
 	if not exists (select * from tipoContrato where codContrato = @codContrato and codEmp = @codEmp)
-		return -2
+		return -1
 
 	if exists (select * from factura where codContrato = @codContrato and codEmp = @codEmp)
 	begin
@@ -721,7 +721,7 @@ begin
 	IF(@@Error=0)
 		RETURN 1;
 	ELSE
-		RETURN -4;
+		RETURN -2;
 
 end
 
@@ -729,7 +729,8 @@ go
 
 create proc ListarContratos as
 begin
-	select * from tipoContrato;
+	select * from tipoContrato tc join empresa e on
+	tc.codEmp = e.codEmpresa where e.activo = 1;
 end
 
 go
@@ -810,7 +811,7 @@ begin
 		if(@Error<>0)
 		begin
 			rollback tran
-			return -3
+			return -2
 		end
 
 		begin
@@ -827,14 +828,14 @@ begin
 		if(@Error<>0)
 		begin
 			rollback tran
-			return -4
+			return -3
 		end
 	delete from empresa where codEmpresa=@codEmp;
 	set @Error=@@Error
 		if(@Error<>0)
 		begin
 			rollback tran
-			return -5
+			return -3
 		end
 		begin
 			commit tran
@@ -879,4 +880,6 @@ exec AltaCajero 1233211,'pepegrillo','1234567','Pepe grillo', '2018-01-01 00:00:
 go
 --update Cajero set HoraFin= '2018-01-01 20:00:00', HoraIni ='2018-01-01 19:00:00';
 
+use BiosMoney
 select * from empresa
+select * from tipoContrato

@@ -11,6 +11,7 @@ namespace Persistencia
 {
     internal class FacturaPersistencia
     {
+       
         internal static void AgregarFactura(int pIdPago, int pCodContrato, int pCodEmp, int pMonto, int pCodCli, DateTime pFechaVto, SqlTransaction pTransaccion)
         {
             SqlCommand comando = new SqlCommand("AltaFactura", pTransaccion.Connection);
@@ -36,9 +37,13 @@ namespace Persistencia
                 //verifico si hay errores
                 int retorno = Convert.ToInt32(ParmRetorno.Value);
                 if (retorno == -1)
-                    throw new Exception("La factura ya fue ingresada");
+                    throw new Exception("La factura ya existe");
                 else if (retorno == -2)
-                    throw new Exception("Error no especificado");
+                    throw new Exception("La empresa no existe");
+                else if (retorno == -3)
+                    throw new Exception("El tipo de contrato no existe");
+                else if (retorno == -4)
+                    throw new Exception("Error en la base de datos");
             }
             catch (Exception ex)
             {

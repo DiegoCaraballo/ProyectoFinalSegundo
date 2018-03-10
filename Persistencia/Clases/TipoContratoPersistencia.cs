@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,8 +72,6 @@ namespace Persistencia
             cmd.Parameters.AddWithValue("@codEmp", unTipoContrato.UnaEmp.Codigo);
             cmd.Parameters.AddWithValue("@nombre", unTipoContrato.Nombre);
       
-
-
             SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add(retorno);
@@ -83,8 +81,13 @@ namespace Persistencia
                 cnn.Open();
                 cmd.ExecuteNonQuery();
                 if ((int)retorno.Value == -1)
-                    throw new Exception("");
-
+                    throw new Exception("No existe la empresa");
+                else if ((int)retorno.Value == -2)
+                    throw new Exception("No existe la empresa");
+                else if ((int)retorno.Value == -3)
+                    throw new Exception("Ya existe el Tipo de Contrato");
+                else if ((int)retorno.Value == -4)
+                    throw new Exception("Error en la base de datos");
 
             }
             catch (Exception ex)
@@ -94,10 +97,7 @@ namespace Persistencia
             finally
             {
                 cnn.Close();
-
             }
-
-
 
         }
 
@@ -120,7 +120,9 @@ namespace Persistencia
                 cnn.Open();
                 cmd.ExecuteNonQuery();
                 if ((int)retorno.Value == -1)
-                    throw new Exception("");
+                    throw new Exception("No existe el Tipo de Contrato");
+                else if ((int)retorno.Value == -2)
+                    throw new Exception("Error en la base de datos");
 
             }
             catch (Exception ex)
@@ -144,8 +146,6 @@ namespace Persistencia
             cmd.Parameters.AddWithValue("@codContrato", unTipoContrato.CodContrato);
             cmd.Parameters.AddWithValue("@codEmp", unTipoContrato.UnaEmp.Codigo);
             cmd.Parameters.AddWithValue("@nombre", unTipoContrato.Nombre);
-        
-
 
             SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;
@@ -156,7 +156,9 @@ namespace Persistencia
                 cnn.Open();
                 cmd.ExecuteNonQuery();
                 if ((int)retorno.Value == -1)
-                    throw new Exception("");
+                    throw new Exception("El Tipo de Contrato no está activo");
+                else if ((int)retorno.Value == -2)
+                    throw new Exception("Error en la base de datos");
 
             }
             catch (Exception ex)
@@ -166,7 +168,6 @@ namespace Persistencia
             finally
             {
                 cnn.Close();
-
             }
         }
 
@@ -177,12 +178,10 @@ namespace Persistencia
 
             cmd.CommandType = CommandType.StoredProcedure;
 
-
             List<TipoContrato> Listar = new List<TipoContrato>();
             int codContrato;
             int codEmp;
             string nombre;
-
 
             try
             {
@@ -194,8 +193,6 @@ namespace Persistencia
                 {
                     while (_lector.Read())
                     {
-
-
                         codContrato = (int)_lector["codContrato"];
                         codEmp = (int)_lector["codEmp"];
                         nombre = (string)_lector["nombre"];
