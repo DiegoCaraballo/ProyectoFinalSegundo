@@ -253,25 +253,25 @@ begin
 		Exec (@VarSentencia)
 		set @Error=@@ERROR
 		if(@Error<>0)
-			return -6
+			return -7
 
 		Set @VarSentencia = 'Grant execute on CambioPass to [' +  @nomUsu + ']'
 		Exec (@VarSentencia)
 		set @Error=@@ERROR
 		if(@Error<>0)
-		return -6
+		return -7
 
 		Set @VarSentencia = 'Grant execute on AltaFactura to [' +  @nomUsu + ']'
 		Exec (@VarSentencia)
 		set @Error=@@ERROR
 		if(@Error<>0)
-			return -6
+			return -7
 
 		Set @VarSentencia = 'Grant execute on LogueoCajero to [' +  @nomUsu + ']'
 		Exec (@VarSentencia)
 		set @Error=@@ERROR
 		if(@Error<>0)
-			return -6
+			return -7
 		else
 			return 1
 	end
@@ -282,7 +282,7 @@ begin
 	if(@Error<>0)
 	begin
 		rollback tran
-		return-3
+		return-8
 	end
 
 	insert into cajero values(@cedula,@horaini,@horaFin,1)
@@ -290,7 +290,7 @@ begin
 	if(@Error<>0)
 	begin
 		rollback tran
-		return-4
+		return-8
 	end
 
 	Set @VarSentencia = 'CREATE LOGIN [' +  @nomUsu + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') + ',DEFAULT_DATABASE = BiosMoney'
@@ -299,7 +299,7 @@ begin
 	if(@Error<>0)
 	begin
 		rollback tran
-		return-4
+		return-5
 	end
 	--Creo usuario de acceso a base de datos
 	Set @VarSentencia = 'Create User [' +  @nomUsu + '] From Login [' + @nomUsu + ']'
@@ -308,7 +308,7 @@ begin
 	if(@Error<>0)
 	begin
 		rollback tran
-		return-4
+		return-6
 	end
 	else
 	begin
@@ -319,24 +319,24 @@ begin
 	Exec (@VarSentencia)
 	set @Error=@@ERROR
 	if(@Error<>0)
-		return -6
+		return -7
 
 	Set @VarSentencia = 'Grant execute on CambioPass to [' +  @nomUsu + ']'
 	Exec (@VarSentencia)
 	set @Error=@@ERROR
 	if(@Error<>0)
-		return -6
+		return -7
 		
 	Set @VarSentencia = 'Grant execute on AltaFactura to [' +  @nomUsu + ']'
 		Exec (@VarSentencia)
 		set @Error=@@ERROR
 		if(@Error<>0)
-			return -6
+			return -7
 	Set @VarSentencia = 'Grant execute on LogueoCajero to [' +  @nomUsu + ']'
 	Exec (@VarSentencia)
 	set @Error=@@ERROR
 	if(@Error<>0)
-		return -6
+		return -7
 	else
 		return 1
 end
@@ -379,7 +379,7 @@ begin
 			if(@Error<>0)
 			begin
 				rollback tran
-				return -3
+				return -4
 			end
 			
 			Set @VarSentencia = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
@@ -388,7 +388,7 @@ begin
 			if(@Error<>0)
 			begin
 				rollback tran
-				return -3
+				return -5
 			end
 			else
 			begin
@@ -404,7 +404,7 @@ begin tran
 	if(@Error<>0)
 	begin
 		rollback tran
-		return -3
+		return -4
 	end
 
 	Set @VarSentencia = 'Drop User [' + (select nomUsu from usuario  u join cajero c on c.cedula=u.cedula where c.cedula=@cedula ) + ']'
@@ -413,7 +413,7 @@ begin tran
 	if(@Error<>0)
 	begin
 		rollback tran
-		return -3
+		return -5
 	end
 	
 	delete from horasExtras where cedula=@cedula;
@@ -421,7 +421,7 @@ begin tran
 	if(@Error<>0)
 	begin
 		rollback tran
-		return -5
+		return -3
 	end
 
 	delete from cajero where cedula = @cedula
@@ -437,7 +437,7 @@ begin tran
 	if(@Error<>0)
 	begin
 		rollback tran
-		return -7
+		return -6
 	end
 	else
 	begin
@@ -468,7 +468,7 @@ begin
 		if(@Error<>0)
 		begin
 		rollback tran
-			return -5
+			return -3
 		end
 
 	update usuario set nomCompleto=@nomCompleto where cedula = @cedula
@@ -476,7 +476,7 @@ begin
 		if(@Error<>0)
 		begin
 			rollback tran
-			return -6
+			return -3
 		end
 
 		begin
@@ -502,46 +502,25 @@ go
 --drop proc CambioPass
 --exec CambioPass 1111111,'rafiki1'
 --alter login rafiki with password = '1231231'
-create proc CambioPass @cedula int, @pass varchar(7) as
+create proc CambioPass @cedula int, @nuevaPass varchar(7), @antiguaPass varchar(7),@nomUsu varchar(15)as
 begin
 	if not exists(select * from usuario where cedula=@cedula)
 		return -1
+	if exists(select * from cajero where cedula=@cedula and activo = 0)
+	return -2
 
-	declare @Error int;
-	Declare @VarSentencia varchar(200);
-	
-	begin tran
-	Set @VarSentencia = 'Alter Login [' + (select nomUsu from usuario  where cedula=@cedula ) + '] WITH PASSWORD = ' + QUOTENAME(@pass, '''') 
-	Exec (@VarSentencia)
-	set @Error=@@Error
-	if(@Error<>0)
+	Update usuario set pass =@nuevaPass where nomUsu=@nomUsu;
+	if(@@ERROR <>0)
 	begin
-		rollback tran
-		return -4
+	Return -3
 	end
 
-	Set @VarSentencia = 'Alter User [' + (select nomUsu from usuario  where cedula=@cedula ) +'] WITH PASSWORD = ' + QUOTENAME(@pass, '''')
-	Exec (@VarSentencia)
-	set @Error=@@Error
-	if(@Error<>0)
+	exec sp_password @old = @antiguaPass, @new = @nuevaPass, @loginame =@nomUsu
+	if(@@ERROR <> 0)
 	begin
-		rollback tran
 		return -4
-	end
-
-	update usuario set pass = @pass where cedula=@cedula
-	set @Error=@@Error
-	if(@Error<>0)
-	begin
-		rollback tran
-		return -4
-	end	
-	begin
-		commit tran
-		return 1
 	end
 end
-
 go
 
 
@@ -848,8 +827,6 @@ begin
 	select * from empresa
 end
 go
-
-
 --------------------------------------------------------------------------
 					----Datos Para Probar
 --------------------------------------------------------------------------
@@ -866,7 +843,6 @@ exec AltaTipoContrato 9999, 33, 'Hola Mqweniqwue'
 exec AltaTipoContrato 5555, 33, 'Telefonia Movil'
 exec AltaTipoContrato 5555, 52, 'Telefonia Fija'
 exec AltaTipoContrato 5555, 25, 'Internet'
-
 --Gerentes
 exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'nicolas@hotmail.com'
 exec AltaGerente 1234567,'keylor','1234567','El Keylor', 'keylor@outlook.com'
@@ -877,5 +853,3 @@ exec AltaCajero 1111111,'rafiki','123654a','rafiki cajero', '1990-01-01 06:00:00
 exec AltaCajero 2222222,'pepegrillo','pepegrillo','Pepe grillo', '1990-01-01 12:00:00','2018-01-01 18:00:00';
 exec AltaCajero 33333333,'cajero1','cajero1','primer cajero', '1990-01-01 19:00:00','2018-01-01 23:59:59';--al agregar una hora de fin mayor no la ingresa, por lo tanto no puede empezar a las 19 y terminar a las 04 por ej.
 exec AltaCajero 44444444,'cajero2','cajero2','segundo cajero', '1990-01-01 00:00:00','2018-01-01 06:00:00';
-
-select * from pago

@@ -110,6 +110,7 @@ namespace Administracion
                                }).ToList();
 
                     gvPagos.DataSource = res;
+                    txtCajero.Text = "";
                 }
 
             }
@@ -145,6 +146,7 @@ namespace Administracion
                                }).ToList();
 
                     gvPagos.DataSource = res;
+                    txtEmpresa.Text = "";
                 }
                 else
                 {

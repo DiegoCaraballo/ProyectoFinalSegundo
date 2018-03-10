@@ -56,10 +56,10 @@ namespace EntidadesCompartidas
             get { return telefono; }
             set { telefono = value; }
         }
-              
+
         public Empresa()
         { }
-      
+
         public Empresa(int pCodigo, int pRut, string pDirFiscal, string pTelefono)
         {
             Codigo = pCodigo;

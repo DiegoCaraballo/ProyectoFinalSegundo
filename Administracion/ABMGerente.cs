@@ -38,10 +38,10 @@ namespace Administracion
                 lblMensajes.Text = "Usuario ingresado exitosamente";
                 EstadoInicial();
             }
-            
+
             catch (Exception ex)
             {
-                lblMensajes.Text = ex.Message; 
+                lblMensajes.Text = ex.Message;
             }
 
         }
@@ -65,8 +65,8 @@ namespace Administracion
             txtUsuario.Enabled = true;
             txtPass.Enabled = true;
             txtNomApe.Enabled = true;
-            txtCorreo.Enabled = true;           
+            txtCorreo.Enabled = true;
         }
-     
+
     }
 }

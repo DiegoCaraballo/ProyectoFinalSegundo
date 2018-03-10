@@ -25,15 +25,15 @@ namespace Logica
         }
         public void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaTipoContrato().AltaTipoContrato(unTipoContrato,usuLogueado);
+            FabricaPersistencia.GetPersistenciaTipoContrato().AltaTipoContrato(unTipoContrato, usuLogueado);
         }
         public void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaTipoContrato().BajaTipoContrato(unTipoContrato,usuLogueado);
+            FabricaPersistencia.GetPersistenciaTipoContrato().BajaTipoContrato(unTipoContrato, usuLogueado);
         }
         public void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaTipoContrato().ModificarTipoContrato(unTipoContrato,usuLogueado);
+            FabricaPersistencia.GetPersistenciaTipoContrato().ModificarTipoContrato(unTipoContrato, usuLogueado);
         }
 
         public List<TipoContrato> ListarContratos()

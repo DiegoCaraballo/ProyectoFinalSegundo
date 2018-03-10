@@ -127,7 +127,7 @@ namespace Administracion
             {
                 lblMensajes.Text = "";
                 ListadoDePagos _unForm = new ListadoDePagos(usuLogueado);
-                _unForm.ShowDialog();             
+                _unForm.ShowDialog();
             }
             else
             {

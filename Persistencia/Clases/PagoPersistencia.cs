@@ -28,11 +28,11 @@ namespace Persistencia
 
         //Altar pago
         //TODO - ver que cambié el sp en la bd
-        public void AltaPago(Pago unPago,Usuario usuLogueado)
+        public void AltaPago(Pago unPago, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
-    
+
             SqlCommand oComando = new SqlCommand("AltaPago", cnn);
             oComando.CommandType = CommandType.StoredProcedure;
 
@@ -123,7 +123,7 @@ namespace Persistencia
                 if (lector.HasRows)
                 {
                     lector.Read();
-                    fechaPago = (DateTime)lector["fecha"];                
+                    fechaPago = (DateTime)lector["fecha"];
                 }
 
                 lector.Close();

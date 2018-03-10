@@ -21,7 +21,7 @@ namespace Logica
 
         public void AltaPago(Pago unPago, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaPago().AltaPago((Pago)unPago,usuLogueado);
+            FabricaPersistencia.GetPersistenciaPago().AltaPago((Pago)unPago, usuLogueado);
         }
 
         public DateTime PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
@@ -29,7 +29,7 @@ namespace Logica
             return FabricaPersistencia.GetPersistenciaPago().PagoDeUnaFactura((int)codContrato, (int)codEmp, (int)monto, (int)codCli, (DateTime)fecha);
         }
 
-        public List<Pago> listar(Usuario usuLogueado) 
+        public List<Pago> listar(Usuario usuLogueado)
         {
             return (FabricaPersistencia.GetPersistenciaPago().listar(usuLogueado));
         }

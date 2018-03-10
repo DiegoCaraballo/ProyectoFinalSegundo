@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Persistencia
 {
-    internal class TipoContratoPersistencia: ITipoContratoPersistencia
+    internal class TipoContratoPersistencia : ITipoContratoPersistencia
     {
         #region SINGLETON
         private static TipoContratoPersistencia instancia = null;
@@ -60,7 +60,7 @@ namespace Persistencia
             return unContrato;
         }
 
-        public void AltaTipoContrato(TipoContrato unTipoContrato,Usuario usuLogueado)
+        public void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
@@ -71,7 +71,7 @@ namespace Persistencia
             cmd.Parameters.AddWithValue("@codContrato", unTipoContrato.CodContrato);
             cmd.Parameters.AddWithValue("@codEmp", unTipoContrato.UnaEmp.Codigo);
             cmd.Parameters.AddWithValue("@nombre", unTipoContrato.Nombre);
-      
+
             SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add(retorno);
@@ -83,7 +83,7 @@ namespace Persistencia
                 if ((int)retorno.Value == -1)
                     throw new Exception("No existe la empresa");
                 else if ((int)retorno.Value == -2)
-                    throw new Exception("No existe la empresa");
+                    throw new Exception("La empresa esta inactiva");
                 else if ((int)retorno.Value == -3)
                     throw new Exception("Ya existe el Tipo de Contrato");
                 else if ((int)retorno.Value == -4)
@@ -101,7 +101,7 @@ namespace Persistencia
 
         }
 
-        public void BajaTipoContrato(TipoContrato unTipoContrato,Usuario usuLogueado)
+        public void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
@@ -135,7 +135,7 @@ namespace Persistencia
             }
         }
 
-        public void ModificarTipoContrato(TipoContrato unTipoContrato,Usuario usuLogueado)
+        public void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));

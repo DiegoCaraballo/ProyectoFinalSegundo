@@ -134,7 +134,7 @@ namespace ServicioWCF
                 XmlNode _raiz = exportar.DocumentElement;
 
                 foreach (TipoContrato tc in lista)
-                {                  
+                {
                     XmlElement _EmpCod = exportar.CreateElement("EmpCod");
                     _EmpCod.InnerText = tc.UnaEmp.Codigo.ToString();
 

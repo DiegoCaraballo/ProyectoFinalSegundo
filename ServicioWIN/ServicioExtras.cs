@@ -103,7 +103,7 @@ namespace ServicioWIN
                         TimeSpan totalMinutos = (t1 - t2);
                         //Pasado a minutos
                         int minutosExtras = Convert.ToInt32(totalMinutos.TotalMinutes);
-                        
+
                         //LLamada al servicio para registrar los minutos
                         IServicio serv = new ServicioClient();
                         serv.AgregaExtras(Convert.ToInt32(cedula[0].InnerText.Trim().ToString()), horaActual.Date, minutosExtras);

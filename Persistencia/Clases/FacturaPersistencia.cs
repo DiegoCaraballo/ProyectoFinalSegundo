@@ -11,7 +11,7 @@ namespace Persistencia
 {
     internal class FacturaPersistencia
     {
-       
+
         internal static void AgregarFactura(int pIdPago, int pCodContrato, int pCodEmp, int pMonto, int pCodCli, DateTime pFechaVto, SqlTransaction pTransaccion)
         {
             SqlCommand comando = new SqlCommand("AltaFactura", pTransaccion.Connection);
@@ -73,7 +73,7 @@ namespace Persistencia
                     {
 
                         Factura fac = new Factura();
-                        
+
                         fac.FechaVto = (DateTime)_lector["fechaVto"];
                         fac.CodCli = (int)_lector["codCli"];
                         fac.Monto = (int)_lector["monto"];
@@ -123,7 +123,7 @@ namespace Persistencia
                 {
                     while (_lector.Read())
                     {
-                      
+
 
                         idPago = (int)_lector["idPago"];
                         codContrato = (int)_lector["codContrato"];
@@ -132,7 +132,7 @@ namespace Persistencia
                         codCli = Convert.ToInt32(_lector["codCli"]);
                         fechaVto = (DateTime)_lector["fechaVto"];
 
-                        Factura fac = new Factura(monto, codCli, fechaVto, TipoContratoPersistencia.GetInstancia().BuscarContrato(codEmpresa, codContrato));     
+                        Factura fac = new Factura(monto, codCli, fechaVto, TipoContratoPersistencia.GetInstancia().BuscarContrato(codEmpresa, codContrato));
                         _ListaFacturas.Add(fac);
                     }
                 }

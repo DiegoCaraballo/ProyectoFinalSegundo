@@ -13,8 +13,8 @@ namespace Administracion
 {
     public partial class ABMEmpresa : Form
     {
-        Usuario usuLogueado=null;
-    
+        Usuario usuLogueado = null;
+
         public ABMEmpresa(Usuario usu)
         {
             usuLogueado = usu;
@@ -65,7 +65,7 @@ namespace Administracion
                 }
             }
 
-            
+
             catch (System.Web.Services.Protocols.SoapException ex)
             {
                 if (ex.Detail.InnerText.Length > 80)
@@ -106,7 +106,7 @@ namespace Administracion
 
             catch (FormatException)
             {
-                lblMensajes.Text = "El Código y Rut de la Empresa deben ser numéricos"; 
+                lblMensajes.Text = "El Código y Rut de la Empresa deben ser numéricos";
             }
 
             catch (Exception ex)
@@ -182,7 +182,7 @@ namespace Administracion
                 emp.Telefono = txtTelefono.Text.Trim();
 
                 IServicio serv = new ServicioClient();
-                serv.AltaEmpresa(emp,usuLogueado);
+                serv.AltaEmpresa(emp, usuLogueado);
 
                 lblMensajes.Text = "Empresa ingresada exitosamente";
 

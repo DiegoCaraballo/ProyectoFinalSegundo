@@ -13,7 +13,7 @@ namespace Persistencia
         void AltaCajero(Cajero unCajero, Usuario usuLogueado);
         void BajaCajero(Cajero unCajero, Usuario usuLogueado);
         void ModificarCajero(Cajero unCajero, Usuario usuLogueado);
-        void CambioPass(Cajero unCajero, Usuario usuLogueado);
+        void CambioPass(Usuario unCajero, Usuario usuLogueado);
         Cajero BuscarCajero(int cedula);
         Cajero LogueoCajero(string nomUsu);
         void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos);

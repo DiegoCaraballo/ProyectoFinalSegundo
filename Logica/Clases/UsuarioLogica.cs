@@ -50,7 +50,7 @@ namespace Logica
         {
             if (unUsuario is Cajero)
             {
-                FabricaPersistencia.GetPersistenciaCajero().CambioPass((Cajero)unUsuario, usuLogueado);
+                FabricaPersistencia.GetPersistenciaCajero().CambioPass(unUsuario, usuLogueado);
             }
             else
             {

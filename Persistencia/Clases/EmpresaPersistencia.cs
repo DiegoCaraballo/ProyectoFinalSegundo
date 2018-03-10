@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Persistencia
 {
-    internal class EmpresaPersistencia: IEmpresaPersistencia
+    internal class EmpresaPersistencia : IEmpresaPersistencia
     {
         #region SINGLETON
         private static EmpresaPersistencia instancia = null;
@@ -42,7 +42,7 @@ namespace Persistencia
                 if (lector.HasRows)
                 {
                     lector.Read();
-                    unaEmpresa = new Empresa((int)lector["codEmpresa"], (int)lector["rut"], (string)lector["dirFiscal"], (string)lector["telefono"]);                 
+                    unaEmpresa = new Empresa((int)lector["codEmpresa"], (int)lector["rut"], (string)lector["dirFiscal"], (string)lector["telefono"]);
                 }
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace Persistencia
             return unaEmpresa;
         }
 
-        public void AltaEmpresa(Empresa unaEmpresa,Usuario usuLogueado)
+        public void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
@@ -81,7 +81,7 @@ namespace Persistencia
                 if ((int)retorno.Value == -1)
                     throw new Exception("La Empresa ya existe");
                 else if ((int)retorno.Value == -2)
-                    throw new Exception("Error en la base de datos");         
+                    throw new Exception("Error en dar de alta la empresa");
 
             }
             catch (Exception ex)
@@ -95,7 +95,7 @@ namespace Persistencia
 
         }
 
-        public void BajaEmpresa(Empresa unaEmpresa,Usuario usuLogueado)
+        public void BajaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
@@ -115,10 +115,10 @@ namespace Persistencia
                 if ((int)retorno.Value == -1)
                     throw new Exception("La empresa no existe");
                 if ((int)retorno.Value == -2)
-                    throw new Exception("Error al desactivar Tipo de Contrato y Empresa");
+                    throw new Exception("Error al desactivar Tipo de Contrato y/o Empresa");
                 if ((int)retorno.Value == -3)
-                    throw new Exception("Error al eliminar Tipo de Contrato y Empresa");
-             
+                    throw new Exception("Error al eliminar Tipo de Contrato y/o Empresa");
+
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace Persistencia
             }
         }
 
-        public void ModificarEmpresa(Empresa unaEmpresa,Usuario usuLogueado)
+        public void ModificarEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
@@ -143,7 +143,7 @@ namespace Persistencia
             cmd.Parameters.AddWithValue("@direccion", unaEmpresa.DirFiscal);
             cmd.Parameters.AddWithValue("@telefono", unaEmpresa.Telefono);
 
-            
+
             SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add(retorno);
@@ -158,7 +158,7 @@ namespace Persistencia
                     throw new Exception("La empresa esta inactiva");
                 else if ((int)retorno.Value == -3)
                     throw new Exception("Errero en la base de datos");
-        
+
             }
             catch (Exception ex)
             {
@@ -213,7 +213,7 @@ namespace Persistencia
 
             return lista;
         }
-        
+
         #endregion
     }
 }

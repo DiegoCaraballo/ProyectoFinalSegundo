@@ -66,10 +66,10 @@ namespace EntidadesCompartidas
             get { return numeroInt; }
             set { numeroInt = value; }
         }
-        
+
         public Pago()
         { }
-        
+
         public Pago(int pNumeroInt, DateTime pFecha, int pMontoTotal, Cajero pUsuCajero, List<Factura> pLasFacturas)
         {
             NumeroInt = pNumeroInt;

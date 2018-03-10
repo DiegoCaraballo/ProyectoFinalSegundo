@@ -27,14 +27,15 @@ namespace EntidadesCompartidas
         public DateTime FechaVto
         {
             get { return fechaVto; }
-            set {
+            set
+            {
                 if (fechaVto > DateTime.Now)
                 {
                     throw new Exception("La factura está vencida");
                 }
                 else
                     fechaVto = value;
-                }
+            }
         }
 
         [DataMember]
@@ -63,11 +64,11 @@ namespace EntidadesCompartidas
                     throw new Exception("El monto debe tener entre 1 y 5 digitos");
             }
         }
-        
+
         public Factura()
         { }
-     
-        public Factura(int pMonto, int pCodCli, DateTime pFechaVto,TipoContrato pUnContrato)
+
+        public Factura(int pMonto, int pCodCli, DateTime pFechaVto, TipoContrato pUnContrato)
         {
             CodCli = pCodCli;
             Monto = pMonto;

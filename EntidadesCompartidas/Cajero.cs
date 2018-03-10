@@ -39,11 +39,11 @@ namespace EntidadesCompartidas
             }
         }
 
-        
+
         public Cajero()
         { }
 
-        
+
         public Cajero(int pCedula, string pNomUsu, string pPass, string pNomComp, DateTime pHoraIni, DateTime pHoraFin)
             : base(pCedula, pNomUsu, pPass, pNomComp)
         {

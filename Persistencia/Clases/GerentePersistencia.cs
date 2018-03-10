@@ -24,7 +24,7 @@ namespace Persistencia
 
         #endregion
 
-        public void AltaGerente(Gerente unGerente,Usuario usuLogueado)
+        public void AltaGerente(Gerente unGerente, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
@@ -43,21 +43,23 @@ namespace Persistencia
             retorno.Direction = ParameterDirection.ReturnValue;
             cmd.Parameters.Add(retorno);
 
-       
+
             try
             {
                 cnn.Open();
                 cmd.ExecuteNonQuery();
-              if ((int)retorno.Value == -1)
+                if ((int)retorno.Value == -1)
                     throw new Exception("La cedula ingresada ya existe en el sistema.");
                 if ((int)retorno.Value == -2)
                     throw new Exception("La cedula ingresada ya existe como Gerente");
                 if ((int)retorno.Value == -3 || (int)retorno.Value == -4)
-                    throw new Exception("Error al ingresar el usuario");
+                    throw new Exception("Error al crear usuario");
                 if ((int)retorno.Value == -5)
-                    throw new Exception("Error al crear el usuario de SQL");
+                    throw new Exception("Error al crear el usuario de Servidor");
                 if ((int)retorno.Value == -6)
                     throw new Exception("Error al crear el usuario de Base de datos");
+                if ((int)retorno.Value == -7 || (int)retorno.Value == -8)
+                    throw new Exception("Error al asignar permisos");
 
             }
             catch (Exception ex)
@@ -71,7 +73,7 @@ namespace Persistencia
             }
         }
 
-        public void CambioPass(Usuario unGerente,Usuario usuLogueado)
+        public void CambioPass(Usuario unGerente, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
@@ -80,7 +82,9 @@ namespace Persistencia
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@cedula", unGerente.Cedula);
-            cmd.Parameters.AddWithValue("@pass", unGerente.Pass);
+            cmd.Parameters.AddWithValue("@antiguaPass", usuLogueado.Pass);
+            cmd.Parameters.AddWithValue("@nuevaPass", unGerente.Pass);
+            cmd.Parameters.AddWithValue("@nomUsu", usuLogueado.NomUsu);
 
             SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;
@@ -93,6 +97,12 @@ namespace Persistencia
                 cmd.ExecuteNonQuery();
                 if ((int)retorno.Value == -1)
                     throw new Exception("La cedula no existe.");
+                if ((int)retorno.Value == -2)
+                    throw new Exception("La cedula pertenece a un usuario inactivo.");
+                if ((int)retorno.Value == -3)
+                    throw new Exception("Error al actualizar el usuario");
+                if ((int)retorno.Value == -4)
+                    throw new Exception("Error al actualizar contraseña en servidor");
 
             }
             catch (Exception ex)
@@ -124,9 +134,8 @@ namespace Persistencia
                 if (lector.HasRows)
                 {
                     lector.Read();
-                    //TODO - ver tema de fechas... en BD es time y aca es DATE TIME
-
-                    unGerente = new Gerente((int)lector["cedula"], (string)lector["nomUsu"], (string)lector["pass"], (string)lector["nomCompleto"],(string)lector["correo"]);
+                    unGerente =
+                        new Gerente((int)lector["cedula"], (string)lector["nomUsu"], (string)lector["pass"], (string)lector["nomCompleto"], (string)lector["correo"]);
                 }
             }
             catch (Exception ex)

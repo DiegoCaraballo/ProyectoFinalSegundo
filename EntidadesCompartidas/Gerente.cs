@@ -26,7 +26,7 @@ namespace EntidadesCompartidas
                 //  @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,6}))$")
                 //   )
                 //{
-                   correo = value;
+                correo = value;
                 //}
                 //else
                 //{

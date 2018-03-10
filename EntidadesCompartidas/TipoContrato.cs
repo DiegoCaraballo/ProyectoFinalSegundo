@@ -40,11 +40,11 @@ namespace EntidadesCompartidas
                 else
                     throw new Exception("El codigo debe de tener 1 o 2 digitos");
             }
-        }  
-     
+        }
+
         public TipoContrato()
         { }
-        
+
         public TipoContrato(Empresa pUnaEmp, int pCodContrato, string pNombre)
         {
             Nombre = pNombre;

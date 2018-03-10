@@ -64,7 +64,7 @@ public partial class ConsultaPago : System.Web.UI.Page
             }
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             lblMensaje.Text = ex.Message;
         }

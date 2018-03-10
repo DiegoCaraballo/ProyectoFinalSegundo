@@ -42,15 +42,15 @@
             // gvPagos
             // 
             this.gvPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvPagos.Location = new System.Drawing.Point(-1, 137);
+            this.gvPagos.Location = new System.Drawing.Point(-3, 145);
             this.gvPagos.Name = "gvPagos";
             this.gvPagos.RowTemplate.Height = 24;
-            this.gvPagos.Size = new System.Drawing.Size(787, 384);
+            this.gvPagos.Size = new System.Drawing.Size(582, 384);
             this.gvPagos.TabIndex = 0;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(547, 29);
+            this.btnLimpiar.Location = new System.Drawing.Point(455, 29);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(107, 27);
             this.btnLimpiar.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             // btnResumenCajero
             // 
-            this.btnResumenCajero.Location = new System.Drawing.Point(416, 29);
+            this.btnResumenCajero.Location = new System.Drawing.Point(324, 29);
             this.btnResumenCajero.Name = "btnResumenCajero";
             this.btnResumenCajero.Size = new System.Drawing.Size(125, 27);
             this.btnResumenCajero.TabIndex = 2;
@@ -71,7 +71,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(89, 9);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 18);
             this.label1.TabIndex = 5;
@@ -80,7 +80,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(256, 8);
+            this.label2.Location = new System.Drawing.Point(158, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 18);
             this.label2.TabIndex = 6;
@@ -89,7 +89,7 @@
             // lblMensaje
             // 
             this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Location = new System.Drawing.Point(265, 137);
+            this.lblMensaje.Location = new System.Drawing.Point(158, 74);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(0, 18);
             this.lblMensaje.TabIndex = 7;
@@ -97,17 +97,19 @@
             // 
             // txtCajero
             // 
-            this.txtCajero.Location = new System.Drawing.Point(92, 31);
+            this.txtCajero.Location = new System.Drawing.Point(15, 29);
+            this.txtCajero.MaxLength = 9;
             this.txtCajero.Name = "txtCajero";
-            this.txtCajero.Size = new System.Drawing.Size(100, 25);
+            this.txtCajero.Size = new System.Drawing.Size(137, 25);
             this.txtCajero.TabIndex = 8;
             this.txtCajero.Validating += new System.ComponentModel.CancelEventHandler(this.txtCajero_Validating);
             // 
             // txtEmpresa
             // 
-            this.txtEmpresa.Location = new System.Drawing.Point(216, 30);
+            this.txtEmpresa.Location = new System.Drawing.Point(161, 29);
+            this.txtEmpresa.MaxLength = 4;
             this.txtEmpresa.Name = "txtEmpresa";
-            this.txtEmpresa.Size = new System.Drawing.Size(100, 25);
+            this.txtEmpresa.Size = new System.Drawing.Size(157, 25);
             this.txtEmpresa.TabIndex = 9;
             this.txtEmpresa.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmpresa_Validating);
             // 
@@ -116,7 +118,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(781, 522);
+            this.ClientSize = new System.Drawing.Size(581, 522);
             this.Controls.Add(this.txtEmpresa);
             this.Controls.Add(this.txtCajero);
             this.Controls.Add(this.lblMensaje);

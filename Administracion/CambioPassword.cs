@@ -59,7 +59,7 @@ namespace Administracion
                     lblMensajes.Text = ex.Message;
             }
         }
-        
+
         private void btnCambiar_Click(object sender, EventArgs e)
         {
             try
@@ -71,11 +71,12 @@ namespace Administracion
                     usuLogueado.NomUsu = usuLogueado.NomUsu;
                     usuLogueado.NomCompleto = usuLogueado.NomCompleto;
                     usuCambiado.Pass = txtNuevaPass.Text;
-                   
+
 
                     IServicio serv = new ServicioClient();
                     serv.CambioPass(usuCambiado, usuLogueado);
                     LimpiarCampos();
+                    lblMensajes.Text = "Contraseña actualizada con exito";
                 }
                 else
                 {

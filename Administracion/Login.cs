@@ -24,10 +24,10 @@ namespace Administracion
         {
             try
             {
-                IServicio serv= new ServicioClient();
-                
+                IServicio serv = new ServicioClient();
+
                 Usuario usu = null;
-        
+
                 usu = serv.Logueo(txtUsuario.Text);
 
                 //Si el usuario no existe
@@ -48,7 +48,7 @@ namespace Administracion
                         {
                             File.Delete(destino);
                         }
-        
+
                         XmlDocument horas = new XmlDocument();
 
                         XmlNode usuCajero = horas.CreateNode(XmlNodeType.Element, "usuCajero", "");
@@ -72,7 +72,7 @@ namespace Administracion
                         Form unForm = new Default(usu);
                         unForm.ShowDialog();
                         this.Close();
-                       
+
                     }
                     else
                     {
@@ -85,7 +85,7 @@ namespace Administracion
                 else
                 {
                     throw new Exception("Contraseña Incorrecta");
-                }              
+                }
 
             }
             catch (System.Web.Services.Protocols.SoapException ex)

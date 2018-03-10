@@ -76,7 +76,7 @@ namespace Administracion
                     lblMensaje.Text = ex.Message;
             }
         }
-        
+
         //Modificar tipo de contrato
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -214,6 +214,6 @@ namespace Administracion
                 else
                     lblMensaje.Text = ex.Message;
             }
-        }   
+        }
     }
 }

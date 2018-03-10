@@ -85,7 +85,7 @@ namespace Administracion
                     {
                         txtMontoTotal.Text = "";
                     }
-                    else 
+                    else
                     {   //Si no lo vuelvo a calcualar
                         foreach (DataRow dr in dt.Rows)
                         {
@@ -96,7 +96,7 @@ namespace Administracion
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblMensaje.Text = "Error: " + ex.Message;
             }
@@ -106,7 +106,7 @@ namespace Administracion
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
-            {             
+            {
                 //Capturo el codEmp y codTipoContrato de la facutra ingresada por el usuario
                 int codEmp = Convert.ToInt32(txtCodBarra.Text.Substring(0, 4).TrimStart('0'));
                 int codTipoContrato = Convert.ToInt32(txtCodBarra.Text.Substring(4, 2).TrimStart('0'));
@@ -239,20 +239,20 @@ namespace Administracion
         {
             try
             {
-                IServicio serv = new ServicioClient(); 
-               
+                IServicio serv = new ServicioClient();
+
                 try
                 {   //Si hay facturas ingresadas
                     if (lasFacturas.Count != 0)
                     {
                         Pago unPago = new Pago();
-                          
+
                         unPago.NumeroInt = 0;
                         unPago.MontoTotal = Convert.ToInt32(txtMontoTotal.Text);
                         unPago.Fecha = DateTime.Today;
                         unPago.LasFacturas = lasFacturas.ToArray();
-                        unPago.UsuCajero = usuLogueado;                   
-                        
+                        unPago.UsuCajero = usuLogueado;
+
                         //Alto el pago
                         serv.AltaPago(unPago, usuLogueado);
 
@@ -268,12 +268,12 @@ namespace Administracion
                         throw new Exception("El pago debe contener al menos una factura");
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     lblMensaje.Text = "Error: " + ex.Message;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblMensaje.Text = "Error: " + ex.Message;
             }

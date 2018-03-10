@@ -26,16 +26,16 @@ namespace EntidadesCompartidas
             get { return cedula; }
             set
             {
-                   //if (value.ToString().Length < 7 || value.ToString().Length > 8)
-                   // {
-                   //     throw new Exception("La cedula debe tener 7 u 8 digitos");
-                   // }
-                   // else
-                   // {
-                      cedula = value;
-                   // }
-                
-             
+                //if (value.ToString().Length < 7 || value.ToString().Length > 8)
+                // {
+                //     throw new Exception("La cedula debe tener 7 u 8 digitos");
+                // }
+                // else
+                // {
+                cedula = value;
+                // }
+
+
             }
         }
 
@@ -45,14 +45,14 @@ namespace EntidadesCompartidas
             get { return nomUsu; }
             set
             {
-            //    if (value.Length < 4 || value.Length > 15)
-            //    {
-            //        throw new Exception("El Nombre de Usuario debe tener entre 4 y 15 caracteres");
-            //    }
-            //    else
-            //    {
-                    nomUsu = value;
-            //    }
+                //    if (value.Length < 4 || value.Length > 15)
+                //    {
+                //        throw new Exception("El Nombre de Usuario debe tener entre 4 y 15 caracteres");
+                //    }
+                //    else
+                //    {
+                nomUsu = value;
+                //    }
             }
         }
 
@@ -64,7 +64,7 @@ namespace EntidadesCompartidas
             {
                 //if (value.Length == 7)
                 //{
-                   pass = value;
+                pass = value;
                 //}
 
                 //else
@@ -86,7 +86,7 @@ namespace EntidadesCompartidas
                 //}
                 //else
                 //{
-                   nomCompleto = value;
+                nomCompleto = value;
                 //}
             }
         }
