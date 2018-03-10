@@ -44,7 +44,7 @@ namespace Administracion
                                IdPago = lista.NumeroInt,
                                Fecha = lista.Fecha,
                                Monto = lista.MontoTotal,
-                               _Cajero = lista.UsuCajero.NomUsu
+                               Cajero = lista.UsuCajero.NomUsu
                            }).ToList();
 
                 gvPagos.DataSource = res;
@@ -61,29 +61,24 @@ namespace Administracion
             gvPagos.DataSource = null;
             txtCajero.Text = "";
             txtEmpresa.Text = "";
-            //cboEmpresa.SelectedIndex = 0;
-            //cboCajero.SelectedIndex = 0;
             CargoListaPagos();
+            lblMensaje.Text = "";
         }
-
-
 
         //Resumen por Cajero
         private void btnResumenCajero_Click(object sender, EventArgs e)
         {
             gvPagos.DataSource = null;
             try
-            {//TODO - Falta Suma de montos
+            {//TODO - revisar el total
                 gvPagos.DataSource = null;
                 var res = (from lista in listadoPagos
-                           group lista by lista.UsuCajero.Cedula  into listaCajeros
+                           group lista by lista.UsuCajero.Cedula into listaCajeros
                            select new
                            {
-                               _Cajero = listaCajeros.First().UsuCajero.NomUsu,
-                               Cantidad = listaCajeros.Count()
-                               
-                               
-
+                               Cajero = listaCajeros.First().UsuCajero.NomUsu,
+                               Cantidad = listaCajeros.Count(),
+                               Total = listaCajeros.Sum(monto => monto.MontoTotal)
                            }).ToList();
 
                 gvPagos.DataSource = res;
@@ -96,19 +91,20 @@ namespace Administracion
             }
         }
 
+        //Validar el usuario
         private void txtCajero_Validating(object sender, CancelEventArgs e)
         {
             try
             {
-                if (txtCajero.Text != "")
+                if (txtCajero.Text.Trim() != "")
                 {
                     gvPagos.DataSource = null;
                     var res = (from lista in listadoPagos
-                               where lista.UsuCajero.Cedula == Convert.ToInt32(txtCajero.Text)
+                               where lista.UsuCajero.Cedula == Convert.ToInt32(txtCajero.Text.Trim())
                                orderby lista.Fecha descending
                                select new
                                {
-                                   _Cajero = lista.UsuCajero.Cedula,
+                                   Cajero = lista.UsuCajero.Cedula,
                                    Fecha = lista.Fecha,
                                    Monto = lista.MontoTotal
                                }).ToList();
@@ -119,7 +115,7 @@ namespace Administracion
             }
             catch (FormatException)
             {
-                lblMensaje.Text = "El campo Cajero debe ser numerico";
+                lblMensaje.Text = "El campo Cajero debe ser numérico";
             }
 
             catch (Exception ex)
@@ -128,33 +124,36 @@ namespace Administracion
             }
         }
 
+        //Validar la Empresa
         private void txtEmpresa_Validating(object sender, CancelEventArgs e)
         {
             try
             {
-                if (txtEmpresa.Text != "")
+                if (txtEmpresa.Text.Trim() != "" && txtEmpresa.Text.Trim().Length <= 4)
                 {
                     gvPagos.DataSource = null;
-                   
-                    var res
-                        = (from l in listadoPagos
-                           from asd in l.LasFacturas
-                              where asd.UnTipoContrato.UnaEmp.Codigo == Convert.ToInt32(txtEmpresa.Text)
-                           select new {
-                               _Empresa = asd.UnTipoContrato.UnaEmp.Codigo,
-                               Fecha= asd.FechaVto,
-                               Monto = asd.Monto,
-                               Contrato = asd.UnTipoContrato.Nombre
-                           }).ToList();
+
+                    var res = (from l in listadoPagos
+                               from asd in l.LasFacturas
+                               where asd.UnTipoContrato.UnaEmp.Codigo == Convert.ToInt32(txtEmpresa.Text)
+                               select new
+                               {
+                                   Empresa = asd.UnTipoContrato.UnaEmp.Codigo,
+                                   Fecha = asd.FechaVto,
+                                   Monto = asd.Monto,
+                                   Contrato = asd.UnTipoContrato.Nombre
+                               }).ToList();
 
                     gvPagos.DataSource = res;
                 }
-
-
+                else
+                {
+                    throw new Exception("El codigo de empresa debe contener entre 1 y 4 cracteres");
+                }
             }
             catch (FormatException)
             {
-                lblMensaje.Text = "El campo Cajero debe ser numerico";
+                lblMensaje.Text = "El campo Empresa debe ser numérico";
             }
 
             catch (Exception ex)
@@ -163,6 +162,6 @@ namespace Administracion
             }
         }
 
-      
+
     }
 }
