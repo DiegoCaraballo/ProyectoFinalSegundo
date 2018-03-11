@@ -20,7 +20,14 @@ namespace EntidadesCompartidas
         public TipoContrato UnTipoContrato
         {
             get { return unTipoContrato; }
-            set { unTipoContrato = value; }
+            set {
+                if (value != null)
+                    unTipoContrato = value;
+                else
+                {
+                    throw new Exception("No existe el tipo de contrato");
+                }
+            }
         }
 
         [DataMember]
@@ -29,7 +36,7 @@ namespace EntidadesCompartidas
             get { return fechaVto; }
             set
             {
-                if (fechaVto > DateTime.Now)
+                if (fechaVto > DateTime.Today)
                 {
                     throw new Exception("La factura está vencida");
                 }
@@ -44,7 +51,7 @@ namespace EntidadesCompartidas
             get { return codCli; }
             set
             {
-                if (codCli.ToString().Length >= 1 && codCli.ToString().Length <= 6)
+                if (codCli.ToString().Trim().Length >= 1 && codCli.ToString().Trim().Length <= 6)
                     codCli = value;
                 else
                     throw new Exception("El monto debe tener entre 1 y 5 digitos");
@@ -58,7 +65,7 @@ namespace EntidadesCompartidas
             get { return monto; }
             set
             {
-                if (monto.ToString().Length >= 1 && monto.ToString().Length <= 5)
+                if (monto.ToString().Trim().Length >= 1 && monto.ToString().Trim().Length <= 5)
                     monto = value;
                 else
                     throw new Exception("El monto debe tener entre 1 y 5 digitos");

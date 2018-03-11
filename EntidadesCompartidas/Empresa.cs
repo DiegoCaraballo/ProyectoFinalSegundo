@@ -23,7 +23,7 @@ namespace EntidadesCompartidas
             get { return codigo; }
             set
             {
-                if (codigo.ToString().Length >= 1 && codigo.ToString().Length <= 4)
+                if (codigo.ToString().Trim().Length >= 1 && codigo.ToString().Trim().Length <= 4)
                     codigo = value;
                 else
                     throw new Exception("El codigo de la emprea debe tener entre 1 y 4 digitos");
@@ -36,10 +36,14 @@ namespace EntidadesCompartidas
             get { return rut; }
             set
             {
-                if (rut.ToString().Length <= 12)
+                if (value.ToString().Trim().Length == 12)
+                {
                     rut = value;
+                }
                 else
-                    throw new Exception("El rut debe ser un nuemero entre 1 y 12 digitos");
+                {
+                    throw new Exception("El rut debe ser un nuemero de 12 digitos");
+                }
             }
         }
 
@@ -47,14 +51,34 @@ namespace EntidadesCompartidas
         public string DirFiscal
         {
             get { return dirFiscal; }
-            set { dirFiscal = value; }
+            set
+            {
+                if (value.ToString().Trim().Length < 5 || value.ToString().Length > 100)
+                {
+                    throw new Exception("La direccion debe tener entre 5 y 100 caracteres");
+                }
+                else
+                {
+                    dirFiscal = value;
+                }
+            }
         }
 
         [DataMember]
         public string Telefono
         {
             get { return telefono; }
-            set { telefono = value; }
+            set
+            {
+                if (value.ToString().Trim().Length < 5 || value.ToString().Trim().Length > 30)
+                {
+                    throw new Exception("El telefono debe de tener entre 5 y 30 digitos");
+                }
+                else
+                {
+                    telefono = value;
+                }
+            }
         }
 
         public Empresa()

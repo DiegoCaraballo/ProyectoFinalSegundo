@@ -61,11 +61,10 @@ cedulaCajero int not null foreign key references cajero(cedula)
 )
 
 go
-
 create table empresa
 (
 codEmpresa int not null primary key check(len(codEmpresa) >= 1 AND len(codEmpresa) <= 4),
-rut int unique not null check(len(rut) <= 12),
+rut bigint unique not null check(len(rut) <= 12),
 dirFiscal varchar(100) not null,
 telefono varchar(30) not null,
 activo bit not null default 1
@@ -724,7 +723,7 @@ END
 GO
 
 --Altar Empresa
-create proc AltaEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
+create proc AltaEmpresa @codEmp int, @rut bigint, @direccion varchar(100), @telefono varchar(30) as
 begin
 
 	if exists(select * from empresa where codEmpresa = @codEmp and activo = 1)
@@ -747,7 +746,7 @@ go
 
 
 --Modificar Empresa
-create proc ModificarEmpresa @codEmp int, @rut int, @direccion varchar(100), @telefono varchar(30) as
+create proc ModificarEmpresa @codEmp int, @rut bigint, @direccion varchar(100), @telefono varchar(30) as
 begin
 
 	if not exists(select * from empresa where codEmpresa = @codEmp)
@@ -842,14 +841,15 @@ exec AltaCajero 33333333,'cajero1','cajero1','primer cajero', '1990-01-01 19:00:
 exec AltaCajero 44444444,'cajero2','cajero2','segundo cajero', '1990-01-01 00:00:00','2018-01-01 06:00:00';
 
 --Empresas
-exec AltaEmpresa 1111, 654882789, 'Av Millan 6623','23364852'
-exec AltaEmpresa 2222, 668667896, '8 de Octubre 3218','25642515'
-exec AltaEmpresa 3333, 121212121, 'Av Agraciada 6565', '223584452'
-exec AltaEmpresa 4444, 684984184, 'Garibaldi 8945','248321654'
-exec AltaEmpresa 5555, 894212187, 'Cno Castro 8458','23366985'
-exec AltaEmpresa 6666, 221808998, 'Comercio 6648','28063218'
-exec AltaEmpresa 7777, 658444649, 'Bvar Artigas 6842', '22353285'
-exec AltaEmpresa 8888, 123456789, '18 de Julio 5541','24875521'
+exec AltaEmpresa 1111, 123456789012, 'Av Millan 6623','23364852'
+exec AltaEmpresa 2222, 999632597528, '8 de Octubre 3218','25642515'
+exec AltaEmpresa 3333, 253994264288, 'Av Agraciada 6565', '223584452'
+exec AltaEmpresa 4444, 923975328822, 'Garibaldi 8945','248321654'
+exec AltaEmpresa 5555, 317945217542, 'Cno Castro 8458','23366985'
+exec AltaEmpresa 6666, 956297239878, 'Comercio 6648','28063218'
+exec AltaEmpresa 7777, 954295729279, 'Bvar Artigas 6842', '22353285'
+exec AltaEmpresa 8888, 964729292785, '18 de Julio 5541','24875521'
+
 
 --Tipos de Contratos
 exec AltaTipoContrato 1111, 33, 'Luz'
@@ -886,8 +886,7 @@ exec AltaFactura 4,33,5555,40,319823,'2018-04-30'
 exec AltaFactura 4,01,6666,60,698253,'2018-06-14'
 exec AltaFactura 5,44,4444,3000,128574,'2018-07-05'
 exec AltaFactura 6,33,1111,1000,851345,'2018-10-16'
-exec AltaFactura 6,44,4444,10000,925813,'2018-11-18'
-exec AltaFactura 6,33,1111,20000,001238,'2018-11-26'--revisar Creo que deberiamos de cambiar la pk de factura
+exec AltaFactura 6,44,4444,30000,925813,'2018-11-18'
 exec AltaFactura 6,52,4444,40000,384238,'2020-02-11'
 exec AltaFactura 6,33,5555,5000,123654,'2019-02-10'
 exec AltaFactura 6,01,6666,5000,987456,'2018-09-14'
@@ -897,8 +896,11 @@ exec AltaFactura 8,33,1111,5000,159753,'2018-11-13'
 exec AltaFactura 9,45,4444,6000,357159,'2018-10-19'
 exec AltaFactura 9,33,1111,4000,951456,'2018-05-12'
 
+select * from gerente
 
+select * from usuario
 
+select * from cajero
 
-
+select * from pago
 

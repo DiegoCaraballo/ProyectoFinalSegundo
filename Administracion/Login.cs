@@ -90,8 +90,8 @@ namespace Administracion
             }
             catch (Exception ex)
             {
-                if (ex.Message.Length > 40)
-                    lblMensajes.Text = ex.Message.Substring(0, 40);
+                if (ex.Message.Length > 80)
+                    lblMensajes.Text = ex.Message.Substring(0, 80);
                 else
                     lblMensajes.Text = ex.Message;
             }

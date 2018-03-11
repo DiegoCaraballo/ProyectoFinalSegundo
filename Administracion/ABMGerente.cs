@@ -38,10 +38,16 @@ namespace Administracion
                 lblMensajes.Text = "Usuario ingresado exitosamente";
                 EstadoInicial();
             }
-
+            catch (FormatException)
+            {
+                lblMensajes.Text = "La cedula debe tener formato numerico";
+            }
             catch (Exception ex)
             {
-                lblMensajes.Text = ex.Message;
+                if (ex.Message.Length > 80)
+                    lblMensajes.Text = ex.Message.Substring(0, 80);
+                else
+                    lblMensajes.Text = ex.Message;
             }
 
         }

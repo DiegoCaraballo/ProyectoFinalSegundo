@@ -19,7 +19,18 @@ namespace EntidadesCompartidas
         public DateTime HoranIni
         {
             get { return horaIni; }
-            set { horaIni = value; }
+            set
+            {
+                if (value != null)
+                {
+                    horaIni = value;
+                }
+                else
+                {
+                    throw new Exception("la hora de inicio no puede estar vacia");
+                }
+            }
+            
         }
 
         [DataMember]

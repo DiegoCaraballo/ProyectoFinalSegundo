@@ -32,8 +32,23 @@ namespace Administracion
                 cajero.NomUsu = txtUsuario.Text;
                 cajero.Pass = txtPass.Text;
                 cajero.NomCompleto = txtNomApe.Text;
-                cajero.HoranIni = Convert.ToDateTime(txtHoraIni.Text);
-                cajero.HoranFin = Convert.ToDateTime(txtHoraFin.Text);
+
+                try
+                {
+                    cajero.HoranIni = Convert.ToDateTime(txtHoraIni.Text);
+                    cajero.HoranFin = Convert.ToDateTime(txtHoraFin.Text);
+                    if (cajero.HoranFin <= cajero.HoranIni)
+                        throw new Exception("La hora de Fin debe ser mayor a la de inicio");
+
+                }
+                catch (FormatException)
+                {
+                    lblMensajes.Text = "La hora de inicio y de fin deben ser reales";
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
 
                 IServicio serv = new ServicioClient();
                 serv.AltaUsuario(cajero, usuLogueado);
@@ -75,13 +90,14 @@ namespace Administracion
                     txtCedula.Text = usuBuscado.Cedula.ToString();
                     txtUsuario.Text = usuBuscado.NomUsu;
                     txtNomApe.Text = usuBuscado.NomCompleto;
+                    txtPass.Text = usuBuscado.Pass.ToString();
                     txtHoraIni.Text = TimeSpan.Parse(((Cajero)usuBuscado).HoranIni.ToShortTimeString()).ToString();
-                    txtHoraFin.Text =TimeSpan.Parse(((Cajero)usuBuscado).HoranFin.ToShortTimeString()).ToString();
-                 
+                    txtHoraFin.Text = TimeSpan.Parse(((Cajero)usuBuscado).HoranFin.ToShortTimeString()).ToString();
+
                     btnEliminar.Enabled = true;
                     btnModificar.Enabled = true;
                     txtCedula.Enabled = false;
-                    txtCedula.Enabled = false;
+                    txtUsuario.Enabled = false;
                     txtPass.Enabled = false;
                 }
                 else
@@ -104,10 +120,23 @@ namespace Administracion
         {
             try
             {
-                usuBuscado.NomUsu = txtUsuario.Text;
                 usuBuscado.NomCompleto = txtNomApe.Text;
-                ((Cajero)usuBuscado).HoranFin = Convert.ToDateTime(txtHoraFin.Text);
-                ((Cajero)usuBuscado).HoranIni = Convert.ToDateTime(txtHoraIni.Text);
+                try
+                {
+                    ((Cajero)usuBuscado).HoranIni = Convert.ToDateTime(txtHoraIni.Text);
+                    ((Cajero)usuBuscado).HoranFin = Convert.ToDateTime(txtHoraFin.Text);
+                    if (((Cajero)usuBuscado).HoranFin <= ((Cajero)usuBuscado).HoranIni)
+                        throw new Exception("La hora de Fin debe ser mayor a la de inicio");
+
+                }
+                catch (FormatException)
+                {
+                    throw new Exception("La hora de inicio y de fin deben ser reales");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
 
                 IServicio serv = new ServicioClient();
                 serv.ModificarUsuario(usuBuscado, usuLogueado);
@@ -134,7 +163,7 @@ namespace Administracion
                 serv.BajaUsuario(usuBuscado, usuLogueado);
 
                 EstadoInicial();
-                lblMensajes.Text = "El usuario fue modificado exitosamente";
+                lblMensajes.Text = "El usuario fue eliminado exitosamente";
             }
             catch (Exception ex)
             {

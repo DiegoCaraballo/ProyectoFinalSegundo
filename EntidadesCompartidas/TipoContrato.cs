@@ -19,14 +19,34 @@ namespace EntidadesCompartidas
         public Empresa UnaEmp
         {
             get { return unaEmp; }
-            set { unaEmp = value; }
+            set
+            {
+                if (value != null)
+                {
+                    unaEmp = value;
+                }
+                else
+                {
+                    throw new Exception("No existe la empresa");
+                }
+            }
         }
 
         [DataMember]
         public string Nombre
         {
             get { return nombre; }
-            set { nombre = value; }
+            set
+            {
+                if (value.ToString().Trim().Length > 0)
+                {
+                    nombre = value;
+                }
+                else
+                {
+                    throw new Exception("El nombre del contrato no puede estar vacio");
+                }
+            }
         }
 
         [DataMember]
@@ -35,7 +55,7 @@ namespace EntidadesCompartidas
             get { return codContrato; }
             set
             {
-                if (codContrato.ToString().Length >= 1 && codContrato.ToString().Length <= 2)
+                if (codContrato.ToString().Trim().Length >= 1 && codContrato.ToString().Trim().Length <= 2)
                     codContrato = value;
                 else
                     throw new Exception("El codigo debe de tener 1 o 2 digitos");
