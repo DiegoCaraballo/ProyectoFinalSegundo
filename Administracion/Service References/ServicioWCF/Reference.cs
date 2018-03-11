@@ -465,7 +465,7 @@ namespace Administracion.ServicioWCF {
         private string DirFiscalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RutField;
+        private string RutField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TelefonoField;
@@ -507,12 +507,12 @@ namespace Administracion.ServicioWCF {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Rut {
+        public string Rut {
             get {
                 return this.RutField;
             }
             set {
-                if ((this.RutField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.RutField, value) != true)) {
                     this.RutField = value;
                     this.RaisePropertyChanged("Rut");
                 }

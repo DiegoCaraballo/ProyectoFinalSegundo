@@ -42,7 +42,7 @@ namespace Persistencia
                 if (lector.HasRows)
                 {
                     lector.Read();
-                    unaEmpresa = new Empresa((int)lector["codEmpresa"], (int)lector["rut"], (string)lector["dirFiscal"], (string)lector["telefono"]);
+                    unaEmpresa = new Empresa((int)lector["codEmpresa"], (string)lector["rut"], (string)lector["dirFiscal"], (string)lector["telefono"]);
                 }
             }
             catch (Exception ex)
@@ -176,7 +176,7 @@ namespace Persistencia
             List<Empresa> lista = new List<Empresa>();
 
             int codigo;
-            int rut;
+            string rut;
             string dirFiscal;
             string telefono;
 
@@ -192,7 +192,7 @@ namespace Persistencia
                 while (oReader.Read())
                 {
                     codigo = (int)oReader["codEmpresa"];
-                    rut = (int)oReader["rut"];
+                    rut = (string)oReader["rut"];
                     dirFiscal = (string)oReader["dirFiscal"];
                     telefono = (string)oReader["telefono"];
 

@@ -79,7 +79,7 @@ namespace Administracion
         {
             try
             {
-                empBuscada.Rut = Convert.ToInt32(txtRut.Text.Trim());
+                empBuscada.Rut =Convert.ToInt64( txtRut.Text.Trim()).ToString();
                 empBuscada.DirFiscal = txtDireccion.Text.Trim();
                 empBuscada.Telefono = txtTelefono.Text.Trim();
 
@@ -156,7 +156,7 @@ namespace Administracion
             {
                 Empresa emp = new Empresa();
                 emp.Codigo = Convert.ToInt32(txtCodigo.Text.Trim());
-                emp.Rut = Convert.ToInt32(txtRut.Text.Trim());
+                emp.Rut =Convert.ToInt64( txtRut.Text.Trim()).ToString();
                 emp.DirFiscal = txtDireccion.Text.Trim();
                 emp.Telefono = txtTelefono.Text.Trim();
 

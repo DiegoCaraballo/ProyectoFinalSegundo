@@ -13,7 +13,7 @@ namespace EntidadesCompartidas
     public class Empresa
     {
         private int codigo;
-        private int rut;
+        private string rut;
         private string dirFiscal;
         private string telefono;
 
@@ -31,7 +31,7 @@ namespace EntidadesCompartidas
         }
 
         [DataMember]
-        public int Rut
+        public string Rut
         {
             get { return rut; }
             set
@@ -84,7 +84,7 @@ namespace EntidadesCompartidas
         public Empresa()
         { }
 
-        public Empresa(int pCodigo, int pRut, string pDirFiscal, string pTelefono)
+        public Empresa(int pCodigo, string pRut, string pDirFiscal, string pTelefono)
         {
             Codigo = pCodigo;
             Rut = pRut;

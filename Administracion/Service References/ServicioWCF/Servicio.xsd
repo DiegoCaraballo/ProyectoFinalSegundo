@@ -67,7 +67,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Codigo" type="xs:int" />
       <xs:element minOccurs="0" name="DirFiscal" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Rut" type="xs:int" />
+      <xs:element minOccurs="0" name="Rut" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

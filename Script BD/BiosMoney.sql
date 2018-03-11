@@ -64,7 +64,7 @@ go
 create table empresa
 (
 codEmpresa int not null primary key check(len(codEmpresa) >= 1 AND len(codEmpresa) <= 4),
-rut bigint unique not null check(len(rut) <= 12),
+rut varchar(12) unique not null check(len(rut) = 12),
 dirFiscal varchar(100) not null,
 telefono varchar(30) not null,
 activo bit not null default 1
@@ -723,7 +723,7 @@ END
 GO
 
 --Altar Empresa
-create proc AltaEmpresa @codEmp int, @rut bigint, @direccion varchar(100), @telefono varchar(30) as
+create proc AltaEmpresa @codEmp int, @rut varchar(12), @direccion varchar(100), @telefono varchar(30) as
 begin
 
 	if exists(select * from empresa where codEmpresa = @codEmp and activo = 1)
@@ -746,7 +746,7 @@ go
 
 
 --Modificar Empresa
-create proc ModificarEmpresa @codEmp int, @rut bigint, @direccion varchar(100), @telefono varchar(30) as
+create proc ModificarEmpresa @codEmp int, @rut varchar(12), @direccion varchar(100), @telefono varchar(30) as
 begin
 
 	if not exists(select * from empresa where codEmpresa = @codEmp)
@@ -841,14 +841,14 @@ exec AltaCajero 33333333,'cajero1','cajero1','primer cajero', '1990-01-01 19:00:
 exec AltaCajero 44444444,'cajero2','cajero2','segundo cajero', '1990-01-01 00:00:00','2018-01-01 06:00:00';
 
 --Empresas
-exec AltaEmpresa 1111, 123456789012, 'Av Millan 6623','23364852'
-exec AltaEmpresa 2222, 999632597528, '8 de Octubre 3218','25642515'
-exec AltaEmpresa 3333, 253994264288, 'Av Agraciada 6565', '223584452'
-exec AltaEmpresa 4444, 923975328822, 'Garibaldi 8945','248321654'
-exec AltaEmpresa 5555, 317945217542, 'Cno Castro 8458','23366985'
-exec AltaEmpresa 6666, 956297239878, 'Comercio 6648','28063218'
-exec AltaEmpresa 7777, 954295729279, 'Bvar Artigas 6842', '22353285'
-exec AltaEmpresa 8888, 964729292785, '18 de Julio 5541','24875521'
+exec AltaEmpresa 1111, '123456789012', 'Av Millan 6623','23364852'
+exec AltaEmpresa 2222, '999632597528', '8 de Octubre 3218','25642515'
+exec AltaEmpresa 3333, '253994264288', 'Av Agraciada 6565', '223584452'
+exec AltaEmpresa 4444, '923975328822', 'Garibaldi 8945','248321654'
+exec AltaEmpresa 5555, '317945217542', 'Cno Castro 8458','23366985'
+exec AltaEmpresa 6666, '956297239878', 'Comercio 6648','28063218'
+exec AltaEmpresa 7777, '954295729279', 'Bvar Artigas 6842', '22353285'
+exec AltaEmpresa 8888, '964729292785', '18 de Julio 5541','24875521'
 
 
 --Tipos de Contratos
@@ -904,3 +904,7 @@ select * from cajero
 
 select * from pago
 
+
+select * from empresa
+
+delete from empresa where codEmpresa = 6542,
