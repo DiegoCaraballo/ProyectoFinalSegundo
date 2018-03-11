@@ -20,9 +20,7 @@ namespace Administracion
             usuLogueado = usu;
             InitializeComponent();
             EstadoInicial();
-
         }
-
 
         //Ingresar un Cajero
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -173,6 +171,7 @@ namespace Administracion
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             EstadoInicial();
+            lblMensajes.Text = "";
         }
 
     }

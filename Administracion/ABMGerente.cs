@@ -50,6 +50,7 @@ namespace Administracion
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             EstadoInicial();
+            lblMensajes.Text = "";
         }
 
         //Controles en estado inicial

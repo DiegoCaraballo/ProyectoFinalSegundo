@@ -36,7 +36,7 @@ namespace Administracion
             }
             catch (Exception)
             {
-                epPass.SetError(txtActualPass, "la contraseña no puede esta vacia");
+                epPass.SetError(txtActualPass, "la contraseña no puede estar vacia");
                 e.Cancel = true;
                 return;
             }
@@ -60,6 +60,7 @@ namespace Administracion
             }
         }
 
+        //Cambiar contraseña de usuario
         private void btnCambiar_Click(object sender, EventArgs e)
         {
             try
@@ -71,7 +72,6 @@ namespace Administracion
                     usuLogueado.NomUsu = usuLogueado.NomUsu;
                     usuLogueado.NomCompleto = usuLogueado.NomCompleto;
                     usuCambiado.Pass = txtNuevaPass.Text;
-
 
                     IServicio serv = new ServicioClient();
                     serv.CambioPass(usuCambiado, usuLogueado);
@@ -87,6 +87,7 @@ namespace Administracion
             { lblMensajes.Text = ex.Message; }
         }
 
+        //Limpiar los campos
         private void LimpiarCampos()
         {
             txtActualPass.Text = "";
@@ -99,6 +100,7 @@ namespace Administracion
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
+            lblMensajes.Text = "";
         }
 
 

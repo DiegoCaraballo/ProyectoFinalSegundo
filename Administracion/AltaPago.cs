@@ -199,21 +199,35 @@ namespace Administracion
                 //Busco el Tipo de Contrato
                 TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato);
                 if (unContrato == null)
-                    throw new Exception("El tipo de contrato no existe");
-
-                btnAgregar.Enabled = true;
+                    throw new Exception("El tipo de contrato no existe");               
 
                 //Cargo todos los textbox
                 txtCodCli.Text = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0')).ToString();
                 txtCodEmp.Text = unaEmpresa.Rut.ToString();
                 //TODO - Ver como capturar exception del error de conversión a DateTime
-                var newDate = DateTime.ParseExact(txtCodBarra.Text.Substring(6, 8).TrimStart('0').ToString(),
-                                  "yyyyMMdd",
-                                   CultureInfo.InvariantCulture);
-                txtFVencimiento.Text = newDate.ToString();
+                try
+                {
+                    var newDate = DateTime.ParseExact(txtCodBarra.Text.Substring(6, 8).TrimStart('0').ToString(),
+                                      "yyyyMMdd",
+                                       CultureInfo.InvariantCulture);
+                    txtFVencimiento.Text = newDate.ToString();
+                }
+                catch(Exception)
+                {
+                    throw new Exception("La fecha de la factura tiene un formato incorrecto");
+                }
+                
                 txtMonto.Text = Convert.ToInt32(txtCodBarra.Text.Substring(20, 5).TrimStart('0')).ToString();
                 txtTipoContrato.Text = unContrato.Nombre.ToString();
 
+                //Si llego acá habilito el boton agregar factura
+                btnAgregar.Enabled = true;
+
+            }
+
+            catch (FormatException)
+            {
+                lblMensaje.Text = "Error: el código de barras debe ser numérico";
             }
             catch (Exception ex)
             {
