@@ -65,14 +65,6 @@ namespace Administracion
                 }
             }
 
-
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
-            }
             catch (Exception ex)
             {
                 if (ex.Message.Length > 80)
@@ -96,14 +88,7 @@ namespace Administracion
                 lblMensajes.Text = "Empresa Modificada con exito";
                 LimpiarCampos();
             }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
-            }
-
+            
             catch (FormatException)
             {
                 lblMensajes.Text = "El Código y Rut de la Empresa deben ser numéricos";
@@ -128,13 +113,7 @@ namespace Administracion
                 LimpiarCampos();
                 lblMensajes.Text = "Empresa Dada de Baja";
             }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
-            }
+            
             catch (Exception ex)
             {
                 if (ex.Message.Length > 80)
@@ -188,14 +167,7 @@ namespace Administracion
 
                 LimpiarCampos();
             }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensajes.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensajes.Text = ex.Detail.InnerText;
-            }
-
+            
             catch (FormatException)
             {
                 lblMensajes.Text = "El Código y Rut de la Empresa deben ser numéricos";

@@ -54,14 +54,7 @@ namespace Administracion
                 serv.AltaTipoContrato(unTipoContrato, usuLogueado);
                 lblMensaje.Text = "Tipo Contrato ingresado con exito";
                 LimpiarCampos();
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensaje.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensaje.Text = ex.Detail.InnerText;
-            }
+            }         
 
             catch (FormatException)
             {
@@ -89,13 +82,7 @@ namespace Administracion
                 lblMensaje.Text = "Tipo contrato modificado con exito";
                 LimpiarCampos();
             }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensaje.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensaje.Text = ex.Detail.InnerText;
-            }
+            
             catch (Exception ex)
             {
                 if (ex.Message.Length > 80)
@@ -116,13 +103,7 @@ namespace Administracion
                 lblMensaje.Text = "Tipo Contrato Dado de Baja exitosamente";
                 LimpiarCampos();
             }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensaje.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensaje.Text = ex.Detail.InnerText;
-            }
+            
             catch (Exception ex)
             {
                 if (ex.Message.Length > 80)
@@ -193,14 +174,7 @@ namespace Administracion
                 {
                     btnIngresar.Enabled = true;
                 }
-            }
-            catch (System.Web.Services.Protocols.SoapException ex)
-            {
-                if (ex.Detail.InnerText.Length > 80)
-                    lblMensaje.Text = ex.Detail.InnerText.Substring(0, 80);
-                else
-                    lblMensaje.Text = ex.Detail.InnerText;
-            }
+            }           
 
             catch (FormatException)
             {
