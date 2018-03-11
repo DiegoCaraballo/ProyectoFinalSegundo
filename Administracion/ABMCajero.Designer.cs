@@ -224,7 +224,7 @@
             // 
             this.txtHoraIni.Location = new System.Drawing.Point(272, 157);
             this.txtHoraIni.Margin = new System.Windows.Forms.Padding(4);
-            this.txtHoraIni.Mask = "00:00";
+            this.txtHoraIni.Mask = "##:##";
             this.txtHoraIni.Name = "txtHoraIni";
             this.txtHoraIni.Size = new System.Drawing.Size(132, 25);
             this.txtHoraIni.TabIndex = 5;
@@ -234,7 +234,7 @@
             // 
             this.txtHoraFin.Location = new System.Drawing.Point(272, 193);
             this.txtHoraFin.Margin = new System.Windows.Forms.Padding(4);
-            this.txtHoraFin.Mask = "00:00";
+            this.txtHoraFin.Mask = "##:##";
             this.txtHoraFin.Name = "txtHoraFin";
             this.txtHoraFin.Size = new System.Drawing.Size(132, 25);
             this.txtHoraFin.TabIndex = 6;

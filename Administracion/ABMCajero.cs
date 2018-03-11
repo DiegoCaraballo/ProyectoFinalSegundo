@@ -75,9 +75,9 @@ namespace Administracion
                     txtCedula.Text = usuBuscado.Cedula.ToString();
                     txtUsuario.Text = usuBuscado.NomUsu;
                     txtNomApe.Text = usuBuscado.NomCompleto;
-                    txtHoraFin.Text = ((Cajero)usuBuscado).HoranFin.ToShortTimeString();
-                    txtHoraIni.Text = ((Cajero)usuBuscado).HoranIni.ToShortTimeString();
-
+                    txtHoraIni.Text = TimeSpan.Parse(((Cajero)usuBuscado).HoranIni.ToShortTimeString()).ToString();
+                    txtHoraFin.Text =TimeSpan.Parse(((Cajero)usuBuscado).HoranFin.ToShortTimeString()).ToString();
+                 
                     btnEliminar.Enabled = true;
                     btnModificar.Enabled = true;
                     txtCedula.Enabled = false;

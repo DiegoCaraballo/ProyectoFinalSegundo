@@ -110,7 +110,7 @@ namespace Administracion
                                }).ToList();
 
                     gvPagos.DataSource = res;
-                    txtCajero.Text = "";
+                 
                 }
 
             }

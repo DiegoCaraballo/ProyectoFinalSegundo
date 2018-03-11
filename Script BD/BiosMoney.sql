@@ -830,34 +830,75 @@ go
 --------------------------------------------------------------------------
 					----Datos Para Probar
 --------------------------------------------------------------------------
---Empresas
-exec AltaEmpresa 1234, 123456789, '18 de Julio 5541','24875521'
-exec AltaEmpresa 9999, 654882789, 'Av Millan 6623','23364852'
-exec AltaEmpresa 5555, 66866789, '8 de Octubre','25642515'
-exec AltaEmpresa 2345, 121212121, 'Av Agraciada', '223584452'
-
---Tipos de Contratos
-exec AltaTipoContrato 1234, 33, 'Luz'
-exec AltaTipoContrato 9999, 01, 'Agua'
-exec AltaTipoContrato 9999, 33, 'Hola Mqweniqwue'
-exec AltaTipoContrato 5555, 33, 'Telefonia Movil'
-exec AltaTipoContrato 5555, 52, 'Telefonia Fija'
-exec AltaTipoContrato 5555, 25, 'Internet'
 --Gerentes
 exec AltaGerente 45848621,'hitokiri','123456a','Nicolas Rodriguez', 'nicolas@hotmail.com'
-exec AltaGerente 1234567,'keylor','1234567','El Keylor', 'keylor@outlook.com'
+exec AltaGerente 1234567,'keylord','1234567','El Keylor', 'keylord@outlook.com'
 exec AltaGerente 87654321,'diego','1111111','Diego Caraballo', 'diego@gmail.com'
 
 --Cajeros
 exec AltaCajero 1111111,'rafiki','123654a','rafiki cajero', '1990-01-01 06:00:00','2018-01-01 12:00:00';
-exec AltaCajero 2222222,'pepegrillo','pepegrillo','Pepe grillo', '1990-01-01 12:00:00','2018-01-01 18:00:00';
+exec AltaCajero 2222222,'pepegrillo','1234567','Pepe grillo', '1990-01-01 12:00:00','2018-01-01 18:00:00';
 exec AltaCajero 33333333,'cajero1','cajero1','primer cajero', '1990-01-01 19:00:00','2018-01-01 23:59:59';--al agregar una hora de fin mayor no la ingresa, por lo tanto no puede empezar a las 19 y terminar a las 04 por ej.
 exec AltaCajero 44444444,'cajero2','cajero2','segundo cajero', '1990-01-01 00:00:00','2018-01-01 06:00:00';
 
+--Empresas
+exec AltaEmpresa 1111, 654882789, 'Av Millan 6623','23364852'
+exec AltaEmpresa 2222, 668667896, '8 de Octubre 3218','25642515'
+exec AltaEmpresa 3333, 121212121, 'Av Agraciada 6565', '223584452'
+exec AltaEmpresa 4444, 684984184, 'Garibaldi 8945','248321654'
+exec AltaEmpresa 5555, 894212187, 'Cno Castro 8458','23366985'
+exec AltaEmpresa 6666, 221808998, 'Comercio 6648','28063218'
+exec AltaEmpresa 7777, 658444649, 'Bvar Artigas 6842', '22353285'
+exec AltaEmpresa 8888, 123456789, '18 de Julio 5541','24875521'
 
-use BiosMoney
-select * from cajero
-select * from gerente
+--Tipos de Contratos
+exec AltaTipoContrato 1111, 33, 'Luz'
+exec AltaTipoContrato 2222, 01, 'Agua'
+exec AltaTipoContrato 2222, 33, 'Contribucion'
+exec AltaTipoContrato 3333, 33, 'Telefonia Movil'
+exec AltaTipoContrato 3333, 25, 'Telefonia Fija'
+exec AltaTipoContrato 3333, 22, 'Internet'
+exec AltaTipoContrato 4444, 44, 'Gas Natural'
+exec AltaTipoContrato 4444, 52, 'Roaming'
+exec AltaTipoContrato 4444, 01, 'Recoleccion de Basura'
+exec AltaTipoContrato 4444, 45, 'Saneamiento'
+exec AltaTipoContrato 5555, 33, 'Primaria'
+exec AltaTipoContrato 6666, 01, 'Seguro de Vida'
 
-select * from tipoContrato
-select * from empresa
+--Pagos
+exec AltaPago '2018-03-11',10000,1111111,1
+exec AltaPago '2018-03-12',9000,1111111,1
+exec AltaPago '2018-03-22',18000,2222222,1
+exec AltaPago '2018-03-01',100,2222222,1
+exec AltaPago '2018-03-02',3000,2222222,1
+exec AltaPago '2018-03-29',91000,33333333,1
+exec AltaPago '2018-05-11',22000,33333333,1
+exec AltaPago '2018-04-16',5000,33333333,1
+exec AltaPago '2018-04-11',10000,33333333,1
+
+--Facturas de Cada Pago (solo sirven si se corren primero los pagos anteriores)
+exec AltaFactura 1,33,1111,6000,123456,'2018-03-12'
+exec AltaFactura 1,33,2222,4000,587364,'2018-09-01'
+exec AltaFactura 2,44,4444,1000,328729,'2018-08-22'
+exec AltaFactura 2,01,6666,9000,318893,'2019-01-27'
+exec AltaFactura 3,22,3333,9000,785192,'2018-12-31'
+exec AltaFactura 4,33,5555,40,319823,'2018-04-30'
+exec AltaFactura 4,01,6666,60,698253,'2018-06-14'
+exec AltaFactura 5,44,4444,3000,128574,'2018-07-05'
+exec AltaFactura 6,33,1111,1000,851345,'2018-10-16'
+exec AltaFactura 6,44,4444,10000,925813,'2018-11-18'
+exec AltaFactura 6,33,1111,20000,001238,'2018-11-26'--revisar Creo que deberiamos de cambiar la pk de factura
+exec AltaFactura 6,52,4444,40000,384238,'2020-02-11'
+exec AltaFactura 6,33,5555,5000,123654,'2019-02-10'
+exec AltaFactura 6,01,6666,5000,987456,'2018-09-14'
+exec AltaFactura 6,01,4444,10000,789852,'2018-09-29'
+exec AltaFactura 7,33,1111,22000,258456,'2018-12-24'
+exec AltaFactura 8,33,1111,5000,159753,'2018-11-13'
+exec AltaFactura 9,45,4444,6000,357159,'2018-10-19'
+exec AltaFactura 9,33,1111,4000,951456,'2018-05-12'
+
+
+
+
+
+
