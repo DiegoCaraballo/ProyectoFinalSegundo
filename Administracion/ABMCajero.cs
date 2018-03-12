@@ -83,7 +83,7 @@ namespace Administracion
             try
             {
                 IServicio serv = new ServicioClient();
-                usuBuscado = serv.BuscarUsuario(Convert.ToInt32(txtCedula.Text));
+                usuBuscado = serv.BuscarUsuario(Convert.ToInt32(txtCedula.Text),usuLogueado);
 
                 if (usuBuscado != null)
                 {

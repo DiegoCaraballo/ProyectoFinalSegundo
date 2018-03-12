@@ -204,9 +204,10 @@ namespace Persistencia
             }
         }
 
-        public Cajero BuscarCajero(int cedula)
+        public Cajero BuscarCajero(int cedula,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             Cajero unCajero = null;
 

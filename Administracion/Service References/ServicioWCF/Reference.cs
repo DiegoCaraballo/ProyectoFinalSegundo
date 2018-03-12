@@ -556,7 +556,7 @@ namespace Administracion.ServicioWCF {
         void ModificarUsuario(Administracion.ServicioWCF.Usuario unUsuario, Administracion.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarUsuario", ReplyAction="http://tempuri.org/IServicio/BuscarUsuarioResponse")]
-        Administracion.ServicioWCF.Usuario BuscarUsuario(int pCedula);
+        Administracion.ServicioWCF.Usuario BuscarUsuario(int pCedula, Administracion.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/CambioPass", ReplyAction="http://tempuri.org/IServicio/CambioPassResponse")]
         void CambioPass(Administracion.ServicioWCF.Usuario unUsuario, Administracion.ServicioWCF.Usuario usuLogueado);
@@ -646,8 +646,8 @@ namespace Administracion.ServicioWCF {
             base.Channel.ModificarUsuario(unUsuario, usuLogueado);
         }
         
-        public Administracion.ServicioWCF.Usuario BuscarUsuario(int pCedula) {
-            return base.Channel.BuscarUsuario(pCedula);
+        public Administracion.ServicioWCF.Usuario BuscarUsuario(int pCedula, Administracion.ServicioWCF.Usuario usuLogueado) {
+            return base.Channel.BuscarUsuario(pCedula, usuLogueado);
         }
         
         public void CambioPass(Administracion.ServicioWCF.Usuario unUsuario, Administracion.ServicioWCF.Usuario usuLogueado) {

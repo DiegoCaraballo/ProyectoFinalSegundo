@@ -191,6 +191,10 @@ select u.*,g.correo from gerente g join usuario u on g.cedula= u.cedula where no
 end
 go
 
+create proc BuscarGerente @cedula int as
+begin
+	select u.*,g.correo from gerente g join usuario u on g.cedula= u.cedula where u.cedula= @cedula 
+end
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--														ABM Cajero															       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------

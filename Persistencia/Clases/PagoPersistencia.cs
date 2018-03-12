@@ -145,6 +145,7 @@ namespace Persistencia
         {
             Conexion con = new Conexion();
             SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+
             SqlCommand cmd = new SqlCommand("ListarPagos", cnn);
             SqlDataReader lector;
 
@@ -167,7 +168,7 @@ namespace Persistencia
                     codCajero = (int)lector["cedulaCajero"];
                     monto = (int)lector["montoTotal"];
 
-                    Pago unPago = new Pago(idPago, fecha, monto, CajeroPersistencia.GetInstancia().BuscarCajero(codCajero), FacturaPersistencia.ListarFactura(idPago));
+                    Pago unPago = new Pago(idPago, fecha, monto, CajeroPersistencia.GetInstancia().BuscarCajero(codCajero,usuLogueado), FacturaPersistencia.ListarFactura(idPago));
                     lista.Add(unPago);
                 }
                 lector.Close();

@@ -11,7 +11,10 @@ namespace Persistencia
     {
         void AltaGerente(Gerente unGerente, Usuario usuLogueado);
         void CambioPass(Usuario unGerente, Usuario usuLogueado);
+        Gerente BuscarGerente(int cedula, Usuario usuLogueado);
+
         Gerente LogueoGerente(string nomUsu);
+    
 
     }
 }

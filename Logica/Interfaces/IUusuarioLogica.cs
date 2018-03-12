@@ -13,7 +13,7 @@ namespace Logica
         void AltaUsuario(Usuario unUsuario, Usuario usuLogueado);
         void BajaUsuario(Usuario unUsuario, Usuario usuLogueado);
         void Modificarusuario(Usuario unUsuario, Usuario usuLogueado);
-        Usuario Buscar(int cedula);
+        Usuario Buscar(int cedula,Usuario usuLogueado);
         void CambioPass(Usuario unUsuario, Usuario usuLogueado);
         Usuario Logueo(string pNomUsu);
         void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos);

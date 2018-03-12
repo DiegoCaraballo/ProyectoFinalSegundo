@@ -21,17 +21,38 @@ namespace Logica
 
         public void AltaPago(Pago unPago, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaPago().AltaPago((Pago)unPago, usuLogueado);
+            try
+            {
+                FabricaPersistencia.GetPersistenciaPago().AltaPago((Pago)unPago, usuLogueado);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public DateTime PagoDeUnaFactura(int codContrato, int codEmp, int monto, int codCli, DateTime fecha)
         {
-            return FabricaPersistencia.GetPersistenciaPago().PagoDeUnaFactura((int)codContrato, (int)codEmp, (int)monto, (int)codCli, (DateTime)fecha);
+            try
+            {
+                return FabricaPersistencia.GetPersistenciaPago().PagoDeUnaFactura((int)codContrato, (int)codEmp, (int)monto, (int)codCli, (DateTime)fecha);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Pago> listar(Usuario usuLogueado)
         {
-            return (FabricaPersistencia.GetPersistenciaPago().listar(usuLogueado));
+            try
+            {
+                return (FabricaPersistencia.GetPersistenciaPago().listar(usuLogueado));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

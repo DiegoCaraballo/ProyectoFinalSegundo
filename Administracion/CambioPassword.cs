@@ -76,6 +76,7 @@ namespace Administracion
                     IServicio serv = new ServicioClient();
                     serv.CambioPass(usuCambiado, usuLogueado);
                     LimpiarCampos();
+                    usuLogueado.Pass = usuCambiado.Pass;//Ver si este cambio funciona
                     lblMensajes.Text = "Contraseña actualizada con exito";
                 }
                 else

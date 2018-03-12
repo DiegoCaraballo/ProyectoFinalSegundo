@@ -149,5 +149,37 @@ namespace Persistencia
             return unGerente;
         }
 
+        public Gerente BuscarGerente(int cedula,Usuario usuLogueado)
+        {
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+
+            Gerente unGerente = null;
+
+            SqlCommand cmd = new SqlCommand("BuscarGerente", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@cedula", cedula);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                if (lector.HasRows)
+                {
+                    lector.Read();
+                    unGerente = new Gerente((int)lector["cedula"], (string)lector["nomUsu"], (string)lector["pass"], (string)lector["nomCompleto"], (string)lector["Correo"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return unGerente;
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace ServicioWCF
         void ModificarUsuario(Usuario unUsuario, Usuario usuLogueado);
 
         [OperationContract]
-        Usuario BuscarUsuario(int pCedula);
+        Usuario BuscarUsuario(int pCedula,Usuario usuLogueado);
 
         [OperationContract]
         void CambioPass(Usuario unUsuario, Usuario usuLogueado);

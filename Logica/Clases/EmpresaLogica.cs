@@ -21,29 +21,64 @@ namespace Logica
 
         public Empresa BuscarEmpresa(int codEmp)
         {
-            return ((Empresa)FabricaPersistencia.GetPersistenciaEmpresa().BuscarEmpresa(codEmp));
+            try
+            {
+                return ((Empresa)FabricaPersistencia.GetPersistenciaEmpresa().BuscarEmpresa(codEmp));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaEmpresa().AltaEmpresa(unaEmpresa, usuLogueado);
+            try
+            {
+                FabricaPersistencia.GetPersistenciaEmpresa().AltaEmpresa(unaEmpresa, usuLogueado);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void BajaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaEmpresa().BajaEmpresa(unaEmpresa, usuLogueado);
+            try
+            {
+                FabricaPersistencia.GetPersistenciaEmpresa().BajaEmpresa(unaEmpresa, usuLogueado);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void ModificarEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
-            FabricaPersistencia.GetPersistenciaEmpresa().ModificarEmpresa(unaEmpresa, usuLogueado);
+            try
+            {
+                FabricaPersistencia.GetPersistenciaEmpresa().ModificarEmpresa(unaEmpresa, usuLogueado);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Empresa> ListarEmpresas()
         {
-            List<Empresa> lista = FabricaPersistencia.GetPersistenciaEmpresa().ListarEmpresas();
+            try
+            {
+                List<Empresa> lista = FabricaPersistencia.GetPersistenciaEmpresa().ListarEmpresas();
 
-            return lista;
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

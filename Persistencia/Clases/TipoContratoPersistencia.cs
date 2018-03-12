@@ -171,6 +171,8 @@ namespace Persistencia
             }
         }
 
+
+        //TODO- Ver si tenemos que agregar otro buscar contratos--- En web no se precisa usuario pero para el ABM si
         public List<TipoContrato> ListarContratos()
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);

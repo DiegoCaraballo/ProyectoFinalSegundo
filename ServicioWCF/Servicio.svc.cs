@@ -27,9 +27,9 @@ namespace ServicioWCF
         {
             FabricaLogica.GetLogicaUsuario().Modificarusuario(unUsuario, usuLogueado);
         }
-        public Usuario BuscarUsuario(int pCedula)
+        public Usuario BuscarUsuario(int pCedula,Usuario usuLogueado)
         {
-            return (FabricaLogica.GetLogicaUsuario().Buscar(pCedula));
+            return (FabricaLogica.GetLogicaUsuario().Buscar(pCedula,usuLogueado));
         }
         public void CambioPass(Usuario unUsuario, Usuario usuLogueado)
         {
