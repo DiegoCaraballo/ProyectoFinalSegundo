@@ -60,7 +60,7 @@ namespace EntidadesCompartidas
             get { return fecha; }
             set
             {
-                if (fecha == DateTime.Today)
+                if (value == DateTime.Today)
                     fecha = value;
                 else
                     throw new Exception("La fecha tiene que ser igual a la fecha actual");
@@ -71,17 +71,7 @@ namespace EntidadesCompartidas
         public int NumeroInt
         {
             get { return numeroInt; }
-            set
-            {
-                if (value > 0)
-                {
-                    numeroInt = value;
-                }
-                else
-                {
-                    throw new Exception("El idPago no puede estar Vacio");
-                }
-            }
+            set { numeroInt = value;}
         }
 
         public Pago()

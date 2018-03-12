@@ -220,8 +220,9 @@ namespace Administracion
                 txtMonto.Text = Convert.ToInt32(txtCodBarra.Text.Substring(20, 5).TrimStart('0')).ToString();
                 txtTipoContrato.Text = unContrato.Nombre.ToString();
 
-                //Si llego acá habilito el boton agregar factura
+                //Si llego acá habilito el boton agregar factura y saco mensaje de error
                 btnAgregar.Enabled = true;
+                lblMensaje.Text = "";
 
             }
 

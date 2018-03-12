@@ -20,6 +20,7 @@ namespace Administracion
             InitializeComponent();
         }
 
+        //Inicio de sesión
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             try
