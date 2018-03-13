@@ -17,13 +17,11 @@ namespace Administracion
     public partial class ListadoDePagos : Form
     {
         Usuario usuLogueado = null;
-        // private XElement documento = null;
+
         public ListadoDePagos(Usuario usu)
         {
             usuLogueado = usu;
             InitializeComponent();
-            //cboCajero.DropDownStyle = ComboBoxStyle.DropDownList;
-            //cboEmpresa.DropDownStyle = ComboBoxStyle.DropDownList;
             CargoListaPagos();
         }
 
@@ -167,7 +165,6 @@ namespace Administracion
                 lblMensaje.Text = ex.Message;
             }
         }
-
 
     }
 }

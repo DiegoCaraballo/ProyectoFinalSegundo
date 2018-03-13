@@ -139,6 +139,7 @@ namespace Persistencia
             return fechaPago;
         }
 
+        //Listar Pagos
         public List<Pago> listar(Usuario usuLogueado)
         {
             Conexion con = new Conexion();

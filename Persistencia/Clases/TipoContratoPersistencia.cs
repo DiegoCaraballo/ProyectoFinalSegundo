@@ -78,7 +78,7 @@ namespace Persistencia
                 cnn.Open();
                 SqlDataReader lector = cmd.ExecuteReader();
                 if (lector.HasRows)
-                {//TODO emp
+                {
                     lector.Read();
                     Empresa emp = new Empresa();
                     emp = EmpresaPersistencia.GetInstancia().BuscarEmpresaTodos((int)lector["codEmp"], usuLogueado);

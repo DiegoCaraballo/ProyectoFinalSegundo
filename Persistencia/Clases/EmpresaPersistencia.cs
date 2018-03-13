@@ -24,6 +24,7 @@ namespace Persistencia
 
         #region Operaciones
 
+        //Buscar una empresa
         public Empresa BuscarEmpresa(int codEmp,Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -56,7 +57,7 @@ namespace Persistencia
             return unaEmpresa;
         }
 
-
+        //Buscar empresa por más que esté inactiva
         public Empresa BuscarEmpresaTodos(int codEmp, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -89,7 +90,7 @@ namespace Persistencia
             return unaEmpresa;
         }
        
-        
+        //Buscar empresa para mostrar en WEB
         public Empresa BuscarEmpresaWEB(int codEmp)
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);
@@ -121,6 +122,8 @@ namespace Persistencia
             }
             return unaEmpresa;
         }
+
+        //Altar una empresa
         public void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -160,6 +163,7 @@ namespace Persistencia
 
         }
 
+        //Bajar una empresa
         public void BajaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -195,6 +199,7 @@ namespace Persistencia
             }
         }
 
+        //Modificar una empresa
         public void ModificarEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -235,9 +240,7 @@ namespace Persistencia
 
             }
         }
-
        
-
         #endregion
     }
 }

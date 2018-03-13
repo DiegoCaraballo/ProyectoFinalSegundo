@@ -23,3 +23,4 @@ C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csproj.
 C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.exe
 C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.pdb
 C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csprojResolveAssemblyReference.cache
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csprojResolveAssemblyReference.cache

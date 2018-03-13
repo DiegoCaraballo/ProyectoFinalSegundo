@@ -9,7 +9,6 @@ namespace Logica
 {
     public interface IUusuarioLogica
     {
-
         void AltaUsuario(Usuario unUsuario, Usuario usuLogueado);
         void BajaUsuario(Usuario unUsuario, Usuario usuLogueado);
         void Modificarusuario(Usuario unUsuario, Usuario usuLogueado);

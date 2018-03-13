@@ -34,10 +34,9 @@ namespace EntidadesCompartidas
                 {
                     cedula = value;
                 }
-
-
             }
         }
+
         [DataMember]
         public string NomCompleto
         {
@@ -54,7 +53,6 @@ namespace EntidadesCompartidas
                 }
             }
         }
-
 
         [DataMember]
         public string NomUsu
@@ -90,8 +88,6 @@ namespace EntidadesCompartidas
                 }
             }
         }
-
-  
 
         public Usuario()
         { }

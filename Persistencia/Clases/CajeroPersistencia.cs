@@ -26,6 +26,7 @@ namespace Persistencia
 
         #region Operaciones
 
+        //Altar un cajero
         public void AltaCajero(Cajero unCajero, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -80,6 +81,7 @@ namespace Persistencia
 
         }
 
+        //Dar de baja un cajero
         public void BajaCajero(Cajero unCajero, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -121,6 +123,7 @@ namespace Persistencia
             }
         }
 
+        //Modificar un cajero
         public void ModificarCajero(Cajero unCajero, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -161,6 +164,7 @@ namespace Persistencia
             }
         }
 
+        //Cambiar contraseña
         public void CambioPass(Usuario unCajero, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -203,6 +207,7 @@ namespace Persistencia
             }
         }
 
+        //Buscar cajero
         public Cajero BuscarCajero(int cedula,Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -236,6 +241,7 @@ namespace Persistencia
             return unCajero;
         }
         
+        //Buscar cajero por más que esté desactivado
         public Cajero BuscarCajeroTodos(int cedula, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -269,7 +275,7 @@ namespace Persistencia
             return unCajero;
         }
 
-        
+        //Login de cajero
         public Cajero LogueoCajero(string nomUsu)
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);
@@ -302,6 +308,7 @@ namespace Persistencia
             return unCajero;
         }
 
+        //Agregar horas extras
         public void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos)
         {
 
@@ -340,9 +347,7 @@ namespace Persistencia
 
         }
 
-
         #endregion
-
 
     }
 }

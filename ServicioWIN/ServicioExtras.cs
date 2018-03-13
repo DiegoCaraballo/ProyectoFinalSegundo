@@ -38,7 +38,7 @@ namespace ServicioWIN
         {
             Mensajes.WriteEntry("Se inicia el servicio - ServicioExtras");
 
-            //Creamos el Timer aquí
+            //Creamos el Timer
             System.Timers.Timer crono = new System.Timers.Timer();
             crono.Interval = 10000;
             crono.Elapsed += new ElapsedEventHandler(crono_tick);
@@ -76,13 +76,13 @@ namespace ServicioWIN
             string destino = Application.StartupPath + "\\horas.xml";
 
             try
-            {   //Hora Actual del Sistema
+            {   
+                //Hora Actual del Sistema
                 DateTime horaActual = DateTime.Now;
+
                 //Si existe el archivo
-                // if (File.Exists(@"C:\Program Files\BiosMoney\horas.xml"))
                 if (File.Exists(destino))
                 {
-
                     //Cargo el XML
                     XmlDocument documento = new XmlDocument();
                     documento.Load(destino);

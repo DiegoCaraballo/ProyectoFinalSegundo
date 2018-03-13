@@ -19,26 +19,32 @@ namespace ServicioWCF
         {
             FabricaLogica.GetLogicaUsuario().AltaUsuario(unUsuario, usuLogueado);
         }
+
         public void BajaUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
             FabricaLogica.GetLogicaUsuario().BajaUsuario(unUsuario, usuLogueado);
         }
+
         public void ModificarUsuario(Usuario unUsuario, Usuario usuLogueado)
         {
             FabricaLogica.GetLogicaUsuario().Modificarusuario(unUsuario, usuLogueado);
         }
+
         public Usuario BuscarUsuario(int pCedula,Usuario usuLogueado)
         {
             return (FabricaLogica.GetLogicaUsuario().Buscar(pCedula,usuLogueado));
         }
+
         public void CambioPass(Usuario unUsuario, Usuario usuLogueado)
         {
             FabricaLogica.GetLogicaUsuario().CambioPass(unUsuario, usuLogueado);
         }
+
         public Usuario Logueo(string pNomUsu)
         {
             return (FabricaLogica.GetLogicaUsuario().Logueo(pNomUsu));
         }
+
         public void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos)
         {
             FabricaLogica.GetLogicaUsuario().AgregaExtras(pCedula, pFecha, pMinutos);
@@ -78,9 +84,7 @@ namespace ServicioWCF
         {
             FabricaLogica.GetLogicaEmpresa().ModificarEmpresa(unaEmpresa, usuLogueado);
         }
-
-      
-
+     
         #endregion
 
         #region Tipo Contrato
@@ -88,14 +92,17 @@ namespace ServicioWCF
         {
             return (FabricaLogica.GetLogicaTipoContrato().BuscarContrato(codEmp, codTipoContrato,usuLogueado));
         }
+
         public void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
             FabricaLogica.GetLogicaTipoContrato().AltaTipoContrato(unTipoContrato, usuLogueado);
         }
+
         public void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
             FabricaLogica.GetLogicaTipoContrato().BajaTipoContrato(unTipoContrato, usuLogueado);
         }
+
         public void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {
             FabricaLogica.GetLogicaTipoContrato().ModificarTipoContrato(unTipoContrato, usuLogueado);

@@ -11,7 +11,7 @@ namespace Persistencia
 {
     internal class FacturaPersistencia
     {
-
+        //Agregar una Factura
         internal static void AgregarFactura(int pIdPago, int pCodContrato, int pCodEmp, int pMonto, int pCodCli, DateTime pFechaVto, SqlTransaction pTransaccion)
         {
             SqlCommand comando = new SqlCommand("AltaFactura", pTransaccion.Connection);
@@ -51,6 +51,7 @@ namespace Persistencia
             }
         }
 
+        //Cargar Facturas
         internal static List<Factura> CargoFactura(int pIdPago, int codEmp, int codTipoContrato,Usuario usuLogueado)
         {
 
@@ -100,6 +101,7 @@ namespace Persistencia
             return _ListaFacturas;
         }
 
+        //Listar Facturas de un pago
         internal static List<Factura> ListarFactura(int pIdPago,Usuario usuLogueado)
         {
 
@@ -155,6 +157,7 @@ namespace Persistencia
             return _ListaFacturas;
         }
 
+        //Listar Todas Las facturas, todos los contratos y todas las empresas
         internal static List<Factura> ListarFacturaTodos(int pIdPago, Usuario usuLogueado)
         {
 

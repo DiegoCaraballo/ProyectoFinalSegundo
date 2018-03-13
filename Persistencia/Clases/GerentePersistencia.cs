@@ -24,6 +24,8 @@ namespace Persistencia
 
         #endregion
 
+        #region OPERACIONES
+        //Altar usuario Gerente
         public void AltaGerente(Gerente unGerente, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -73,6 +75,7 @@ namespace Persistencia
             }
         }
 
+        //Cambiar Contraseña
         public void CambioPass(Usuario unGerente, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -113,8 +116,8 @@ namespace Persistencia
                 cnn.Close();
             }
         }
-
         
+        //Logueo Gerente
         public Gerente LogueoGerente(string nomUsu)
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);
@@ -148,6 +151,7 @@ namespace Persistencia
             return unGerente;
         }
 
+        //Buscar usuario Gerente
         public Gerente BuscarGerente(int cedula,Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -180,5 +184,6 @@ namespace Persistencia
             }
             return unGerente;
         }
+        #endregion
     }
 }

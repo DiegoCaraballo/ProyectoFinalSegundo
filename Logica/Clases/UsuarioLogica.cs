@@ -73,7 +73,6 @@ namespace Logica
             }
         }
 
-
         public void CambioPass(Usuario unUsuario, Usuario usuLogueado)
         {
             try
@@ -93,7 +92,6 @@ namespace Logica
             }
         }
 
-
         public Usuario Logueo(string pNomUsu)
         {
             try
@@ -111,6 +109,7 @@ namespace Logica
                 throw ex;
             }
         }
+
         public void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos)
         {
             try
@@ -122,7 +121,6 @@ namespace Logica
                 throw ex;
             }
         }
-
 
     }
 }
