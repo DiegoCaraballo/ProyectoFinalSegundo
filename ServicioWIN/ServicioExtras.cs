@@ -72,17 +72,20 @@ namespace ServicioWIN
         //Se repite cada 10 Segundos
         private void crono_tick(object sender, ElapsedEventArgs e)
         {
-            //Hora Actual del Sistema
-            DateTime horaActual = DateTime.Now;
 
-            //Si existe el archivo
-            if (File.Exists(@"C:\Program Files\BiosMoney\horas.xml"))
-            {
-                try
+            string destino = Application.StartupPath + "\\horas.xml";
+
+            try
+            {   //Hora Actual del Sistema
+                DateTime horaActual = DateTime.Now;
+                //Si existe el archivo
+                // if (File.Exists(@"C:\Program Files\BiosMoney\horas.xml"))
+                if (File.Exists(destino))
                 {
+
                     //Cargo el XML
                     XmlDocument documento = new XmlDocument();
-                    documento.Load(@"C:\Program Files\BiosMoney\horas.xml");
+                    documento.Load(destino);
 
                     //Saco los datos necesarios
                     XmlNodeList horas = (documento.GetElementsByTagName("HoraFin"));
@@ -113,10 +116,15 @@ namespace ServicioWIN
                     }
 
                 }
-                catch (Exception ex)
+                else
                 {
-                    Mensajes.WriteEntry("Error: " + ex.Message);
+                    Mensajes.WriteEntry("No existe el archivo");
                 }
+
+            }
+            catch (Exception ex)
+            {
+                Mensajes.WriteEntry("Error: " + ex.Message);
             }
         }
 

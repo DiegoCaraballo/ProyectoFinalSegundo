@@ -577,7 +577,7 @@ namespace Administracion.ServicioWCF {
         Administracion.ServicioWCF.Pago[] listar(Administracion.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarEmpresa", ReplyAction="http://tempuri.org/IServicio/BuscarEmpresaResponse")]
-        Administracion.ServicioWCF.Empresa BuscarEmpresa(int codEmp);
+        Administracion.ServicioWCF.Empresa BuscarEmpresa(int codEmp, Administracion.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AltaEmpresa", ReplyAction="http://tempuri.org/IServicio/AltaEmpresaResponse")]
         void AltaEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa, Administracion.ServicioWCF.Usuario usuLogueado);
@@ -588,11 +588,8 @@ namespace Administracion.ServicioWCF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ModificarEmpresa", ReplyAction="http://tempuri.org/IServicio/ModificarEmpresaResponse")]
         void ModificarEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa, Administracion.ServicioWCF.Usuario usuLogueado);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ListarEmpresas", ReplyAction="http://tempuri.org/IServicio/ListarEmpresasResponse")]
-        Administracion.ServicioWCF.Empresa[] ListarEmpresas();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarContrato", ReplyAction="http://tempuri.org/IServicio/BuscarContratoResponse")]
-        Administracion.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato);
+        Administracion.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato, Administracion.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AltaTipoContrato", ReplyAction="http://tempuri.org/IServicio/AltaTipoContratoResponse")]
         void AltaTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato, Administracion.ServicioWCF.Usuario usuLogueado);
@@ -674,8 +671,8 @@ namespace Administracion.ServicioWCF {
             return base.Channel.listar(usuLogueado);
         }
         
-        public Administracion.ServicioWCF.Empresa BuscarEmpresa(int codEmp) {
-            return base.Channel.BuscarEmpresa(codEmp);
+        public Administracion.ServicioWCF.Empresa BuscarEmpresa(int codEmp, Administracion.ServicioWCF.Usuario usuLogueado) {
+            return base.Channel.BuscarEmpresa(codEmp, usuLogueado);
         }
         
         public void AltaEmpresa(Administracion.ServicioWCF.Empresa unaEmpresa, Administracion.ServicioWCF.Usuario usuLogueado) {
@@ -690,12 +687,8 @@ namespace Administracion.ServicioWCF {
             base.Channel.ModificarEmpresa(unaEmpresa, usuLogueado);
         }
         
-        public Administracion.ServicioWCF.Empresa[] ListarEmpresas() {
-            return base.Channel.ListarEmpresas();
-        }
-        
-        public Administracion.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato) {
-            return base.Channel.BuscarContrato(codEmp, codTipoContrato);
+        public Administracion.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato, Administracion.ServicioWCF.Usuario usuLogueado) {
+            return base.Channel.BuscarContrato(codEmp, codTipoContrato, usuLogueado);
         }
         
         public void AltaTipoContrato(Administracion.ServicioWCF.TipoContrato unTipoContrato, Administracion.ServicioWCF.Usuario usuLogueado) {

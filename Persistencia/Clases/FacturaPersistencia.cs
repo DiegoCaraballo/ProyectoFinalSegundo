@@ -51,9 +51,13 @@ namespace Persistencia
             }
         }
 
-        internal static List<Factura> CargoFactura(int pIdPago, int codEmp, int codTipoContrato)
+        internal static List<Factura> CargoFactura(int pIdPago, int codEmp, int codTipoContrato,Usuario usuLogueado)
         {
-            SqlConnection _cnn = new SqlConnection(Conexion.Cnn);
+
+            Conexion con = new Conexion();
+            SqlConnection _cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+
+
             SqlCommand comando = new SqlCommand("CargarFacturaDeUnPago", _cnn);
 
             comando.CommandType = CommandType.StoredProcedure;
@@ -77,8 +81,7 @@ namespace Persistencia
                         fac.FechaVto = (DateTime)_lector["fechaVto"];
                         fac.CodCli = (int)_lector["codCli"];
                         fac.Monto = (int)_lector["monto"];
-                        fac.UnTipoContrato = TipoContratoPersistencia.GetInstancia().BuscarContrato(codEmp, codTipoContrato);
-                        //TODO - Ver como cargo el tipo de contrato que es otro objeto
+                        fac.UnTipoContrato = TipoContratoPersistencia.GetInstancia().BuscarContrato(codEmp, codTipoContrato,usuLogueado);
 
                         _ListaFacturas.Add(fac);
                     }
@@ -97,9 +100,11 @@ namespace Persistencia
             return _ListaFacturas;
         }
 
-        internal static List<Factura> ListarFactura(int pIdPago)
+        internal static List<Factura> ListarFactura(int pIdPago,Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
             SqlCommand cmd = new SqlCommand("CargarFacturaDeUnPago", cnn);
 
             cmd.CommandType = CommandType.StoredProcedure;
@@ -132,7 +137,62 @@ namespace Persistencia
                         codCli = Convert.ToInt32(_lector["codCli"]);
                         fechaVto = (DateTime)_lector["fechaVto"];
 
-                        Factura fac = new Factura(monto, codCli, fechaVto, TipoContratoPersistencia.GetInstancia().BuscarContrato(codEmpresa, codContrato));
+                        Factura fac = new Factura(monto, codCli, fechaVto, TipoContratoPersistencia.GetInstancia().BuscarContrato(codEmpresa, codContrato,usuLogueado));
+                        _ListaFacturas.Add(fac);
+                    }
+                }
+                _lector.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cnn.Close();
+            }
+
+            return _ListaFacturas;
+        }
+
+        internal static List<Factura> ListarFacturaTodos(int pIdPago, Usuario usuLogueado)
+        {
+
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+            SqlCommand cmd = new SqlCommand("CargarFacturaDeUnPago", cnn);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPago", pIdPago);
+
+            List<Factura> _ListaFacturas = new List<Factura>();
+            int codCli;
+            DateTime fechaVto;
+            int monto;
+            int codEmpresa;
+            int codContrato;
+            int idPago;
+
+            try
+            {
+                cnn.Open();
+
+                SqlDataReader _lector = cmd.ExecuteReader();
+
+                if (_lector.HasRows)
+                {
+                    while (_lector.Read())
+                    {
+
+
+                        idPago = (int)_lector["idPago"];
+                        codContrato = (int)_lector["codContrato"];
+                        codEmpresa = (int)_lector["codEmp"];
+                        monto = (int)_lector["monto"];
+                        codCli = Convert.ToInt32(_lector["codCli"]);
+                        fechaVto = (DateTime)_lector["fechaVto"];
+
+                        Factura fac = new Factura(monto, codCli, fechaVto, TipoContratoPersistencia.GetInstancia().BuscarContratoTodos(codEmpresa, codContrato, usuLogueado));
                         _ListaFacturas.Add(fac);
                     }
                 }

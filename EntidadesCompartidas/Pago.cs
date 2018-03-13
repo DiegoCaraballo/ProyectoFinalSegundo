@@ -60,11 +60,8 @@ namespace EntidadesCompartidas
             get { return fecha; }
             set
             {
-                if (value == DateTime.Today)
-                    fecha = value;
-                else
-                    throw new Exception("La fecha tiene que ser igual a la fecha actual");
-            }
+                fecha = value;
+             }
         }
 
         [DataMember]

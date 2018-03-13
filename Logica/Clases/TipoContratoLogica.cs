@@ -19,11 +19,11 @@ namespace Logica
             return _instancia;
         }
 
-        public TipoContrato BuscarContrato(int codEmp, int codContrato)
+        public TipoContrato BuscarContrato(int codEmp, int codContrato,Usuario usuLogueado)
         {
             try
             {
-                return ((TipoContrato)FabricaPersistencia.GetPersistenciaTipoContrato().BuscarContrato(codEmp, codContrato));
+                return ((TipoContrato)FabricaPersistencia.GetPersistenciaTipoContrato().BuscarContrato(codEmp, codContrato,usuLogueado));
             }
             catch (Exception ex)
             {

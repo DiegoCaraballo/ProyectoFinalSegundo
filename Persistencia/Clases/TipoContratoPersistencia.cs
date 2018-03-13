@@ -24,9 +24,10 @@ namespace Persistencia
 
         #region Operaciones
 
-        public TipoContrato BuscarContrato(int codEmp, int codTipoContrato)
+        public TipoContrato BuscarContrato(int codEmp, int codTipoContrato, Usuario usuLogueado)
         {
-            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
             TipoContrato unContrato = null;
 
@@ -43,9 +44,44 @@ namespace Persistencia
                 if (lector.HasRows)
                 {
                     lector.Read();
-                    //TODO - Funciona, pero ver si esta bien
                     Empresa emp = new Empresa();
-                    emp = EmpresaPersistencia.GetInstancia().BuscarEmpresa((int)lector["codEmp"]);
+                    emp = EmpresaPersistencia.GetInstancia().BuscarEmpresa((int)lector["codEmp"], usuLogueado);
+                    unContrato = new TipoContrato(emp, (int)lector["codContrato"], (string)lector["nombre"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return unContrato;
+        }
+
+        public TipoContrato BuscarContratoTodos(int codEmp, int codTipoContrato, Usuario usuLogueado)
+        {
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+
+            TipoContrato unContrato = null;
+
+            SqlCommand cmd = new SqlCommand("BuscarContratoTodos", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@codEmp", codEmp);
+            cmd.Parameters.AddWithValue("@codContrato", codTipoContrato);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                if (lector.HasRows)
+                {//TODO emp
+                    lector.Read();
+                    Empresa emp = new Empresa();
+                    emp = EmpresaPersistencia.GetInstancia().BuscarEmpresaTodos((int)lector["codEmp"], usuLogueado);
                     unContrato = new TipoContrato(emp, (int)lector["codContrato"], (string)lector["nombre"]);
                 }
             }
@@ -171,8 +207,6 @@ namespace Persistencia
             }
         }
 
-
-        //TODO- Ver si tenemos que agregar otro buscar contratos--- En web no se precisa usuario pero para el ABM si
         public List<TipoContrato> ListarContratos()
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);
@@ -198,7 +232,7 @@ namespace Persistencia
                         codContrato = (int)_lector["codContrato"];
                         codEmp = (int)_lector["codEmp"];
                         nombre = (string)_lector["nombre"];
-                        TipoContrato tc = new TipoContrato(EmpresaPersistencia.GetInstancia().BuscarEmpresa(codEmp), codContrato, nombre);
+                        TipoContrato tc = new TipoContrato(EmpresaPersistencia.GetInstancia().BuscarEmpresaWEB(codEmp), codContrato, nombre);
                         Listar.Add(tc);
                     }
                 }

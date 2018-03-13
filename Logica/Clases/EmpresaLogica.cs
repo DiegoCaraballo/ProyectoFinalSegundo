@@ -19,18 +19,18 @@ namespace Logica
             return _instancia;
         }
 
-        public Empresa BuscarEmpresa(int codEmp)
+        public Empresa BuscarEmpresa(int codEmp,Usuario usuLogueado)
         {
             try
             {
-                return ((Empresa)FabricaPersistencia.GetPersistenciaEmpresa().BuscarEmpresa(codEmp));
+                return ((Empresa)FabricaPersistencia.GetPersistenciaEmpresa().BuscarEmpresa(codEmp,usuLogueado));
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
+     
         public void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
             try
@@ -67,18 +67,6 @@ namespace Logica
             }
         }
 
-        public List<Empresa> ListarEmpresas()
-        {
-            try
-            {
-                List<Empresa> lista = FabricaPersistencia.GetPersistenciaEmpresa().ListarEmpresas();
-
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+     
     }
 }

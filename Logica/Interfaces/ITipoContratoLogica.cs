@@ -9,7 +9,7 @@ namespace Logica
 {
     public interface ITipoContratoLogica
     {
-        TipoContrato BuscarContrato(int codEmp, int codContrato);
+        TipoContrato BuscarContrato(int codEmp, int codContrato, Usuario usuLogueado);
         void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);

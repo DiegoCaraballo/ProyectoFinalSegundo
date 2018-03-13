@@ -195,6 +195,7 @@ create proc BuscarGerente @cedula int as
 begin
 	select u.*,g.correo from gerente g join usuario u on g.cedula= u.cedula where u.cedula= @cedula 
 end
+go
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--														ABM Cajero															       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -252,7 +253,19 @@ begin
 			commit tran
 		end
 				
+		Set @VarSentencia = 'Grant execute on BuscarContrato to [' +  @nomUsu + ']'
+		Exec (@VarSentencia)
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -7
+		
 		Set @VarSentencia = 'Grant execute on AltaPago to [' +  @nomUsu + ']'
+		Exec (@VarSentencia)
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -7
+
+		Set @VarSentencia = 'Grant execute on BuscarEmpresa to [' +  @nomUsu + ']'
 		Exec (@VarSentencia)
 		set @Error=@@ERROR
 		if(@Error<>0)
@@ -265,12 +278,6 @@ begin
 		return -7
 
 		Set @VarSentencia = 'Grant execute on AltaFactura to [' +  @nomUsu + ']'
-		Exec (@VarSentencia)
-		set @Error=@@ERROR
-		if(@Error<>0)
-			return -7
-
-		Set @VarSentencia = 'Grant execute on LogueoCajero to [' +  @nomUsu + ']'
 		Exec (@VarSentencia)
 		set @Error=@@ERROR
 		if(@Error<>0)
@@ -317,8 +324,19 @@ begin
 	begin
 		commit tran
 	end
-	
+					
+		Set @VarSentencia = 'Grant execute on BuscarContrato to [' +  @nomUsu + ']'
+		Exec (@VarSentencia)
+		set @Error=@@ERROR
+		if(@Error<>0)
+			return -7
+
 	Set @VarSentencia = 'Grant execute on AltaPago to [' +  @nomUsu + ']'
+	Exec (@VarSentencia)
+	set @Error=@@ERROR
+	if(@Error<>0)
+		return -7
+		Set @VarSentencia = 'Grant execute on BuscarEmpresa to [' +  @nomUsu + ']'
 	Exec (@VarSentencia)
 	set @Error=@@ERROR
 	if(@Error<>0)
@@ -496,15 +514,15 @@ begin
 	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where u.cedula= @cedula and activo =1
 end
 go
-create proc BuscarCajeroInactivo @cedula int as
+
+--BUscar todos los cajeros
+create proc BuscarCajeroTodos @cedula int as
 begin
-	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where u.cedula= @cedula and activo =0
+	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where u.cedula= @cedula
 end
 go
+
 --Cambiar Pass
---drop proc CambioPass
---exec CambioPass 1111111,'rafiki1'
---alter login rafiki with password = '1231231'
 create proc CambioPass @cedula int, @nuevaPass varchar(7), @antiguaPass varchar(7),@nomUsu varchar(15)as
 begin
 	if not exists(select * from usuario where cedula=@cedula)
@@ -578,7 +596,6 @@ BEGIN
 END
 GO
 
-
 --LISTAR PAGOS
 CREATE PROC ListarPagos AS
 BEGIN
@@ -629,7 +646,6 @@ BEGIN
 END
 GO
 
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 --*--												Tipo Contrato																       --*--
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -640,6 +656,11 @@ BEGIN
 END
 GO
 
+CREATE PROC BuscarContratoTodos @codEmp int, @codContrato int AS
+BEGIN
+	SELECT * FROM tipoContrato WHERE codEmp = @codEmp AND codContrato = @codContrato;
+END
+GO
 --Alta Tipo de Contrato
 Create Proc AltaTipoContrato @codEmp int , @codContrato int,@nombre varchar (30) as
 Begin
@@ -653,7 +674,7 @@ Begin
 		return -3;
 
 	If exists (Select * from TipoContrato where codEmp = @codEmp and codContrato = @codContrato and activo = 0)
-		update TipoContrato set activo =1 where codEmp = @codEmp and codContrato = @codContrato
+		update TipoContrato set activo =1 , nombre =@nombre where codEmp = @codEmp and codContrato = @codContrato
 
 	else
 		Insert Into TipoContrato(codEmp,codContrato ,nombre)
@@ -726,6 +747,13 @@ BEGIN
 END
 GO
 
+--BUSCAR TODAS LAS EMPRESAS
+CREATE PROC BuscarEmpresaTodos @codEmpresa int AS
+BEGIN
+	SELECT * FROM empresa WHERE codEmpresa = @codEmpresa;
+END
+GO
+
 --Altar Empresa
 create proc AltaEmpresa @codEmp int, @rut varchar(12), @direccion varchar(100), @telefono varchar(30) as
 begin
@@ -768,7 +796,6 @@ begin
 end
 go
 
-
 --Baja Empresa
 create proc BajaEmpresa @codEmp int as
 begin
@@ -780,7 +807,7 @@ begin
 	if exists(select * from factura where codEmp  = @codEmp)
 	begin
 	begin tran
-	update tipoContrato set activo = 0 where codContrato in(select codContrato from tipoContrato where codEmp = @codEmp);
+	update tipoContrato set activo = 0 where codEmp= @codEmp;
 	set @Error=@@Error
 		if(@Error<>0)
 		begin
@@ -823,12 +850,6 @@ begin
 		 end
 end
 
-go
-
-create proc ListarEmpresas as
-begin
-	select * from empresa
-end
 go
 --------------------------------------------------------------------------
 					----Datos Para Probar
@@ -908,7 +929,8 @@ select * from cajero
 
 select * from pago
 
+select * from factura
 
 select * from empresa
 
-delete from empresa where codEmpresa = 6542,
+select * from tipoContrato

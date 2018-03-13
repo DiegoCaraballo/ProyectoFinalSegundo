@@ -70,7 +70,7 @@ namespace Administracion
         {
             gvPagos.DataSource = null;
             try
-            {//TODO - revisar el total
+            {
                 gvPagos.DataSource = null;
                 var res = (from lista in listadoPagos
                            group lista by lista.UsuCajero.Cedula into listaCajeros
@@ -82,6 +82,7 @@ namespace Administracion
                            }).ToList();
 
                 gvPagos.DataSource = res;
+                lblMensaje.Text = "";
 
 
             }
@@ -110,6 +111,8 @@ namespace Administracion
                                }).ToList();
 
                     gvPagos.DataSource = res;
+                    txtCajero.Text = "";
+                    lblMensaje.Text = "";
                  
                 }
 
@@ -147,6 +150,7 @@ namespace Administracion
 
                     gvPagos.DataSource = res;
                     txtEmpresa.Text = "";
+                    lblMensaje.Text = "";
                 }
                 else
                 {

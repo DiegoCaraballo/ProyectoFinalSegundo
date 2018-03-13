@@ -48,7 +48,7 @@ namespace Administracion
                 IServicio serv = new ServicioClient();
 
                 //Busco empresa
-                empBuscada = serv.BuscarEmpresa(Convert.ToInt32(txtCodigo.Text));
+                empBuscada = serv.BuscarEmpresa(Convert.ToInt32(txtCodigo.Text),usuLogueado);
 
                 if (empBuscada != null)
                 {

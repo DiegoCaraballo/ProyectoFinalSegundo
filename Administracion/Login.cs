@@ -44,7 +44,8 @@ namespace Administracion
                     if (usu is Cajero)
                     {
                         //Creo el XML para las horas extras
-                        string destino = @"C:\Program Files\BiosMoney\horas.xml";
+                        //string destino = @"C:\Program Files (x86)\BiosMoney\horas.xml";
+                        string destino = Application.StartupPath + "\\horas.xml";
                         if (File.Exists(destino))
                         {
                             File.Delete(destino);

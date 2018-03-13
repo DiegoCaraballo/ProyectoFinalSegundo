@@ -27,7 +27,6 @@ namespace Persistencia
         #region Operaciones
 
         //Altar pago
-        //TODO - ver que cambié el sp en la bd
         public void AltaPago(Pago unPago, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -80,7 +79,6 @@ namespace Persistencia
                 //genero alta para las facturas
                 foreach (Factura unaFactura in unPago.LasFacturas)
                 {
-                    // TODO - Revisar que esto funcione
                     FacturaPersistencia.AgregarFactura(idPago, unaFactura.UnTipoContrato.CodContrato, unaFactura.UnTipoContrato.UnaEmp.Codigo, unaFactura.Monto, unaFactura.CodCli, unaFactura.FechaVto, _miTransaccion);
                 }
 
@@ -168,7 +166,7 @@ namespace Persistencia
                     codCajero = (int)lector["cedulaCajero"];
                     monto = (int)lector["montoTotal"];
 
-                    Pago unPago = new Pago(idPago, fecha, monto, CajeroPersistencia.GetInstancia().BuscarCajero(codCajero,usuLogueado), FacturaPersistencia.ListarFactura(idPago));
+                    Pago unPago = new Pago(idPago, fecha, monto, CajeroPersistencia.GetInstancia().BuscarCajeroTodos(codCajero,usuLogueado), FacturaPersistencia.ListarFacturaTodos(idPago,usuLogueado));
                     lista.Add(unPago);
                 }
                 lector.Close();

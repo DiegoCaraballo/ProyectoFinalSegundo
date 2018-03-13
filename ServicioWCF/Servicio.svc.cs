@@ -59,9 +59,9 @@ namespace ServicioWCF
         #endregion
 
         #region Empresa
-        public Empresa BuscarEmpresa(int codEmp)
+        public Empresa BuscarEmpresa(int codEmp, Usuario usuLogueado)
         {
-            return (FabricaLogica.GetLogicaEmpresa().BuscarEmpresa(codEmp));
+            return (FabricaLogica.GetLogicaEmpresa().BuscarEmpresa(codEmp,usuLogueado));
         }
 
         public void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
@@ -79,17 +79,14 @@ namespace ServicioWCF
             FabricaLogica.GetLogicaEmpresa().ModificarEmpresa(unaEmpresa, usuLogueado);
         }
 
-        public List<Empresa> ListarEmpresas()
-        {
-            return (FabricaLogica.GetLogicaEmpresa().ListarEmpresas());
-        }
+      
 
         #endregion
 
         #region Tipo Contrato
-        public TipoContrato BuscarContrato(int codEmp, int codTipoContrato)
+        public TipoContrato BuscarContrato(int codEmp, int codTipoContrato,Usuario usuLogueado)
         {
-            return (FabricaLogica.GetLogicaTipoContrato().BuscarContrato(codEmp, codTipoContrato));
+            return (FabricaLogica.GetLogicaTipoContrato().BuscarContrato(codEmp, codTipoContrato,usuLogueado));
         }
         public void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado)
         {

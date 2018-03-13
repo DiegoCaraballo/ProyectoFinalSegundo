@@ -180,7 +180,6 @@ namespace Persistencia
 
             try
             {
-                //TODO - Cuando resulta el tema de la BD veo los errores que se pueden devolver
                 cnn.Open();
                 cmd.ExecuteNonQuery();
                 if ((int)retorno.Value == -1)
@@ -236,8 +235,41 @@ namespace Persistencia
             }
             return unCajero;
         }
+        
+        public Cajero BuscarCajeroTodos(int cedula, Usuario usuLogueado)
+        {
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
 
-        //TODO ver si aca se pasa usuario
+            Cajero unCajero = null;
+
+            SqlCommand cmd = new SqlCommand("BuscarCajeroTodos", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@cedula", cedula);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                if (lector.HasRows)
+                {
+                    lector.Read();
+                    unCajero = new Cajero((int)lector["cedula"], (string)lector["nomUsu"], (string)lector["pass"], (string)lector["nomCompleto"], Convert.ToDateTime(lector["horaIni"]), Convert.ToDateTime(lector["horaFin"]));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return unCajero;
+        }
+
+        
         public Cajero LogueoCajero(string nomUsu)
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);
@@ -256,8 +288,6 @@ namespace Persistencia
                 if (lector.HasRows)
                 {
                     lector.Read();
-                    //TODO - ver tema de fechas... en BD es time y aca es DATE TIME
-
                     unCajero = new Cajero((int)lector["cedula"], (string)lector["nomUsu"], (string)lector["pass"], (string)lector["nomCompleto"], Convert.ToDateTime(lector["horaIni"]), Convert.ToDateTime(lector["horaFin"]));
                 }
             }

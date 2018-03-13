@@ -24,7 +24,73 @@ namespace Persistencia
 
         #region Operaciones
 
-        public Empresa BuscarEmpresa(int codEmp)
+        public Empresa BuscarEmpresa(int codEmp,Usuario usuLogueado)
+        {
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+            Empresa unaEmpresa = null;
+
+            SqlCommand cmd = new SqlCommand("BuscarEmpresa", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@codEmpresa", codEmp);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                if (lector.HasRows)
+                {
+                    lector.Read();
+                    unaEmpresa = new Empresa((int)lector["codEmpresa"], (string)lector["rut"], (string)lector["dirFiscal"], (string)lector["telefono"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return unaEmpresa;
+        }
+
+
+        public Empresa BuscarEmpresaTodos(int codEmp, Usuario usuLogueado)
+        {
+            Conexion con = new Conexion();
+            SqlConnection cnn = new SqlConnection(con.cnnUsu(usuLogueado));
+            Empresa unaEmpresa = null;
+
+            SqlCommand cmd = new SqlCommand("BuscarEmpresaTodos", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@codEmpresa", codEmp);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                if (lector.HasRows)
+                {
+                    lector.Read();
+                    unaEmpresa = new Empresa((int)lector["codEmpresa"], (string)lector["rut"], (string)lector["dirFiscal"], (string)lector["telefono"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return unaEmpresa;
+        }
+       
+        
+        public Empresa BuscarEmpresaWEB(int codEmp)
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);
 
@@ -55,7 +121,6 @@ namespace Persistencia
             }
             return unaEmpresa;
         }
-
         public void AltaEmpresa(Empresa unaEmpresa, Usuario usuLogueado)
         {
             Conexion con = new Conexion();
@@ -171,48 +236,7 @@ namespace Persistencia
             }
         }
 
-        public List<Empresa> ListarEmpresas()
-        {
-            List<Empresa> lista = new List<Empresa>();
-
-            int codigo;
-            string rut;
-            string dirFiscal;
-            string telefono;
-
-            SqlConnection oConexion = new SqlConnection(Conexion.Cnn);
-            SqlCommand oComando = new SqlCommand("ListarEmpresas", oConexion);
-            SqlDataReader oReader;
-
-            try
-            {
-                oConexion.Open();
-                oReader = oComando.ExecuteReader();
-
-                while (oReader.Read())
-                {
-                    codigo = (int)oReader["codEmpresa"];
-                    rut = (string)oReader["rut"];
-                    dirFiscal = (string)oReader["dirFiscal"];
-                    telefono = (string)oReader["telefono"];
-
-                    Empresa unaEmpresa = new Empresa(codigo, rut, dirFiscal, telefono);
-
-                    lista.Add(unaEmpresa);
-                }
-                oReader.Close();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Problemas con la base de datos: " + ex.Message);
-            }
-            finally
-            {
-                oConexion.Close();
-            }
-
-            return lista;
-        }
+       
 
         #endregion
     }

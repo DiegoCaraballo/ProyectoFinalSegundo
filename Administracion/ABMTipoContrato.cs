@@ -45,7 +45,7 @@ namespace Administracion
 
                 TipoContrato unTipoContrato = new TipoContrato();
                 unTipoContrato.CodContrato = Convert.ToInt32(txtCodTipoContrato.Text);
-                unTipoContrato.UnaEmp = serv.BuscarEmpresa(Convert.ToInt32(txtCodEmpresa.Text));
+                unTipoContrato.UnaEmp = serv.BuscarEmpresa(Convert.ToInt32(txtCodEmpresa.Text),usuLogueado);
                 unTipoContrato.Nombre = txtNombre.Text;
 
                 if (unTipoContrato.UnaEmp == null)
@@ -160,7 +160,7 @@ namespace Administracion
                 IServicio serv = new ServicioClient();
 
                 //Busco el tipo de contrato
-                TipoContratoBuscado = serv.BuscarContrato(Convert.ToInt32(txtCodEmpresa.Text), Convert.ToInt32(txtCodTipoContrato.Text));
+                TipoContratoBuscado = serv.BuscarContrato(Convert.ToInt32(txtCodEmpresa.Text), Convert.ToInt32(txtCodTipoContrato.Text),usuLogueado);
 
                 if (TipoContratoBuscado != null)
                 {

@@ -9,7 +9,7 @@ namespace Persistencia
 {
     public interface ITipoContratoPersistencia
     {
-        TipoContrato BuscarContrato(int codEmp, int codTipoContrato);
+        TipoContrato BuscarContrato(int codEmp, int codTipoContrato,Usuario usuLogueado);
         void AltaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         void BajaTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);
         void ModificarTipoContrato(TipoContrato unTipoContrato, Usuario usuLogueado);

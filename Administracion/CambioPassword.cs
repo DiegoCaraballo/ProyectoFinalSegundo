@@ -69,14 +69,14 @@ namespace Administracion
                 {
                     Usuario usuCambiado = new Usuario();
                     usuCambiado.Cedula = usuLogueado.Cedula;
-                    usuLogueado.NomUsu = usuLogueado.NomUsu;
-                    usuLogueado.NomCompleto = usuLogueado.NomCompleto;
+                    usuCambiado.NomUsu = usuLogueado.NomUsu;
+                    usuCambiado.NomCompleto = usuLogueado.NomCompleto;
                     usuCambiado.Pass = txtNuevaPass.Text;
 
                     IServicio serv = new ServicioClient();
                     serv.CambioPass(usuCambiado, usuLogueado);
                     LimpiarCampos();
-                    usuLogueado.Pass = usuCambiado.Pass;//Ver si este cambio funciona
+                    usuLogueado.Pass = usuCambiado.Pass;
                     lblMensajes.Text = "Contraseña actualizada con exito";
                 }
                 else

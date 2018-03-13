@@ -14,8 +14,6 @@ namespace Administracion
 {
     public partial class Default : Form
     {
-        //TODO - falta la parte de inicializar el usuario
-        //Ver ejemplo del obligatorio pasado
         Usuario usuLogueado = null;
         public Default(Usuario pUsuLogueado)
         {
@@ -141,9 +139,10 @@ namespace Administracion
         {
             try
             {
-                if (File.Exists(@"C:\Program Files\BiosMoney\horas.xml"))
+                string destino = Application.StartupPath + "\\horas.xml";
+                if (File.Exists(destino))
                 {
-                    File.Delete(@"C:\Program Files\BiosMoney\horas.xml");
+                    File.Delete(destino);
                 }
             }
             catch (Exception ex)

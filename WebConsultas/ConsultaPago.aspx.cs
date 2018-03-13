@@ -40,9 +40,18 @@ public partial class ConsultaPago : System.Web.UI.Page
 
             int codEmp = Convert.ToInt32(txtCodBarra.Text.Substring(0, 4).TrimStart('0'));
             int codTipoContrato = Convert.ToInt32(txtCodBarra.Text.Substring(4, 2).TrimStart('0'));
-            var fechaFactura = DateTime.ParseExact(txtCodBarra.Text.Substring(6, 8).TrimStart('0').ToString(),
-                  "yyyyMMdd",
-                   CultureInfo.InvariantCulture);
+            DateTime fechaFactura = new DateTime();
+            try
+            {
+                 fechaFactura = DateTime.ParseExact(txtCodBarra.Text.Substring(6, 8).TrimStart('0').ToString(),
+                      "yyyyMMdd",
+                       CultureInfo.InvariantCulture);
+            }
+            catch(Exception ex)
+            {
+                QuitarControles();
+                throw new Exception ("La fecha no tiene un formato corecto");
+            }
             int codCli = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0'));
             int monto = Convert.ToInt32(txtCodBarra.Text.Substring(20, 5).TrimStart('0'));
 
@@ -51,10 +60,10 @@ public partial class ConsultaPago : System.Web.UI.Page
             DateTime fechaDeUnPago = serv.PagoDeUnaFactura(codTipoContrato, codEmp, monto, codCli, fechaFactura);
 
             //Si el pago existe muestro los controles con los datos
-            if (fechaDeUnPago.ToString() != "1/1/0001 0:00:00")
+            if (fechaDeUnPago.ToString() != "01/01/0001 0:00:00")
             {
                 MostrarControles();
-                txtFecha.Text = fechaDeUnPago.ToString();
+                txtFecha.Text = fechaDeUnPago.ToShortDateString();
                 lblMensaje.Text = "";
             }
             else

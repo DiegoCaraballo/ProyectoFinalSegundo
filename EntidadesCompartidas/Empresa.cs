@@ -36,13 +36,13 @@ namespace EntidadesCompartidas
             get { return rut; }
             set
             {
-                if (value.ToString().Trim().Length == 12)
+                if (value.ToString().Trim().Length > 5 &&value.ToString().Trim().Length <= 12)
                 {
                     rut = value;
                 }
                 else
                 {
-                    throw new Exception("El rut debe ser un nuemero de 12 digitos");
+                    throw new Exception("El rut debe ser un nuemero entre 5 y 12 digitos");
                 }
             }
         }

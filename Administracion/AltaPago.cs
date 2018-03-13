@@ -48,11 +48,19 @@ namespace Administracion
         //Dejar todos los datos en 0
         private void cancelarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LimpiarDatosFactura();
-            txtMontoTotal.Text = "";
-            gvListaFacturas.DataSource = null;
-            btnAgregar.Enabled = false;
-            txtMontoTotal.Text = "";
+            try
+            {
+                LimpiarDatosFactura();
+                txtMontoTotal.Text = "";
+                dt = new DataTable();
+                CargarColumnasGridView();
+                btnAgregar.Enabled = false;
+                txtMontoTotal.Text = "";
+            }
+            catch(Exception ex)
+            {
+                lblMensaje.Text = ex.Message;
+            }
         }
 
         //Quitar linea de factura del GridView
@@ -114,7 +122,7 @@ namespace Administracion
                 IServicio serv = new ServicioClient();
 
                 //Si no existe tipo de contrato salgo
-                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato);
+                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato,usuLogueado);
                 if (unContrato == null)
                     throw new Exception("El tipo de contrato no existe");
 
@@ -130,7 +138,7 @@ namespace Administracion
                 unaFactura.FechaVto = fechaFactura;
 
                 //Si la factura esta vencida salgo
-                if (fechaFactura < DateTime.Now)
+                if (fechaFactura < DateTime.Today)
                     throw new Exception("La factura esta vencida");
 
                 //Agrego a la lista de facturas
@@ -192,25 +200,26 @@ namespace Administracion
                 IServicio serv = new ServicioClient();
 
                 //Busco la Empresa
-                Empresa unaEmpresa = serv.BuscarEmpresa(codEmp);
+                Empresa unaEmpresa = serv.BuscarEmpresa(codEmp,usuLogueado);
                 if (unaEmpresa == null)
                     throw new Exception("La empresa no existe");
 
                 //Busco el Tipo de Contrato
-                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato);
+                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato,usuLogueado);
                 if (unContrato == null)
                     throw new Exception("El tipo de contrato no existe");               
 
                 //Cargo todos los textbox
                 txtCodCli.Text = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0')).ToString();
                 txtCodEmp.Text = unaEmpresa.Rut.ToString();
-                //TODO - Ver como capturar exception del error de conversión a DateTime
+
+
                 try
                 {
                     var newDate = DateTime.ParseExact(txtCodBarra.Text.Substring(6, 8).TrimStart('0').ToString(),
                                       "yyyyMMdd",
                                        CultureInfo.InvariantCulture);
-                    txtFVencimiento.Text = newDate.ToString();
+                    txtFVencimiento.Text = newDate.ToShortDateString();
                 }
                 catch(Exception)
                 {
@@ -275,6 +284,10 @@ namespace Administracion
                         LimpiarDatosFactura();
                         gvListaFacturas.Columns.Clear();
                         lasFacturas.Clear();
+                        txtMontoTotal.Text = "";
+
+                        dt = new DataTable();
+                        CargarColumnasGridView();
 
                         lblMensaje.Text = "Pago agregado correctamente";
                     }

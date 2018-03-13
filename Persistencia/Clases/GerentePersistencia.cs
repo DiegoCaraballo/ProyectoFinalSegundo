@@ -92,7 +92,6 @@ namespace Persistencia
 
             try
             {
-                //TODO - Cuando resulta el tema de la BD veo los errores que se pueden devolver
                 cnn.Open();
                 cmd.ExecuteNonQuery();
                 if ((int)retorno.Value == -1)
@@ -115,7 +114,7 @@ namespace Persistencia
             }
         }
 
-        //TODO ver si aca va tambien el usu
+        
         public Gerente LogueoGerente(string nomUsu)
         {
             SqlConnection cnn = new SqlConnection(Conexion.Cnn);
