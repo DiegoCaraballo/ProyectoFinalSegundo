@@ -36,7 +36,7 @@ namespace EntidadesCompartidas
             get { return rut; }
             set
             {
-                if (value.ToString().Trim().Length > 5 &&value.ToString().Trim().Length <= 12)
+                if (value.ToString().Trim().Length >= 5 &&value.ToString().Trim().Length <= 12)
                 {
                     rut = value;
                 }

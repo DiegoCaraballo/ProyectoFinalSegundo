@@ -9,6 +9,6 @@ namespace Logica
 {
     public interface IHorasExtrasLogica
     {
-        void GuardarHorasExtras(DateTime fecha, int minutos, Usuario cajero);
+        void GuardarHorasExtras(HorasExtras horasExtras);
     }
 }

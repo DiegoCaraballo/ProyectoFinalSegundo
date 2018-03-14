@@ -132,7 +132,7 @@
             this.txtNombre.Location = new System.Drawing.Point(258, 95);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 25);
-            this.txtNombre.TabIndex = 57;
+            this.txtNombre.TabIndex = 2;
             // 
             // statusStrip1
             // 
@@ -160,7 +160,7 @@
             this.txtCodEmpresa.Mask = "####";
             this.txtCodEmpresa.Name = "txtCodEmpresa";
             this.txtCodEmpresa.Size = new System.Drawing.Size(100, 25);
-            this.txtCodEmpresa.TabIndex = 59;
+            this.txtCodEmpresa.TabIndex = 0;
             // 
             // txtCodTipoContrato
             // 
@@ -168,7 +168,7 @@
             this.txtCodTipoContrato.Mask = "##";
             this.txtCodTipoContrato.Name = "txtCodTipoContrato";
             this.txtCodTipoContrato.Size = new System.Drawing.Size(100, 25);
-            this.txtCodTipoContrato.TabIndex = 60;
+            this.txtCodTipoContrato.TabIndex = 1;
             this.txtCodTipoContrato.Validating += new System.ComponentModel.CancelEventHandler(this.txtCodTipoContrato_Validating);
             // 
             // ABMTipoContrato

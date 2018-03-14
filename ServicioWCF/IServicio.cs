@@ -35,9 +35,6 @@ namespace ServicioWCF
 
         [OperationContract]
         Usuario Logueo(string pNomUsu);
-
-        [OperationContract]
-        void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos);
         #endregion
 
         #region Pago
@@ -87,7 +84,7 @@ namespace ServicioWCF
         #region HorasExtras
 
         [OperationContract]
-        void GuardarHorasExtras(DateTime fecha, int minutos, Usuario cajero);
+        void GuardarHorasExtras(HorasExtras horasExtras);
 
         #endregion
     }

@@ -16,6 +16,5 @@ namespace Logica
         Usuario BuscarCajeroServicioWin(int cedula);
         void CambioPass(Usuario unUsuario, Usuario usuLogueado);
         Usuario Logueo(string pNomUsu);
-        void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos);
     }
 }

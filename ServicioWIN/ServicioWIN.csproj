@@ -116,9 +116,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\DataSources\EntidadesCompartidas.Empresa.datasource" />
     <None Include="Properties\DataSources\EntidadesCompartidas.Pago.datasource" />
@@ -146,6 +143,9 @@
     <None Include="Service References\ServicioWCF\ServicioWIN.ServicioWCF.Usuario.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServicioWCF\" />

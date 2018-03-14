@@ -50,10 +50,7 @@ namespace ServicioWCF
             return (FabricaLogica.GetLogicaUsuario().Logueo(pNomUsu));
         }
 
-        public void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos)
-        {
-            FabricaLogica.GetLogicaUsuario().AgregaExtras(pCedula, pFecha, pMinutos);
-        }
+      
         #endregion
 
         #region Pago
@@ -185,9 +182,9 @@ namespace ServicioWCF
 
         #region HorasExtras
 
-        public void GuardarHorasExtras(DateTime fecha, int minutos, Usuario cajero)
+        public void GuardarHorasExtras(HorasExtras horasExtras)
         {
-            FabricaLogica.GetLogicaHorasExtras().GuardarHorasExtras(fecha, minutos, cajero);
+            FabricaLogica.GetLogicaHorasExtras().GuardarHorasExtras(horasExtras);
         }
 
 

@@ -9,6 +9,6 @@ namespace Persistencia
 {
     public interface IHorasExtrasPersistencia
     {
-        void GuardarHorasExtras(DateTime fecha, int minutos, Usuario cajero);
+        void GuardarHorasExtras(HorasExtras horasExtras);
     }
 }

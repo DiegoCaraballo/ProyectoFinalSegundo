@@ -17,8 +17,8 @@ namespace ServicioWIN.ServicioWCF {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Usuario", Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ServicioWIN.ServicioWCF.Cajero))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(ServicioWIN.ServicioWCF.Gerente))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ServicioWIN.ServicioWCF.Cajero))]
     public partial class Usuario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -110,6 +110,29 @@ namespace ServicioWIN.ServicioWCF {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Gerente", Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
+    [System.SerializableAttribute()]
+    public partial class Gerente : ServicioWIN.ServicioWCF.Usuario {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CorreoField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Correo {
+            get {
+                return this.CorreoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CorreoField, value) != true)) {
+                    this.CorreoField = value;
+                    this.RaisePropertyChanged("Correo");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Cajero", Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
     [System.SerializableAttribute()]
     public partial class Cajero : ServicioWIN.ServicioWCF.Usuario {
@@ -142,29 +165,6 @@ namespace ServicioWIN.ServicioWCF {
                 if ((this.HoranIniField.Equals(value) != true)) {
                     this.HoranIniField = value;
                     this.RaisePropertyChanged("HoranIni");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Gerente", Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
-    [System.SerializableAttribute()]
-    public partial class Gerente : ServicioWIN.ServicioWCF.Usuario {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CorreoField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Correo {
-            get {
-                return this.CorreoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CorreoField, value) != true)) {
-                    this.CorreoField = value;
-                    this.RaisePropertyChanged("Correo");
                 }
             }
         }
@@ -542,6 +542,83 @@ namespace ServicioWIN.ServicioWCF {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="HorasExtras", Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
+    [System.SerializableAttribute()]
+    public partial class HorasExtras : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ServicioWIN.ServicioWCF.Cajero CajeroField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MinutosField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ServicioWIN.ServicioWCF.Cajero Cajero {
+            get {
+                return this.CajeroField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CajeroField, value) != true)) {
+                    this.CajeroField = value;
+                    this.RaisePropertyChanged("Cajero");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Fecha {
+            get {
+                return this.FechaField;
+            }
+            set {
+                if ((this.FechaField.Equals(value) != true)) {
+                    this.FechaField = value;
+                    this.RaisePropertyChanged("Fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Minutos {
+            get {
+                return this.MinutosField;
+            }
+            set {
+                if ((this.MinutosField.Equals(value) != true)) {
+                    this.MinutosField = value;
+                    this.RaisePropertyChanged("Minutos");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioWCF.IServicio")]
     public interface IServicio {
@@ -607,7 +684,7 @@ namespace ServicioWIN.ServicioWCF {
         string ListarContratos();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/GuardarHorasExtras", ReplyAction="http://tempuri.org/IServicio/GuardarHorasExtrasResponse")]
-        void GuardarHorasExtras(System.DateTime fecha, int minutos, ServicioWIN.ServicioWCF.Usuario cajero);
+        void GuardarHorasExtras(ServicioWIN.ServicioWCF.HorasExtras horasExtras);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -717,8 +794,8 @@ namespace ServicioWIN.ServicioWCF {
             return base.Channel.ListarContratos();
         }
         
-        public void GuardarHorasExtras(System.DateTime fecha, int minutos, ServicioWIN.ServicioWCF.Usuario cajero) {
-            base.Channel.GuardarHorasExtras(fecha, minutos, cajero);
+        public void GuardarHorasExtras(ServicioWIN.ServicioWCF.HorasExtras horasExtras) {
+            base.Channel.GuardarHorasExtras(horasExtras);
         }
     }
 }

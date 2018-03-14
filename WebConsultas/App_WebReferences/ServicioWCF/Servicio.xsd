@@ -78,4 +78,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfPago" nillable="true" type="tns:ArrayOfPago" />
+  <xs:complexType name="HorasExtras">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Cajero" nillable="true" type="tns:Cajero" />
+      <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Minutos" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HorasExtras" nillable="true" type="tns:HorasExtras" />
 </xs:schema>

@@ -64,7 +64,7 @@ go
 create table empresa
 (
 codEmpresa int not null primary key check(len(codEmpresa) >= 1 AND len(codEmpresa) <= 4),
-rut varchar(12) unique not null check(len(rut) = 12),
+rut varchar(12) unique not null check(len(rut)>=1 and len(rut) <= 12),
 dirFiscal varchar(100) not null,
 telefono varchar(30) not null,
 activo bit not null default 1
@@ -353,13 +353,8 @@ begin
 		set @Error=@@ERROR
 		if(@Error<>0)
 			return -7
-	Set @VarSentencia = 'Grant execute on LogueoCajero to [' +  @nomUsu + ']'
-	Exec (@VarSentencia)
-	set @Error=@@ERROR
-	if(@Error<>0)
-		return -7
-	else
-		return 1
+		else
+			return 1
 end
 go
 
@@ -548,7 +543,7 @@ go
 --LogueoCajero
 create proc LogueoCajero @nomUsu varchar(15) as
 begin
-	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where nomUsu= @nomUsu;
+	select u.*,c.horaIni,c.horaFin from cajero c join usuario u on c.cedula= u.cedula where nomUsu= @nomUsu and activo = 1;
 end
 
 go
@@ -556,6 +551,9 @@ create proc AgregarHorasExtras @cedula int ,@fecha date, @minutos int as
 begin
 	if not exists(select * from cajero where cedula =@cedula)
 		return -1
+	if exists(select * from cajero where cedula =@cedula and activo = 0)
+		return -2
+	
 	if exists(select * from horasExtras where cedula= @cedula and fecha=@fecha)
 	begin
 		update horasExtras set minutos = @minutos where cedula=@cedula and fecha=@fecha

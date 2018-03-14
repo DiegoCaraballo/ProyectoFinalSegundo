@@ -19,11 +19,11 @@ namespace Logica
             return _instancia;
         }
 
-        public void GuardarHorasExtras(DateTime fecha, int minutos, Usuario cajero)
+        public void GuardarHorasExtras(HorasExtras horasExtras)
         {
             try
             {
-                FabricaPersistencia.GetPersistenciaHorasExtras().GuardarHorasExtras(fecha, minutos, cajero);
+                FabricaPersistencia.GetPersistenciaHorasExtras().GuardarHorasExtras(horasExtras);
             }
             catch(Exception ex)
             {

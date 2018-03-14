@@ -14,6 +14,7 @@ C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\Serv
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csproj.GenerateResource.Cache
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.exe
 C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.pdb
+C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csprojResolveAssemblyReference.cache
 C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\ServicioWIN.exe.config
 C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\ServicioWIN.exe
 C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\bin\Debug\ServicioWIN.pdb
@@ -23,4 +24,3 @@ C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csproj.
 C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.exe
 C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.pdb
 C:\desarrollo\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csprojResolveAssemblyReference.cache
-C:\Desarrollo\Proyectos .Net\ProyectoFinalSegundo\ServicioWIN\obj\x86\Debug\ServicioWIN.csprojResolveAssemblyReference.cache

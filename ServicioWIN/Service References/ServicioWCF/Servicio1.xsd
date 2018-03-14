@@ -279,9 +279,7 @@
   <xs:element name="GuardarHorasExtras">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
-        <xs:element minOccurs="0" name="minutos" type="xs:int" />
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/EntidadesCompartidas" minOccurs="0" name="cajero" nillable="true" type="q33:Usuario" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/EntidadesCompartidas" minOccurs="0" name="horasExtras" nillable="true" type="q33:HorasExtras" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

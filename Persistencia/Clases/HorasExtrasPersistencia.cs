@@ -27,15 +27,15 @@ namespace Persistencia
         #region OPERACIONES
 
         //Guardar horas extras de un cajero
-        public void GuardarHorasExtras(DateTime pFecha, int pMinutos, Usuario pCajero)
+        public void GuardarHorasExtras(HorasExtras horasExtras)
         {
             SqlConnection conexion = new SqlConnection(Conexion.Cnn);
-            SqlCommand comando = new SqlCommand("AltaHorasExtras");
+            SqlCommand comando = new SqlCommand("AgregarHorasExtras",conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@fecha", pFecha);
-            comando.Parameters.AddWithValue("@minutos", pMinutos);
-            comando.Parameters.AddWithValue("@cedula", pCajero.Cedula);
+            comando.Parameters.AddWithValue("@fecha", horasExtras.Fecha);
+            comando.Parameters.AddWithValue("@minutos", horasExtras.Minutos);
+            comando.Parameters.AddWithValue("@cedula", horasExtras.Cajero.Cedula);
 
             SqlParameter retorno = new SqlParameter("@Retorno", SqlDbType.Int);
             retorno.Direction = ParameterDirection.ReturnValue;
@@ -47,7 +47,9 @@ namespace Persistencia
                 comando.ExecuteNonQuery();
                 //TODO - Ver devoluciones
                 if ((int)retorno.Value == -1)
-                    throw new Exception("La cedula ingresada ya existe en el sistema.");
+                    throw new Exception("Cajero No Existe");
+                if ((int)retorno.Value == -2)
+                    throw new Exception("El cajero esta inactivo");
             }
             catch (Exception ex)
             {

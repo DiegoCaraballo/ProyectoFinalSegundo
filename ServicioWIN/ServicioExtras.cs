@@ -76,7 +76,7 @@ namespace ServicioWIN
             string destino = Application.StartupPath + "\\horas.xml";
 
             try
-            {   
+            {
                 //Hora Actual del Sistema
                 DateTime horaActual = DateTime.Now;
 
@@ -109,10 +109,17 @@ namespace ServicioWIN
 
                         //LLamada al servicio para registrar los minutos
                         IServicio serv = new ServicioClient();
-                        
-                       
-                        //serv.AgregaExtras(Convert.ToInt32(cedula[0].InnerText.Trim().ToString()), horaActual.Date, minutosExtras);
+                        HorasExtras horasExtras = new HorasExtras();
+                        horasExtras.Cajero = (Cajero)serv.BuscarCajeroServicioWin(Convert.ToInt32(cedula[0].InnerText.Trim().ToString()));
+                        if (horasExtras.Cajero == null)
+                        {
+                            throw new Exception("El cajero no existe o esta inactivo");
+                        }
+                        horasExtras.Fecha = horaActual.Date;
+                        horasExtras.Minutos = minutosExtras;
 
+                        serv.GuardarHorasExtras(horasExtras);
+                      
                         //Registro en Log
                         Mensajes.WriteEntry("Se generaron " + minutosExtras + " Minutos Extras");
                     }

@@ -122,17 +122,7 @@ namespace Logica
             }
         }
 
-        public void AgregaExtras(int pCedula, DateTime pFecha, int pMinutos)
-        {
-            try
-            {
-                FabricaPersistencia.GetPersistenciaCajero().AgregaExtras(pCedula, pFecha, pMinutos);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
 
     }
 }

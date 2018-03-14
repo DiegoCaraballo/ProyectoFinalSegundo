@@ -57,7 +57,7 @@ namespace Administracion
                 btnAgregar.Enabled = false;
                 txtMontoTotal.Text = "";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblMensaje.Text = ex.Message;
             }
@@ -97,7 +97,7 @@ namespace Administracion
                     {   //Si no lo vuelvo a calcualar
                         foreach (DataRow dr in dt.Rows)
                         {
-                            total = total + Convert.ToInt32(dr["monto"]);
+                            total = total + Convert.ToInt32(dr["Monto"]);
                         }
 
                         txtMontoTotal.Text = total.ToString();
@@ -122,7 +122,7 @@ namespace Administracion
                 IServicio serv = new ServicioClient();
 
                 //Si no existe tipo de contrato salgo
-                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato,usuLogueado);
+                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato, usuLogueado);
                 if (unContrato == null)
                     throw new Exception("El tipo de contrato no existe");
 
@@ -146,11 +146,11 @@ namespace Administracion
 
                 //Agrego al Grid
                 DataRow dr = this.dt.NewRow();
-                dr["codEmp"] = txtCodEmp.Text;
-                dr["codContrato"] = txtTipoContrato.Text;
-                dr["fechaVto"] = txtFVencimiento.Text;
-                dr["codCli"] = txtCodCli.Text;
-                dr["monto"] = txtMonto.Text;
+                dr["Rut Emp"] = txtCodEmp.Text;
+                dr["Cod Contrato"] = txtTipoContrato.Text;
+                dr["Fecha Vto"] = txtFVencimiento.Text;
+                dr["Cod Cli"] = txtCodCli.Text;
+                dr["Monto"] = txtMonto.Text;
 
                 dt.Rows.Add(dr);
 
@@ -165,11 +165,11 @@ namespace Administracion
 
         private void CargarColumnasGridView()
         {
-            dt.Columns.Add("codEmp");
-            dt.Columns.Add("codContrato");
-            dt.Columns.Add("fechaVto");
-            dt.Columns.Add("codCli");
-            dt.Columns.Add("monto");
+            dt.Columns.Add("Rut Emp");
+            dt.Columns.Add("Cod Contrato");
+            dt.Columns.Add("Fecha Vto");
+            dt.Columns.Add("Cod Cli");
+            dt.Columns.Add("Monto");
 
             this.gvListaFacturas.DataSource = dt;
         }
@@ -200,14 +200,14 @@ namespace Administracion
                 IServicio serv = new ServicioClient();
 
                 //Busco la Empresa
-                Empresa unaEmpresa = serv.BuscarEmpresa(codEmp,usuLogueado);
+                Empresa unaEmpresa = serv.BuscarEmpresa(codEmp, usuLogueado);
                 if (unaEmpresa == null)
                     throw new Exception("La empresa no existe");
 
                 //Busco el Tipo de Contrato
-                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato,usuLogueado);
+                TipoContrato unContrato = serv.BuscarContrato(codEmp, codTipoContrato, usuLogueado);
                 if (unContrato == null)
-                    throw new Exception("El tipo de contrato no existe");               
+                    throw new Exception("El tipo de contrato no existe");
 
                 //Cargo todos los textbox
                 txtCodCli.Text = Convert.ToInt32(txtCodBarra.Text.Substring(14, 6).TrimStart('0')).ToString();
@@ -221,11 +221,11 @@ namespace Administracion
                                        CultureInfo.InvariantCulture);
                     txtFVencimiento.Text = newDate.ToShortDateString();
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     throw new Exception("La fecha de la factura tiene un formato incorrecto");
                 }
-                
+
                 txtMonto.Text = Convert.ToInt32(txtCodBarra.Text.Substring(20, 5).TrimStart('0')).ToString();
                 txtTipoContrato.Text = unContrato.Nombre.ToString();
 
@@ -252,7 +252,7 @@ namespace Administracion
 
             foreach (DataRow dr in dt.Rows)
             {
-                total = total + Convert.ToInt32(dr["monto"]);
+                total = total + Convert.ToInt32(dr["Monto"]);
             }
 
             txtMontoTotal.Text = total.ToString();
