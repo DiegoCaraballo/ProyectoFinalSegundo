@@ -109,7 +109,9 @@ namespace ServicioWIN
 
                         //LLamada al servicio para registrar los minutos
                         IServicio serv = new ServicioClient();
-                        serv.AgregaExtras(Convert.ToInt32(cedula[0].InnerText.Trim().ToString()), horaActual.Date, minutosExtras);
+                        
+                       
+                        //serv.AgregaExtras(Convert.ToInt32(cedula[0].InnerText.Trim().ToString()), horaActual.Date, minutosExtras);
 
                         //Registro en Log
                         Mensajes.WriteEntry("Se generaron " + minutosExtras + " Minutos Extras");

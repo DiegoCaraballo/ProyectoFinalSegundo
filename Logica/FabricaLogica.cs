@@ -26,5 +26,10 @@ namespace Logica
         {
             return (TipoContratoLogica.GetInstancia());
         }
+
+        public static IHorasExtrasLogica GetLogicaHorasExtras()
+        {
+            return (HorasExtrasLogica.GetInstancia());
+        }
     }
 }

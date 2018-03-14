@@ -17,8 +17,8 @@ namespace ServicioWIN.ServicioWCF {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Usuario", Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ServicioWIN.ServicioWCF.Gerente))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(ServicioWIN.ServicioWCF.Cajero))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(ServicioWIN.ServicioWCF.Gerente))]
     public partial class Usuario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -110,29 +110,6 @@ namespace ServicioWIN.ServicioWCF {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Gerente", Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
-    [System.SerializableAttribute()]
-    public partial class Gerente : ServicioWIN.ServicioWCF.Usuario {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CorreoField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Correo {
-            get {
-                return this.CorreoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CorreoField, value) != true)) {
-                    this.CorreoField = value;
-                    this.RaisePropertyChanged("Correo");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Cajero", Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
     [System.SerializableAttribute()]
     public partial class Cajero : ServicioWIN.ServicioWCF.Usuario {
@@ -165,6 +142,29 @@ namespace ServicioWIN.ServicioWCF {
                 if ((this.HoranIniField.Equals(value) != true)) {
                     this.HoranIniField = value;
                     this.RaisePropertyChanged("HoranIni");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Gerente", Namespace="http://schemas.datacontract.org/2004/07/EntidadesCompartidas")]
+    [System.SerializableAttribute()]
+    public partial class Gerente : ServicioWIN.ServicioWCF.Usuario {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CorreoField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Correo {
+            get {
+                return this.CorreoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CorreoField, value) != true)) {
+                    this.CorreoField = value;
+                    this.RaisePropertyChanged("Correo");
                 }
             }
         }
@@ -465,7 +465,7 @@ namespace ServicioWIN.ServicioWCF {
         private string DirFiscalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RutField;
+        private string RutField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TelefonoField;
@@ -507,12 +507,12 @@ namespace ServicioWIN.ServicioWCF {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Rut {
+        public string Rut {
             get {
                 return this.RutField;
             }
             set {
-                if ((this.RutField.Equals(value) != true)) {
+                if ((object.ReferenceEquals(this.RutField, value) != true)) {
                     this.RutField = value;
                     this.RaisePropertyChanged("Rut");
                 }
@@ -556,7 +556,10 @@ namespace ServicioWIN.ServicioWCF {
         void ModificarUsuario(ServicioWIN.ServicioWCF.Usuario unUsuario, ServicioWIN.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarUsuario", ReplyAction="http://tempuri.org/IServicio/BuscarUsuarioResponse")]
-        ServicioWIN.ServicioWCF.Usuario BuscarUsuario(int pCedula);
+        ServicioWIN.ServicioWCF.Usuario BuscarUsuario(int pCedula, ServicioWIN.ServicioWCF.Usuario usuLogueado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarCajeroServicioWin", ReplyAction="http://tempuri.org/IServicio/BuscarCajeroServicioWinResponse")]
+        ServicioWIN.ServicioWCF.Usuario BuscarCajeroServicioWin(int pCedula);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/CambioPass", ReplyAction="http://tempuri.org/IServicio/CambioPassResponse")]
         void CambioPass(ServicioWIN.ServicioWCF.Usuario unUsuario, ServicioWIN.ServicioWCF.Usuario usuLogueado);
@@ -577,7 +580,7 @@ namespace ServicioWIN.ServicioWCF {
         ServicioWIN.ServicioWCF.Pago[] listar(ServicioWIN.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarEmpresa", ReplyAction="http://tempuri.org/IServicio/BuscarEmpresaResponse")]
-        ServicioWIN.ServicioWCF.Empresa BuscarEmpresa(int codEmp);
+        ServicioWIN.ServicioWCF.Empresa BuscarEmpresa(int codEmp, ServicioWIN.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AltaEmpresa", ReplyAction="http://tempuri.org/IServicio/AltaEmpresaResponse")]
         void AltaEmpresa(ServicioWIN.ServicioWCF.Empresa unaEmpresa, ServicioWIN.ServicioWCF.Usuario usuLogueado);
@@ -588,11 +591,8 @@ namespace ServicioWIN.ServicioWCF {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ModificarEmpresa", ReplyAction="http://tempuri.org/IServicio/ModificarEmpresaResponse")]
         void ModificarEmpresa(ServicioWIN.ServicioWCF.Empresa unaEmpresa, ServicioWIN.ServicioWCF.Usuario usuLogueado);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ListarEmpresas", ReplyAction="http://tempuri.org/IServicio/ListarEmpresasResponse")]
-        ServicioWIN.ServicioWCF.Empresa[] ListarEmpresas();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/BuscarContrato", ReplyAction="http://tempuri.org/IServicio/BuscarContratoResponse")]
-        ServicioWIN.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato);
+        ServicioWIN.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato, ServicioWIN.ServicioWCF.Usuario usuLogueado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/AltaTipoContrato", ReplyAction="http://tempuri.org/IServicio/AltaTipoContratoResponse")]
         void AltaTipoContrato(ServicioWIN.ServicioWCF.TipoContrato unTipoContrato, ServicioWIN.ServicioWCF.Usuario usuLogueado);
@@ -605,6 +605,9 @@ namespace ServicioWIN.ServicioWCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/ListarContratos", ReplyAction="http://tempuri.org/IServicio/ListarContratosResponse")]
         string ListarContratos();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicio/GuardarHorasExtras", ReplyAction="http://tempuri.org/IServicio/GuardarHorasExtrasResponse")]
+        void GuardarHorasExtras(System.DateTime fecha, int minutos, ServicioWIN.ServicioWCF.Usuario cajero);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -646,8 +649,12 @@ namespace ServicioWIN.ServicioWCF {
             base.Channel.ModificarUsuario(unUsuario, usuLogueado);
         }
         
-        public ServicioWIN.ServicioWCF.Usuario BuscarUsuario(int pCedula) {
-            return base.Channel.BuscarUsuario(pCedula);
+        public ServicioWIN.ServicioWCF.Usuario BuscarUsuario(int pCedula, ServicioWIN.ServicioWCF.Usuario usuLogueado) {
+            return base.Channel.BuscarUsuario(pCedula, usuLogueado);
+        }
+        
+        public ServicioWIN.ServicioWCF.Usuario BuscarCajeroServicioWin(int pCedula) {
+            return base.Channel.BuscarCajeroServicioWin(pCedula);
         }
         
         public void CambioPass(ServicioWIN.ServicioWCF.Usuario unUsuario, ServicioWIN.ServicioWCF.Usuario usuLogueado) {
@@ -674,8 +681,8 @@ namespace ServicioWIN.ServicioWCF {
             return base.Channel.listar(usuLogueado);
         }
         
-        public ServicioWIN.ServicioWCF.Empresa BuscarEmpresa(int codEmp) {
-            return base.Channel.BuscarEmpresa(codEmp);
+        public ServicioWIN.ServicioWCF.Empresa BuscarEmpresa(int codEmp, ServicioWIN.ServicioWCF.Usuario usuLogueado) {
+            return base.Channel.BuscarEmpresa(codEmp, usuLogueado);
         }
         
         public void AltaEmpresa(ServicioWIN.ServicioWCF.Empresa unaEmpresa, ServicioWIN.ServicioWCF.Usuario usuLogueado) {
@@ -690,12 +697,8 @@ namespace ServicioWIN.ServicioWCF {
             base.Channel.ModificarEmpresa(unaEmpresa, usuLogueado);
         }
         
-        public ServicioWIN.ServicioWCF.Empresa[] ListarEmpresas() {
-            return base.Channel.ListarEmpresas();
-        }
-        
-        public ServicioWIN.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato) {
-            return base.Channel.BuscarContrato(codEmp, codTipoContrato);
+        public ServicioWIN.ServicioWCF.TipoContrato BuscarContrato(int codEmp, int codTipoContrato, ServicioWIN.ServicioWCF.Usuario usuLogueado) {
+            return base.Channel.BuscarContrato(codEmp, codTipoContrato, usuLogueado);
         }
         
         public void AltaTipoContrato(ServicioWIN.ServicioWCF.TipoContrato unTipoContrato, ServicioWIN.ServicioWCF.Usuario usuLogueado) {
@@ -712,6 +715,10 @@ namespace ServicioWIN.ServicioWCF {
         
         public string ListarContratos() {
             return base.Channel.ListarContratos();
+        }
+        
+        public void GuardarHorasExtras(System.DateTime fecha, int minutos, ServicioWIN.ServicioWCF.Usuario cajero) {
+            base.Channel.GuardarHorasExtras(fecha, minutos, cajero);
         }
     }
 }

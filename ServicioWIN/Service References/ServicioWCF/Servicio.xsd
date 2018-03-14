@@ -9,16 +9,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Usuario" nillable="true" type="tns:Usuario" />
-  <xs:complexType name="Gerente">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:Usuario">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="Correo" nillable="true" type="xs:string" />
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="Gerente" nillable="true" type="tns:Gerente" />
   <xs:complexType name="Cajero">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Usuario">
@@ -30,6 +20,16 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Cajero" nillable="true" type="tns:Cajero" />
+  <xs:complexType name="Gerente">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Usuario">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Correo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Gerente" nillable="true" type="tns:Gerente" />
   <xs:complexType name="Pago">
     <xs:sequence>
       <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
@@ -67,7 +67,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Codigo" type="xs:int" />
       <xs:element minOccurs="0" name="DirFiscal" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Rut" type="xs:int" />
+      <xs:element minOccurs="0" name="Rut" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -78,10 +78,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfPago" nillable="true" type="tns:ArrayOfPago" />
-  <xs:complexType name="ArrayOfEmpresa">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Empresa" nillable="true" type="tns:Empresa" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfEmpresa" nillable="true" type="tns:ArrayOfEmpresa" />
 </xs:schema>

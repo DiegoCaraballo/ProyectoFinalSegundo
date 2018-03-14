@@ -28,6 +28,9 @@ namespace ServicioWCF
         Usuario BuscarUsuario(int pCedula,Usuario usuLogueado);
 
         [OperationContract]
+        Usuario BuscarCajeroServicioWin(int pCedula);
+
+        [OperationContract]
         void CambioPass(Usuario unUsuario, Usuario usuLogueado);
 
         [OperationContract]
@@ -78,6 +81,13 @@ namespace ServicioWCF
 
         [OperationContract]
         string ListarContratos();
+
+        #endregion
+
+        #region HorasExtras
+
+        [OperationContract]
+        void GuardarHorasExtras(DateTime fecha, int minutos, Usuario cajero);
 
         #endregion
     }

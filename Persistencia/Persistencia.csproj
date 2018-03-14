@@ -44,6 +44,7 @@
     <Compile Include="Clases\EmpresaPersistencia.cs" />
     <Compile Include="Clases\FacturaPersistencia.cs" />
     <Compile Include="Clases\GerentePersistencia.cs" />
+    <Compile Include="Clases\HorasExtrasPersistencia.cs" />
     <Compile Include="Clases\PagoPersistencia.cs" />
     <Compile Include="Clases\TipoContratoPersistencia.cs" />
     <Compile Include="Conexion.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Interfaces\ICajeroPersistencia.cs" />
     <Compile Include="Interfaces\IEmpresaPersistencia.cs" />
     <Compile Include="Interfaces\IGerentePersistencia.cs" />
+    <Compile Include="Interfaces\IHorasExtrasPersistencia.cs" />
     <Compile Include="Interfaces\IPagoPersistencia.cs" />
     <Compile Include="Interfaces\ITipoContratoPersistencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -31,6 +31,12 @@
   <wsdl:message name="IServicio_BuscarUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:BuscarUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicio_BuscarCajeroServicioWin_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarCajeroServicioWin" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_BuscarCajeroServicioWin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarCajeroServicioWinResponse" />
+  </wsdl:message>
   <wsdl:message name="IServicio_CambioPass_InputMessage">
     <wsdl:part name="parameters" element="tns:CambioPass" />
   </wsdl:message>
@@ -91,12 +97,6 @@
   <wsdl:message name="IServicio_ModificarEmpresa_OutputMessage">
     <wsdl:part name="parameters" element="tns:ModificarEmpresaResponse" />
   </wsdl:message>
-  <wsdl:message name="IServicio_ListarEmpresas_InputMessage">
-    <wsdl:part name="parameters" element="tns:ListarEmpresas" />
-  </wsdl:message>
-  <wsdl:message name="IServicio_ListarEmpresas_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ListarEmpresasResponse" />
-  </wsdl:message>
   <wsdl:message name="IServicio_BuscarContrato_InputMessage">
     <wsdl:part name="parameters" element="tns:BuscarContrato" />
   </wsdl:message>
@@ -127,6 +127,12 @@
   <wsdl:message name="IServicio_ListarContratos_OutputMessage">
     <wsdl:part name="parameters" element="tns:ListarContratosResponse" />
   </wsdl:message>
+  <wsdl:message name="IServicio_GuardarHorasExtras_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarHorasExtras" />
+  </wsdl:message>
+  <wsdl:message name="IServicio_GuardarHorasExtras_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarHorasExtrasResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServicio">
     <wsdl:operation name="AltaUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/AltaUsuario" message="tns:IServicio_AltaUsuario_InputMessage" />
@@ -143,6 +149,10 @@
     <wsdl:operation name="BuscarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/BuscarUsuario" message="tns:IServicio_BuscarUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicio/BuscarUsuarioResponse" message="tns:IServicio_BuscarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarCajeroServicioWin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/BuscarCajeroServicioWin" message="tns:IServicio_BuscarCajeroServicioWin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/BuscarCajeroServicioWinResponse" message="tns:IServicio_BuscarCajeroServicioWin_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CambioPass">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/CambioPass" message="tns:IServicio_CambioPass_InputMessage" />
@@ -184,10 +194,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/ModificarEmpresa" message="tns:IServicio_ModificarEmpresa_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicio/ModificarEmpresaResponse" message="tns:IServicio_ModificarEmpresa_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ListarEmpresas">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/ListarEmpresas" message="tns:IServicio_ListarEmpresas_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/ListarEmpresasResponse" message="tns:IServicio_ListarEmpresas_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="BuscarContrato">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/BuscarContrato" message="tns:IServicio_BuscarContrato_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicio/BuscarContratoResponse" message="tns:IServicio_BuscarContrato_OutputMessage" />
@@ -207,6 +213,10 @@
     <wsdl:operation name="ListarContratos">
       <wsdl:input wsaw:Action="http://tempuri.org/IServicio/ListarContratos" message="tns:IServicio_ListarContratos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServicio/ListarContratosResponse" message="tns:IServicio_ListarContratos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarHorasExtras">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicio/GuardarHorasExtras" message="tns:IServicio_GuardarHorasExtras_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicio/GuardarHorasExtrasResponse" message="tns:IServicio_GuardarHorasExtras_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServicio" type="tns:IServicio">
@@ -240,6 +250,15 @@
     </wsdl:operation>
     <wsdl:operation name="BuscarUsuario">
       <soap:operation soapAction="http://tempuri.org/IServicio/BuscarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarCajeroServicioWin">
+      <soap:operation soapAction="http://tempuri.org/IServicio/BuscarCajeroServicioWin" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -337,15 +356,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListarEmpresas">
-      <soap:operation soapAction="http://tempuri.org/IServicio/ListarEmpresas" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="BuscarContrato">
       <soap:operation soapAction="http://tempuri.org/IServicio/BuscarContrato" style="document" />
       <wsdl:input>
@@ -384,6 +394,15 @@
     </wsdl:operation>
     <wsdl:operation name="ListarContratos">
       <soap:operation soapAction="http://tempuri.org/IServicio/ListarContratos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarHorasExtras">
+      <soap:operation soapAction="http://tempuri.org/IServicio/GuardarHorasExtras" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

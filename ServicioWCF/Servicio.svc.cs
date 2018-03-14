@@ -35,6 +35,11 @@ namespace ServicioWCF
             return (FabricaLogica.GetLogicaUsuario().Buscar(pCedula,usuLogueado));
         }
 
+        public Usuario BuscarCajeroServicioWin(int pCedula)
+        {
+            return (FabricaLogica.GetLogicaUsuario().BuscarCajeroServicioWin(pCedula));
+        }
+
         public void CambioPass(Usuario unUsuario, Usuario usuLogueado)
         {
             FabricaLogica.GetLogicaUsuario().CambioPass(unUsuario, usuLogueado);
@@ -175,6 +180,16 @@ namespace ServicioWCF
                 throw new Exception(ex.Message);
             }
         }
+
+        #endregion
+
+        #region HorasExtras
+
+        public void GuardarHorasExtras(DateTime fecha, int minutos, Usuario cajero)
+        {
+            FabricaLogica.GetLogicaHorasExtras().GuardarHorasExtras(fecha, minutos, cajero);
+        }
+
 
         #endregion
     }

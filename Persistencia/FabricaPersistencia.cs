@@ -32,5 +32,10 @@ namespace Persistencia
         {
             return (TipoContratoPersistencia.GetInstancia());
         }
+
+        public static IHorasExtrasPersistencia GetPersistenciaHorasExtras()
+        {
+            return (HorasExtrasPersistencia.GetInstancia());
+        }
     }
 }

@@ -73,6 +73,18 @@ namespace Logica
             }
         }
 
+        public Usuario BuscarCajeroServicioWin(int cedula)
+        {
+            try
+            {
+                return ((Cajero)FabricaPersistencia.GetPersistenciaCajero().BuscarCajeroServicioWin(cedula));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void CambioPass(Usuario unUsuario, Usuario usuLogueado)
         {
             try

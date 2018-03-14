@@ -240,7 +240,40 @@ namespace Persistencia
             }
             return unCajero;
         }
-        
+
+        //Buscar cajero para el servicio de horas extras
+        public Cajero BuscarCajeroServicioWin(int cedula)
+        {
+            SqlConnection cnn = new SqlConnection(Conexion.Cnn);
+
+            Cajero unCajero = null;
+
+            SqlCommand cmd = new SqlCommand("BuscarCajero", cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@cedula", cedula);
+
+            try
+            {
+                cnn.Open();
+                SqlDataReader lector = cmd.ExecuteReader();
+                if (lector.HasRows)
+                {
+                    lector.Read();
+                    unCajero = new Cajero((int)lector["cedula"], (string)lector["nomUsu"], (string)lector["pass"], (string)lector["nomCompleto"], Convert.ToDateTime(lector["horaIni"]), Convert.ToDateTime(lector["horaFin"]));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+            return unCajero;
+        }
+
         //Buscar cajero por más que esté desactivado
         public Cajero BuscarCajeroTodos(int cedula, Usuario usuLogueado)
         {
